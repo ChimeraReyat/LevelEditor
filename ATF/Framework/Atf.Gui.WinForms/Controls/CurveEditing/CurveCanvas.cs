@@ -3659,7 +3659,7 @@ namespace Sce.Atf.Controls.CurveEditing
                     }
                     else
                     {
-                        throw new Exception(ttype.FullName + " is not supported"); ;
+                        throw new Exception(ttype.FullName + " is not supported");
                     }
 
                     Value = default(T);

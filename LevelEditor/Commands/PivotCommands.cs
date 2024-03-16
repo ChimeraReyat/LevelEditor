@@ -78,7 +78,7 @@ namespace LevelEditor.Commands
                 };
             m_functions[(int)Command.ZMax]=(Vec3F pivot, AABB aabb) =>
                 {
-                    return new Vec3F(pivot.X, pivot.Y, aabb.Max.Z); ;
+                    return new Vec3F(pivot.X, pivot.Y, aabb.Max.Z);
                 };
             m_functions[(int)Command.AllCenter] = (Vec3F pivot, AABB aabb) =>
             {
