@@ -25,7 +25,7 @@ namespace LevelEditorCore
                this,
                StandardMenu.View,
                StandardCommandGroup.ViewCamera,
-               "camera".Localize() + "/" + "Arcball".Localize(),
+               "Camera".Localize() + "/" + "Arcball".Localize(),
                "Arcball".Localize(),
                Sce.Atf.Input.Keys.None,
                Resources.ArcballImage,

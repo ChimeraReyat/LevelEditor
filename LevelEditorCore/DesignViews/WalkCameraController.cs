@@ -24,7 +24,7 @@ namespace LevelEditorCore
                 this,
                 StandardMenu.View,
                 StandardCommandGroup.ViewCamera,
-                "camera".Localize() + "/" + "Walk".Localize(),
+                "Camera".Localize() + "/" + "Walk".Localize(),
                 "Walk: WASD + Middle Mouse, press Alt+MiddleMouse for height, mouse wheel to adjust walk speed".Localize(),
                 Sce.Atf.Input.Keys.None,
                 Resources.WalkImage,

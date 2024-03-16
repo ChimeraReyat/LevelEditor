@@ -25,7 +25,7 @@ namespace LevelEditorCore
                    this,
                    StandardMenu.View,
                    StandardCommandGroup.ViewCamera,
-                   "camera".Localize() + "/" + "Maya".Localize(),
+                   "Camera".Localize() + "/" + "Maya".Localize(),
                    "Maya style camera".Localize(),
                    Sce.Atf.Input.Keys.None,
                    Resources.MayaImage,

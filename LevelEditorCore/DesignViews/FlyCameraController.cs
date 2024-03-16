@@ -25,7 +25,7 @@ namespace LevelEditorCore
                this,
                StandardMenu.View,
                StandardCommandGroup.ViewCamera,
-               "camera".Localize() + "/" + "Fly".Localize(),
+               "Camera".Localize() + "/" + "Fly".Localize(),
                "Fly:  WASD + Middle Mouse navigation, mouse-wheel to adjust speed".Localize(),
                Sce.Atf.Input.Keys.None,
                Resources.FlyImage,
