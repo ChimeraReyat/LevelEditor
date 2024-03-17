@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -16,13 +16,13 @@ namespace Sce.Atf.Controls
     /// The ITreeAdapter plays a small roll in the render style, too, because it provides "hints" about
     /// which font style to use that gets passed to this TreeItemRenderer via the TreeControl.Node's
     /// FontStyle property.
-    /// 
+    ///
     /// This class is intended to be used with only one TreeControl, because it caches the fonts
     /// (by default) according to the font style. It is possible to override that behavior.</remarks>
     public class TreeItemRenderer
     {
         /// <summary>
-        /// Gets or sets the brush for the background of highlighted elements</summary>      
+        /// Gets or sets the brush for the background of highlighted elements</summary>
         public Brush HighlightBrush
         {
             get { return m_highlightBrush; }
@@ -30,7 +30,7 @@ namespace Sce.Atf.Controls
         }
 
         /// <summary>
-        /// Gets or sets the brush for the text of highlighted elements</summary>    
+        /// Gets or sets the brush for the text of highlighted elements</summary>
         public Brush HighlightTextBrush
         {
             get { return m_highlightTextBrush; }
@@ -38,7 +38,7 @@ namespace Sce.Atf.Controls
         }
 
         /// <summary>
-        /// Gets or sets the brush for the background of highlighted elements when the tree control does not have the input focus</summary>      
+        /// Gets or sets the brush for the background of highlighted elements when the tree control does not have the input focus</summary>
         public Brush DeactiveHighlightBrush
         {
             get { return m_deactiveHighlightBrush; }
@@ -46,7 +46,7 @@ namespace Sce.Atf.Controls
         }
 
         /// <summary>
-        /// Gets or sets the brush for the text of highlighted elements when the tree control does not have the input focus</summary>   
+        /// Gets or sets the brush for the text of highlighted elements when the tree control does not have the input focus</summary>
         public Brush DeactiveHighlightTextBrush
         {
             get { return m_deactiveHighlightTextBrush; }
@@ -191,7 +191,7 @@ namespace Sce.Atf.Controls
         {
             Rectangle textRect = new Rectangle(x, y, node.LabelWidth, node.LabelHeight);
             Brush textBrush = m_textBrush;
-            
+
             Font font = GetDefaultFont(node, g);
 
             if (!string.IsNullOrEmpty(FilteringPattern) && node.Label != null)
@@ -202,17 +202,17 @@ namespace Sce.Atf.Controls
 
                 do
                 {
-                    // highlight the background of matched text 
+                    // highlight the background of matched text
                     matchStart = node.Label.IndexOf(FilteringPattern, regularStart, StringComparison.CurrentCultureIgnoreCase);
                     if (matchStart >= 0)
                     {
-                        // non-matched substring 
+                        // non-matched substring
                         string regularString = node.Label.Substring(regularStart, matchStart - regularStart);
                         SizeF regularSize = MeasureDisplayStringWidth(g, regularString, font);
                         textLoc.X += regularSize.Width;
                         regularStart = matchStart + FilteringPattern.Length; // advance string offset
 
-                        // matched substring 
+                        // matched substring
                         string matchedString = node.Label.Substring(matchStart, FilteringPattern.Length);
                         SizeF matchedSize = MeasureDisplayStringWidth(g, matchedString, font);
                         RectangleF matchedRect = new RectangleF(textLoc, matchedSize);
@@ -233,7 +233,7 @@ namespace Sce.Atf.Controls
 
                 g.FillRectangle(highlightBrush, textRect);
                 textBrush = highlightTextBrush;
-            }            
+            }
             g.DrawString(node.Label, font, textBrush, textRect);
         }
 
@@ -245,7 +245,7 @@ namespace Sce.Atf.Controls
         /// <param name="y">The y-coordinate of the upper-left corner of the node label</param>
         public virtual void DrawData(TreeControl.Node node, Graphics g, int x, int y)
         {
-            
+
         }
 
         /// <summary>
@@ -304,7 +304,7 @@ namespace Sce.Atf.Controls
                 g.FillRectangle(fillBrush, rect);
                 var rect2 = Rectangle.Inflate(bounds,-4, -4);
                 g.FillRectangle(fillBrush2, rect2);
-                g.DrawRectangle(borderPen, rect.X, rect.Y, rect.Width - 1, rect.Height - 1);                                 
+                g.DrawRectangle(borderPen, rect.X, rect.Y, rect.Width - 1, rect.Height - 1);
             }
             else
             {
@@ -314,7 +314,7 @@ namespace Sce.Atf.Controls
                 if (!node.CheckBoxEnabled)
                     buttonState |= ButtonState.Inactive;
                 ControlPaint.DrawCheckBox(g, bounds, buttonState);
-            }            
+            }
         }
 
         /// <summary>
@@ -342,7 +342,7 @@ namespace Sce.Atf.Controls
         /// <param name="y">The y-coordinate of the upper-left corner of the expander icon</param>
         public virtual void DrawExpander(TreeControl.Node node, Graphics g, int x, int y)
         {
-            NodeFilteringStatus 
+            NodeFilteringStatus
                 stat = FilteringStatus != null
                 ? FilteringStatus(node) : NodeFilteringStatus.Normal;
 
@@ -371,10 +371,10 @@ namespace Sce.Atf.Controls
                     frg = m_expanderPen;
             }
 
-            node.PartiallyExpanded = false; // reset            
+            node.PartiallyExpanded = false; // reset
             GdiUtil.DrawExpander(g, x, y, ExpanderSize.Height, node.Expanded, bkg, frg);
 
-            //node.PartiallyExpanded = false; // reset            
+            //node.PartiallyExpanded = false; // reset
             //GdiUtil.DrawExpander(x, y, ExpanderSize.Height, m_expanderPen, node.Expanded, g);
         }
         private SolidBrush m_tmp = new SolidBrush(Color.Black);
@@ -481,7 +481,7 @@ namespace Sce.Atf.Controls
             return font;
         }
 
-       
+
         private Control m_owner;
         private readonly Dictionary<int, Font> m_fonts = new Dictionary<int, Font>();
         private Size m_checkBoxSize = new Size(16, 16);
@@ -502,7 +502,7 @@ namespace Sce.Atf.Controls
         private Color m_categoryStartColor = Color.FromArgb(0, 0, 0, 0);
         private Color m_categoryEndColor = Color.FromArgb(0, 0, 0, 0);
     }
-    
+
     /// <summary>
     /// Test case to have wildly colorful alternating letters of the label and extra-big expanders</summary>
     [Obsolete("Is a temporary example. Will be removed or relocated.")]

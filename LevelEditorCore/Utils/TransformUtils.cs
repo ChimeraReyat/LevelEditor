@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 
@@ -19,9 +19,9 @@ namespace LevelEditorCore
     {
 
         /// <summary>
-        /// Decomposes the given matrix to translation, scale, 
-        /// and rotation and set them to given Transformable node.        
-        /// </summary>        
+        /// Decomposes the given matrix to translation, scale,
+        /// and rotation and set them to given Transformable node.
+        /// </summary>
         public static void SetTransform(ITransformable xform, Matrix4F mtrx)
         {
             xform.Translation = mtrx.Translation;
@@ -33,8 +33,8 @@ namespace LevelEditorCore
         }
 
         /// <summary>
-        /// Computes world transformation matrix for the given 
-        /// Transformable node.</summary>        
+        /// Computes world transformation matrix for the given
+        /// Transformable node.</summary>
         public static Matrix4F ComputeWorldTransform(ITransformable xform)
         {
             Matrix4F world = new Matrix4F();
@@ -54,9 +54,9 @@ namespace LevelEditorCore
         /// Calculates the world space matrix of the given path</summary>
         /// <param name="path">The path</param>
         /// <param name="start">Starting index</param>
-        /// <param name="M">the world matrix</param>        
+        /// <param name="M">the world matrix</param>
         public static void CalcPathTransform(Matrix4F M, Path<DomNode> path, int start)
-        {           
+        {
             for (int i = start; i >= 0; i--)
             {
                 if (path[i] != null)
@@ -69,7 +69,7 @@ namespace LevelEditorCore
                         M.Mul(M, renderable.Transform);
                     }
                 }
-            }            
+            }
         }
 
         /// <summary>
@@ -100,8 +100,8 @@ namespace LevelEditorCore
         }
 
         public static Vec3F CalcSnapFromOffset(ITransformable node, SnapFromMode snapFrom)
-        {            
-            
+        {
+
             // AABB in local space.
             AABB box = node.As<IBoundable>().LocalBoundingBox;
 
@@ -139,12 +139,12 @@ namespace LevelEditorCore
             Path<DomNode> path = new Path<DomNode>(node.Cast<DomNode>().GetPath());
             Matrix4F toWorld = TransformUtils.CalcPathTransform(path, path.Count - 1);
 
-            Vec3F offset;            
-            toWorld.TransformVector(offsetLocal, out offset); //local-to-world           
+            Vec3F offset;
+            toWorld.TransformVector(offsetLocal, out offset); //local-to-world
             return offset; //world
         }
 
-     
+
         /// <summary>
         /// Given an object's current Euler angles and a surface normal, will calculate
         ///  the Euler angles necessary to rotate the object so that it's up-vector is
@@ -228,7 +228,7 @@ namespace LevelEditorCore
             rotMat.GetEulerAngles(out newEulers.X, out newEulers.Y, out newEulers.Z);
             return newEulers;
         }
-             
+
         /// <summary>
         /// Calculates the transformation matrix corresponding to the given Renderable node</summary>
         /// <param name="node">Renderable node</param>
@@ -259,7 +259,7 @@ namespace LevelEditorCore
             Vec3F scale,
             Vec3F pivot)
         {
-            
+
             Matrix4F M = new Matrix4F();
             Matrix4F temp = new Matrix4F();
 
@@ -291,7 +291,7 @@ namespace LevelEditorCore
 
             return M;
         }
-        
+
     }
 
 }

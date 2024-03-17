@@ -19,14 +19,14 @@ namespace DomGen
         // usage: CodeDomGen schemaFile outputFile classNamespace
         [STAThread]
         static void Main(string[] args)
-        {            
+        {
             if (args.Length < 3)
-            {                
+            {
                 Console.WriteLine("usage:\r\nCodeDomGen schemaFile outputFile codeNamespace");
                 return;
             }
 
-            string inputFile = args[0];            
+            string inputFile = args[0];
             string outputFile = args[1];
             string codeNamespace = args[2];
 

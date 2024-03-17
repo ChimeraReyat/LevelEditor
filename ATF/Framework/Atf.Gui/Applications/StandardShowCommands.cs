@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.ComponentModel.Composition;
 namespace Sce.Atf.Applications
 {
     /// <summary>
-    /// Class that implements the standard Show commands: 
+    /// Class that implements the standard Show commands:
     /// Show Selected, Hide Selected, Show Last Hidden, Show All, Isolate</summary>
     [Export(typeof(IInitializable))]
     [Export(typeof(IContextMenuCommandProvider))]
@@ -21,7 +21,7 @@ namespace Sce.Atf.Applications
         /// <param name="contextRegistry">Context registry</param>
         [ImportingConstructor]
         public StandardShowCommands(
-            ICommandService commandService, 
+            ICommandService commandService,
             IContextRegistry contextRegistry)
         {
             m_commandService = commandService;
@@ -55,7 +55,7 @@ namespace Sce.Atf.Applications
             {
                 ISelectionContext selectionContext = m_contextRegistry.GetActiveContext<ISelectionContext>();
                 IEnumerableContext enumerableContext = m_contextRegistry.GetActiveContext<IEnumerableContext>();
-                
+
                 switch ((StandardCommand)commandTag)
                 {
                     case StandardCommand.ViewHide:
@@ -88,7 +88,7 @@ namespace Sce.Atf.Applications
                 IEnumerable<object> selection = null;
                 if (selectionContext != null)
                     selection = selectionContext.Selection;
-                
+
                 switch ((StandardCommand)commandTag)
                 {
                     case StandardCommand.ViewHide:
@@ -135,7 +135,7 @@ namespace Sce.Atf.Applications
 
                 Refresh();
             }
-           
+
         }
 
         private void ShowSelection(IEnumerable<object> selection, IVisibilityContext visibilityContext)
@@ -197,7 +197,7 @@ namespace Sce.Atf.Applications
         /// <summary>
         /// Refreshes display after indicating to hide/show items</summary>
         protected virtual void Refresh()
-        {            
+        {
         }
 
         private readonly Stack<IList<WeakReference>> m_hideStack = new Stack<IList<WeakReference>>();

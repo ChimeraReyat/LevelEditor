@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -17,7 +17,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             FloatingPinElementMargin = 28;   // default floating pin margin between different elements(minimum vertical space between the elements)
 
             FloatingPinBoxHeight = 15;       // default floating pin box height(excluding the bottom label part)
-            FloatingPinBoxWidth = 22;        // default floating pin box width 
+            FloatingPinBoxWidth = 22;        // default floating pin box width
         }
         /// <summary>
         /// Gets or sets whether the group pin is 'pinned'. When pinned, the pin will not be automatically
@@ -72,7 +72,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             get { return m_color; }
             set { m_color = value; }
         }
-                
+
         // group pin can be displayed as a floating pin (virtual) node in the group pin editor
 
         /// <summary>

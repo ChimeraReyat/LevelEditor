@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -49,7 +49,7 @@ namespace Sce.Atf.Controls.Timelines.Direct2D
             m_nameBrush = m_graphics.CreateSolidBrush(SystemColors.WindowText);
             m_scaleTextBrush = m_graphics.CreateSolidBrush(SystemColors.WindowText);
             m_generalSolidColorBrush = m_graphics.CreateSolidBrush(Color.Empty);
-            
+
             m_trackTextFormat = D2dFactory.CreateTextFormat(Font);
             m_trackTextFormat.ParagraphAlignment = D2dParagraphAlignment.Far;
             m_trackTextFormat.TextAlignment = D2dTextAlignment.Trailing;
@@ -1049,11 +1049,11 @@ namespace Sce.Atf.Controls.Timelines.Direct2D
                     return -1;
                 if (a.Type > b.Type)
                     return 1;
-                
+
                 // The HeaderResize type doesn't have a HitPath.
                 if (a.HitPath == null || b.HitPath == null)
                     return 0;
-                
+
                 // They're the same type, so now sort by distance from center of picking rectangle.
                 RectangleF aRect = layout.GetBounds(a.HitPath);
                 RectangleF bRect = layout.GetBounds(b.HitPath);
@@ -1687,11 +1687,11 @@ namespace Sce.Atf.Controls.Timelines.Direct2D
             /// <summary>
             /// Bounds of displayed area of timeline, in screen space</summary>
             public readonly RectangleF ClientRectangle;
-            
+
             /// <summary>
             /// Bounds of displayed area of timeline, in timeline coordinates</summary>
             public RectangleF Bounds;
-            
+
             /// <summary>
             /// Direct2D TextFormat object for displaying timeline text</summary>
             public readonly D2dTextFormat TextFormat;

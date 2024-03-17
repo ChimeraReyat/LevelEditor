@@ -27,7 +27,7 @@ namespace Sce.Atf.Controls.CurveEditing
         string DisplayName { get; set; }
 
         /// <summary>
-        /// Gets or sets curve Interpolation type</summary>        
+        /// Gets or sets curve Interpolation type</summary>
         InterpolationTypes CurveInterpolation { get; set; }
 
         /// <summary>
@@ -38,15 +38,15 @@ namespace Sce.Atf.Controls.CurveEditing
         /// Gets or sets minimum x value</summary>
         float MinX { get; set; }
 
-        /// <summary> 
+        /// <summary>
         /// Gets or sets maximum x value</summary>
         float MaxX { get; set; }
 
-        /// <summary> 
+        /// <summary>
         /// Gets or sets minimum y value</summary>
         float MinY { get; set; }
 
-        /// <summary> 
+        /// <summary>
         /// Gets or sets maximum y value</summary>
         float MaxY { get; set; }
 
@@ -77,7 +77,7 @@ namespace Sce.Atf.Controls.CurveEditing
 
         /// <summary>
         /// Adds control point at the end of the internal list</summary>
-        /// <param name="cp">Control point</param> 
+        /// <param name="cp">Control point</param>
         void AddControlPoint(IControlPoint cp);
 
         /// <summary>
@@ -161,8 +161,8 @@ namespace Sce.Atf.Controls.CurveEditing
 
     /// <summary>
     /// Class that contains runtime data used by a curve editor.
-    /// This class contains all the additional properties 
-    /// for control point that are strictly 
+    /// This class contains all the additional properties
+    /// for control point that are strictly
     /// used by a curve editor.</summary>
     public class PointEditorData
     {

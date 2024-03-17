@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Drawing;
 using System.Windows.Forms;
@@ -92,7 +92,7 @@ namespace Sce.Atf.Controls.Adaptable
                         delegate
                         {
                             instancingContext.Insert(e.Data);
-                            
+
                             if (m_statusService != null)
                                 m_statusService.ShowStatus(name);
                         }, name);

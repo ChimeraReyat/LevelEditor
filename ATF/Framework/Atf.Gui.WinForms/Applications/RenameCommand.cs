@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.ComponentModel.Composition;
 using System.Globalization;
@@ -137,7 +137,7 @@ namespace Sce.Atf.Applications
             var selectionContext = m_contextRegistry.GetActiveContext<ISelectionContext>();
             var namingContext = m_contextRegistry.GetActiveContext<INamingContext>();
             var transactionContext = m_contextRegistry.GetActiveContext<ITransactionContext>();
-            
+
             using (var dialog = new RenameCommandDialog())
             {
                 dialog.Set(selectionContext, namingContext, transactionContext);

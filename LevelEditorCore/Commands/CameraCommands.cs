@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -27,12 +27,12 @@ namespace LevelEditorCore.Commands
             var cameraMenu = CommandService.RegisterMenu(this, "Camera", "Camera");
             ToolStrip strip = cameraMenu.GetToolStrip();
             foreach (var cameraController in m_cameraControllers)
-            {                
+            {
                 if (cameraController.CommandInfo != null)
                 {
                     CommandService.RegisterCommand(cameraController.CommandInfo, this);
                     strip.Items.Add(cameraController.CommandInfo.GetButton());
-                }                    
+                }
             }
 
             SettingsService.RegisterSettings(
@@ -59,12 +59,12 @@ namespace LevelEditorCore.Commands
         /// <param name="commandTag">Command to be done</param>
         public void DoCommand(object commandTag)
         {
-            var camController = commandTag as CameraController;            
+            var camController = commandTag as CameraController;
             var designControl = m_designView.ActiveView;
             if(camController != null && camController.CanHandleCamera(designControl.Camera))
             {
                 designControl.CameraController = (CameraController)Activator.CreateInstance(camController.GetType());
-            }            
+            }
             designControl.Invalidate();
         }
 
@@ -76,7 +76,7 @@ namespace LevelEditorCore.Commands
         {
             var camController = commandTag as CameraController;
             if (camController == null)
-                return;            
+                return;
             var designControl = m_designView.ActiveView;
             state.Check = designControl.CameraController.GetType() == camController.GetType();
         }
@@ -84,13 +84,13 @@ namespace LevelEditorCore.Commands
         #endregion
 
         /// <summary>
-        /// Gets and sets the currently selected camera controllers 
+        /// Gets and sets the currently selected camera controllers
         /// for each DesignView control. This string is
         /// persisted in the user's settings file.
         /// </summary>
         public string CameraMode
         {
-            get 
+            get
             {
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.AppendChild(xmlDoc.CreateXmlDeclaration("1.0", Encoding.UTF8.WebName, "yes"));
@@ -103,7 +103,7 @@ namespace LevelEditorCore.Commands
                     XmlElement elm = xmlDoc.CreateElement("ViewControl");
                     elm.SetAttribute("Name", view.Name);
                     elm.SetAttribute("CamController", view.CameraController.GetType().AssemblyQualifiedName);
-                    root.AppendChild(elm);                  
+                    root.AppendChild(elm);
                 }
                 return xmlDoc.InnerXml;
             }
@@ -111,7 +111,7 @@ namespace LevelEditorCore.Commands
             {
 
                 try
-                {                  
+                {
                     if (string.IsNullOrEmpty(value))
                         return;
                     XmlDocument xmlDoc = new XmlDocument();
@@ -133,7 +133,7 @@ namespace LevelEditorCore.Commands
                         OutputMessageType.Error,
                         "{0}: Exception loading CameraMode persisted settings: {1}", this, ex.Message);
                 }
-            }            
+            }
         }
 
         private DesignViewControl GetViewByName(string name)

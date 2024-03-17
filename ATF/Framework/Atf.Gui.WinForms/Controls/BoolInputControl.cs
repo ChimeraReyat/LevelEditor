@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -30,7 +30,7 @@ namespace Sce.Atf.Controls
 
         /// <summary>
         /// Cleans up any resources being used</summary>
-        /// <param name="disposing">True to release both managed and unmanaged resources; 
+        /// <param name="disposing">True to release both managed and unmanaged resources;
         /// false to release only unmanaged resources</param>
         protected override void Dispose(bool disposing)
         {
@@ -117,7 +117,7 @@ namespace Sce.Atf.Controls
         #endregion
 
         #region Component Designer generated code
-        /// <summary> 
+        /// <summary>
         /// Required method for Designer support - do not modify the contents of this method
         /// with the code editor</summary>
         private void InitializeComponent()
@@ -127,17 +127,17 @@ namespace Sce.Atf.Controls
             this.m_textBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.m_trackBar)).BeginInit();
             this.SuspendLayout();
-            // 
+            //
             // _trackBar
-            // 
+            //
             resources.ApplyResources(this.m_trackBar, "_trackBar");
             this.m_trackBar.BackColor = System.Drawing.SystemColors.Window;
             this.m_trackBar.Maximum = 1;
             this.m_trackBar.Name = "_trackBar";
             this.m_trackBar.TickFrequency = 0;
-            // 
+            //
             // _textBox
-            // 
+            //
             this.m_textBox.AcceptsReturn = true;
             this.m_textBox.AcceptsTab = true;
             this.m_textBox.BackColor = System.Drawing.SystemColors.Window;
@@ -145,9 +145,9 @@ namespace Sce.Atf.Controls
             resources.ApplyResources(this.m_textBox, "_textBox");
             this.m_textBox.Name = "_textBox";
             this.m_textBox.ReadOnly = true;
-            // 
+            //
             // BoolInputControl
-            // 
+            //
             this.Controls.Add(this.m_textBox);
             this.Controls.Add(this.m_trackBar);
             this.Name = "BoolInputControl";

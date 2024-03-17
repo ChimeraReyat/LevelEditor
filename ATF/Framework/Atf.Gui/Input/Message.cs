@@ -1,50 +1,50 @@
-﻿using System;
+using System;
 
 namespace Sce.Atf.Input
 {
-    /// <summary> 
+    /// <summary>
     /// Class that implements a Windows message</summary>
-    public class Message 
+    public class Message
     {
         IntPtr hWnd;
-        int msg; 
-        IntPtr wparam; 
+        int msg;
+        IntPtr wparam;
         IntPtr lparam;
-        IntPtr result; 
+        IntPtr result;
 
         /// <summary>
         /// Gets or sets the window handle of the message</summary>
-        public IntPtr HWnd { 
+        public IntPtr HWnd {
             get { return hWnd; }
-            set { hWnd = value; } 
+            set { hWnd = value; }
         }
 
         /// <summary>
         /// Gets or sets the ID number for the message</summary>
-        public int Msg { 
+        public int Msg {
             get { return msg; }
-            set { msg = value; } 
+            set { msg = value; }
         }
 
         /// <summary>
         /// Gets or sets the System.Windows.Forms.Message.wparam of the message</summary>
-        public IntPtr WParam { 
+        public IntPtr WParam {
             get { return wparam; }
-            set { wparam = value; } 
+            set { wparam = value; }
         }
 
         /// <summary>
         /// Gets or sets the System.Windows.Forms.Message.lparam of the message</summary>
-        public IntPtr LParam { 
+        public IntPtr LParam {
             get { return lparam; }
-            set { lparam = value; } 
+            set { lparam = value; }
         }
 
         /// <summary>
         /// Gets or sets the return value of the message</summary>
-        public IntPtr Result { 
+        public IntPtr Result {
              get { return result; }
-             set { result = value; } 
+             set { result = value; }
         }
 
         /// <summary>
@@ -52,16 +52,16 @@ namespace Sce.Atf.Input
         /// <param name="o">Object to compare</param>
         /// <returns>True iff the messages are identical</returns>
         public override bool Equals(object o) {
-            if (!(o is Message)) { 
-                return false; 
+            if (!(o is Message)) {
+                return false;
             }
- 
+
             Message m = (Message)o;
             return hWnd == m.hWnd &&
                    msg == m.msg &&
-                   wparam == m.wparam && 
+                   wparam == m.wparam &&
                    lparam == m.lparam &&
-                   result == m.result; 
+                   result == m.result;
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Sce.Atf.Input
         /// <param name="a">Message 1 to compare</param>
         /// <param name="b">Message 2 to compare</param>
         /// <returns>True iff the messages are not identical</returns>
-        public static bool operator !=(Message a, Message b) { 
+        public static bool operator !=(Message a, Message b) {
             return !a.Equals(b);
         }
 
@@ -78,15 +78,15 @@ namespace Sce.Atf.Input
         /// <param name="a">Message 1 to compare</param>
         /// <param name="b">Message 2 to compare</param>
         /// <returns>True iff the messages are identical</returns>
-        public static bool operator ==(Message a, Message b) { 
+        public static bool operator ==(Message a, Message b) {
             return a.Equals(b);
-        } 
- 
+        }
+
         /// <summary>
         /// Returns instance's hash code</summary>
         /// <returns>Instance's hash code</returns>
-        public override int GetHashCode() { 
+        public override int GetHashCode() {
             return (int)hWnd << 4 | msg;
         }
-    } 
+    }
 }

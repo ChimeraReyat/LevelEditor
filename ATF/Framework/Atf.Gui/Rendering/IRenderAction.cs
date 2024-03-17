@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections.Generic;
 
@@ -60,7 +60,7 @@ namespace Sce.Atf.Rendering.Dom
         {
             get;
         }
-        
+
         /// <summary>
         /// Gets the current RenderState</summary>
         RenderState RenderState

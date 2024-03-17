@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -119,7 +119,7 @@ namespace Sce.Atf
         }
 
         /// <summary>
-        /// Formats and writes a message of the given type, ending in a new line character sequence (if necessary), 
+        /// Formats and writes a message of the given type, ending in a new line character sequence (if necessary),
         /// using all available IOutputWriters</summary>
         /// <param name="type">Message type</param>
         /// <param name="formatString">Message format string</param>
@@ -171,9 +171,9 @@ namespace Sce.Atf
 
         private static IOutputWriter[] s_outputWriters = EmptyArray<IOutputWriter>.Instance;
 
-        // Note: the default for a TraceSource is to *not* trace. You need to set the switch level to trace different types of messages, for example: 
+        // Note: the default for a TraceSource is to *not* trace. You need to set the switch level to trace different types of messages, for example:
         // TraceSource.Switch.Level = SourceLevels.Error;
-        private static TraceSource s_atfOutputTracer = new TraceSource("Sce.Atf.OutputsTracer");// create the TraceSource for Atf outputs.     
+        private static TraceSource s_atfOutputTracer = new TraceSource("Sce.Atf.OutputsTracer");// create the TraceSource for Atf outputs.
 
         [ImportMany(AllowRecomposition = true)]
         private IEnumerable<Lazy<IOutputWriter>> m_outputWriters;

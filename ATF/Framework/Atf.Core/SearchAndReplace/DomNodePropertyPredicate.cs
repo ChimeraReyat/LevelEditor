@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -19,8 +19,8 @@ namespace Sce.Atf.Dom
             m_domNode = null;
 
             // 'queryableData' is the parameter in the lambda expression on which all queries
-            // will be made.  It will be referenced everywhere in the Expression tree, and each 
-            // reference (some of which are retrieved from method calls) must be the same 
+            // will be made.  It will be referenced everywhere in the Expression tree, and each
+            // reference (some of which are retrieved from method calls) must be the same
             // parameter expression instance.
             m_queryableData = Expression.Parameter(typeof(DomNodePropertyMatch), "queryableData");
         }
@@ -58,9 +58,9 @@ namespace Sce.Atf.Dom
 
         /// <summary>
         /// Gets the DomNode instance on whose properties we will make a Linq query.
-        /// This member variable is only asssigned and used in the GetQueryableElements method. So for all intents &amp; purposes, 
+        /// This member variable is only asssigned and used in the GetQueryableElements method. So for all intents &amp; purposes,
         /// it *should* really be a local variable in that method. But DomNode is referenced in the lambda expression
-        /// created in that method. There is no way to reference a local variable in an Expression without 
+        /// created in that method. There is no way to reference a local variable in an Expression without
         /// it being treated as a constant. So the member variable allows us to abstractly reference "the current DomNode"
         /// being queried by the lambda expression</summary>
         protected DomNode DomNode { get { return m_domNode; } }

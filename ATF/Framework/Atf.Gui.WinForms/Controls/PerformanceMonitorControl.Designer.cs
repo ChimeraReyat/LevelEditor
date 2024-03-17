@@ -1,17 +1,17 @@
-﻿namespace Sce.Atf.Applications.Controls
+namespace Sce.Atf.Applications.Controls
 {
     /// <summary>
     /// Control that displays the rendering performance of a Control</summary>
     partial class PerformanceMonitorControl
     {
-        /// <summary> 
+        /// <summary>
         /// Required designer variable</summary>
         private System.ComponentModel.IContainer components = null;
 
         #region Component Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor</summary>
         private void InitializeComponent()
         {
@@ -32,95 +32,95 @@
             this.label5 = new System.Windows.Forms.Label();
             this.UnmanagedMemoryLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            // 
+            //
             // label2
-            // 
+            //
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            // 
+            //
             // label3
-            // 
+            //
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            // 
+            //
             // FpsLabel
-            // 
+            //
             resources.ApplyResources(this.FpsLabel, "FpsLabel");
             this.FpsLabel.Name = "FpsLabel";
-            // 
+            //
             // ManagedMemoryLabel
-            // 
+            //
             resources.ApplyResources(this.ManagedMemoryLabel, "ManagedMemoryLabel");
             this.ManagedMemoryLabel.Name = "ManagedMemoryLabel";
-            // 
+            //
             // MaxFpsLabel
-            // 
+            //
             resources.ApplyResources(this.MaxFpsLabel, "MaxFpsLabel");
             this.MaxFpsLabel.Name = "MaxFpsLabel";
-            // 
+            //
             // ResetBtn
-            // 
+            //
             this.ResetBtn.AutoEllipsis = true;
             resources.ApplyResources(this.ResetBtn, "ResetBtn");
             this.ResetBtn.Name = "ResetBtn";
             this.ResetBtn.UseVisualStyleBackColor = true;
             this.ResetBtn.Click += new System.EventHandler(this.ResetBtn_Click);
-            // 
+            //
             // ClipboardBtn
-            // 
+            //
             this.ClipboardBtn.AutoEllipsis = true;
             resources.ApplyResources(this.ClipboardBtn, "ClipboardBtn");
             this.ClipboardBtn.Name = "ClipboardBtn";
             this.ClipboardBtn.UseVisualStyleBackColor = true;
             this.ClipboardBtn.Click += new System.EventHandler(this.ClipboardBtn_Click);
-            // 
+            //
             // controlNameLabel
-            // 
+            //
             this.controlNameLabel.AutoEllipsis = true;
             resources.ApplyResources(this.controlNameLabel, "controlNameLabel");
             this.controlNameLabel.Name = "controlNameLabel";
-            // 
+            //
             // GarbageCollectionBtn
-            // 
+            //
             resources.ApplyResources(this.GarbageCollectionBtn, "GarbageCollectionBtn");
             this.GarbageCollectionBtn.Name = "GarbageCollectionBtn";
             this.GarbageCollectionBtn.UseVisualStyleBackColor = true;
             this.GarbageCollectionBtn.Click += new System.EventHandler(this.GarbageCollectionBtn_Click);
-            // 
+            //
             // NumPaintsLabel
-            // 
+            //
             resources.ApplyResources(this.NumPaintsLabel, "NumPaintsLabel");
             this.NumPaintsLabel.Name = "NumPaintsLabel";
-            // 
+            //
             // label6
-            // 
+            //
             resources.ApplyResources(this.label6, "label6");
             this.label6.Name = "label6";
-            // 
+            //
             // StressTestBtn
-            // 
+            //
             resources.ApplyResources(this.StressTestBtn, "StressTestBtn");
             this.StressTestBtn.Name = "StressTestBtn";
             this.StressTestBtn.UseVisualStyleBackColor = true;
             this.StressTestBtn.Click += new System.EventHandler(this.StressTestBtn_Click);
-            // 
+            //
             // label5
-            // 
+            //
             resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
-            // 
+            //
             // UnmanagedMemoryLabel
-            // 
+            //
             resources.ApplyResources(this.UnmanagedMemoryLabel, "UnmanagedMemoryLabel");
             this.UnmanagedMemoryLabel.Name = "UnmanagedMemoryLabel";
-            // 
+            //
             // PerformanceMonitorControl
-            // 
+            //
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 using Sce.Atf.Adaptation;
 
@@ -68,10 +68,10 @@ namespace Sce.Atf.Applications
             // If there is an ISelectionContext implemented for the type of our search results,
             // and the mouse click was on one of the search result list items,
             // then have that ISelectionContext select the instance associated with the clicked search result.
-            // Additionally, if the type of our search results implements an ISubSelectionContext, have 
+            // Additionally, if the type of our search results implements an ISubSelectionContext, have
             // that ISubSelectionContext select the instance associated with the subitem of the clicked search results
-            // 
-             // (For instance, when each search result ListItem is a DomNode, and contains a SubItem for every DomNode 
+            //
+             // (For instance, when each search result ListItem is a DomNode, and contains a SubItem for every DomNode
             // property that matched, this would allow both setting ISelectionContext to the DomNode associated with
             // the clicked ListItem, and setting ISubSelectionContext to the property associated with the clicked SubItem
             // in the row)

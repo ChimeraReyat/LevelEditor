@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel;
@@ -59,7 +59,7 @@ namespace Sce.Atf.Controls
         }
 
         /// <summary>
-        /// Gets or sets whether alpha is enabled. If true, user can edit the alpha value of the color in the editor. 
+        /// Gets or sets whether alpha is enabled. If true, user can edit the alpha value of the color in the editor.
         /// If false, the alpha is not editable, and is set to 255.</summary>
         public bool EnableAlpha
         {

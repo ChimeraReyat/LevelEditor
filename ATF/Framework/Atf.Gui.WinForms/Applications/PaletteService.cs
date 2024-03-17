@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -115,7 +115,7 @@ namespace Sce.Atf.Applications
 
         #endregion
 
-        
+
         /// <summary>
         /// Gets or sets an XML string representing the currently expanded categories</summary>
         /// <remarks>Intended for persisting expanded categories to the settings XML file only</remarks>
@@ -278,7 +278,7 @@ namespace Sce.Atf.Applications
         {
             TreeView = TreeAdapter;
             if (PersistExpandedCategories && m_settingsService != null)
-            {                
+            {
                 m_settingsService.RegisterSettings(
                     this, new BoundPropertyDescriptor(this, () => ExpandedCategories,
                         "ExpandedCategories", null, null));
@@ -417,7 +417,7 @@ namespace Sce.Atf.Applications
             {
                 m_categories.Clear();
             }
-            
+
             public void RefreshControl()
             {
                 Reloaded.Raise(this, null);
@@ -455,7 +455,7 @@ namespace Sce.Atf.Applications
                             {
                                 ItemInfo info = new WinFormsItemInfo();
                                 GetInfo(item, info);
-                                if (m_searchInput.IsNullOrEmpty() || 
+                                if (m_searchInput.IsNullOrEmpty() ||
                                     m_searchInput.Matches(info.Label))
                                     yield return item;
                             }

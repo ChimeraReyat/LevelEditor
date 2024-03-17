@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -35,7 +35,7 @@ namespace Sce.Atf.Applications
             m_textBox.BorderStyle = BorderStyle.None;
             //m_textBox.FontChanged += textBox_FontChanged;
             //m_textBox.ParentChanged += textBox_ParentChanged;
-            
+
             // Force creation of the handle to be sure that the RichTextBox's handle is created on the GUI thread.
             var hwnd = m_textBox.Handle;
         }
@@ -158,7 +158,7 @@ namespace Sce.Atf.Applications
             }
 
             textBox.SelectionColor = c;
-            textBox.AppendText(messageTypeText + ": " + message);            
+            textBox.AppendText(messageTypeText + ": " + message);
         }
 
         /// <summary>
@@ -336,6 +336,6 @@ namespace Sce.Atf.Applications
         private ICommandService m_commandService;
 
         private readonly RichTextBox m_textBox;
-        
+
     }
 }

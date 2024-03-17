@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.IO;
@@ -20,10 +20,10 @@ namespace LevelEditor
     /// about a level file, *.lvl. Game objects have user-editable properties and often reference
     /// assets such as 3D models and textures.</summary>
     public class GameDocument : DomDocument, IGameDocument
-    {  
+    {
         protected override void OnNodeSet()
         {
-            base.OnNodeSet();                        
+            base.OnNodeSet();
             DomNode.AttributeChanged += DomNode_AttributeChanged;
             DomNode.ChildInserted += DomNode_ChildInserted;
             DomNode.ChildRemoved += DomNode_ChildRemoved;
@@ -39,11 +39,11 @@ namespace LevelEditor
         {
             get { return GameEditor.s_info.FileType; }
         }
-        
+
         public void Save(Uri uri, SchemaLoader schemaLoader)
         {
             if (Dirty || m_uriChanged)
-            {                
+            {
                 string filePath = uri.LocalPath;
                 FileMode fileMode = File.Exists(filePath) ? FileMode.Truncate : FileMode.OpenOrCreate;
                 using (FileStream stream = new FileStream(filePath, fileMode))
@@ -53,13 +53,13 @@ namespace LevelEditor
                 }
                 m_uriChanged = false;
             }
-            
+
             // save all the game-references
             foreach (var gameRef in GetChildList<GameReference>(Schema.gameType.gameReferenceChild))
             {
                 GameDocument subDoc = Adapters.As<GameDocument>(gameRef.Target);
                 if(subDoc == null) continue;
-                subDoc.Save(subDoc.Uri, schemaLoader);                
+                subDoc.Save(subDoc.Uri, schemaLoader);
             }
 
             Dirty = false;
@@ -84,7 +84,7 @@ namespace LevelEditor
         {
             get { return GetChildList<IReference<IGameDocument>>(Schema.gameType.gameReferenceChild); }
         }
-                        
+
         public event EventHandler<ItemChangedEventArgs<IEditableResourceOwner>> EditableResourceOwnerDirtyChanged = delegate{};
 
         public void NotifyEditableResourceOwnerDirtyChanged(IEditableResourceOwner resOwner)
@@ -94,9 +94,9 @@ namespace LevelEditor
 
         #endregion
 
-        
+
         /// <summary>
-        /// Should the sub-documents be resolved on load</summary>                
+        /// Should the sub-documents be resolved on load</summary>
         public static bool ResolveOnLoad
         {
             get;
@@ -105,8 +105,8 @@ namespace LevelEditor
 
         /// <summary>
         /// Open or create new document.
-        /// It opens if the file exist otherwise it will creates new document        
-        /// </summary>        
+        /// It opens if the file exist otherwise it will creates new document
+        /// </summary>
         public static GameDocument OpenOrCreate(Uri uri, SchemaLoader schemaLoader)
         {
             if (!uri.IsAbsoluteUri)
@@ -124,7 +124,7 @@ namespace LevelEditor
 
             DomNode rootNode = null;
             if (File.Exists(filePath))
-            {               
+            {
                 // read existing document using custom dom XML reader
                 using (FileStream stream = File.OpenRead(filePath))
                 {
@@ -134,7 +134,7 @@ namespace LevelEditor
             }
             else
             {
-                // create new document by creating a Dom node of the root type defined by the schema                 
+                // create new document by creating a Dom node of the root type defined by the schema
                 rootNode = new DomNode(Schema.gameType.Type, Schema.gameRootElement);
                 rootNode.SetAttribute(Schema.gameType.nameAttribute, "Game".Localize());
             }
@@ -148,9 +148,9 @@ namespace LevelEditor
                 rootFolder.Name = "GameObjects".Localize("this is the name of a folder in the project lister");
                 rootNode.SetChild(Schema.gameType.gameObjectFolderChild, rootFolder.DomNode);
             }
-            
 
-            // create bookmarks 
+
+            // create bookmarks
             DomNode bookmarks = rootNode.GetChild(Schema.gameType.bookmarksChild);
             if (bookmarks == null)
             {
@@ -178,7 +178,7 @@ namespace LevelEditor
 
             // Initialize Dom extensions now that the data is complete
             rootNode.InitializeExtensions();
-           
+
             docRegistry.Add(document);
 
 
@@ -214,7 +214,7 @@ namespace LevelEditor
             return document;
         }
 
-        
+
 
         private void DomNode_ChildInserted(object sender, ChildEventArgs e)
         {
@@ -234,13 +234,13 @@ namespace LevelEditor
             }
         }
 
-        private GameDocumentRegistry m_gameDocumentRegistry; 
+        private GameDocumentRegistry m_gameDocumentRegistry;
         private bool m_uriChanged;
-        
+
     }
-    
+
     /// <summary>
-    /// Id to DomNode map.</summary>    
+    /// Id to DomNode map.</summary>
     public class IdToDomNode : DomNodeAdapter
     {
         protected override void OnNodeSet()
@@ -252,22 +252,22 @@ namespace LevelEditor
                     {
                         string newId = (string)e.NewValue;
                         if (string.IsNullOrWhiteSpace(newId))
-                            throw new InvalidTransactionException("Id cannot be null, empty, or whitespace");                        
+                            throw new InvalidTransactionException("Id cannot be null, empty, or whitespace");
                     }
 
                 };
         }
 
-        
+
         /// <summary>
         /// Find DomNode by id.
         /// return DomNode or null if not found.
-        /// </summary>        
+        /// </summary>
         public DomNode FindById(string id)
         {
             if (string.IsNullOrEmpty(id))
                 throw new ArgumentNullException("id");
-            
+
             foreach (DomNode node in DomNode.Subtree)
             {
                 if (node.Type.IdAttribute != null)
@@ -275,10 +275,10 @@ namespace LevelEditor
                     if (id == node.GetId())
                     {
                         return node;
-                    }                        
+                    }
                 }
             }
             return null;
-        }        
-    }   
+        }
+    }
 }

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -38,7 +38,7 @@ namespace LevelEditor.Commands
 
         void IInitializable.Initialize()
         {
-            m_commandService.RegisterCommand(                
+            m_commandService.RegisterCommand(
                 Command.SelectAllInstances,
                 StandardMenu.Edit,
                 StandardCommandGroup.EditSelectAll,
@@ -49,7 +49,7 @@ namespace LevelEditor.Commands
                 CommandVisibility.ContextMenu,
                 this);
 
-            m_commandService.RegisterCommand(                
+            m_commandService.RegisterCommand(
                 Command.ShowAllInstances,
                 StandardMenu.View,
                 StandardCommandGroup.ViewShow,
@@ -60,7 +60,7 @@ namespace LevelEditor.Commands
                 CommandVisibility.ContextMenu,
                 this);
 
-            m_commandService.RegisterCommand(                
+            m_commandService.RegisterCommand(
                 Command.HideAllInstances,
                 StandardMenu.View,
                 StandardCommandGroup.ViewShow,
@@ -79,12 +79,12 @@ namespace LevelEditor.Commands
         /// <param name="context">Context containing target object</param>
         /// <param name="target">Right clicked object, or null if none</param>
         IEnumerable<object> IContextMenuCommandProvider.GetCommands(object context, object target)
-        {            
-            if (context == m_paletteService.TreeView && target.Is<DomNodeType>())                
+        {
+            if (context == m_paletteService.TreeView && target.Is<DomNodeType>())
             {
                 foreach (Command command in Enum.GetValues(typeof(Command)))
-                    yield return command;                
-            }            
+                    yield return command;
+            }
         }
 
         #endregion
@@ -92,11 +92,11 @@ namespace LevelEditor.Commands
         #region ICommandClient Members
 
         bool ICommandClient.CanDoCommand(object commandTag)
-        {            
+        {
             switch ((Command)commandTag)
             {
                 case Command.SelectAllInstances:
-                    return GetSelectionContext() != null;                       
+                    return GetSelectionContext() != null;
                 case Command.ShowAllInstances:
                 case Command.HideAllInstances:
                     return GetVisibilityContext() != null;
@@ -143,13 +143,13 @@ namespace LevelEditor.Commands
                     sc.SetRange(nodes);
                 else
                     sc.Clear();
-            }           
+            }
         }
 
         private void SetAllVisible(DomNodeType nodeType, bool visible)
         {
             IVisibilityContext vc = GetVisibilityContext();
-            if (vc != null)            
+            if (vc != null)
                 foreach (DomNode node in Util.FindAll(nodeType, true))
                     vc.SetVisible(node, visible);
         }
@@ -165,7 +165,7 @@ namespace LevelEditor.Commands
             object context = m_contextRegistry.GetActiveContext<IGameContext>();
             return context.As<IVisibilityContext>();
         }
-              
+
         [Import(AllowDefault = false)]
         private IDesignView m_designView = null;
 

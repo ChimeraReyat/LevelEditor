@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -19,7 +19,7 @@ namespace LevelEditor
     /// <summary>
     /// Bookmark Lister.</summary>
     [Export(typeof(IInitializable))]
-    [Export(typeof(BookmarkLister))]    
+    [Export(typeof(BookmarkLister))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class BookmarkLister : TreeControlEditor, IInitializable
     {
@@ -68,7 +68,7 @@ namespace LevelEditor
             TreeControl.AllowDrop = false;
             TreeControl.SelectionMode = SelectionMode.One;
             TreeControl.MouseDown += TreeControl_MouseDown;
-            
+
         }
 
         protected override void OnMouseUp(MouseEventArgs e)
@@ -82,7 +82,7 @@ namespace LevelEditor
                 m_contextMenuStrip.Show(TreeControl, e.X, e.Y);
             }
         }
-        
+
         /// <summary>
         /// Gets the control info instance, which determines the appearance and
         /// initial location of the control in the application.</summary>
@@ -90,7 +90,7 @@ namespace LevelEditor
         {
             get { return m_controlInfo; }
         }
-       
+
         #region IInitializable Members
 
         void IInitializable.Initialize()
@@ -110,20 +110,20 @@ namespace LevelEditor
         }
 
         #endregion
-        
+
         private void contextRegistry_ActiveContextChanged(object sender, EventArgs e)
         {
             // Note: obtain ITreeView from BookmarkingContext not directly from GetActiveContext().
-            var context = m_contextRegistry.GetActiveContext<BookmarkingContext>();            
+            var context = m_contextRegistry.GetActiveContext<BookmarkingContext>();
             var treeview = context.As<ITreeView>();
 
             // The TreeView property guards again setting same value
-            // but it still reloads the context.            
-            // so this check is required to prevent the tree to unnecessarily reload 
+            // but it still reloads the context.
+            // so this check is required to prevent the tree to unnecessarily reload
             // the context.
             if (TreeView != treeview)
                 TreeView = treeview;
-            
+
         }
 
         private void TreeControl_MouseDown(object sender, MouseEventArgs e)
@@ -147,7 +147,7 @@ namespace LevelEditor
             {
                 var bookmarkContext = TreeView.As<BookmarkingContext>();
                 if (bookmarkContext != null)
-                    bookmarkList = bookmarkContext.Bookmarks;                
+                    bookmarkList = bookmarkContext.Bookmarks;
             }
 
             if (bookmarkList != null)

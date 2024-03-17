@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,7 +13,7 @@ namespace Sce.Atf.Collections
         /// <summary>
         /// Constructor</summary>
         /// <param name="sorter">Comparison method to use in sorting the collection</param>
-        public SortedObservableCollection(IComparer<T> sorter) 
+        public SortedObservableCollection(IComparer<T> sorter)
             : base()
         {
             Sorter = sorter;

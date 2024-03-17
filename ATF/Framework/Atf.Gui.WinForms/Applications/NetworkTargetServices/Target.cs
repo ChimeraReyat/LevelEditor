@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Net;
@@ -9,15 +9,15 @@ namespace Sce.Atf.Applications.NetworkTargetServices
     /// Represents a named network endpoint</summary>
     public class Target : ICloneable
     {
-       
+
         private int m_port = -1;
         private string m_name;
-        private string m_host;        
+        private string m_host;
         private object m_tag;
         private string m_protocol = "none";
         private bool m_selected;
         private bool m_connected;
-        
+
 
         /// <summary>
         /// Constructs a new Target from name, host name, and port number</summary>
@@ -26,7 +26,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
         /// <param name="port">Port number</param>
         public Target(string name, string host, int port)
         {
-            Set(name, host, port);            
+            Set(name, host, port);
         }
         /// <summary>
         /// Gets the target name</summary>
@@ -46,7 +46,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
             m_host = host;
             m_port = port;
         }
- 
+
         /// <summary>
         /// Gets and sets a value indicating whether this target is selected</summary>
         public bool Selected
@@ -130,7 +130,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
         /// <returns>New object that is a copy of the current instance</returns>
         public object Clone()
         {
-            
+
             Target t = new Target(m_name, m_host,m_port);
             t.m_connected = m_connected;
             t.m_selected = m_selected;
@@ -142,6 +142,6 @@ namespace Sce.Atf.Applications.NetworkTargetServices
         #endregion
     }
 
-    
+
 
 }

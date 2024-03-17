@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 using System;
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
@@ -37,12 +37,12 @@ namespace Sce.Atf.Applications
             }
 
             /// <summary>
-            /// Get or set color used for 
+            /// Get or set color used for
             /// drawing active border</summary>
             public Color ActiveBorderColor { get; set; }
 
             /// <summary>
-            /// Get or set color used for 
+            /// Get or set color used for
             /// drawing inactive border</summary>
             public Color InactiveBorderColor { get; set; }
 
@@ -56,7 +56,7 @@ namespace Sce.Atf.Applications
             public Color TitleBarForeColor { get; set; }
 
             /// <summary>
-            /// Get or set title bar foreground color 
+            /// Get or set title bar foreground color
             /// for active title bar</summary>
             public Color ActiveTitleBarForeColor { get; set; }
 
@@ -93,7 +93,7 @@ namespace Sce.Atf.Applications
 
             m_form.HandleCreated += (sender, e) => HanldeCreated();
             m_form.HandleDestroyed += (sender, e) => ReleaseHandle();
-            
+
 
             // disable custom painting for parented form.
             m_disabled = form.Parent != null;
@@ -124,16 +124,16 @@ namespace Sce.Atf.Applications
         /// Get or set whether custom painting disabled</summary>
         public bool CustomPaintDisabled
         {
-            get 
+            get
             {
                 return m_disabled || (m_form != null && m_form.FormBorderStyle == FormBorderStyle.None);
             }
             set
-            {       
+            {
                 m_disabled = m_form == null || m_form.Parent != null || value;
-                    
+
                 if (m_form != null && !m_form.IsDisposed)
-                {                    
+                {
                     if (m_disabled)
                     {
                         SetWindowTheme(m_form.Handle, "Explorer", null);
@@ -142,14 +142,14 @@ namespace Sce.Atf.Applications
                     {
                         m_active = Form.ActiveForm == m_form;
                         SetWindowTheme(m_form.Handle, "", "");
-                        CreateCaptionButtons();                       
+                        CreateCaptionButtons();
                     }
-                }                
+                }
             }
 
         }
 
-        #region base overrides        
+        #region base overrides
         protected override void WndProc(ref Message m)
         {
             if (CustomPaintDisabled)
@@ -177,27 +177,27 @@ namespace Sce.Atf.Applications
                     handled = PaintTitleBar(m_active);
                     if (handled) m.Result = IntPtr.Zero;
 
-                    // let the window process this message 
+                    // let the window process this message
                     // so the form can raise activated and deactivate events.
-                    handled = false; 
+                    handled = false;
                     break;
                 case WinMessages.WM_NCACTIVATE:
                     if (m.WParam != IntPtr.Zero)
-                        m.Result = IntPtr.Zero;                        
+                        m.Result = IntPtr.Zero;
                     else
                         m.Result = (IntPtr)1;
-                    handled = true;                    
+                    handled = true;
                     PaintTitleBar(m.WParam != IntPtr.Zero);
                     break;
                 case WinMessages.WM_NCUAHDRAWCAPTION:
                 case WinMessages.WM_NCUAHDRAWFRAME:
                     handled = true; // ignore theme related messages.
                     break;
-               
+
                 case WinMessages.WM_SIZE:
-                    {                       
+                    {
                         if (m_paintOnResize)
-                        {                          
+                        {
                             m_paintOnResize = false;
                             PaintTitleBar(m_active);
                         }
@@ -214,13 +214,13 @@ namespace Sce.Atf.Applications
                     break;
 
                 case WinMessages.WM_STYLECHANGED:
-                    CreateCaptionButtons();                   
+                    CreateCaptionButtons();
                     m.Result = IntPtr.Zero;
                     handled = true;
                     break;
 
                 case WinMessages.WM_SETICON:
-                    CreateCaptionButtons();                    
+                    CreateCaptionButtons();
                     break;
 
                 case WinMessages.WM_SETTEXT:
@@ -249,9 +249,9 @@ namespace Sce.Atf.Applications
                     break;
 
             }
-            if (!handled)            
+            if (!handled)
                 base.WndProc(ref m);
-        }        
+        }
         #endregion
 
         #region mouse handling methods
@@ -313,7 +313,7 @@ namespace Sce.Atf.Applications
                 msg.Result = (IntPtr)0;
                 PaintTitleBar(m_active);
                 m_paintOnResize = true;
-                btn.PerformAction(m_form);                                
+                btn.PerformAction(m_form);
             }
             PaintTitleBar(m_active);
             return handled;
@@ -354,15 +354,15 @@ namespace Sce.Atf.Applications
                 PaintTitleBar(m_active);
             }
         }
-        
+
         private bool OnHitTest(ref Message msg)
-        {            
+        {
             Point scrPt = new Point(msg.LParam.ToInt32());
             Point winPt = PointToWindow(scrPt);
-            
+
             // mouse is in client area.
             if (m_winClientRect.Contains(winPt))
-            {                               
+            {
                 msg.Result = (IntPtr)HitTest.HTCLIENT;
                 return true;
             }
@@ -381,12 +381,12 @@ namespace Sce.Atf.Applications
             // mouse is on titlebar area.
             if (winCapRect.Contains(winPt))
             {
-                
-                // hit test caption buttons                
+
+                // hit test caption buttons
                 foreach (var btn in m_captionButtons)
                 {
                     if (btn.Bound.Contains(winPt))
-                    {                       
+                    {
                         msg.Result = (IntPtr)btn.Id;
                         return true;
                     }
@@ -394,11 +394,11 @@ namespace Sce.Atf.Applications
 
                 // hit test icon if applicable.
                 if (m_showIcon && m_iconRect.Contains(winPt))
-                {                   
+                {
                     msg.Result = (IntPtr)HitTest.HTSYSMENU;
                     return true;
                 }
-                
+
                 msg.Result = (IntPtr)HitTest.HTCAPTION;
                 return true;
             }
@@ -453,7 +453,7 @@ namespace Sce.Atf.Applications
         }
         private void UpdateCaptionButtons()
         {
-            int capSize = GetCaptionButtonSize().Height;           
+            int capSize = GetCaptionButtonSize().Height;
             int top = Math.Min(4, m_titleAndBorderSize - (capSize + 1));
             int iconSize = m_titleAndBorderSize - 2;
             int iconTop = 2;
@@ -480,8 +480,8 @@ namespace Sce.Atf.Applications
             }
         }
         /// <summary>
-        /// Transform the give point from screen space to window space.        
-        /// </summary>       
+        /// Transform the give point from screen space to window space.
+        /// </summary>
         private Point PointToWindow(Point scrPt)
         {
             return new Point(scrPt.X - m_form.Location.X, scrPt.Y - m_form.Location.Y);
@@ -491,8 +491,8 @@ namespace Sce.Atf.Applications
         {
             if (m_form.Parent == null)
             {
-                SetWindowTheme(m_form.Handle, "", "");               
-                CreateCaptionButtons();               
+                SetWindowTheme(m_form.Handle, "", "");
+                CreateCaptionButtons();
             }
             else
                 m_disabled = true;
@@ -503,9 +503,9 @@ namespace Sce.Atf.Applications
         {
             if (CustomPaintDisabled || m_form == null || !m_form.Visible)
                 return false;
-           
+
             UpdateBounds();
-            UpdateCaptionButtons();           
+            UpdateCaptionButtons();
             IntPtr hdc = GetDCEx(m_form.Handle, IntPtr.Zero,
                  (uint)(DCXFlags.DCX_CACHE | DCXFlags.DCX_CLIPSIBLINGS | DCXFlags.DCX_WINDOW));
             if (hdc == IntPtr.Zero)
@@ -525,7 +525,7 @@ namespace Sce.Atf.Applications
 
             var backbuffer = s_context.Allocate(hdc, m_winRect);
             backbuffer.Graphics.SetClip(m_winClientRect, CombineMode.Exclude);
-            PaintTitleBar(backbuffer.Graphics, active);          
+            PaintTitleBar(backbuffer.Graphics, active);
             backbuffer.Render();
             backbuffer.Dispose();
             ReleaseDC(m_form.Handle, hdc);
@@ -533,9 +533,9 @@ namespace Sce.Atf.Applications
         }
 
         private void PaintTitleBar(Graphics g, bool active)
-        {            
+        {
             g.Clear(m_skin.TitleBarBackColor);
-            
+
             s_genPen.Color = active ? m_skin.ActiveBorderColor
                 : m_skin.InactiveBorderColor;
 
@@ -548,7 +548,7 @@ namespace Sce.Atf.Applications
             s_genPen.Width = 2.0f;
             g.DrawRectangle(s_genPen, borderRect);
 
-            
+
             // draw caption buttoon.
             foreach (var button in m_captionButtons)
                 button.Draw(g, m_skin, m_form, active);
@@ -588,18 +588,18 @@ namespace Sce.Atf.Applications
         }
 
         private void UpdateBounds()
-        {           
+        {
             var scrRect = new User32.RECT();
             GetWindowRect(m_form.Handle, ref scrRect);
             int w = scrRect.Width;
-            int h = scrRect.Height;            
+            int h = scrRect.Height;
             m_winRect = new Rectangle(0, 0, w, h);
 
             var clRect = new User32.RECT();
             GetClientRect(m_form.Handle, ref clRect);
             int cw = clRect.Width;
             int ch = clRect.Height;
-          
+
             m_borderSize = (w - cw) / 2;
             m_titleSize = (h - ch) - 2 * m_borderSize;
             m_titleAndBorderSize = m_borderSize + m_titleSize;
@@ -624,7 +624,7 @@ namespace Sce.Atf.Applications
 
         private static StringFormat s_captionFormat;
         private bool m_showIcon;
-        private Rectangle m_iconRect; // icon rect in window space.        
+        private Rectangle m_iconRect; // icon rect in window space.
         private Rectangle m_winRect; // Form rectangle.
         private Rectangle m_winClientRect; // Form client rect in window space.
         private int m_borderSize;  // the size of border in pixels
@@ -1026,7 +1026,7 @@ namespace Sce.Atf.Applications
         }
 
         /// <summary>
-        /// Information that an application can use while processing the WM_NCCALCSIZE message to calculate 
+        /// Information that an application can use while processing the WM_NCCALCSIZE message to calculate
         /// the size, position, and valid contents of the client area of a window</summary>
         /// <remarks>For details, see http://msdn.microsoft.com/en-us/library/windows/desktop/ms632606%28v=vs.85%29.aspx. </remarks>
         [StructLayout(LayoutKind.Sequential)]

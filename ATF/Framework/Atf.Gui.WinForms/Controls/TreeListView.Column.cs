@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections;
@@ -71,7 +71,7 @@ namespace Sce.Atf.Controls
 
             /// <summary>
             /// Gets the rendered width of this column.</summary>
-            /// <remarks>This property is a calculated value based on other width inputs, 
+            /// <remarks>This property is a calculated value based on other width inputs,
             /// and the layout algorithm</remarks>
             public int ActualWidth { get; set; }
 
@@ -90,7 +90,7 @@ namespace Sce.Atf.Controls
                     AllowPropertyEditChanged.Raise(this, EventArgs.Empty);
                 }
             }
-            
+
             /// <summary>
             /// Gets or sets optional user data</summary>
             public object Tag { get; set; }

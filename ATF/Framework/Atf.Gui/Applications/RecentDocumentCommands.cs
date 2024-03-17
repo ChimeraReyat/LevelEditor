@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -78,7 +78,7 @@ namespace Sce.Atf.Applications
 
                 CommandService.RegisterCommand(commandInfo, this);
 
-                // Add an empty entry so the Recent Files menu shows up even if there are no 
+                // Add an empty entry so the Recent Files menu shows up even if there are no
                 // files in the list. This gets removed as soon as a file is added.
                 m_emptyMruCommandInfo = new CommandInfo(Command.EmptyMru,
                     StandardMenu.File,
@@ -102,7 +102,7 @@ namespace Sce.Atf.Applications
         }
 
         /// <summary>
-        /// Gets or sets the list of file extensions that 
+        /// Gets or sets the list of file extensions that
         /// can be shown in the recent documents list.
         /// If null (which is the default), all extensions are supported.</summary>
         public string[] RecentDocumentExtensions
@@ -250,7 +250,7 @@ namespace Sce.Atf.Applications
                 IDocumentClient client = FindClientFromUri(info.Uri);
                 if (client != null && client.CanOpen(info.Uri))
                   document = m_documentService.OpenExistingDocument(client, info.Uri);
-                
+
                 // To-do: If the document can't be opened, it would probably be better to keep the
                 //  document in the list and have a context menu command for removing the link, like
                 //  Microsoft Word does.
@@ -262,7 +262,7 @@ namespace Sce.Atf.Applications
             }
             else
             {
-                // User either clicked on the Pin command directly, or clicked the pin icon on a document 
+                // User either clicked on the Pin command directly, or clicked the pin icon on a document
                 // entry in the MRU. Either way, treat this as a Pin command.
                 RecentDocumentInfo info;
                 if (commandTag is RecentDocumentInfo)
@@ -293,7 +293,7 @@ namespace Sce.Atf.Applications
             if (info != null)
             {
                 // For the document entries in the MRU, the pin color reflects the pinned state of
-                // the item. The exception is when the user mouses over the pin icon directly - then 
+                // the item. The exception is when the user mouses over the pin icon directly - then
                 // we invert the color of the pin to show that it's clickable and will modify the
                 // pinned state of the document.
                 invertPinImageOnMouseover = true;
@@ -308,7 +308,7 @@ namespace Sce.Atf.Applications
                 var command = (Command)commandTag;
                 if (command == Command.Pin)
                 {
-                    // For the other pin commands, the pin color is the opposite of the active 
+                    // For the other pin commands, the pin color is the opposite of the active
                     // document's pinned state.
                     var docInfo = GetActiveRecentDocumentInfo();
                     var stateText = "Pin active document".Localize();

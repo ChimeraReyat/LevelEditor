@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -32,7 +32,7 @@ namespace LevelEditor
             m_gameEngine = gameEngine;
             // set resolver to locate embedded .xsd file
             SchemaResolver = new ResourceStreamResolver(Assembly.GetExecutingAssembly(), "LevelEditor.schemas");
-            Load("level_editor.xsd");           
+            Load("level_editor.xsd");
         }
 
         protected override void OnSchemaSetLoaded(XmlSchemaSet schemaSet)
@@ -43,13 +43,13 @@ namespace LevelEditor
                 m_namespace = typeCollection.TargetNamespace;
                 m_typeCollection = typeCollection;
                 Schema.Initialize(typeCollection);
-                GameAdapters.Initialize(this);            
+                GameAdapters.Initialize(this);
                 // the level editor schema defines only one type collection
                 break;
             }
             if (m_typeCollection == null) return;
 
-            
+
             Schema.gameObjectComponentType.Type.SetTag(
                     new PropertyDescriptorCollection(
                         new PropertyDescriptor[] {
@@ -58,7 +58,7 @@ namespace LevelEditor
                                 Schema.gameObjectComponentType.nameAttribute,
                                 null,
                                 "Component name".Localize(),
-                                false),                            
+                                false),
                             new AttributePropertyDescriptor(
                                 "Active".Localize(),
                                 Schema.gameObjectComponentType.activeAttribute,
@@ -77,7 +77,7 @@ namespace LevelEditor
                                 null,
                                 "Component visiblity".Localize(),
                                 false,
-                                new BoolEditor()),                            
+                                new BoolEditor()),
                             new AttributePropertyDescriptor(
                                 "cast Shadow".Localize(),
                                 Schema.renderComponentType.castShadowAttribute,
@@ -100,7 +100,7 @@ namespace LevelEditor
                                 "Minimum distance to draw the component".Localize(),
                                 false)
                 }));
-                     
+
             Schema.spinnerComponentType.Type.SetTag(
                    new PropertyDescriptorCollection(
                        new PropertyDescriptor[] {
@@ -163,7 +163,7 @@ namespace LevelEditor
                         return node;
                     });
 
-                return insertors;                
+                return insertors;
             };
 
 
@@ -202,7 +202,7 @@ namespace LevelEditor
                                 "List of GameObject Components".Localize(),
                                 false,
                                 collectionEditor)
-                                }));                         
+                                }));
         }
 
         protected override void ParseAnnotations(
@@ -212,15 +212,15 @@ namespace LevelEditor
             base.ParseAnnotations(schemaSet, annotations);
 
             foreach (var kv in annotations)
-            {                               
+            {
                 DomNodeType nodeType = kv.Key as DomNodeType;
                 if (kv.Value.Count == 0) continue;
 
-                // create a hash of hidden attributes                
+                // create a hash of hidden attributes
                 HashSet<string> hiddenprops = new HashSet<string>();
                 foreach (XmlNode xmlnode in kv.Value)
                 {
-                    
+
                     if (xmlnode.LocalName == "scea.dom.editors.attribute")
                     {
                         XmlAttribute hiddenAttrib = xmlnode.Attributes["hide"];
@@ -231,7 +231,7 @@ namespace LevelEditor
                             if (!string.IsNullOrWhiteSpace(name))
                             {
                                 hiddenprops.Add(name);
-                            }                            
+                            }
                         }
                     }
                 }
@@ -239,11 +239,11 @@ namespace LevelEditor
                 {
                     nodeType.SetTag(HiddenProperties, hiddenprops);
                 }
-                
+
                 PropertyDescriptorCollection localDescriptor = nodeType.GetTagLocal<PropertyDescriptorCollection>();
                 PropertyDescriptorCollection annotationDescriptor = Sce.Atf.Dom.PropertyDescriptor.ParseXml(nodeType, kv.Value);
-                
-                // if the type already have local property descriptors 
+
+                // if the type already have local property descriptors
                 // then add annotation driven property descriptors to it.
                 if (localDescriptor != null)
                 {
@@ -256,7 +256,7 @@ namespace LevelEditor
                 {
                     localDescriptor = annotationDescriptor;
                 }
-               
+
                 if (localDescriptor.Count > 0)
                     nodeType.SetTag<PropertyDescriptorCollection>(localDescriptor);
 
@@ -272,7 +272,7 @@ namespace LevelEditor
                         exts = exts.ToLower();
                         char[] sep = { ',' };
                         extSet = new HashSet<string>(exts.Split(sep, StringSplitOptions.RemoveEmptyEntries));
-                        
+
                     }
                     else if(m_gameEngine != null)
                     {
@@ -285,8 +285,8 @@ namespace LevelEditor
                     if(extSet != null)
                         nodeType.SetTag(LevelEditorCore.Annotations.ReferenceConstraint.ValidResourceFileExts, extSet);
                 }
-                             
-                // todo use schema annotation to mark  Palette types.                    
+
+                // todo use schema annotation to mark  Palette types.
                 XmlNode xmlNode = FindElement(kv.Value, "scea.dom.editors");
                 if (xmlNode != null)
                 {
@@ -301,7 +301,7 @@ namespace LevelEditor
                         nodeType.SetTag<NodeTypePaletteItem>(item);
                     }
                 }
-            }           
+            }
         }
 
         /// <summary>
@@ -322,7 +322,7 @@ namespace LevelEditor
             get { return m_typeCollection; }
         }
         private XmlSchemaTypeCollection m_typeCollection;
-        
+
         public DomNodeType GameType
         {
             get { return Schema.gameType.Type; }
@@ -371,10 +371,10 @@ namespace LevelEditor
         public ChildInfo GameRootElement
         {
             get { return Schema.gameRootElement; }
-        }      
- 
-        #endregion        
-        
+        }
+
+        #endregion
+
         private IGameEngineProxy m_gameEngine;
     }
 }

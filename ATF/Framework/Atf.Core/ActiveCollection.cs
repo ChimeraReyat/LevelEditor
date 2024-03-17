@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -214,7 +214,7 @@ namespace Sce.Atf
         public void Set(IEnumerable<T> items)
         {
             List<T> newItems = items.ToList();
-            
+
             object oldActive = ActiveItem;
             object newActive = newItems.Count > 0 ? newItems[newItems.Count - 1] : null;
 

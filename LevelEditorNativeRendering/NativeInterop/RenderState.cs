@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel;
@@ -28,15 +28,15 @@ namespace RenderingInterop
         /// <summary>
         /// Event that is raised when any properties of this RenderState change</summary>
         public event EventHandler Changed;
-          
+
         private GlobalRenderFlags m_renderflags;
-        
+
         [Browsable(false)]
         public GlobalRenderFlags RenderFlag
         {
             get { return m_renderflags; }
-            set 
-            { 
+            set
+            {
                 GameEngine.SetObjectProperty(m_typeId, m_intanceId, m_renderFlagId, (uint)value);
                 if (value != m_renderflags)
                 {
@@ -50,12 +50,12 @@ namespace RenderingInterop
         private Color m_wireColor;
 
         [CategoryAttribute("Render Settings"),
-        DescriptionAttribute("color used for wireframe mode")]       
+        DescriptionAttribute("color used for wireframe mode")]
         public Color WireFrameColor
         {
             get { return m_wireColor; }
-            set 
-            { 
+            set
+            {
                 GameEngine.SetObjectProperty(m_typeId, m_intanceId, m_wirecolorId, value);
                 if (value != m_wireColor)
                 {
@@ -145,7 +145,7 @@ namespace RenderingInterop
                 }
             }
         }
-        
+
         protected override void Dispose(bool disposing)
         {
             if(m_intanceId != 0)
@@ -156,12 +156,12 @@ namespace RenderingInterop
                 m_wirecolorId = 0;
                 m_selColorId = 0;
                 m_intanceId = 0;
-            }            
+            }
             base.Dispose(disposing);
         }
 
         // native property ids
-        private uint m_renderFlagId;  
+        private uint m_renderFlagId;
         private uint m_wirecolorId;
         private uint m_selColorId;
 
@@ -177,5 +177,5 @@ namespace RenderingInterop
         Selection, // display only for selected objects.
     }
 
-   
+
 }

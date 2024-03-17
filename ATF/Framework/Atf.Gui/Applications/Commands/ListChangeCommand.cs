@@ -18,7 +18,7 @@ namespace Sce.Atf.Applications
 		/// <param name="index">Position of insertion</param>
 		public ListChangeCommand(
             string commandName,
-            IList<T> list, 
+            IList<T> list,
             T oldElement,
             T newElement,
             int index)

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -18,8 +18,8 @@ namespace Sce.Atf.Direct2D
         /// <remarks>
         /// The start point and end point are described in the brush's space and are
         /// mapped to the D2dGraphics when the brush is used. If there is a non-identity
-        /// D2dGraphics transform, the brush's start point and end point are also transformed.</remarks>        
-        public PointF StartPoint 
+        /// D2dGraphics transform, the brush's start point and end point are also transformed.</remarks>
+        public PointF StartPoint
         {
             get { return m_start; }
             set
@@ -29,15 +29,15 @@ namespace Sce.Atf.Direct2D
                 brush.StartPoint = value.ToSharpDX();
             }
         }
-       
+
         /// <summary>
         /// Gets and sets the ending coordinates of the linear gradient</summary>
         /// <remarks>
         /// The start point and end point are described in the brush's space and are
         /// mapped to the D2dGraphics when the brush is used. If there is a non-identity
         /// brush transform or D2dGraphics transform, the brush's start point and end
-        /// point are also transformed.</remarks>        
-        public PointF EndPoint 
+        /// point are also transformed.</remarks>
+        public PointF EndPoint
         {
             get { return m_end; }
             set
@@ -56,7 +56,7 @@ namespace Sce.Atf.Direct2D
             : base(owner)
         {
             m_start = pt1;
-            m_end = pt2;            
+            m_end = pt2;
             m_gradientStops = new D2dGradientStop[gradientStops.Length];
             Array.Copy(gradientStops, m_gradientStops, m_gradientStops.Length);
 
@@ -78,9 +78,9 @@ namespace Sce.Atf.Direct2D
 
             using (var stopcol = new GradientStopCollection(Owner.D2dRenderTarget, stops, (Gamma)m_gamma, (ExtendMode)m_extendMode))
             {
-                var props = new LinearGradientBrushProperties 
+                var props = new LinearGradientBrushProperties
                 {
-                    StartPoint = m_start.ToSharpDX(), 
+                    StartPoint = m_start.ToSharpDX(),
                     EndPoint = m_end.ToSharpDX()
                 };
                 NativeBrush = new LinearGradientBrush(Owner.D2dRenderTarget, props, stopcol);
@@ -93,7 +93,7 @@ namespace Sce.Atf.Direct2D
         private readonly D2dExtendMode m_extendMode;
         private readonly D2dGamma m_gamma;
     }
-   
+
     /// <summary>
     /// Struct that contains the position and color of a gradient stop</summary>
     /// <remarks>
@@ -130,14 +130,14 @@ namespace Sce.Atf.Direct2D
         /// <summary>
         /// The color of the gradient stop</summary>
         public System.Drawing.Color Color;
-                
+
         /// <summary>
         /// A value that indicates the relative position of the gradient stop in the
         /// brush. This value must be in the [0.0f, 1.0f] range if the gradient stop
         /// is to be seen explicitly.</summary>
         public float Position;
     }
-    
+
     /// <summary>
     /// Specifies which gamma is used for interpolation</summary>
     /// <remarks>

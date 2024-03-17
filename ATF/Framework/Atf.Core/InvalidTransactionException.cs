@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 
@@ -15,7 +15,7 @@ namespace Sce.Atf
     ///     DomNode.AttributeChanging
     ///     Validator.OnEnding()
     ///     Validator.OnEnded()
-    /// 
+    ///
     /// It is generally unsafe to throw this exception in response to the following "-ed" events because
     /// you will be preventing the remaining listeners from receiving that event and if one of those
     /// remaining listeners is TransactionContext, then the DOM change can't be undone.

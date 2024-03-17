@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -126,7 +126,7 @@ namespace Sce.Atf
         /// Use this method to determine whether two different FORMATETC structures would return the same data,
         /// removing the need for duplicate rendering.</summary>
         /// <returns>This method supports the standard return values E_INVALIDARG, E_UNEXPECTED, and E_OUTOFMEMORY,
-        /// as well as the following: 
+        /// as well as the following:
         /// S_OK -- The returned FORMATETC structure is different from the one that was passed.
         /// DATA_S_SAMEFORMATETC -- The structures are the same and null is returned in the "formatOut" parameter.
         /// DV_E_LINDEX -- There is an invalid value for <see cref="F:System.Runtime.InteropServices.ComTypes.FORMATETC.lindex"/>;
@@ -194,7 +194,7 @@ namespace Sce.Atf
         /// <param name="format">A pointer to a FORMATETC structure, passed by reference, that defines the format,
         /// medium, and target device to use for the query.</param>
         /// <returns>This method supports the standard return values E_INVALIDARG, E_UNEXPECTED, and E_OUTOFMEMORY,
-        /// as well as the following: 
+        /// as well as the following:
         /// S_OK -- A subsequent call to GetData() would probably be successful.
         /// DV_E_LINDEX -- An invalid value for <see cref="F:System.Runtime.InteropServices.ComTypes.FORMATETC.lindex"/>;
         ///   currently, only -1 is supported.
@@ -274,7 +274,7 @@ namespace Sce.Atf
                 sm = CopyMedium(ref medium);
             }
 
-            // Add it to the internal storage   
+            // Add it to the internal storage
             var data = new OleData { Format = formatIn, Medium = sm };
             m_oleStorage.Add(data);
 

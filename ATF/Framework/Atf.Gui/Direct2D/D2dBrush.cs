@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 
@@ -36,7 +36,7 @@ namespace Sce.Atf.Direct2D
         }
 
         /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or 
+        /// Performs application-defined tasks associated with freeing, releasing, or
         /// resetting unmanaged resources</summary>
         /// <param name="disposing">If true, then Dispose() called this method and managed resources should
         /// be released in addition to unmanaged resources. If false, then the finalizer called this method
@@ -80,7 +80,7 @@ namespace Sce.Atf.Direct2D
             if (m_rtNumber == m_owner.RenderTargetNumber)
             {// this resource does not need to be recreated
                 return;
-            }            
+            }
 
             Create();
 

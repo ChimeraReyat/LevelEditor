@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -18,7 +18,7 @@ namespace LevelEditorCore
     public class ViewControl : Control
     {
         public ViewControl()
-        {           
+        {
             // this control will be painted using some 3d API
             // no need for double buffering
             // also no need for the OS to paint it.
@@ -39,10 +39,10 @@ namespace LevelEditorCore
             float nearZ = m_camera.PerspectiveNearZ;
             m_camera.ZoomOnSphere(sphere);
             m_camera.PerspectiveNearZ = nearZ;
-            m_camera.CameraChanged += new EventHandler(CameraChanged);            
+            m_camera.CameraChanged += new EventHandler(CameraChanged);
         }
-        
-        
+
+
         /// <summary>
         /// Get the camera object.
         /// there is only one camera object.
@@ -84,13 +84,13 @@ namespace LevelEditorCore
 
 
         /// <summary>
-        /// compute ray in  given space starting from 
-        /// screen space x,y.        
+        /// compute ray in  given space starting from
+        /// screen space x,y.
         /// The space of the computed ray depends on the value of mtrx:
         ///               world * view * projection // ray in local space (object space).
         ///               view * projection  // ray in world space.
-        ///               projection   // ray in view space.        
-        /// </summary>        
+        ///               projection   // ray in view space.
+        /// </summary>
         public Ray3F GetRay(Point scrPt, Matrix4F mtrx)
         {
             Vec3F min = Unproject(new Vec3F(scrPt.X, scrPt.Y, 0), mtrx);
@@ -101,9 +101,9 @@ namespace LevelEditorCore
         }
 
         /// <summary>
-        /// compute ray in world space starting from 
+        /// compute ray in world space starting from
         /// screen space x,y.
-        /// </summary>        
+        /// </summary>
         public Ray3F GetWorldRay(Point scrPt)
         {
             Matrix4F vp = Camera.ViewMatrix * Camera.ProjectionMatrix;
@@ -124,7 +124,7 @@ namespace LevelEditorCore
         /// <summary>
         /// project the v from 3d space to viewport space
         /// using the given wvp matrix.
-        /// </summary>        
+        /// </summary>
         public Point Project(Matrix4F wvp, Vec3F v)
         {
 
@@ -139,7 +139,7 @@ namespace LevelEditorCore
 
         /// <summary>
         /// unproject vector from screen space to object space.
-        /// </summary>        
+        /// </summary>
         public Vec3F Unproject(Vec3F scrPt, Matrix4F wvp)
         {
             float width = ClientSize.Width;
@@ -225,7 +225,7 @@ namespace LevelEditorCore
         /// </summary>
         /// <param name="e">A <see cref="T:System.Windows.Forms.MouseEventArgs"></see> that contains the event data.</param>
         protected override void OnMouseWheel(MouseEventArgs e)
-        {            
+        {
             CameraController.MouseWheel(this, e);
             base.OnMouseWheel(e);
         }
@@ -234,9 +234,9 @@ namespace LevelEditorCore
         {
             Invalidate();
         }
-        
+
         private readonly Camera m_camera;  // only camera object.
-        private CameraController m_cameraController;        
+        private CameraController m_cameraController;
     }
 
 }

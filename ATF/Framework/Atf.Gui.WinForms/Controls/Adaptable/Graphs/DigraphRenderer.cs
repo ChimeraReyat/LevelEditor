@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -41,7 +41,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             Theme = null;
             base.Dispose(disposing);
         }
-        
+
         /// <summary>
         /// Gets or sets the diagram theme</summary>
         public DiagramTheme Theme
@@ -590,7 +590,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             g.DrawLine(pen, head, end1);
             g.DrawLine(pen, head, end2);
         }
-        
+
         private CircleF GetBoundary(TNode node)
         {
             Rectangle bounds = node.Bounds;

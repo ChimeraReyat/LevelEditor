@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.ComponentModel.Composition;
 
@@ -16,7 +16,7 @@ namespace Sce.Atf.Applications
     {
         /// <summary>
         /// Shows the About dialog box</summary>
-        /// <remarks>Derived classes must copy this method and customize it. There is a default 
+        /// <remarks>Derived classes must copy this method and customize it. There is a default
         /// implementation for Windows Forms in Sce.Atf.Applications. For an example
         /// of loading a rich text file that is an embedded resource, see the SimpleDomEditor sample.
         /// It is recommended to display the ATF version number to aid in diagnosing

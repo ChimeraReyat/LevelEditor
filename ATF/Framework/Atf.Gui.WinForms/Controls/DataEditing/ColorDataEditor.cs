@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Drawing;
 using System.Globalization;
@@ -61,7 +61,7 @@ namespace Sce.Atf.Controls.DataEditing
         {
             if (Bounds.Contains(p))
                 EditingMode = EditMode.ByExternalControl;
-            else 
+            else
                 EditingMode = EditMode.None;
         }
 
@@ -80,8 +80,8 @@ namespace Sce.Atf.Controls.DataEditing
                 // Sets the initial color select to the current color.
                 colorDialog.Color = Value;
 
-                // Update the text box color if the user clicks OK  
-                // TODO: position the dialog at the cell location. 
+                // Update the text box color if the user clicks OK
+                // TODO: position the dialog at the cell location.
                 var result = colorDialog.ShowDialog();
                 s_customColors = colorDialog.CustomColors;
                 if (result == DialogResult.OK)
@@ -97,7 +97,7 @@ namespace Sce.Atf.Controls.DataEditing
         /// <returns>
         /// 'true' if the change should be committed and 'false' if the change should be discarded</returns>
         public override bool EndDataEdit()
-        {         
+        {
             return (m_startValue != Value);
         }
 

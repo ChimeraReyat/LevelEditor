@@ -1,7 +1,7 @@
 namespace Sce.Atf.Controls.CurveEditing
 {
     // Enums used by Curve interfaces and curve control
-       
+
     /// <summary>
     /// Curve loop types</summary>
     public enum CurveLoopTypes
@@ -21,7 +21,7 @@ namespace Sce.Atf.Controls.CurveEditing
         /// <summary>Linear</summary>
         Linear,
     }
-   
+
     /// <summary>
     /// Tangent types used by curve editor</summary>
     public enum CurveTangentTypes
@@ -41,7 +41,7 @@ namespace Sce.Atf.Controls.CurveEditing
         /// <summary>Stepped Next</summary>
         SteppedNext,
 
-        /// <summary>Flat</summary>                
+        /// <summary>Flat</summary>
         Flat,
 
         /// <summary>Fixed</summary>
@@ -50,7 +50,7 @@ namespace Sce.Atf.Controls.CurveEditing
         /// <summary>Plateau</summary>
         Plateau,
     }
-    
+
     /// <summary>
     /// Point region types</summary>
     public enum PointSelectionRegions
@@ -65,7 +65,7 @@ namespace Sce.Atf.Controls.CurveEditing
         TangentOut = 2,
 
         /// <summary>Control point selected</summary>
-        Point = 4,        
+        Point = 4,
     }
 
     /// <summary>
@@ -76,7 +76,7 @@ namespace Sce.Atf.Controls.CurveEditing
         /// Undefined interpolation type</summary>
         /// <remarks>Added by Guerrilla and promoted to ATF</remarks>
         None = 0,
-        
+
         /// <summary>
         /// Cubic hermite spline aka cspline</summary>
         Hermite,

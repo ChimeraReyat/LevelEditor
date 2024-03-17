@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -385,7 +385,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                     AdaptedControl.Invalidate();
                 }
             }
- 
+
             if (m_autoTranslateAdapter != null)
                 m_autoTranslateAdapter.Enabled = false;
 

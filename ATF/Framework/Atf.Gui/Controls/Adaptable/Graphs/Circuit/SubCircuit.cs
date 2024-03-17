@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -24,7 +24,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// Gets ChildInfo for output pins in subcircuit</summary>
         protected abstract ChildInfo OutputChildInfo { get; }
 
-  
+
         /// <summary>
         /// Performs initialization when the adapter is connected to the sub-circuit's DomNode.
         /// Raises the DomNodeAdapter NodeSet event and performs custom processing.</summary>
@@ -78,7 +78,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 
         #endregion
 
- 
+
 
         private DomNodeListAdapter<ICircuitPin> m_inputPins;
         private DomNodeListAdapter<ICircuitPin> m_outputPins;

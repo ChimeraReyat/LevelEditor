@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel.Composition;
@@ -30,9 +30,9 @@ namespace LevelEditorCore
                Sce.Atf.Input.Keys.None,
                Resources.ArcballImage,
                CommandVisibility.Menu
-               );            
+               );
         }
-        
+
 
         /// <summary>
         /// Performs any camera initialization required by the controller</summary>
@@ -203,7 +203,7 @@ namespace LevelEditorCore
             Vec3F up = Camera.Up;
             if (camera.ViewType == ViewTypes.Perspective)
             {
-                
+
                 QuatF rotation = m_rotation * m_currentRotation;
                 rotation = rotation.Inverse;
                 Matrix4F transform = new Matrix4F(rotation);
@@ -291,6 +291,6 @@ namespace LevelEditorCore
         private int m_height;
         private float m_dollyThreshold;
         private Point m_lastMousePoint;
-        private bool m_dragging;        
+        private bool m_dragging;
     }
 }

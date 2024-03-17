@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Drawing;
 using System.Windows.Forms;
@@ -40,7 +40,7 @@ namespace RenderingInterop
 
             m_node = GetManipulatorNode(TransformationTypes.Pivot);
 
-            Camera camera = vc.Camera;            
+            Camera camera = vc.Camera;
             Matrix4F view = camera.ViewMatrix;
             Matrix4F vp = view * camera.ProjectionMatrix;
             Matrix4F wvp = HitMatrix * vp;
@@ -54,15 +54,15 @@ namespace RenderingInterop
         public override void Render(ViewControl vc)
         {
             Matrix4F normWorld = GetManipulatorMatrix();
-            if (normWorld == null) return;            
-            m_translatorControl.Render(vc, normWorld);                                
+            if (normWorld == null) return;
+            m_translatorControl.Render(vc, normWorld);
         }
 
         public override void OnBeginDrag()
         {
             if (m_hitRegion == HitRegion.None || !CanManipulate(m_node))
-                return;                       
-            var transactionContext = DesignView.Context.As<ITransactionContext>();           
+                return;
+            var transactionContext = DesignView.Context.As<ITransactionContext>();
             transactionContext.Begin("Move".Localize());
             m_originalPivot = m_node.Pivot;
 
@@ -78,11 +78,11 @@ namespace RenderingInterop
                 return;
 
             Matrix4F proj = vc.Camera.ProjectionMatrix;
-            // create ray in view space.            
+            // create ray in view space.
             Ray3F rayV = vc.GetRay(scrPt, proj);
-                             
+
             Vec3F translate = m_translatorControl.OnDragging(rayV);
-                      
+
             Vec3F localTranslation;
             m_worldToLocal.TransformVector(translate, out localTranslation);
             m_node.Pivot = m_originalPivot + localTranslation;
@@ -108,14 +108,14 @@ namespace RenderingInterop
                         Outputs.WriteLine(OutputMessageType.Error, ex.Message);
                 }
             }
-            
+
             m_hitRegion = HitRegion.None;
             m_node = null;
         }
 
         #endregion
-          
-        
+
+
         private bool CanManipulate(ITransformable node)
         {
             bool result = node != null
@@ -140,13 +140,13 @@ namespace RenderingInterop
             localToWorld.OrthoNormalize(localToWorld);
             return new Matrix4F(localToWorld.Translation);
         }
-        
+
         private TranslatorControl m_translatorControl;
         private HitRegion m_hitRegion = HitRegion.None;
         private Matrix4F m_worldToLocal;
         private Vec3F m_originalPivot;
         private ITransformable m_node;
-        
-        
+
+
     }
 }

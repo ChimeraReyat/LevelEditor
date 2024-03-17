@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Runtime.InteropServices;
@@ -32,11 +32,11 @@ namespace Sce.Atf.Direct2D
         /// D2dBitmap.PixelSize.</summary>
         public System.Drawing.SizeF Size
         {
-            get 
+            get
             {
                 if (IsDisposed)
                     throw new InvalidOperationException("This bitmap is disposed");
-                return new System.Drawing.SizeF(m_nativeBitmap.Size.Width, m_nativeBitmap.Size.Height); 
+                return new System.Drawing.SizeF(m_nativeBitmap.Size.Width, m_nativeBitmap.Size.Height);
             }
         }
 
@@ -68,7 +68,7 @@ namespace Sce.Atf.Direct2D
             System.Drawing.Imaging.BitmapData
                 data = m_bitmap.LockBits(new System.Drawing.Rectangle(0, 0, m_bitmap.Width, m_bitmap.Height), System.Drawing.Imaging.ImageLockMode.ReadOnly,
                 m_bitmap.PixelFormat);
-            m_nativeBitmap.CopyFromMemory(data.Scan0, data.Stride);            
+            m_nativeBitmap.CopyFromMemory(data.Scan0, data.Stride);
             m_bitmap.UnlockBits(data);
         }
 
@@ -86,14 +86,14 @@ namespace Sce.Atf.Direct2D
             try
             {
                 pinnedArray = GCHandle.Alloc(bytes, GCHandleType.Pinned);
-                IntPtr pointer = pinnedArray.AddrOfPinnedObject();                
+                IntPtr pointer = pinnedArray.AddrOfPinnedObject();
                 CopyFromMemory(pointer, stride);
             }
             finally
             {
                 if (pinnedArray.IsAllocated)
                     pinnedArray.Free();
-            }            
+            }
         }
 
 
@@ -108,7 +108,7 @@ namespace Sce.Atf.Direct2D
                 throw new InvalidOperationException("This bitmap is disposed");
 
             m_nativeBitmap.CopyFromMemory(data, stride);
-            
+
             if (m_bitmap != null)
             {
                 // lock the m_bitmap and get pointer to the first pixel.
@@ -124,7 +124,7 @@ namespace Sce.Atf.Direct2D
         /// <summary>
         /// Copy the given int array into bitmap.
         /// Each int is a four channel BGRA color.</summary>
-        /// <param name="data">Data to copy</param>        
+        /// <param name="data">Data to copy</param>
         /// <remarks> The size of data must be equal to pixel (Width * Height) </remarks>
         public void CopyFromMemory(int[] data)
         {
@@ -133,7 +133,7 @@ namespace Sce.Atf.Direct2D
 
             if (data.Length != (PixelSize.Width * PixelSize.Height))
                 throw new InvalidOperationException("The length of data must be equal to (PixelSize.Width * PixelSize.Height)");
-            
+
             GCHandle pinnedArray = new GCHandle();
             try
             {
@@ -150,7 +150,7 @@ namespace Sce.Atf.Direct2D
         }
 
         internal D2dBitmap(D2dGraphics owner, SharpDX.Direct2D1.Bitmap bmp)
-        {            
+        {
             m_nativeBitmap = bmp;
             m_owner = owner;
             m_bitmap = null;
@@ -200,7 +200,7 @@ namespace Sce.Atf.Direct2D
             }
 
             if (m_bitmap == null)
-            {                
+            {
                 Dispose();
             }
             else
@@ -250,15 +250,15 @@ namespace Sce.Atf.Direct2D
                 m_nativeBitmap.Dispose();
                 m_nativeBitmap = null;
             }
-            
+
             var props = new SharpDX.Direct2D1.BitmapProperties();
             props.DpiX = m_bitmap.HorizontalResolution;
-            props.DpiY = m_bitmap.VerticalResolution;            
+            props.DpiY = m_bitmap.VerticalResolution;
             props.PixelFormat = new SharpDX.Direct2D1.PixelFormat(SharpDX.DXGI.Format.B8G8R8A8_UNorm, SharpDX.Direct2D1.AlphaMode.Premultiplied);
-            m_nativeBitmap = new SharpDX.Direct2D1.Bitmap(m_owner.D2dRenderTarget, new Size2(m_bitmap.Width, m_bitmap.Height), props);                        
+            m_nativeBitmap = new SharpDX.Direct2D1.Bitmap(m_owner.D2dRenderTarget, new Size2(m_bitmap.Width, m_bitmap.Height), props);
             Update();
         }
-        
+
         private SharpDX.Direct2D1.Bitmap m_nativeBitmap;
         private System.Drawing.Bitmap m_bitmap;
         private readonly D2dGraphics m_owner;
@@ -275,7 +275,7 @@ namespace Sce.Atf.Direct2D
         /// pixel.</summary>
         NearestNeighbor = (int)SharpDX.Direct2D1.BitmapInterpolationMode.NearestNeighbor,
 
-        /// <summary>        
+        /// <summary>
         /// Interpolate a color from the four bitmap pixels that are the nearest to the
         /// rendering pixel.</summary>
         Linear = (int)SharpDX.Direct2D1.BitmapInterpolationMode.Linear,

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using Sce.Atf.Dom;
 using Sce.Atf.Adaptation;
@@ -11,24 +11,24 @@ namespace RenderingInterop
         {
             base.OnNodeSet();
             DomNode node = this.DomNode;
-            
+
             node.ChildInserted += node_ChildInserted;
             node.ChildRemoved += node_ChildRemoved;
             ManageNativeObjectLifeTime = true;
         }
 
         void node_ChildInserted(object sender, ChildEventArgs e)
-        {                        
+        {
             Insert(e.Parent, e.Child, e.ChildInfo, e.Index);
         }
 
         void node_ChildRemoved(object sender, ChildEventArgs e)
-        {                        
+        {
             Remove(e.Parent, e.Child, e.ChildInfo);
         }
 
         /// <summary>
-        /// Gets/Sets whether this adapter  creates native object on child inserted 
+        /// Gets/Sets whether this adapter  creates native object on child inserted
         /// and deletes it on child removed.
         /// The defautl is true.
         /// </summary>
@@ -53,7 +53,7 @@ namespace RenderingInterop
             ulong childId = childObject.InstanceId;
             GameEngine.ObjectRemoveChild(typeId, listId, parentId, childId);
             if (ManageNativeObjectLifeTime)
-            {                
+            {
                 GameEngine.DestroyObject(childObject);
             }
         }
@@ -96,6 +96,6 @@ namespace RenderingInterop
             {
                 Insert(child, node, node.ChildInfo, -1); // use -1 for index to indicate an append operation.
             }
-        }    
+        }
     }
 }

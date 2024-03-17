@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.ComponentModel;
 
@@ -73,7 +73,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
         }
 
         /// <summary>
-        /// Get or set whether the target is persisted for the current application only, current user, 
+        /// Get or set whether the target is persisted for the current application only, current user,
         /// or all users on a machine</summary>
         [LocalizedName("Scope")]
         public TargetScope Scope
@@ -123,8 +123,8 @@ namespace Sce.Atf.Applications.NetworkTargetServices
         private TargetScope m_scope;
     }
 
-    
 
-  
+
+
 
 }

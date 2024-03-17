@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -66,22 +66,22 @@ namespace LevelEditorCore
                 IGame game = Adapters.As<IGame>(path.Last());
                 if (game != null && game.Parent != null)
                 {
-                    DomNode gameRef = game.Parent.Cast<DomNode>();                    
+                    DomNode gameRef = game.Parent.Cast<DomNode>();
                     path[path.Count - 1] = gameRef;
-                    domNode = gameRef.Parent;                    
+                    domNode = gameRef.Parent;
                 }
             }
-            path.Reverse();            
+            path.Reverse();
             AdaptablePath<object> adaptablePath = new AdaptablePath<object>(path);
             return adaptablePath;
         }
 
 
-       
+
 
         /// <summary>
         /// Conversion function for drag-drop operations</summary>
-        /// <param name="sourceObject">source object</param>        
+        /// <param name="sourceObject">source object</param>
         /// <returns>IEnumerable of objects </returns>
         public static IEnumerable<object> ConvertData(object sourceObject, bool copydataobject)
         {
@@ -99,7 +99,7 @@ namespace LevelEditorCore
                     yield return obj;
             }
             else if (dataObject != null)
-            {                               
+            {
                 DomNode[] domNodes = dataObject.GetData(typeof(DomNode[])) as DomNode[];
                 if (domNodes != null)
                 {
@@ -112,7 +112,7 @@ namespace LevelEditorCore
                 if (objects != null)
                 {
                     foreach (object node in objects)
-                        yield return node;                    
+                        yield return node;
                 }
 
                 string[] files = dataObject.GetData(DataFormats.FileDrop) as string[];
@@ -122,10 +122,10 @@ namespace LevelEditorCore
                     {
                         IResource resource = resourceService.Load(new Uri(file));
                         if (resource != null)
-                            yield return resource; 
+                            yield return resource;
                     }
                 }
-            }            
+            }
         }
 
         /// <summary>
@@ -143,13 +143,13 @@ namespace LevelEditorCore
                 NodeTypePaletteItem paletteItem = nodeType.GetTag<NodeTypePaletteItem>();
                 if (paletteItem != null)
                     imageIndex = imageList.Images.IndexOfKey(paletteItem.ImageName);
-            }            
+            }
             return imageIndex;
         }
 
 
         /// <summary>
-        /// Creates Billboard matrix from the given parameters.</summary>        
+        /// Creates Billboard matrix from the given parameters.</summary>
         public static void CreateBillboard(Matrix4F matrix, Vec3F objectPos, Vec3F camPos, Vec3F camUp, Vector3 camLook)
         {
 
@@ -183,12 +183,12 @@ namespace LevelEditorCore
             matrix.M41 = objectPos.X;
             matrix.M42 = objectPos.Y;
             matrix.M43 = objectPos.Z;
-            matrix.M44 = 1f;            
+            matrix.M44 = 1f;
         }
 
 
         /// <summary>
-        /// Creates Billboard matrix from the given parameters.</summary>        
+        /// Creates Billboard matrix from the given parameters.</summary>
         public static Matrix4F CreateBillboard(Vec3F objectPos, Vec3F camPos, Vec3F camUp, Vector3 camLook)
         {
             Matrix4F matrix = new Matrix4F();
@@ -198,14 +198,14 @@ namespace LevelEditorCore
 
 
         /// <summary>
-        /// Calculates required scale such that when it applied to an 
-        /// object. The object maintain a constant size in pixel regardless of 
+        /// Calculates required scale such that when it applied to an
+        /// object. The object maintain a constant size in pixel regardless of
         /// its distance from camera.
         /// Used for computing size of 3d manipulators.</summary>
         /// <param name="camera"></param>
         /// <param name="objectPosW"></param>
         /// <param name="sizeInPixels"></param>
-        /// <param name="viewHeight"></param>        
+        /// <param name="viewHeight"></param>
         public static float CalcAxisScale(Camera camera,
             Vec3F objectPosW,
             float sizeInPixels,
@@ -226,11 +226,11 @@ namespace LevelEditorCore
             }
             return sizeInPixels * (worldHeight / viewHeight);
         }
-        
+
         public static void ZoomOnSphere(Camera cam, Sphere3F sphere)
         {
             float nearZ = cam.PerspectiveNearZ;
-            // todo refactor cam.ZoomOnSphere() 
+            // todo refactor cam.ZoomOnSphere()
             cam.ZoomOnSphere(sphere);
             cam.PerspectiveNearZ = nearZ;
         }
@@ -269,14 +269,14 @@ namespace LevelEditorCore
                     }
                 }
             }
-            return filePath;            
+            return filePath;
         }
 
 
         /// <summary>
-        /// Find all the DomNodes of the type that is equal or derived 
+        /// Find all the DomNodes of the type that is equal or derived
         /// from the given type.
-        /// if exact is true then only find DomNode that have exact type.        
+        /// if exact is true then only find DomNode that have exact type.
         /// </summary>
         /// <param name="type">DomNodeType</param>
         /// <param name="exact">if true then only consider exact match,

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel.Composition;
@@ -13,7 +13,7 @@ namespace LevelEditorCore
     /// <summary>
     /// Component to edit resource meta-data.
     /// </summary>
-    [Export(typeof(IInitializable))]    
+    [Export(typeof(IInitializable))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class ResourceMetadataEditor : IInitializable
     {
@@ -41,10 +41,10 @@ namespace LevelEditorCore
         #endregion
 
         private void resourceLister_SelectionChanged(object sender, EventArgs e)
-        {            
+        {
             Uri resUri = m_resourceLister.LastSelected;
             object[] mdatadata = m_resourceMetadataService.GetMetadata(m_resourceLister.Selection).ToArray();
-            m_propertyGrid.Bind(mdatadata);            
+            m_propertyGrid.Bind(mdatadata);
         }
 
         [Import(AllowDefault = true)]

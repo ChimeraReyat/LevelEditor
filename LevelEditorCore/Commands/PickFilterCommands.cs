@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -28,7 +28,7 @@ namespace LevelEditorCore.Commands
                 return;
 
             }
-                
+
             m_pickFilterComboBox = new ToolStripComboBox();
             m_pickFilterComboBox.BeginUpdate();
             m_pickFilterComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -39,8 +39,8 @@ namespace LevelEditorCore.Commands
             var defFilter = new DefaultPickFilter();
             m_filters.Add(defFilter.Name, defFilter);
             m_pickFilterComboBox.Items.Add(defFilter.Name);
-            
-                                  
+
+
             foreach (IPickFilter pickFilter in m_pickFilters)
             {
                 m_filters.Add(pickFilter.Name, pickFilter);
@@ -50,16 +50,16 @@ namespace LevelEditorCore.Commands
             m_designView.PickFilter = defFilter;
             m_pickFilterComboBox.SelectedIndex = 0;
 
-            m_pickFilterComboBox.EndUpdate();            
+            m_pickFilterComboBox.EndUpdate();
             MenuInfo.Edit.GetToolStrip().Items.Add(m_pickFilterComboBox);
             m_pickFilterComboBox.SelectedIndexChanged += PickpickFilterComboBox_SelectedIndexChanged;
 
             m_settingsService.RegisterSettings(this,new BoundPropertyDescriptor(this, () => ActivePickFilter, "ActiveFilter",null, null));
 
         }
-        
+
         #endregion
-        
+
         private void PickpickFilterComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ToolStripComboBox pickFilterComboBox = (ToolStripComboBox) sender;
@@ -72,24 +72,24 @@ namespace LevelEditorCore.Commands
         {
             get { return (string) m_pickFilterComboBox.SelectedItem; }
             set
-            {                
+            {
                 if(m_filters.ContainsKey(value))
                 {
                     m_pickFilterComboBox.SelectedItem = value;
                 }
-                
+
             }
         }
 
-        
 
-        [Import(AllowDefault = false)] 
+
+        [Import(AllowDefault = false)]
         private IDesignView m_designView = null;
 
-        [ImportMany] 
+        [ImportMany]
         private IEnumerable<IPickFilter> m_pickFilters = null;
 
-        [Import(AllowDefault = false)] 
+        [Import(AllowDefault = false)]
         private ISettingsService m_settingsService = null;
 
         private ToolStripComboBox m_pickFilterComboBox;
@@ -108,7 +108,7 @@ namespace LevelEditorCore.Commands
             }
 
             /// <summary>
-            /// Pass-through filter. </summary>            
+            /// Pass-through filter. </summary>
             public object Filter(object obj, MouseEventArgs e)
             {
                 return obj;

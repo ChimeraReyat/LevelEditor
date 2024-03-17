@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ namespace LevelEditorCore
     public interface IDesignView
     {
         /// <summary>
-        /// Gets the host control that is parent for 
+        /// Gets the host control that is parent for
         /// DesigViewControls </summary>
         Control HostControl
         {
@@ -20,7 +20,7 @@ namespace LevelEditorCore
         }
 
         /// <summary>
-        /// Gets the active view.</summary>        
+        /// Gets the active view.</summary>
         DesignViewControl ActiveView
         {
             get;
@@ -42,7 +42,7 @@ namespace LevelEditorCore
         {
             get;
         }
-        
+
         /// <summary>
         /// Gets and sets view mode.</summary>
         ViewModes ViewMode
@@ -64,7 +64,7 @@ namespace LevelEditorCore
 
         /// <summary>
         /// Event that is raised after Context changes</summary>
-        event EventHandler ContextChanged;        
+        event EventHandler ContextChanged;
 
         /// <summary>
         /// Gets/Sets active manipulator.
@@ -82,9 +82,9 @@ namespace LevelEditorCore
         {
             get; set;
         }
-       
+
         /// <summary>
-        /// Invalates all the visible views.</summary>        
+        /// Invalates all the visible views.</summary>
         /// <remarks>if realtime is true then this method do nothing.</remarks>
         void InvalidateViews();
 
@@ -97,7 +97,7 @@ namespace LevelEditorCore
         }
     }
 
-    
+
 
     // supported enums and classes.
     public enum ViewModes

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -58,7 +58,7 @@ namespace Sce.Atf.Controls.PropertyEditing
             #region ICacheablePropertyControl
             /// <summary>
             /// Gets true iff this control can be used indefinitely, regardless of whether the associated
-            /// PropertyEditorControlContext's SelectedObjects property changes, i.e., the selection changes. 
+            /// PropertyEditorControlContext's SelectedObjects property changes, i.e., the selection changes.
             /// This property must be constant for the life of this control.</summary>
             public bool Cacheable
             {
@@ -68,7 +68,7 @@ namespace Sce.Atf.Controls.PropertyEditing
 
             protected override void OnSizeChanged(EventArgs e)
             {
-                m_checkBox.Location = new Point(m_topAndLeftMargin, (Height - m_checkBox.Height) / 2 + 1); 
+                m_checkBox.Location = new Point(m_topAndLeftMargin, (Height - m_checkBox.Height) / 2 + 1);
                 base.OnSizeChanged(e);
             }
 
@@ -113,7 +113,7 @@ namespace Sce.Atf.Controls.PropertyEditing
         }
 
         /// <summary>
-        /// Gets or sets whether editing is disabled. 
+        /// Gets or sets whether editing is disabled.
         /// DisableEditing can be used to lock out editing on this editor, whether or not the context it was created with is read only.</summary>
         public bool DisableEditing
         {

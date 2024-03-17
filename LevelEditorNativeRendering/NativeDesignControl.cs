@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Windows.Forms;
@@ -32,7 +32,7 @@ namespace RenderingInterop
                 GameEngine.SetObjectProperty(swapChainId, SurfaceId, SizePropId, ClientSize);
                 BkgColorPropId = GameEngine.GetObjectPropertyId(swapChainId, "BkgColor");
                 GameEngine.SetObjectProperty(swapChainId, SurfaceId, BkgColorPropId, BackColor);
-                
+
             }
             if (s_marqueePen == null)
             {
@@ -67,7 +67,7 @@ namespace RenderingInterop
             {
                 GameEngine.SetObjectProperty(swapChainId, SurfaceId, SizePropId, sz);
                 Camera.Aspect = (float)sz.Width / (float)sz.Height;
-            }            
+            }
         }
         protected override void Dispose(bool disposing)
         {
@@ -79,9 +79,9 @@ namespace RenderingInterop
             }
             base.Dispose(disposing);
         }
-        
+
         protected override IList<object> Pick(MouseEventArgs e)
-        {           
+        {
             bool multiSelect = DragOverThreshold;
             List<object> paths = new List<object>();
 
@@ -89,7 +89,7 @@ namespace RenderingInterop
 
 
             if(multiSelect)
-            {// frustum pick                
+            {// frustum pick
                 RectangleF rect = MakeRect(FirstMousePoint, CurrentMousePoint);
                 hits = GameEngine.FrustumPick(SurfaceId, Camera.ViewMatrix, Camera.ProjectionMatrix, rect);
             }
@@ -110,7 +110,7 @@ namespace RenderingInterop
             }
 
             HitRecord firstHit = new HitRecord();
-            
+
 
             // build 'path' objects for each hit record.
             foreach (HitRecord hit in uniqueHits)
@@ -131,7 +131,7 @@ namespace RenderingInterop
             }
 
 
-            if (multiSelect == false && paths.Count > 0)                
+            if (multiSelect == false && paths.Count > 0)
             {
                 var path = paths[0];
                 ISelectionContext selection = DesignView.Context.As<ISelectionContext>();
@@ -151,25 +151,25 @@ namespace RenderingInterop
             }
             return paths;
         }
-        
+
         private IGame TargetGame()
-        {            
+        {
             var selection = DesignView.Context.As<ISelectionContext>();
             DomNode node = selection.GetLastSelected<DomNode>();
-                      
+
             IReference<IGame> gameref = Adapters.As<IReference<IGame>>(node);
             if (gameref != null && gameref.Target != null)
-                return gameref.Target;  
-                      
+                return gameref.Target;
+
             if(node != null)
-                return node.GetRoot().As<IGame>(); 
-            
+                return node.GetRoot().As<IGame>();
+
             return DesignView.Context.As<IGame>();
-            
+
         }
 
         private readonly List<DomNode> m_ghosts = new List<DomNode>();
-        
+
         protected override void OnDragEnter(DragEventArgs drgevent)
         {
             base.OnDragEnter(drgevent);
@@ -177,50 +177,50 @@ namespace RenderingInterop
 
             if (dragDropTarget.RootGameObjectFolder.IsLocked)
             {
-                drgevent.Effect = DragDropEffects.None;                
+                drgevent.Effect = DragDropEffects.None;
                 return;
             }
 
-            IGameObjectFolder rootFolder = dragDropTarget.RootGameObjectFolder;            
+            IGameObjectFolder rootFolder = dragDropTarget.RootGameObjectFolder;
             m_ghosts.Clear();
 
             ResourceConverterService resourceConverter = Globals.MEFContainer.GetExportedValue<ResourceConverterService>();
 
 
             IEnumerable<object> nodes = Util.ConvertData(drgevent.Data, false);
-                                   
+
             foreach (object iterNode in nodes)
             {
                 DomNode node = iterNode as DomNode;
                 if (node == null)
-                {                 
+                {
                     if (resourceConverter != null)
                     {
                         IGameObject resGob = resourceConverter.Convert(iterNode as IResource);
-                        node = resGob.As<DomNode>();                    
-                    }                    
+                        node = resGob.As<DomNode>();
+                    }
                 }
-                
+
                 IGameObject gob = node.As<IGameObject>();
                 if (gob == null || node.GetRoot().Is<IGame>())
                     continue;
-                
+
                 node.InitializeExtensions();
                 m_ghosts.Add(node);
-                rootFolder.GameObjects.Add(gob);                                             
+                rootFolder.GameObjects.Add(gob);
             }
 
             drgevent.Effect = m_ghosts.Count > 0 ? DragDropEffects.Move | DragDropEffects.Link
             : DragDropEffects.None;
         }
-        
+
         protected override void OnDragOver(DragEventArgs drgevent)
-        {        
+        {
             base.OnDragOver(drgevent);
             if (DesignView.Context == null
                 || m_ghosts.Count == 0) return;
 
-            
+
             Point clientPoint = PointToClient(new Point(drgevent.X, drgevent.Y));
             Ray3F rayw = GetWorldRay(clientPoint);
 
@@ -247,12 +247,12 @@ namespace RenderingInterop
                             break;
                         }
                     }
-                    if (skip) continue;                                        
+                    if (skip) continue;
                     hit = ht;
                     break;
                 }
             }
-            
+
             ISnapFilter snapFilter = Globals.MEFContainer.GetExportedValue<ISnapFilter>();
             bool snap = (shiftPressed && hit.HasValue);
             foreach (DomNode ghost in m_ghosts)
@@ -262,7 +262,7 @@ namespace RenderingInterop
             }
 
             GameLoop.Update();
-            GameLoop.Render();            
+            GameLoop.Render();
         }
         protected override void OnDragDrop(DragEventArgs drgevent)
         {
@@ -277,7 +277,7 @@ namespace RenderingInterop
                 foreach (DomNode ghost in m_ghosts)
                 {
                     rootFolder.GameObjects.Remove(ghost.As<IGameObject>());
-                }                                
+                }
                 ApplicationUtil.Insert(
                     dragDropTarget,
                     rootFolder.Cast<DomNode>(),
@@ -285,7 +285,7 @@ namespace RenderingInterop
                     "Drag and Drop",
                     null);
 
-                m_ghosts.Clear();                
+                m_ghosts.Clear();
                 DesignView.InvalidateViews();
             }
         }
@@ -306,9 +306,9 @@ namespace RenderingInterop
                     xformnode.Translation = new Vec3F(0, 0, 0);
 
                     rootFolder.GameObjects.Remove(ghost.As<IGameObject>());
-                }      
-                
-                m_ghosts.Clear();                
+                }
+
+                m_ghosts.Clear();
                 DesignView.InvalidateViews();
             }
 
@@ -326,14 +326,14 @@ namespace RenderingInterop
                     return;
                 }
                 GameLoop.Update();
-                Render();                
+                Render();
             }
             catch(Exception ex)
             {
                 e.Graphics.DrawString(ex.Message, Font, Brushes.Red, 1, 1);
-            }            
+            }
         }
-      
+
         // render the scene.
         public override void Render()
         {
@@ -355,7 +355,7 @@ namespace RenderingInterop
             IGame game = DesignView.Context.As<IGame>();
             GridRenderer gridRender = game.Grid.Cast<GridRenderer>();
             gridRender.Render(Camera);
-          
+
             GameEngine.RenderGame();
 
             bool renderSelected = RenderState.DisplayBound == DisplayFlagModes.Selection
@@ -377,16 +377,16 @@ namespace RenderingInterop
                    RenderState.DisplayBound == DisplayFlagModes.Always,
                    RenderState.DisplayPivot == DisplayFlagModes.Always);
 
-            GameEngine.SetRendererFlag(BasicRendererFlags.Foreground | BasicRendererFlags.Lit);            
+            GameEngine.SetRendererFlag(BasicRendererFlags.Foreground | BasicRendererFlags.Lit);
             if (DesignView.Manipulator != null)
                 DesignView.Manipulator.Render(this);
-                                  
+
             string str = string.Format("View Type: {0}   time per frame-render call: {1:0.00} ms", ViewType, m_clk.Milliseconds);
-            GameEngine.DrawText2D(str, Util3D.CaptionFont, 1,1, Color.White);          
+            GameEngine.DrawText2D(str, Util3D.CaptionFont, 1,1, Color.White);
             GameEngine.End();
 
             if (IsPicking)
-            {// todo: use Directx to draw marque.                
+            {// todo: use Directx to draw marque.
                 using (Graphics g = CreateGraphics())
                 {
                     Rectangle rect = MakeRect(FirstMousePoint, CurrentMousePoint);
@@ -396,11 +396,11 @@ namespace RenderingInterop
                     }
                 }
             }
-            
+
         }
-        
+
         private void RenderProperties(IEnumerable<object> objects, bool renderCaption, bool renderBound, bool renderPivot)
-        {                      
+        {
             if (renderCaption || renderBound)
             {
                 Util3D.RenderFlag = BasicRendererFlags.WireFrame;
@@ -453,7 +453,7 @@ namespace RenderingInterop
                     Vec3F pos = toWorld.Translation;
 
                     const float pivotDiameter = 16; // in pixels
-                    float s = Util.CalcAxisScale(Camera, pos, pivotDiameter, Height);                    
+                    float s = Util.CalcAxisScale(Camera, pos, pivotDiameter, Height);
                     sc.Scale(s);
                     Util.CreateBillboard(bl, pos, Camera.WorldEye, Camera.Up, Camera.LookAt);
                     recXform = sc * bl;
@@ -461,7 +461,7 @@ namespace RenderingInterop
                 }
             }
         }
-       
+
         private IEnumerable<DomNode> Items
         {
             get
@@ -483,7 +483,7 @@ namespace RenderingInterop
                 }
             }
         }
-        
+
         private Rectangle MakeRect(Point p1, Point p2)
         {
             int minx = Math.Min(p1.X, p2.X);
@@ -494,10 +494,10 @@ namespace RenderingInterop
             int h = maxy - miny;
             return new Rectangle(minx, miny, w, h);
         }
-        
+
         /// <summary>
         /// Projects the ghost</summary>
-        private void ProjectGhost(DomNode ghost, 
+        private void ProjectGhost(DomNode ghost,
             Ray3F rayw,
             HitRecord? hit)
         {
@@ -505,7 +505,7 @@ namespace RenderingInterop
             ITransformable xformnode = ghost.Cast<ITransformable>();
             IBoundable bnode  = ghost.As<IBoundable>();
             AABB box = bnode.BoundingBox;
-            
+
             Vec3F pt;
             if (hit.HasValue && hit.Value.hasNormal)
             {
@@ -513,22 +513,22 @@ namespace RenderingInterop
                 Vec3F norm = hit.Value.normal;
                 Vec3F absNorm = Vec3F.Abs(norm);
                 Vec3F offset = Vec3F.ZeroVector;
-                
+
                 if (absNorm.X > absNorm.Y)
                 {
                     if (absNorm.X > absNorm.Z)
                         offset.X = norm.X > 0 ? rad.X : -rad.X;
                     else
-                        offset.Z = norm.Z > 0 ? rad.Z : -rad.Z;                        
+                        offset.Z = norm.Z > 0 ? rad.Z : -rad.Z;
                 }
                 else
                 {
                     if (absNorm.Y > absNorm.Z)
                         offset.Y = norm.Y > 0 ? rad.Y : -rad.Y;
                     else
-                        offset.Z = norm.Z > 0 ? rad.Z : -rad.Z;                        
-                        
-                }                
+                        offset.Z = norm.Z > 0 ? rad.Z : -rad.Z;
+
+                }
                 Vec3F localCenter = box.Center - xformnode.Translation;
                 pt = hit.Value.hitPt + (offset - localCenter);
             }
@@ -537,19 +537,19 @@ namespace RenderingInterop
                 float offset = 6.0f * box.Radius.Length;
                 pt = rayw.Origin + offset * rayw.Direction;
             }
-                                          
+
             if (ViewType == ViewTypes.Front)
                 pt.Z = 0.0f;
             else if (ViewType == ViewTypes.Top)
                 pt.Y = 0.0f;
             else if (ViewType == ViewTypes.Left)
-                pt.X = 0.0f;           
+                pt.X = 0.0f;
             xformnode.Translation = pt;
 
         }
-        
+
         private static Pen s_marqueePen;
-        private Clock m_clk = new Clock();        
+        private Clock m_clk = new Clock();
         private RenderState m_renderState;
         private readonly uint swapChainId;
         private readonly uint SizePropId;

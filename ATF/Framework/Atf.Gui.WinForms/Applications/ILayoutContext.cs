@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections.Generic;
 using System.Drawing;
@@ -67,7 +67,7 @@ namespace Sce.Atf.Applications
                     }
                 }
             }
-            
+
             bounds = resultBounds;
             return resultFlags;
         }

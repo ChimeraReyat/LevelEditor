@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections;
@@ -24,7 +24,7 @@ namespace Sce.Atf.Controls.PropertyEditing
         {
         }
 
-        
+
 
         #region IPropertyEditor Members
 
@@ -36,7 +36,7 @@ namespace Sce.Atf.Controls.PropertyEditing
         {
             UniformArrayTextBox editingControl = new UniformArrayTextBox(context);
             editingControl.ScaleFactor = ScaleFactor;
-            return editingControl;            
+            return editingControl;
         }
 
         #endregion
@@ -84,7 +84,7 @@ namespace Sce.Atf.Controls.PropertyEditing
 
             /// <summary>
             /// Gets true iff this control can be used indefinitely, regardless of whether the associated
-            /// PropertyEditorControlContext's SelectedObjects property changes, i.e., the selection changes. 
+            /// PropertyEditorControlContext's SelectedObjects property changes, i.e., the selection changes.
             /// This property must be constant for the life of this control.</summary>
             public virtual bool Cacheable
             {

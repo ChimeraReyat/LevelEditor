@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -37,7 +37,7 @@ namespace Sce.Atf.Controls.PropertyEditing
 
             m_toolTip = new ToolTip();
 
-            m_editingControl = new PropertyEditingControl();            
+            m_editingControl = new PropertyEditingControl();
             m_editingControl.TabStop = false;
             m_editingControl.EditButtonSize = new Size(17, 17);
 
@@ -86,7 +86,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                     m_editingControl.Font = Font;
                 };
 
-          
+
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                 PropertyTextHighlightBrush.Dispose();
                 PropertyExpanderPen.Dispose();
                 PropertyLinePen.Dispose();
-                m_resetButton.Dispose();          
+                m_resetButton.Dispose();
                 m_overlayButtonToolTip.Dispose();
             }
 
@@ -237,8 +237,8 @@ namespace Sce.Atf.Controls.PropertyEditing
             editingContext = EditingContext;
             bottom = -m_scroll;
 
-            // This check is important for the recursive call below, because FindChildControls()  
-            //  may return child controls in an arbitrary order or that aren't visible.  
+            // This check is important for the recursive call below, because FindChildControls()
+            //  may return child controls in an arbitrary order or that aren't visible.
             if (clientPnt.Y < Top || clientPnt.Y >= Bottom || !Visible)
                 return null;
 
@@ -386,17 +386,17 @@ namespace Sce.Atf.Controls.PropertyEditing
 
                 // current wrap around approach,
                 // can't handle embedded PropertyGridView.
-                // disabled for now: Alan                
+                // disabled for now: Alan
                 //if (property == null)
                 //    property = GetFirstProperty();
-                
+
                 if (property != null)
                 {
                     StartPropertyEdit(property);
                     TryMakeSelectionVisible();
                     return true;
                 }
-                
+
             }
 
             if (keyData == Keys.Up || keyData == (Keys.Tab | Keys.Shift))
@@ -415,9 +415,9 @@ namespace Sce.Atf.Controls.PropertyEditing
                     TryMakeSelectionVisible();
                     return true;
                 }
-                
+
             }
-            return base.ProcessDialogKey(keyData);            
+            return base.ProcessDialogKey(keyData);
         }
 
         /// <summary>
@@ -439,9 +439,9 @@ namespace Sce.Atf.Controls.PropertyEditing
         {
             m_mouseDown = new Point(e.X, e.Y);
 
-            bool handled = m_resetButton.MouseDown(e);            
+            bool handled = m_resetButton.MouseDown(e);
             if (handled)
-            {       
+            {
                 Invalidate();
                 return;
             }
@@ -521,9 +521,9 @@ namespace Sce.Atf.Controls.PropertyEditing
                 if (handled)
                 {
                     m_toolTip.RemoveAll();
-                    Cursor = Cursors.Arrow;                    
+                    Cursor = Cursors.Arrow;
                     return;
-                }                 
+                }
             }
 
             base.OnMouseMove(e);
@@ -586,7 +586,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                         Invalidate();
                     }
                 }
-            }            
+            }
         }
 
         /// <summary>
@@ -594,7 +594,7 @@ namespace Sce.Atf.Controls.PropertyEditing
         /// <param name="e">A <see cref="T:System.Windows.Forms.MouseEventArgs"></see> that contains the event data</param>
         protected override void OnMouseUp(MouseEventArgs e)
         {
-            m_resetButton.MouseUp(e);            
+            m_resetButton.MouseUp(e);
             m_dragging = false;
             Invalidate();
             base.OnMouseUp(e);
@@ -640,10 +640,10 @@ namespace Sce.Atf.Controls.PropertyEditing
         {
             base.OnPaint(e);
 
-            m_resetButton.Visible = false;           
+            m_resetButton.Visible = false;
             SuspendLayout();
 
-            Graphics g = e.Graphics;                   
+            Graphics g = e.Graphics;
             UpdateScrollbar();
             m_scrollBar.Refresh();
 
@@ -656,7 +656,7 @@ namespace Sce.Atf.Controls.PropertyEditing
             int defaultEditorLeft = defaultMiddle + 1;
             int tabIndex = 0; //for when user presses Enter in a property editing control, so Windows sets Focus on next property
             const int SubCategoryIndent = 13;
-           
+
             foreach (object obj in Items)
             {
                 var c = obj as Category;
@@ -711,12 +711,12 @@ namespace Sce.Atf.Controls.PropertyEditing
                     }
                 }
             }
-                     
+
             SetEditingControlTop();
             m_editingControl.Left = defaultEditorLeft;
             m_editingControl.Width = rowWidth - defaultEditorLeft;
 
-            m_editingControl.TabIndex = tabIndex++;            
+            m_editingControl.TabIndex = tabIndex++;
             // This isn't quite right. How do we know when a property editing has finished due to pressing the Enter key?
             // Let's get this figured out and then we can get rid of setting the TabIndex above, because the TabIndex
             //  only works if there is a custom property editing control.
@@ -730,7 +730,7 @@ namespace Sce.Atf.Controls.PropertyEditing
             //        }
             //    };
 
-            ResumeLayout();            
+            ResumeLayout();
         }
 
         /// <summary>
@@ -916,8 +916,8 @@ namespace Sce.Atf.Controls.PropertyEditing
             {
                 property.Control.Select();
 
-                
-                // as PropertyView derives from Control, not ContainerControl, 
+
+                // as PropertyView derives from Control, not ContainerControl,
                 // need to manually set input focus here
                 if (property.Control.Controls.Count > 0)
                 {
@@ -946,7 +946,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                         }
                     }
 
-                    
+
                 }
                 else if (property.Control.CanFocus)
                     property.Control.Focus();
@@ -1381,7 +1381,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                 g.FillRectangle(PropertyBackgroundHighlightBrush, x, y, highlightWidth, height);
                 nameBrush = PropertyTextHighlightBrush;
             }
-           
+
             int xPadding = Margin.Left;
             int yPadding = (int)((RowHeight - FontHeight) / 2);
             int depth = GetDepth(property) + (ShowCategories ? 1 : 0);
@@ -1421,24 +1421,24 @@ namespace Sce.Atf.Controls.PropertyEditing
                 TypeDescriptorContext context = new TypeDescriptorContext(
                     LastSelectedObject, property.Descriptor, null);
                 PropertyEditingControl.DrawProperty(
-                    property.Descriptor, context, valueRect, font, brush, g);               
+                    property.Descriptor, context, valueRect, font, brush, g);
             }
 
             g.DrawLine(PropertyLinePen, middle, y - 1 + verticalLineOffset, middle, y + height - 1);
             g.DrawLine(PropertyLinePen, x, y + height-1 , width, y + height-1);
 
-            // show copy and reset buttons for the selected property.            
+            // show copy and reset buttons for the selected property.
             if (SelectedProperty == property)
-            {                
+            {
                 // show reset button
                 if (ShowResetButton && CanResetCurrent
                     && middle > m_resetButton.Width)
                 {
                     m_resetButton.Visible = true;
                     m_resetButton.Top = (height - m_resetButton.Height) / 2 + y;
-                    m_resetButton.Left = middle - m_resetButton.Width - 3;                  
+                    m_resetButton.Left = middle - m_resetButton.Width - 3;
                     m_resetButton.Draw(g);
-                }                
+                }
             }
         }
 
@@ -1451,7 +1451,7 @@ namespace Sce.Atf.Controls.PropertyEditing
         private Point m_mouseDown;
         private readonly ToolTip m_toolTip;
         private readonly PropertyEditingControl m_editingControl;
-        private readonly OverlayButton m_resetButton;        
+        private readonly OverlayButton m_resetButton;
         private readonly ToolTip m_overlayButtonToolTip;
         private readonly VScrollBar m_scrollBar;
         private int m_scroll;

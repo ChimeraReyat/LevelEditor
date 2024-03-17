@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -80,7 +80,7 @@ namespace Sce.Atf.Controls.PropertyEditing
         public object LastSelectedObject
         {
             get
-            {               
+            {
                 object[] selectedObjects = m_editingControlOwner.SelectedObjects;
                 return selectedObjects.Length > 0 ? selectedObjects[selectedObjects.Length - 1] : null;
             }
@@ -111,7 +111,7 @@ namespace Sce.Atf.Controls.PropertyEditing
         {
             m_transactionContext.DoTransaction(delegate
             {
-                PropertyUtils.ResetProperty(SelectedObjects, m_descriptor);                
+                PropertyUtils.ResetProperty(SelectedObjects, m_descriptor);
             },
                string.Format("Reset: {0}".Localize(), m_descriptor.DisplayName));
         }
@@ -268,7 +268,7 @@ namespace Sce.Atf.Controls.PropertyEditing
 
         /// <summary>
         /// Gets the object that is connected with this type descriptor request</summary>
-        /// <returns>The object that invokes the method on the <see cref="T:System.ComponentModel.TypeDescriptor"></see>; 
+        /// <returns>The object that invokes the method on the <see cref="T:System.ComponentModel.TypeDescriptor"></see>;
         /// otherwise, null if there is no object responsible for the call</returns>
         object ITypeDescriptorContext.Instance
         {
@@ -291,7 +291,7 @@ namespace Sce.Atf.Controls.PropertyEditing
 
         /// <summary>
         /// Gets the <see cref="T:System.ComponentModel.PropertyDescriptor"></see> that is associated with the given context item</summary>
-        /// <returns>The <see cref="T:System.ComponentModel.PropertyDescriptor"></see> that describes the given context item; 
+        /// <returns>The <see cref="T:System.ComponentModel.PropertyDescriptor"></see> that describes the given context item;
         /// otherwise, null if there is no <see cref="T:System.ComponentModel.PropertyDescriptor"></see> responsible for the call</returns>
         PropertyDescriptor ITypeDescriptorContext.PropertyDescriptor
         {
@@ -302,7 +302,7 @@ namespace Sce.Atf.Controls.PropertyEditing
 
         private readonly IPropertyEditingControlOwner m_editingControlOwner;
         private readonly PropertyDescriptor m_descriptor;
-        private readonly IContextRegistry m_contextRegistry;        
+        private readonly IContextRegistry m_contextRegistry;
         private ITransactionContext m_transactionContext;
     }
 }

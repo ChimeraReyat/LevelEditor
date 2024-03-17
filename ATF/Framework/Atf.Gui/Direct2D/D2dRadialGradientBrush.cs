@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -11,9 +11,9 @@ namespace Sce.Atf.Direct2D
     /// <summary>
     /// Paints an area with a radial gradient</summary>
     public class D2dRadialGradientBrush : D2dBrush
-    {        
-        /// <summary>    
-        /// Gets and sets the center of the gradient ellipse</summary>            
+    {
+        /// <summary>
+        /// Gets and sets the center of the gradient ellipse</summary>
         public PointF Center
         {
             get { return m_center; }
@@ -25,9 +25,9 @@ namespace Sce.Atf.Direct2D
             }
         }
 
-        /// <summary>    
-        /// Gets and sets the offset of the gradient origin relative to the gradient 
-        /// ellipse's center</summary>            
+        /// <summary>
+        /// Gets and sets the offset of the gradient origin relative to the gradient
+        /// ellipse's center</summary>
         public PointF GradientOriginOffset
         {
             get { return m_gradientOriginOffset;}
@@ -39,8 +39,8 @@ namespace Sce.Atf.Direct2D
             }
         }
 
-        /// <summary>    
-        /// Gets and sets the x-radius of the gradient ellipse</summary>    
+        /// <summary>
+        /// Gets and sets the x-radius of the gradient ellipse</summary>
         /// <unmanaged>float ID2D1RadialGradientBrush::GetRadiusX()</unmanaged>
         public float RadiusX
         {
@@ -53,8 +53,8 @@ namespace Sce.Atf.Direct2D
             }
         }
 
-        /// <summary>    
-        /// Gets and sets the y-radius of the gradient ellipse</summary>            
+        /// <summary>
+        /// Gets and sets the y-radius of the gradient ellipse</summary>
         public float RadiusY
         {
             get { return m_radiusY; }
@@ -76,7 +76,7 @@ namespace Sce.Atf.Direct2D
             m_center = center;
             m_gradientOriginOffset = gradientOriginOffset;
             m_radiusX = radiusX;
-            m_radiusY = radiusY;            
+            m_radiusY = radiusY;
             m_gradientStops = new D2dGradientStop[gradientStops.Length];
             Array.Copy(gradientStops, m_gradientStops, m_gradientStops.Length);
             Create();//to-do: it's dangerous to call a virtual method in a constructor; derived class may not be properly initialized!
@@ -96,9 +96,9 @@ namespace Sce.Atf.Direct2D
 
             var props = new RadialGradientBrushProperties
             {
-                Center = m_center.ToSharpDX(), 
-                GradientOriginOffset = m_gradientOriginOffset.ToSharpDX(), 
-                RadiusX = m_radiusX, 
+                Center = m_center.ToSharpDX(),
+                GradientOriginOffset = m_gradientOriginOffset.ToSharpDX(),
+                RadiusX = m_radiusX,
                 RadiusY = m_radiusY
             };
 

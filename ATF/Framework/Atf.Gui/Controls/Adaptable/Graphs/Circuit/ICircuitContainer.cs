@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections.Generic;
 
@@ -29,16 +29,16 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// Finds the element and pin that matched the pin target</summary>
         /// <param name="pinTarget">Contains pin's element and pin index</param>
         /// <param name="inputSide">True for input pin, false for output pin</param>
-        /// <returns>Return a pair of element and pin. As an element instance method, if there is a match, the element is self, 
+        /// <returns>Return a pair of element and pin. As an element instance method, if there is a match, the element is self,
         /// and pin is one of its pins defined in Type. If there is no match, both are null.</returns>
         Pair<Element, ICircuitPin> MatchPinTarget(PinTarget pinTarget, bool inputSide);
 
         /// <summary>
-        /// Finds the element and pin that fully matched the pin target for this circuit container, 
+        /// Finds the element and pin that fully matched the pin target for this circuit container,
         /// including the template instance node</summary>
         /// <param name="pinTarget">Contains pin's element and pin index</param>
         /// <param name="inputSide">True for input pin, false for output pin</param>
-        /// <returns>Return a pair of element and pin. As an element instance method, if there is a match, the element is self, 
+        /// <returns>Return a pair of element and pin. As an element instance method, if there is a match, the element is self,
         /// and pin is one of its pins defined in Type. If there is no match, both are null.</returns>
         Pair<Element, ICircuitPin> FullyMatchPinTarget(PinTarget pinTarget, bool inputSide);
 
@@ -49,7 +49,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// <summary>
         /// Gets or sets whether or not the contents of the container have been changed</summary>
         bool Dirty{ get; set; }
-        
+
         /// <summary>
         /// Synchronizes internal data and contents due to editing</summary>
         void Update();

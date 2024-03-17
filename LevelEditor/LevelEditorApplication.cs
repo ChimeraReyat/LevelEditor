@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Linq; 
+using System.Linq;
 
 using Sce.Atf;
 using Sce.Atf.Adaptation;
@@ -26,7 +26,7 @@ namespace LevelEditor
     /// <summary>
     /// Main application class</summary>
     public class LevelEditorApplication
-    {               
+    {
         /// <summary>
 		/// The main entry point for the application</summary>
         [STAThread]
@@ -46,13 +46,13 @@ namespace LevelEditor
 
             // Set up localization support early on, so that user-readable strings will be localized
             //  during the initialization phase below. Use XML files that are embedded resources.
-            Thread.CurrentThread.CurrentUICulture = System.Globalization.CultureInfo.CurrentCulture;            
+            Thread.CurrentThread.CurrentUICulture = System.Globalization.CultureInfo.CurrentCulture;
             Localizer.SetStringLocalizer(new EmbeddedResourceStringLocalizer());
 
 #if !DEBUG
             SplashForm.ShowForm(typeof(LevelEditorApplication), "LevelEditor.Resources.SplashImg.png");
 #endif
-          
+
             // Register the embedded image resources so that they will be available for all users of ResourceUtil,
             //  such as the PaletteService.
             ResourceUtil.Register(typeof(Resources));
@@ -61,12 +61,12 @@ namespace LevelEditor
             DomNodeType.BaseOfAllTypes.AddAdapterCreator(new AdapterCreator<CustomTypeDescriptorNodeAdapter>());
 
             // Add selected ATF components.
-            TypeCatalog AtfCatalog = new TypeCatalog(       
-                typeof(SettingsService),                // persistent settings and user preferences dialog               
+            TypeCatalog AtfCatalog = new TypeCatalog(
+                typeof(SettingsService),                // persistent settings and user preferences dialog
                 typeof(Outputs),                        // service that provides static methods for writing to IOutputWriter objects.
-                typeof(OutputService),                  // rich text box for displaying error and warning messages. Implements IOutputWriter.                
+                typeof(OutputService),                  // rich text box for displaying error and warning messages. Implements IOutputWriter.
                 typeof(CommandService),                 // menus and toolbars
-                typeof(ControlHostService),             // docking control host                        
+                typeof(ControlHostService),             // docking control host
                 typeof(AtfUsageLogger),                 // logs computer info to an ATF server
                 typeof(CrashLogger),                    // logs unhandled exceptions to an ATF server
                 typeof(PythonService),                  // scripting service for automated tests
@@ -74,21 +74,21 @@ namespace LevelEditor
                 typeof(AtfScriptVariables),
                 typeof(AutomationService),
                 typeof(FileDialogService),              // standard Windows file dialogs
-                typeof(DocumentRegistry),               // central document registry with change notification            
+                typeof(DocumentRegistry),               // central document registry with change notification
                 typeof(RecentDocumentCommands),         // standard recent document commands in File menu
-                typeof(AutoDocumentService),            // opens documents from last session, or creates a new document, on startup            
-                typeof(StandardFileExitCommand),        // standard File exit menu command            
+                typeof(AutoDocumentService),            // opens documents from last session, or creates a new document, on startup
+                typeof(StandardFileExitCommand),        // standard File exit menu command
                 typeof(StandardViewCommands),           // standard View commands: frame selection, frame all
-                typeof(MainWindowTitleService),         // tracks document changes and updates main form title            
+                typeof(MainWindowTitleService),         // tracks document changes and updates main form title
                 typeof(ContextRegistry),                // central context registry with change notification
                 typeof(StandardEditCommands),           // standard Edit menu commands for copy/paste
                 typeof(StandardEditHistoryCommands),    // standard Edit menu commands for undo/redo
                 typeof(StandardSelectionCommands),      // standard Edit menu selection commands
-                typeof(StandardLockCommands),           // standard Edit menu lock/unlock commands            
-                typeof(PaletteService),                 // global palette, for drag/drop instancing            
-                typeof(PropertyEditingCommands),        // commands for PropertyEditor and GridPropertyEditor             
+                typeof(StandardLockCommands),           // standard Edit menu lock/unlock commands
+                typeof(PaletteService),                 // global palette, for drag/drop instancing
+                typeof(PropertyEditingCommands),        // commands for PropertyEditor and GridPropertyEditor
                 typeof(PropertyEditor),
-                typeof(GridPropertyEditor),                
+                typeof(GridPropertyEditor),
                 typeof(WindowLayoutService),            // multiple window layout support
                 typeof(WindowLayoutServiceCommands),    // window layout commands
                 typeof(HistoryLister),                  // visual undo/redo
@@ -96,14 +96,14 @@ namespace LevelEditor
                 typeof(ResourceService)
                 );
 
-            TypeCatalog LECoreCatalog = new TypeCatalog(                                
+            TypeCatalog LECoreCatalog = new TypeCatalog(
                 typeof(LevelEditorCore.DesignViewSettings),
                 typeof(LevelEditorCore.ResourceLister),
                 typeof(LevelEditorCore.ThumbnailService),
                 typeof(LevelEditorCore.ResourceMetadataEditor),
                 typeof(LevelEditorCore.LayerLister),
                 typeof(LevelEditorCore.ResourceConverterService),
-                
+
                 typeof(LevelEditorCore.Commands.PickFilterCommands),
                 typeof(LevelEditorCore.Commands.DesignViewCommands),
                 typeof(LevelEditorCore.Commands.ManipulatorCommands),
@@ -117,22 +117,22 @@ namespace LevelEditor
                 );
 
             TypeCatalog thisAssemCatalog = new TypeCatalog(
-                typeof(LevelEditor.GameLoopService),                
+                typeof(LevelEditor.GameLoopService),
                 typeof(LevelEditor.GameEditor),
-                typeof(LevelEditor.BookmarkLister),                                
-                typeof(LevelEditor.GameDocumentRegistry),                
+                typeof(LevelEditor.BookmarkLister),
+                typeof(LevelEditor.GameDocumentRegistry),
                 typeof(LevelEditor.SchemaLoader),
                 typeof(LevelEditor.PrototypingService),
                 typeof(LevelEditor.PrefabService),
                 typeof(LevelEditor.GameProjectLister),
                 typeof(LevelEditor.ResourceMetadataService),
-                typeof(LevelEditor.ResourceConverter),               
+                typeof(LevelEditor.ResourceConverter),
                 typeof(LevelEditor.Terrain.TerrainEditor),
-                typeof(LevelEditor.Terrain.TerrainManipulator),                 
+                typeof(LevelEditor.Terrain.TerrainManipulator),
                 typeof(LevelEditor.SnapFilter),
                 typeof(LevelEditor.PickFilters.LocatorPickFilter),
                 typeof(LevelEditor.PickFilters.BasicShapePickFilter),
-                typeof(LevelEditor.PickFilters.NoCubePickFilter),                
+                typeof(LevelEditor.PickFilters.NoCubePickFilter),
                 typeof(LevelEditor.Commands.PaletteCommands),
                 typeof(LevelEditor.Commands.LevelEditorFileCommands),
                 typeof(LevelEditor.Commands.HelpAboutCommand),
@@ -155,7 +155,7 @@ namespace LevelEditor
                 typeof(RenderingInterop.AssetResolver),
                 typeof(RenderingInterop.NativeDesignView),
                 typeof(RenderingInterop.ResourcePreview),
-                typeof(RenderingInterop.TranslateManipulator),  
+                typeof(RenderingInterop.TranslateManipulator),
                 typeof(RenderingInterop.ExtensionManipulator),
                 typeof(RenderingInterop.ScaleManipulator),
                 typeof(RenderingInterop.RotateManipulator),
@@ -163,14 +163,14 @@ namespace LevelEditor
                 typeof(RenderingInterop.TextureThumbnailResolver)
                 );
 
-            
+
             List<ComposablePartCatalog> catalogs = new List<ComposablePartCatalog>();
-            catalogs.Add(AtfCatalog);            
+            catalogs.Add(AtfCatalog);
             catalogs.Add(LECoreCatalog);
             catalogs.Add(renderingInteropCatalog);
             catalogs.Add(thisAssemCatalog);
-            
-                        
+
+
             // temp solution, look for statemachine plugin by name.
             string pluginDir = Application.StartupPath;
             string stmPlg = pluginDir + "\\StateMachinePlugin.dll";
@@ -180,7 +180,7 @@ namespace LevelEditor
                 catalogs.Add(new AssemblyCatalog(stmPlgAssem));
             }
 
-            // load all dlls in \MEFPlugin  
+            // load all dlls in \MEFPlugin
             string mefpluginDir = pluginDir + "\\MEFPlugin";
             if (Directory.Exists(mefpluginDir))
             {
@@ -193,25 +193,25 @@ namespace LevelEditor
             }
 
             AggregateCatalog catalog = new AggregateCatalog(catalogs);
-               
-                      
+
+
             // Initialize ToolStripContainer container and MainForm
             ToolStripContainer toolStripContainer = new ToolStripContainer();
             toolStripContainer.Dock = DockStyle.Fill;
             MainForm mainForm = new MainForm(toolStripContainer);
             mainForm.Text = "LevelEditor".Localize("the name of this application, on the title bar");
-             
+
             CompositionContainer container = new CompositionContainer(catalog);
             CompositionBatch batch = new CompositionBatch();
             AttributedModelServices.AddPart(batch, mainForm);
             container.Compose(batch);
 
             LevelEditorCore.Globals.InitializeComponents(container);
-            // Initialize components 
+            // Initialize components
 
             var gameEngine = container.GetExportedValue<IGameEngineProxy>();
             foreach (IInitializable initializable in container.GetExportedValues<IInitializable>())
-            {                
+            {
                 initializable.Initialize();
             }
             GC.KeepAlive(gameEngine);
@@ -237,7 +237,7 @@ namespace LevelEditor
 
             container.Dispose();
             GC.KeepAlive(start);
-           
+
         }
 
         [DllImport("kernel32.dll")]

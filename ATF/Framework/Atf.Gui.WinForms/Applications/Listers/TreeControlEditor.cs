@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -184,7 +184,7 @@ namespace Sce.Atf.Applications
 
             e.Effect = canInsert ? DragDropEffects.Move : DragDropEffects.None;
 
-            // A refresh is required to display the drag-between cue.  
+            // A refresh is required to display the drag-between cue.
             if (TreeControl.ShowDragBetweenCue)
                 TreeControl.Invalidate();
 
@@ -299,7 +299,7 @@ namespace Sce.Atf.Applications
 
         [Import(AllowDefault = true)]
         private IStatusService m_statusService;
-        
+
         [ImportMany]
         private IEnumerable<Lazy<IContextMenuCommandProvider>> m_contextMenuCommandProviders;
 

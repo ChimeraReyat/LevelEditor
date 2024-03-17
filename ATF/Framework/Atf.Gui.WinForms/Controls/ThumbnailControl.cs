@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -311,7 +311,7 @@ namespace Sce.Atf.Controls
             else if (!selected.Contains(item))
             {
                 m_selection.Add(item);
-            } 
+            }
         }
 
         // Note, this causes a context switch with ContextRegistry because ResourceLister implements

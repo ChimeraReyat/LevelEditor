@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 
@@ -210,7 +210,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                 {
                     SetProperty();
                 }
-                
+
                 base.OnLostFocus(e);
             }
 
@@ -223,10 +223,10 @@ namespace Sce.Atf.Controls.PropertyEditing
             private void SetProperty()
             {
                 if (!m_refreshing)
-                {                    
+                {
                     string val = DisplayNameToId(Text);
                     //Note: m_context.SetValue(val) use converter,
-                    // so there is no need to use Converter here.                        
+                    // so there is no need to use Converter here.
                     // however, m_context.GetValue(); doesn't use converter that is why
                     // we need to use converter in the method RefreshValue().
                     // This is inconsistent behavior.
@@ -254,7 +254,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                         if (converter != null && converter.CanConvertTo(typeof(string)))
                             txtVal = IdToDisplayName((string)converter.ConvertTo(value, typeof(string)));
                         else
-                            txtVal = IdToDisplayName((string)value);                                                
+                            txtVal = IdToDisplayName((string)value);
                         Text = txtVal;
                         Enabled = !m_context.IsReadOnly;
                     }
@@ -336,7 +336,7 @@ namespace Sce.Atf.Controls.PropertyEditing
             }
 
             #endregion
-                        
+
             private string[] m_names;
             private string[] m_displayNames;
             private Image[] m_images;

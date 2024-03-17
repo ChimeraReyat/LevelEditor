@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.ObjectModel;
@@ -69,10 +69,10 @@ namespace Sce.Atf.Controls.CurveEditing
         }
 
         /// <summary>
-        /// Forces the distance between consecutive x values of the control points of the given curve to be at least 
-        /// an epsilon margin (s_epsilone field). The first control point of the curve is not moved, 
-        /// but later control points may have their x values increased in order to achieve this minimum distance. 
-        /// The points are assumed to be increasing in x, from the first point to the last. 
+        /// Forces the distance between consecutive x values of the control points of the given curve to be at least
+        /// an epsilon margin (s_epsilone field). The first control point of the curve is not moved,
+        /// but later control points may have their x values increased in order to achieve this minimum distance.
+        /// The points are assumed to be increasing in x, from the first point to the last.
         /// This method does nothing if the curve has less than two control points.</summary>
         /// <param name="curve">Curve</param>
         public static void ForceMinDistance(ICurve curve)
@@ -81,10 +81,10 @@ namespace Sce.Atf.Controls.CurveEditing
         }
 
         /// <summary>
-        /// Forces the distance between consecutive x values of the control points of the given curve to be at least 
-        /// a specified distance. The first control point of the curve is not moved, 
-        /// but later control points may have their x values increased in order to achieve this minimum distance. 
-        /// The points are assumed to be increasing in x, from the first point to the last. 
+        /// Forces the distance between consecutive x values of the control points of the given curve to be at least
+        /// a specified distance. The first control point of the curve is not moved,
+        /// but later control points may have their x values increased in order to achieve this minimum distance.
+        /// The points are assumed to be increasing in x, from the first point to the last.
         /// This method does nothing if the curve has less than two control points.</summary>
         /// <param name="curve">Curve</param>
         /// <param name="dist">Distance</param>
@@ -100,7 +100,7 @@ namespace Sce.Atf.Controls.CurveEditing
             for (int i = 0; i < lastIndex; i++)
             {
                 if ((points[i + 1].X - points[i].X) < dist)
-                    points[i + 1].X = points[i].X + dist;                 
+                    points[i + 1].X = points[i].X + dist;
             }
         }
 
@@ -111,7 +111,7 @@ namespace Sce.Atf.Controls.CurveEditing
         {
             if (curve == null)
                 return;
-            
+
             ReadOnlyCollection<IControlPoint> points = curve.ControlPoints;
             if (points.Count == 0)
                 return;
@@ -123,7 +123,7 @@ namespace Sce.Atf.Controls.CurveEditing
                     pt.TangentIn = tan;
                 if (pt.TangentOut != tan)
                     pt.TangentOut = tan;
-                return;                                
+                return;
             }
 
             for (int i = 0; i < points.Count; i++)
@@ -132,7 +132,7 @@ namespace Sce.Atf.Controls.CurveEditing
                 ComputeTangentOut(curve, i);
             }
         }
-      
+
         /// <summary>
         /// Compute tangent out for the control point at an index</summary>
         /// <param name="curve">Curve object to be modified</param>
@@ -154,7 +154,7 @@ namespace Sce.Atf.Controls.CurveEditing
             int lastIndex = points.Count - 1;
             IControlPoint prevP = (index > 0) ? points[index - 1] : null;
             IControlPoint nextP = (index < lastIndex) ? points[index + 1] : null;
-                       
+
             if ((curP.TangentOutType == CurveTangentTypes.Clamped) && (nextP != null))
             {
                 float ny = nextP.Y - curP.Y;
@@ -163,11 +163,11 @@ namespace Sce.Atf.Controls.CurveEditing
                 if (py < 0.0f) py = -py;
                 if ((ny <= 0.05f) || (py <= 0.05f))
                 {
-                    curP.TangentOutType = CurveTangentTypes.Flat;                    
+                    curP.TangentOutType = CurveTangentTypes.Flat;
                 }
             }
 
-                       
+
             switch (curP.TangentOutType)
             {
                 case CurveTangentTypes.Clamped:
@@ -215,12 +215,12 @@ namespace Sce.Atf.Controls.CurveEditing
                     {
                         tan = new Vec2F(nextP.X - curP.X, nextP.Y - curP.Y);
                     }
-                    break;                
+                    break;
                 case CurveTangentTypes.Stepped:
-                    tan = new Vec2F(0, 0);                                            
+                    tan = new Vec2F(0, 0);
                     break;
                 case CurveTangentTypes.SteppedNext:
-                    tan = new Vec2F(float.MaxValue, float.MaxValue);                    
+                    tan = new Vec2F(float.MaxValue, float.MaxValue);
                     break;
                 case CurveTangentTypes.Flat:
                     if (nextP == null)
@@ -232,13 +232,13 @@ namespace Sce.Atf.Controls.CurveEditing
                     {
                         tan = new Vec2F(nextP.X - curP.X, 0);
                     }
-                    break;                
+                    break;
                 default:
                     throw new NotImplementedException(curP.TangentOutType.ToString());
-                    
+
             }
 
-            tan = EnsureValidTangent(tan, false);            
+            tan = EnsureValidTangent(tan, false);
             if (curP.TangentOut != tan)
                 curP.TangentOut = tan;
         }
@@ -255,7 +255,7 @@ namespace Sce.Atf.Controls.CurveEditing
             ReadOnlyCollection<IControlPoint> points = curve.ControlPoints;
             if (index < 0 || index >= points.Count)
                 return;
-            
+
             IControlPoint curP = points[index];
             if (curP.TangentInType == CurveTangentTypes.Fixed)
                 return;
@@ -264,7 +264,7 @@ namespace Sce.Atf.Controls.CurveEditing
             int lastIndex = points.Count - 1;
             IControlPoint prevP = (index > 0) ? points[index - 1] : null;
             IControlPoint nextP = (index < lastIndex) ? points[index + 1] : null;
-           
+
             if ((curP.TangentInType == CurveTangentTypes.Clamped) && (prevP != null))
             {
                 float py = prevP.Y - curP.Y;
@@ -274,17 +274,17 @@ namespace Sce.Atf.Controls.CurveEditing
                 if ((ny <= 0.05f) || (py <= 0.05f))
                 {
                     curP.TangentInType = CurveTangentTypes.Flat;
-                }                
-            }            
+                }
+            }
             switch (curP.TangentInType)
             {
                 case CurveTangentTypes.Clamped:
                 case CurveTangentTypes.Spline:
                     if (curP.TangentInType == CurveTangentTypes.Clamped)
-                    {                      
+                    {
                         curP.TangentInType = CurveTangentTypes.Spline;
                     }
-                    
+
                     /* Maya 2.0 smooth tangents */
                     if ((prevP == null) && (nextP != null))
                     {
@@ -312,7 +312,7 @@ namespace Sce.Atf.Controls.CurveEditing
                         tan.Y = dy * tan.X;
                     }
                     else
-                        tan = new Vec2F(1, 0);                   
+                        tan = new Vec2F(1, 0);
                     break;
                 case CurveTangentTypes.Linear:
                     if (prevP == null)
@@ -323,12 +323,12 @@ namespace Sce.Atf.Controls.CurveEditing
                     {
                         tan = new Vec2F(curP.X - prevP.X, curP.Y - prevP.Y);
                     }
-                    break;                                
+                    break;
                 case CurveTangentTypes.Stepped:
-                    tan = new Vec2F(0, 0);                    
+                    tan = new Vec2F(0, 0);
                     break;
                 case CurveTangentTypes.SteppedNext:
-                    tan = new Vec2F(float.MaxValue, float.MaxValue);                    
+                    tan = new Vec2F(float.MaxValue, float.MaxValue);
                     break;
                 case CurveTangentTypes.Flat:
                     if (prevP == null)
@@ -343,12 +343,12 @@ namespace Sce.Atf.Controls.CurveEditing
 
                     break;
                 case CurveTangentTypes.Fixed:
-                    break;              
+                    break;
                 default:
-                    throw new NotImplementedException(curP.TangentInType.ToString());                    
+                    throw new NotImplementedException(curP.TangentInType.ToString());
             }
-            
-            tan = EnsureValidTangent(tan,false);            
+
+            tan = EnsureValidTangent(tan,false);
             if (curP.TangentIn != tan)
                 curP.TangentIn = tan;
         }
@@ -359,12 +359,12 @@ namespace Sce.Atf.Controls.CurveEditing
         /// <returns>True iff control point's x coordinate is in sorted order</returns>
         public static bool IsSorted(IControlPoint cp)
         {
-            bool valid = true;            
-            ICurve curve = cp.Parent;            
+            bool valid = true;
+            ICurve curve = cp.Parent;
             int index = curve.ControlPoints.IndexOf(cp);
             if (index == -1)
                 throw new ArgumentException("cp not found in parent curve");
-            
+
 
             int lastIndex = curve.ControlPoints.Count - 1;
             if (index < lastIndex)
@@ -372,7 +372,7 @@ namespace Sce.Atf.Controls.CurveEditing
                 IControlPoint nextcp = curve.ControlPoints[index + 1];
                 if (cp.X > nextcp.X)
                 {
-                    valid = false;                    
+                    valid = false;
                 }
             }
             if (valid && index > 0)
@@ -389,7 +389,7 @@ namespace Sce.Atf.Controls.CurveEditing
 
         private static List<IControlPoint> s_points = new List<IControlPoint>();
         /// <summary>
-        /// Sort control points along x axis</summary>       
+        /// Sort control points along x axis</summary>
         /// <param name="curve">Curve whose control points are sorted</param>
         public static void Sort(ICurve curve)
         {
@@ -424,7 +424,7 @@ namespace Sce.Atf.Controls.CurveEditing
                     IControlPoint scpt = s_points[i];
                     IControlPoint cpt = points[i];
                     if (scpt != cpt)
-                    {                        
+                    {
                         curve.InsertControlPoint(i, scpt);
                     }
                 }
@@ -432,7 +432,7 @@ namespace Sce.Atf.Controls.CurveEditing
             finally
             {
                 s_points.Clear();
-            }            
+            }
         }
 
         /// <summary>
@@ -450,7 +450,7 @@ namespace Sce.Atf.Controls.CurveEditing
 
             // add/insert new control point to the given curve. Using the following rules.
             // if adding then add the point at gpt and set is tangent type to spline.
-            // if inserting then add the point at (gpt.x,curve.eval(gpt.x)) and compute its tangent at the point.            
+            // if inserting then add the point at (gpt.x,curve.eval(gpt.x)) and compute its tangent at the point.
             // recompute tangents for the curve.
             // find insersion index.
             int index = GetValidInsertionIndex(curve, gpt.X);
@@ -462,7 +462,7 @@ namespace Sce.Atf.Controls.CurveEditing
                 {
                     p.X = gpt.X;
                     ICurveEvaluator cv = CurveUtils.CreateCurveEvaluator(curve);
-                    
+
                     float prevY = cv.Evaluate(gpt.X - s_epsilone);
                     float nextY = cv.Evaluate(gpt.X + s_epsilone);
                     p.Y = cv.Evaluate(gpt.X);
@@ -473,7 +473,7 @@ namespace Sce.Atf.Controls.CurveEditing
                     Vec2F tanOut = new Vec2F(s_epsilone, nextY - p.Y);
                     tanOut.Normalize();
                     p.TangentIn = tanIn;
-                    p.TangentOut = tanOut;                                                            
+                    p.TangentOut = tanOut;
                 }
                 else
                 {
@@ -481,7 +481,7 @@ namespace Sce.Atf.Controls.CurveEditing
                     p.Y = gpt.Y;
                     p.TangentInType = CurveTangentTypes.Spline;
                     p.TangentOutType = CurveTangentTypes.Spline;
-                }               
+                }
                 curve.InsertControlPoint(index, p);
                 if (computeTangent)
                     ComputeTangent(curve);
@@ -489,7 +489,7 @@ namespace Sce.Atf.Controls.CurveEditing
         }
 
         /// <summary>
-        /// Create and add new control point to the given curve at a given Vec2F gpt</summary>        
+        /// Create and add new control point to the given curve at a given Vec2F gpt</summary>
         /// <param name="curve">Ccurve to modify</param>
         /// <param name="gpt">Location on the x-axis at which to add a control point. Whether
         /// or not the y-coordinate is used depends on 'insert' parameter.</param>
@@ -499,7 +499,7 @@ namespace Sce.Atf.Controls.CurveEditing
         {
             AddControlPoint(curve, gpt, insert, true);
         }
-      
+
         /// <summary>
         /// Snaps float value x to y</summary>
         /// <param name="x">X-coordinate</param>
@@ -540,7 +540,7 @@ namespace Sce.Atf.Controls.CurveEditing
             }
             return points.Count;
         }
-      
+
         /// <summary>
         /// Gets or sets epsilone</summary>
         public static float Epsilone

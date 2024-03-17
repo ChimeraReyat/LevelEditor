@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel;
@@ -23,7 +23,7 @@ namespace Sce.Atf.Controls.PropertyEditing
         /// Default constructor</summary>
         public BoundedIntEditor() : this(0,100)
         {
-            
+
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace Sce.Atf.Controls.PropertyEditing
 
 
 
-       
+
         #region IPropertyEditor Members
 
         /// <summary>
@@ -89,8 +89,8 @@ namespace Sce.Atf.Controls.PropertyEditing
         /// <param name="context">Context for property editing control</param>
         /// <returns>Control to edit the given context</returns>
         public virtual Control GetEditingControl(PropertyEditorControlContext context)
-        { 
-            var control = new BoundedIntControl(context, m_min, m_max);          
+        {
+            var control = new BoundedIntControl(context, m_min, m_max);
             SkinService.ApplyActiveSkin(control);
             m_controlRefList.RemoveAll(item => !item.IsAlive);
             m_controlRefList.Add(new WeakReference(control));
@@ -105,8 +105,8 @@ namespace Sce.Atf.Controls.PropertyEditing
         /// Gets the editor style used by the <see cref="M:System.Drawing.Design.UITypeEditor.EditValue(System.IServiceProvider,System.Object)"></see> method</summary>
         /// <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"></see> that can be used to gain additional context information</param>
         /// <returns>A <see cref="T:System.Drawing.Design.UITypeEditorEditStyle"></see> value that indicates the style of editor
-        /// used by the <see cref="M:System.Drawing.Design.UITypeEditor.EditValue(System.IServiceProvider,System.Object)"></see> method. 
-        /// If the <see cref="T:System.Drawing.Design.UITypeEditor"></see> does not support this method, 
+        /// used by the <see cref="M:System.Drawing.Design.UITypeEditor.EditValue(System.IServiceProvider,System.Object)"></see> method.
+        /// If the <see cref="T:System.Drawing.Design.UITypeEditor"></see> does not support this method,
         /// <see cref="M:System.Drawing.Design.UITypeEditor.GetEditStyle"></see> returns <see cref="F:System.Drawing.Design.UITypeEditorEditStyle.None"></see>.</returns>
         public override UITypeEditorEditStyle GetEditStyle(ITypeDescriptorContext context)
         {
@@ -180,7 +180,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                 m_context = context;
 
                 DrawBorder = false;
-                DoubleBuffered = true;                
+                DoubleBuffered = true;
                 RefreshValue();
             }
 
@@ -188,7 +188,7 @@ namespace Sce.Atf.Controls.PropertyEditing
 
             /// <summary>
             /// Gets true iff this control can be used indefinitely, regardless of whether the associated
-            /// PropertyEditorControlContext's SelectedObjects property changes, i.e., the selection changes. 
+            /// PropertyEditorControlContext's SelectedObjects property changes, i.e., the selection changes.
             /// This property must be constant for the life of this control.</summary>
             public virtual bool Cacheable
             {

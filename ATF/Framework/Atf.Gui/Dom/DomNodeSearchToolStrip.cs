@@ -1,4 +1,4 @@
-﻿//Sony Computer Entertainment Confidential
+//Sony Computer Entertainment Confidential
 
 using System;
 using System.Windows.Forms;
@@ -32,10 +32,10 @@ namespace Sce.Atf.Dom
             m_rootNode.SearchTextEntered += searchSubStrip_SearchTextEntered;
             m_rootNode.OptionChanged += searchSubStrip_OptionsChanged;
 
-            // 
-            // Build toolStrip GUI by retrieving toolstrip item list from tree, and adding 
+            //
+            // Build toolStrip GUI by retrieving toolstrip item list from tree, and adding
             // them to ToolStrip.Items
-            // 
+            //
             SuspendLayout();
             List<ToolStripItem> toolStripItems = new List<ToolStripItem>();
             m_rootNode.GetToolStripItems(toolStripItems);

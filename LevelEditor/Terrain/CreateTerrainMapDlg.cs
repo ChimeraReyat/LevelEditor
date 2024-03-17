@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Windows.Forms;
@@ -16,7 +16,7 @@ namespace LevelEditor.Terrain
         {
             if (!(hmWidth > 0 && hmHeight > 0))
                 throw new ArgumentOutOfRangeException();
-            
+
             InitializeComponent();
             m_heightTxt.Text = hmWidth.ToString();
             m_widthTxt.Text = hmHeight.ToString();
@@ -54,7 +54,7 @@ namespace LevelEditor.Terrain
                 MessageBox.Show(this, error, "Create Terrain", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            
+
             DialogResult = System.Windows.Forms.DialogResult.OK;
 
         }
@@ -85,10 +85,10 @@ namespace LevelEditor.Terrain
 
         public string Mask
         {
-            get { return m_maskTxt.Text; }            
+            get { return m_maskTxt.Text; }
         }
 
-        
+
         private string ValidateData()
         {
             string error = string.Empty;
@@ -110,8 +110,8 @@ namespace LevelEditor.Terrain
             if (MaskWidth <= 0)
                 error += "Mask map: Width  must be greater zero" + Environment.NewLine;
             if (MaskHeight <= 0)
-                error += "Mask map: Height must be greater than zero" + Environment.NewLine;                        
-            return error;           
+                error += "Mask map: Height must be greater than zero" + Environment.NewLine;
+            return error;
         }
 
         private void m_import_Click(object sender, EventArgs e)
@@ -131,7 +131,7 @@ namespace LevelEditor.Terrain
                     if (m_importedMask.IsValid)
                     {
                         m_widthTxt.Text = m_importedMask.Width.ToString();
-                        m_heightTxt.Text = m_importedMask.Height.ToString();                        
+                        m_heightTxt.Text = m_importedMask.Height.ToString();
                     }
                     else
                     {
@@ -144,7 +144,7 @@ namespace LevelEditor.Terrain
                     {
                         MessageBox.Show(this, error, "Error importing heightmap", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
-                    }                    
+                    }
                 }
             }
         }

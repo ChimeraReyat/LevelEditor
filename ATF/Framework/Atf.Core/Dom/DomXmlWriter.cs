@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -308,7 +308,7 @@ namespace Sce.Atf.Dom
             // write DOM attributes that were originally XML elements of a simple type
             foreach (AttributeInfo info in attributesAsElements)
             {
-                writer.WriteStartElement(m_elementPrefix, info.Name, m_elementNS);                
+                writer.WriteStartElement(m_elementPrefix, info.Name, m_elementNS);
                 string valueString = Convert(node, info);
                 writer.WriteString(valueString);
                 writer.WriteEndElement();
@@ -391,7 +391,7 @@ namespace Sce.Atf.Dom
         /// <returns>True iff attribute's value should be persisted</returns>
         protected virtual bool ShouldWriteAttribute(DomNode node, AttributeInfo attributeInfo)
         {
-            
+
             return PersistDefaultAttributes
                 || attributeInfo.ForceSerialize
                 || !node.IsAttributeDefault(attributeInfo);

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 /******************************************************************/
 /*****                                                        *****/
@@ -70,7 +70,7 @@ namespace Sce.Atf.Controls.ColorEditing
         }
 
 
-        /// <summary> 
+        /// <summary>
         /// Cleans up any resources being used</summary>
         /// <param name="disposing">True to release both managed and unmanaged resources;
         /// false to release only unmanaged resources</param>
@@ -90,16 +90,16 @@ namespace Sce.Atf.Controls.ColorEditing
         #endregion
 
         #region Component Designer generated code
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor</summary>
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VerticalColorSlider));
             this.SuspendLayout();
-            // 
+            //
             // VerticalColorSlider
-            // 
+            //
             this.Name = "VerticalColorSlider";
             resources.ApplyResources(this, "$this");
             this.Load += new System.EventHandler(this.ctrl1DColorBar_Load);
@@ -294,7 +294,7 @@ namespace Sce.Atf.Controls.ColorEditing
         /// Draws the slider arrows on both sides of the control</summary>
         /// <param name="position">Position value of the slider, lowest being at the bottom. The range
         /// is between 0 and the control's height-9. The values are adjusted if too large/small.</param>
-        /// <param name="Unconditional">If Unconditional is true, the slider is drawn, otherwise some logic 
+        /// <param name="Unconditional">If Unconditional is true, the slider is drawn, otherwise some logic
         /// is performed to determine is drawing is really necessary</param>
         private void DrawSlider(int position, bool Unconditional)
         {
@@ -313,7 +313,7 @@ namespace Sce.Atf.Controls.ColorEditing
 
             Pen pencil = new Pen(Color.FromArgb(116,114,106));    //    Same gray color Photoshop uses
             Brush brush = Brushes.White;
-            
+
             Point[] arrow = new Point[7];                //     GGG
             arrow[0] = new Point(1,position);            //    G   G
             arrow[1] = new Point(3,position);            //    G    G
@@ -352,9 +352,9 @@ namespace Sce.Atf.Controls.ColorEditing
             Graphics g = CreateGraphics();
 
             Pen pencil;
-            
+
             //    To make the control look like Adobe Photoshop's the border around the control will be a gray line
-            //    on the top and left side, a white line on the bottom and right side, and a black rectangle (line) 
+            //    on the top and left side, a white line on the bottom and right side, and a black rectangle (line)
             //    inside the gray/white rectangle
 
             pencil = new Pen(Color.FromArgb(172,168,153));    //    The same gray color used by Photoshop
@@ -404,7 +404,7 @@ namespace Sce.Atf.Controls.ColorEditing
         #region Draw_Style_X - Content drawing functions
 
         //    The following functions do the real work of the control, drawing the primary content (the area between the slider)
-        //    
+        //
 
         /// <summary>
         /// Fills in the content of the control showing all values of Hue (from 0 to 360)</summary>
@@ -637,14 +637,14 @@ namespace Sce.Atf.Controls.ColorEditing
         private int Round(double val)
         {
             int ret_val = (int)val;
-            
+
             int temp = (int)(val * 100);
 
             if ( (temp % 100) >= 50 )
                 ret_val += 1;
 
             return ret_val;
-            
+
         }
 
 

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -276,7 +276,7 @@ namespace Sce.Atf.Controls
         /// <summary>
         /// Gets and sets whether or not a node should be
         /// expanded or collapsed when the user double-clicks on the node, based
-        /// on the current expand/collapse state of the node</summary>   
+        /// on the current expand/collapse state of the node</summary>
         public bool ToggleOnDoubleClick
         {
             get { return m_toggleOnDoubleClick; }
@@ -285,7 +285,7 @@ namespace Sce.Atf.Controls
 
         /// <summary>
         /// Gets and sets whether or not a node should be
-        /// expanded upon a single click, like Windows Explorer</summary>   
+        /// expanded upon a single click, like Windows Explorer</summary>
         public bool ExpandOnSingleClick
         {
             get { return m_expandOnSingleClick; }
@@ -293,14 +293,14 @@ namespace Sce.Atf.Controls
         }
 
         /// <summary>
-        /// Gets whether a dragged object is between the adjacent nodes of the tree</summary>   
+        /// Gets whether a dragged object is between the adjacent nodes of the tree</summary>
         public bool DragBetween
         {
             get { return m_dragBetween; }
         }
 
 
-        
+
         /// <summary>
         /// Gets or sets whether the control should display drag-between cue</summary>
         public bool ShowDragBetweenCue
@@ -356,8 +356,8 @@ namespace Sce.Atf.Controls
 
         /// <summary>
         /// Gets and sets whether or not the tree control keyboard navigation
-        /// follows the Windows Explorer model: 
-        ///     A single click expands a folder, but does not collapse it. 
+        /// follows the Windows Explorer model:
+        ///     A single click expands a folder, but does not collapse it.
         ///     Right Arrow expands the current selection if it is not expanded, otherwise goes to the first child.
         ///     Left Arrow collapses the current selection if it is expanded, otherwise goes to the parent.
         ///     Up and Down Arrow goes up or down the hierarchy.
@@ -388,7 +388,7 @@ namespace Sce.Atf.Controls
         }
 
         /// <summary>
-        /// Gets or sets a LabelEditModes indicating how to begin editing a label</summary>   
+        /// Gets or sets a LabelEditModes indicating how to begin editing a label</summary>
         public LabelEditModes LabelEditMode
         {
             get { return m_labelEditMode; }
@@ -495,22 +495,22 @@ namespace Sce.Atf.Controls
             return null;
         }
 
-        /// <summary>  
-        /// Gets the nodes that indicate where in the hierarchy inserted nodes should be placed.</summary>  
-        /// <param name="clientPoint">Point, in client space. If using coordinates from a  
-        /// DragEventArgs, for example, convert to client space using PointToClient().</param>  
-        /// <param name="parent">The Node that will be the parent of inserted node(s).  
-        /// Can be null to indicate that the root (if any) will be replaced.</param>  
-        /// <param name="before">The Node that is closest to being before (higher on the screen)  
-        /// than clientPoint. Can be null to indicate that the insertion point will make  
-        /// the inserted nodes become the first child/children of 'parent'.</param>  
+        /// <summary>
+        /// Gets the nodes that indicate where in the hierarchy inserted nodes should be placed.</summary>
+        /// <param name="clientPoint">Point, in client space. If using coordinates from a
+        /// DragEventArgs, for example, convert to client space using PointToClient().</param>
+        /// <param name="parent">The Node that will be the parent of inserted node(s).
+        /// Can be null to indicate that the root (if any) will be replaced.</param>
+        /// <param name="before">The Node that is closest to being before (higher on the screen)
+        /// than clientPoint. Can be null to indicate that the insertion point will make
+        /// the inserted nodes become the first child/children of 'parent'.</param>
         /// <returns>True if clientPoint represents a valid insertion point</returns>
         public bool GetInsertionNodes(Point clientPoint, out Node parent, out Node before)
         {
             UpdateNodeMeasurements();
 
-            // First, find the node that is immediately before the target point. We don't care  
-            //  yet if 'before' is a parent or a sibling of the target point.  
+            // First, find the node that is immediately before the target point. We don't care
+            //  yet if 'before' is a parent or a sibling of the target point.
             before = null;
             int y = clientPoint.Y + m_vScroll - ContentVerticalOffset;
             foreach (Node node in VisibleNodes)
@@ -523,7 +523,7 @@ namespace Sce.Atf.Controls
                 y -= rowHeight;
             }
 
-            // Now find the parent. 'before' may actually be the parent.  
+            // Now find the parent. 'before' may actually be the parent.
             parent = null;
             if (before != null)
             {
@@ -538,8 +538,8 @@ namespace Sce.Atf.Controls
                 }
             }
 
-            // For now, this method will always succeed. Perhaps in the future we can consider  
-            //  certain areas of the TreeControl out-of-bounds.  
+            // For now, this method will always succeed. Perhaps in the future we can consider
+            //  certain areas of the TreeControl out-of-bounds.
             return true;
         }
 
@@ -1151,7 +1151,7 @@ namespace Sce.Atf.Controls
 
             base.OnMouseHover(e);
         }
-        
+
         /// <summary>
         /// Processes a dialog key</summary>
         /// <param name="keyData">One of the System.Windows.Forms.Keys values that represents the key to process</param>
@@ -1307,7 +1307,7 @@ namespace Sce.Atf.Controls
                 BeginLabelEdit(m_currentKeyedNode);
                 return;
             }
-            
+
             if (e.KeyData == Keys.Multiply) // numeric keypad *:
             {
                 // expands everything under the current selection
@@ -1430,7 +1430,7 @@ namespace Sce.Atf.Controls
             StopDragTimers();
 
             base.OnDragDrop(e);
-            m_dragBetween = false; 
+            m_dragBetween = false;
         }
 
         /// <summary>
@@ -1560,7 +1560,7 @@ namespace Sce.Atf.Controls
             int halfCheckBoxHeight = m_itemRenderer.CheckBoxSize.Height / 2;
 
             int right = m_clientSize.Width;
-            // dragNode is used to draw drop-between cue 
+            // dragNode is used to draw drop-between cue
             Node dragNode = null;
             if (ShowDragBetweenCue && DragBetween )
             {
@@ -1708,7 +1708,7 @@ namespace Sce.Atf.Controls
 
                     m_itemRenderer.DrawData(node, g, info.LabelLeft + filterOffset, rowCenterY - node.LabelHeight / 2);
                     if (node == dragNode)
-                    { 
+                    {
                         g.DrawLine(Pens.Red,
                             new Point(info.X - Indent + halfExpanderWidth, info.Y -2),
                             new Point(info.X - Indent + halfExpanderWidth + 100, info.Y - 2));
@@ -1893,7 +1893,7 @@ namespace Sce.Atf.Controls
                 Invalidate();
             }
         }
-        
+
         /// <summary>
         /// Updates node measurements. To support auto expand and auto scroll, we should measure all necessary nodes after
         /// they are created and before the measurements are used. This uses a Graphics object
@@ -2102,7 +2102,7 @@ namespace Sce.Atf.Controls
             {
                 Node node = info.Node;
                 int rowHeight = GetRowHeight(node);
-                
+
                 if (rowHeight == 0 ||
                     p.Y >= info.Y + rowHeight)
                     continue;
@@ -2119,7 +2119,7 @@ namespace Sce.Atf.Controls
                     }
                     else
                     {
-                        if ((node.Parent == m_root) || //single click to expand/collapse for 1st level of categorized palette 
+                        if ((node.Parent == m_root) || //single click to expand/collapse for 1st level of categorized palette
                             (p.X > right - GdiUtil.OfficeExpanderSize - xPadding))
                             return new HitRecord(HitType.Expander, node);
                     }

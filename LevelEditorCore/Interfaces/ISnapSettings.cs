@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 namespace LevelEditorCore
 {
@@ -24,7 +24,7 @@ namespace LevelEditorCore
 
         /// <summary>
         /// Snap to angle when using rotation manipulator.
-        /// The Angle is in radians</summary>        
+        /// The Angle is in radians</summary>
         float SnapAngle
         {
             get;

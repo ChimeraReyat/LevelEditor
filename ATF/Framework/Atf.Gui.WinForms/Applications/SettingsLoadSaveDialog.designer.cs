@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 namespace Sce.Atf.Applications
 {
@@ -41,54 +41,54 @@ namespace Sce.Atf.Applications
             this.m_grpImportExport = new System.Windows.Forms.GroupBox();
             this.m_grpImportExport.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // lblTitle
-            // 
+            //
             resources.ApplyResources(this.lblTitle, "lblTitle");
             this.lblTitle.Name = "lblTitle";
-            // 
+            //
             // m_saveRadioButton
-            // 
+            //
             resources.ApplyResources(this.m_saveRadioButton, "m_saveRadioButton");
             this.m_saveRadioButton.Name = "m_saveRadioButton";
             this.m_saveRadioButton.TabStop = true;
             this.m_saveRadioButton.UseVisualStyleBackColor = true;
-            // 
+            //
             // m_loadRadioButton
-            // 
+            //
             resources.ApplyResources(this.m_loadRadioButton, "m_loadRadioButton");
             this.m_loadRadioButton.Name = "m_loadRadioButton";
             this.m_loadRadioButton.TabStop = true;
             this.m_loadRadioButton.UseVisualStyleBackColor = true;
-            // 
+            //
             // m_btnCancel
-            // 
+            //
             resources.ApplyResources(this.m_btnCancel, "m_btnCancel");
             this.m_btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.m_btnCancel.Name = "m_btnCancel";
             this.m_btnCancel.UseVisualStyleBackColor = true;
-            // 
+            //
             // m_btnProceed
-            // 
+            //
             resources.ApplyResources(this.m_btnProceed, "m_btnProceed");
             this.m_btnProceed.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.m_btnProceed.Name = "m_btnProceed";
             this.m_btnProceed.UseVisualStyleBackColor = true;
             this.m_btnProceed.Click += new System.EventHandler(this.m_btnProceed_Click);
-            // 
+            //
             // m_lblExport
-            // 
+            //
             resources.ApplyResources(this.m_lblExport, "m_lblExport");
             this.m_lblExport.Name = "m_lblExport";
             this.m_lblExport.Tag = "";
-            // 
+            //
             // m_lblImport
-            // 
+            //
             resources.ApplyResources(this.m_lblImport, "m_lblImport");
             this.m_lblImport.Name = "m_lblImport";
-            // 
+            //
             // m_grpImportExport
-            // 
+            //
             this.m_grpImportExport.Controls.Add(this.m_saveRadioButton);
             this.m_grpImportExport.Controls.Add(this.m_lblImport);
             this.m_grpImportExport.Controls.Add(this.m_loadRadioButton);
@@ -96,9 +96,9 @@ namespace Sce.Atf.Applications
             resources.ApplyResources(this.m_grpImportExport, "m_grpImportExport");
             this.m_grpImportExport.Name = "m_grpImportExport";
             this.m_grpImportExport.TabStop = false;
-            // 
+            //
             // SettingsLoadSaveDialog
-            // 
+            //
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.m_grpImportExport);

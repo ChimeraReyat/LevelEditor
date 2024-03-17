@@ -1,5 +1,5 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
-//#define DEBUG_VERBOSE 
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//#define DEBUG_VERBOSE
 
 using System;
 using System.Collections.Generic;
@@ -126,9 +126,9 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         }
 
         /// <summary>
-        /// Gets/sets a value indicating whether to observe fan-in/fan-out constraints 
+        /// Gets/sets a value indicating whether to observe fan-in/fan-out constraints
         /// during group pin setup/update stage.</summary>
-        /// <remarks>In-place editing requires temporarily ignoring the fan constraints 
+        /// <remarks>In-place editing requires temporarily ignoring the fan constraints
         /// to prevent premature purge of valid group pins during moving operations.</remarks>
         public bool IgnoreFanInOut { get; set; }
 
@@ -167,7 +167,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 
             if (!Validated )
             {
-                // normally a group node is always validated upon loading. But during version transformations, 
+                // normally a group node is always validated upon loading. But during version transformations,
                 // a raw group node could be created to replace old subcircuits, in which case the group is not validated before,
                 // so group pins need regenerated
                 var internalConnections = new List<Wire>();
@@ -197,7 +197,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             Changed.Raise(this, e);
 
             if (DomNode.Parent != null && DomNode.Parent.Is<Group>()) // immediate update its parent too
-            {  
+            {
                 DomNode.Parent.Cast<Group>().Dirty = true;
                 DomNode.Parent.Cast<Group>().Update();
             }
@@ -359,10 +359,10 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 
         /// <summary>
         /// Gets the group element type name</summary>
-        ///<remarks>Group also inherits Element.Name which is specific for each group instance. 
-        /// The type name is displayed as the element title in the top area for an element, 
-        /// and the element name is displayed underneath the element. 
-        /// A generic "Group" is the default type name, but derived class can customize a group's type name 
+        ///<remarks>Group also inherits Element.Name which is specific for each group instance.
+        /// The type name is displayed as the element title in the top area for an element,
+        /// and the element name is displayed underneath the element.
+        /// A generic "Group" is the default type name, but derived class can customize a group's type name
         /// by reimplementing this explicit interface member</remarks>
         string ICircuitElementType.Name
         {
@@ -425,8 +425,8 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 
         /// <summary>
         /// Gets or sets the minimal size of the group in graph space (backing DOM data)</summary>
-        /// <remarks>By default group node size is automatically calculated  to just have enough space 
-        /// to display all its children when expanded. Set the minimal size of the group will ensure 
+        /// <remarks>By default group node size is automatically calculated  to just have enough space
+        /// to display all its children when expanded. Set the minimal size of the group will ensure
         /// the size calculation will observe the lower limit set by this property. </remarks>
         public Size MinimumSize
         {
@@ -571,7 +571,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                         {
                             childGroupPin.Info.ExternalConnected = true;
                             childGroupPin.Visible = true; // ensure external connected pins visible
-                        }                         
+                        }
                     }
                 }
             }
@@ -589,7 +589,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 var sorted = (pass == 0) ? m_inputs.OrderBy(n => n.Position.Y).ToArray() :
                     m_outputs.OrderBy(n => n.Position.Y).ToArray();
 
-                // assign group pin index in y order, but visible pins goes first 
+                // assign group pin index in y order, but visible pins goes first
                 int index = 0;
                 for (int i = 0; i < sorted.Length; ++i)
                 {
@@ -666,7 +666,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 return;
 #if DEBUG_VERBOSE
             Trace.TraceInformation("SubGraph {0} --  Update with {1} elements",  Id, m_elements.Count);
-           
+
 #endif
             var internalConnections = new List<Wire>();
             var externalConnections = new List<Wire>();
@@ -679,7 +679,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 
 
             //ConstrainCoords();
-            UpdatePinOrders(); // set pin index based on pinY and visibility         
+            UpdatePinOrders(); // set pin index based on pinY and visibility
             Dirty = false;
             OnChanged(EventArgs.Empty); // notify changes to outside
         }
@@ -820,7 +820,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 }
             }
 
-            // 3) remove all dangling group pins that have no corresponding internal nodes, or matched pins 
+            // 3) remove all dangling group pins that have no corresponding internal nodes, or matched pins
             RemoveDanglingGroupPins();
 
             Info.HiddenInputPins = m_inputs.Where(x => !x.Visible).AsIEnumerable<ICircuitPin>();
@@ -828,7 +828,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 
         }
 
-        // remove all dangling group pins that have no corresponding internal nodes, or matched pins 
+        // remove all dangling group pins that have no corresponding internal nodes, or matched pins
         private void RemoveDanglingGroupPins()
         {
             PinTarget pinTarget;
@@ -856,7 +856,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 pinTarget = grpPin.PinTarget;
                 if (pinTarget != null && grpPin.InternalElement.Is<IReference<DomNode>>())
                     pinTarget.InstancingNode = grpPin.InternalElement.DomNode;
-                if (pinTarget == null || 
+                if (pinTarget == null ||
                     !Elements.Contains(grpPin.InternalElement) ||
                     grpPin.InternalElement.MatchPinTarget(pinTarget, false).First == null)
                 {
@@ -955,7 +955,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 // c) for each output node from b), back traverse from output node, in depth first(pre-order),
                 //    the visiting order of the pin nodes seems a natural initial floating pins order
 
-                // a node is an output node only if it is not an output of any internal node      
+                // a node is an output node only if it is not an output of any internal node
                 var outputNodes = Elements.Where(node => !Wires.Any(e => e.OutputElement == node))
                                            .OrderBy(x => x.Bounds.Y); // descending order for stack push that follows
 
@@ -969,7 +969,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                     grpPin.Index = newIndex;
                 }
 
-                // outputs just based pinY 
+                // outputs just based pinY
                 var orderd = m_outputs.OrderBy(n => n.InternalElement.Bounds.Location.Y).ThenBy(n => n.InternalPinIndex).ToList();
                 foreach (var grpPin in m_outputs)
                 {
@@ -991,7 +991,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 }
             }
 
-            UpdatePinOrders(); // order index by visibility 
+            UpdatePinOrders(); // order index by visibility
         }
 
         /// <summary>
@@ -1001,9 +1001,9 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// <param name="internalConnections">Internal connections of the owner group</param>
         /// <param name="inputSide">Whether or not the pin is located at the input side of the module</param>
         /// <returns>True iff module pin can be legally exposed as a group pin</returns>
-        /// <remarks>An internal pin must be exposed if there are external edges connected to it; 
+        /// <remarks>An internal pin must be exposed if there are external edges connected to it;
         /// an internal pin may be visible or hidden if it is legal to expose but no external connections.
-        /// This default implementation exposes all legal candidates that can be exposed as group pins. 
+        /// This default implementation exposes all legal candidates that can be exposed as group pins.
         /// So there is always over-exposing problem, never under-exposing problem to start with the default.</remarks>
         virtual protected bool CanExposePin(Element element, ICircuitPin pin, IEnumerable<Wire> internalConnections, bool inputSide)
         {
@@ -1061,7 +1061,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             Debug.Assert(!duplicates.Any(), "SubGraph " + Name + " has duplicated input group pins");
             duplicates = outputGroupPins.GroupBy(g => g).Where(w => w.Count() > 1);
             Debug.Assert(!duplicates.Any(), "SubGraph " + Name + " has duplicated output group pins");
-            // each group pin points to different internal module and pin 
+            // each group pin points to different internal module and pin
             {
                 var byInternalElements = inputGroupPins.GroupBy(g => g.InternalElement);
                 foreach (var grpPins in byInternalElements)
@@ -1081,7 +1081,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             foreach (var grpPin in InputGroupPins)
             {
                 Debug.Assert(grpPin.PinTarget != null, "SubGraph " + Name + " Input Group Pin" + grpPin.Name + "LeaveNode not set");
-                // pins of proxy group parent not set 
+                // pins of proxy group parent not set
                 //Debug.Assert(grpPin.DomNode.Parent != null, "SubGraph " + Name + " Input Group Pin" + grpPin.Name + "Parent  not set");
                 Debug.Assert(grpPin.Index < InputGroupPins.Count(), "SubGraph " + Name + " Input Group Pin" + grpPin.Name +
                     " Index invalid " + grpPin.Index + " Count=" + InputGroupPins.Count());
@@ -1094,7 +1094,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             foreach (var grpPin in OutputGroupPins)
             {
                 Debug.Assert(grpPin.PinTarget != null, "SubGraph " + Name + " Output Group Pin" + grpPin.Name + "LeaveNode not set");
-                // pins of proxy group parent not set 
+                // pins of proxy group parent not set
                 //Debug.Assert(grpPin.DomNode.Parent != null, "SubGraph " + Name + " Output Group Pin" + grpPin.Name + "Parent  not set");
                 Debug.Assert(grpPin.Index < OutputGroupPins.Count(), "SubGraph " + Name + " Output Group Pin" + grpPin.Name +
                     " Index invalid " + grpPin.Index + " Count=" + OutputGroupPins.Count());
@@ -1232,7 +1232,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// Finds the element and pin that matched the pin target for this circuit container</summary>
         /// <param name="pinTarget">Contains pin's element and pin index</param>
         /// <param name="inputSide">True for input pin, false for output pin</param>
-        /// <returns>Return a pair of element and pin. As an element instance method, if there is a match, the element is self, 
+        /// <returns>Return a pair of element and pin. As an element instance method, if there is a match, the element is self,
         /// and pin is one of its pins defined in Type. If there is no match, both are null.</returns>
         public override Pair<Element, ICircuitPin> MatchPinTarget(PinTarget pinTarget, bool inputSide)
         {
@@ -1254,11 +1254,11 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         }
 
         /// <summary>
-        /// Finds the element and pin that fully matched the pin target for this circuit container, 
+        /// Finds the element and pin that fully matched the pin target for this circuit container,
         /// including the template instance node</summary>
         /// <param name="pinTarget">Contains pin's element and pin index</param>
         /// <param name="inputSide">True for input pin, false for output pin</param>
-        /// <returns>Return a pair of element and pin. As an element instance method, if there is a match, the element is self, 
+        /// <returns>Return a pair of element and pin. As an element instance method, if there is a match, the element is self,
         /// and pin is one of its pins defined in Type. If there is no match, both are null.</returns>
         public override Pair<Element, ICircuitPin> FullyMatchPinTarget(PinTarget pinTarget, bool inputSide)
         {
@@ -1340,7 +1340,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         }
 
 
-        // Need to explicitly add Inputs and Outputs of sub-graph pins when nodes are inserted or deleted   
+        // Need to explicitly add Inputs and Outputs of sub-graph pins when nodes are inserted or deleted
         private void DomNode_ChildInserted(object sender, ChildEventArgs e)
         {
             Dirty = true;
@@ -1370,7 +1370,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 
 
         /// <summary>
-        /// build sub-graph pins and links for the graph viewer 
+        /// build sub-graph pins and links for the graph viewer
         /// </summary>
         private void SetUpGraphData()
         {
@@ -1398,7 +1398,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 }
                 else
                 {
-                    // the node is  internally connected, traverse the edge 
+                    // the node is  internally connected, traverse the edge
                     foreach (var edge in internalConnections)
                     {
                         if (edge.InputElement == outputNode && edge.InputPin.Index == pinIndex)
@@ -1418,7 +1418,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             var current = node;
             while (current.Is<IReference<DomNode>>())
             {
-                current = current.Cast<IReference<DomNode>>().Target;                
+                current = current.Cast<IReference<DomNode>>().Target;
             }
             return current;
         }
@@ -1474,7 +1474,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         }
 
         // The upper-left corner of the sub-nodes and floating pinYs defines the origin offset of sub-contents
-        // relative to the containing group. This offset is used when expanding groups, 
+        // relative to the containing group. This offset is used when expanding groups,
         // so that the contained sub-nodes are drawn within the expanded space
         private void UpdateOffset()
         {

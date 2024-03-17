@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using AtfMouseButtons = Sce.Atf.Input.MouseButtons;
 using AtfMouseEventArgs = Sce.Atf.Input.MouseEventArgs;
@@ -105,7 +105,7 @@ namespace Sce.Atf
         {
             return new WfMouseEventArgs(MouseButtonsInterop.ToWf(args.Button), args.Clicks, args.X, args.Y, args.Delta);
         }
-    
+
         // public static AtfMouseEventArgs ToAtf(WfMouseEventArgs)
 
         /// <summary>

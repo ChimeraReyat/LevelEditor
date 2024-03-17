@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Windows.Forms;
 
@@ -19,8 +19,8 @@ namespace LevelEditorCore
         /// <summary>
         /// filters the given object.
         /// Tests the lineage starting from the given object and returns first object passes the test
-        ///  Or null. </summary>    
-        /// <param name="obj">object to filter</param>    
+        ///  Or null. </summary>
+        /// <param name="obj">object to filter</param>
         /// <param name="e">mouse event arg</param>
         object Filter(object obj, MouseEventArgs e);
     }

@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Runtime.InteropServices;
@@ -66,7 +66,7 @@ namespace Sce.Atf
 
         /* From WinNT.h, handles are the same size as pointers (see the "*name"):
         #define DECLARE_HANDLE(name) struct name##__{int unused;}; typedef struct name##__ *name
-        
+
          * From WinDef.h:
         DECLARE_HANDLE(HICON);
 

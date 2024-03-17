@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -27,7 +27,7 @@ namespace Sce.Atf.Direct2D
         /// <param name="hwnd">Window handle</param>
         /// <returns>D2dHwndGraphics object for given handle</returns>
         /// <remarks>Important: This factory forces 1 DIP (device independent pixel) = 1 pixel
-        /// regardless of current DPI settings.</remarks>                
+        /// regardless of current DPI settings.</remarks>
         public static D2dHwndGraphics CreateD2dHwndGraphics(IntPtr hwnd)
         {
             CheckForRecreateTarget();
@@ -69,7 +69,7 @@ namespace Sce.Atf.Direct2D
         }
 
         /// <summary>
-        /// Creates an instance of D2dGraphics 
+        /// Creates an instance of D2dGraphics
         /// that is used for creating shared resources</summary>
         /// <param name="hwnd">The handle of the control or Form
         /// that is used for creating D2dGraphics</param>
@@ -92,13 +92,13 @@ namespace Sce.Atf.Direct2D
             var wicBitmap = new SharpDX.WIC.Bitmap(s_wicFactory, width, height, SharpDX.WIC.PixelFormat.Format32bppPBGRA,
                 SharpDX.WIC.BitmapCreateCacheOption.CacheOnLoad);
 
-            
-            var rtprops = new RenderTargetProperties 
+
+            var rtprops = new RenderTargetProperties
             {
                 Type = RenderTargetType.Default,
-                DpiX = 96.0f, 
+                DpiX = 96.0f,
                 DpiY = 96.0f,
-                PixelFormat = new PixelFormat(Format.Unknown, SharpDX.Direct2D1.AlphaMode.Unknown), 
+                PixelFormat = new PixelFormat(Format.Unknown, SharpDX.Direct2D1.AlphaMode.Unknown),
                 Usage = RenderTargetUsage.None,
                 MinLevel = FeatureLevel.Level_DEFAULT
             };
@@ -111,8 +111,8 @@ namespace Sce.Atf.Direct2D
         /// <summary>
         /// Creates a D2dStrokeStyle that describes start cap, dash pattern,
         /// and other features of a stroke</summary>
-        /// <param name="props">A structure that describes the stroke's line cap, 
-        /// dash offset, and other details of a stroke</param>    
+        /// <param name="props">A structure that describes the stroke's line cap,
+        /// dash offset, and other details of a stroke</param>
         /// <returns>D2dStrokeStyle that describes stroke features</returns>
         public static D2dStrokeStyle CreateD2dStrokeStyle(D2dStrokeStyleProperties props)
         {
@@ -122,8 +122,8 @@ namespace Sce.Atf.Direct2D
         /// <summary>
         /// Creates a D2dStrokeStyle that describes start cap, dash pattern,
         /// and other features of a stroke</summary>
-        /// <param name="props">A structure that describes the  stroke's line cap, 
-        /// dash offset, and other details of a stroke.</param>    
+        /// <param name="props">A structure that describes the  stroke's line cap,
+        /// dash offset, and other details of a stroke.</param>
         /// <param name="dashes">An array whose elements are set to the length of each dash and space in the
         /// dash pattern. The first element sets the length of a dash, the second element
         /// sets the length of a space, the third element sets the length of a dash,
@@ -161,8 +161,8 @@ namespace Sce.Atf.Direct2D
         /// Creates a text format with the specified parameter</summary>
         /// <param name="fontFamilyName">The name of the font family</param>
         /// <param name="fontWeight">A value that indicates the font weight</param>
-        /// <param name="fontStyle">A value that indicates the font style</param>        
-        /// <param name="fontSize">The logical size of the font in pixels</param>        
+        /// <param name="fontStyle">A value that indicates the font style</param>
+        /// <param name="fontSize">The logical size of the font in pixels</param>
         /// <returns>A new instance of D2dTextFormat</returns>
         public static D2dTextFormat CreateTextFormat(
             string fontFamilyName,
@@ -214,8 +214,8 @@ namespace Sce.Atf.Direct2D
         /// <summary>
         /// Creates a text format object from GDI font and StringFormat.
         /// Text format is used for text layout with normal weight, style
-        /// and stretch.</summary>        
-        /// <param name="font">System.Drawing.Font used for creating TexFormat.</param>        
+        /// and stretch.</summary>
+        /// <param name="font">System.Drawing.Font used for creating TexFormat.</param>
         /// <returns>A new instance of D2dTextFormat</returns>
         public static D2dTextFormat CreateTextFormat(System.Drawing.Font font)
         {
@@ -247,7 +247,7 @@ namespace Sce.Atf.Direct2D
             // Relation between pixel, dip ,dpi, logical inch, and  point
             //  DIP  is (device independent pixel).
             //  DPI  is (dot per inch) in Windows is (pixel per logical inch).
-            //   1 point = 1/72 of logical inch. 
+            //   1 point = 1/72 of logical inch.
             //   1  DIP   = 1/96 of logical inch.
             //   a logical inch can larger or smaller than physical inch.
             //   The length of a logical inch depends on pixel density of output device (screen).
@@ -274,7 +274,7 @@ namespace Sce.Atf.Direct2D
         /// <returns>A new instance of D2dTextLayout</returns>
         public static D2dTextLayout CreateTextLayout(string text, D2dTextFormat textFormat, float layoutWidth, float layoutHeight)
         {
-            var textlayout = new TextLayout(s_dwFactory, text, textFormat.NativeTextFormat, 
+            var textlayout = new TextLayout(s_dwFactory, text, textFormat.NativeTextFormat,
                 layoutWidth, layoutHeight);
 
             if (textFormat.Underlined)
@@ -315,8 +315,8 @@ namespace Sce.Atf.Direct2D
             matrix.M22 = transform.M22;
             matrix.M31 = transform.DX;
             matrix.M32 = transform.DY;
-            
-            var textlayout = new TextLayout(s_dwFactory, text, textFormat.NativeTextFormat, 
+
+            var textlayout = new TextLayout(s_dwFactory, text, textFormat.NativeTextFormat,
                 layoutWidth, layoutHeight, 1, matrix, true);
 
             if (textFormat.Underlined)
@@ -328,7 +328,7 @@ namespace Sce.Atf.Direct2D
             var d2dTextLayout = new D2dTextLayout(text, textlayout);
             d2dTextLayout.DrawTextOptions = textFormat.DrawTextOptions;
             return d2dTextLayout;
-            
+
         }
 
         /// <summary>
@@ -336,22 +336,22 @@ namespace Sce.Atf.Direct2D
         /// <param name="text">String to measure</param>
         /// <param name="textFormat">D2dTextFormat that defines the font and format of the string</param>
         /// <returns>This method returns a System.Drawing.SizeF structure that represents the
-        /// size, in DIP (Device Independent Pixels) units of the string specified by the text parameter as drawn 
+        /// size, in DIP (Device Independent Pixels) units of the string specified by the text parameter as drawn
         /// with the format parameter</returns>
         public static SizeF MeasureText(string text, D2dTextFormat textFormat)
         {
             if (string.IsNullOrEmpty(text))
                 return SizeF.Empty;
             return s_gfx.MeasureText(text, textFormat);
-        }        
-        
+        }
+
         /// <summary>
         /// Measures the specified string when drawn with the specified System.Drawing.Font</summary>
         /// <param name="text">String to measure</param>
         /// <param name="textFormat">D2dTextFormat that defines the font and format of the string</param>
         /// <param name="maxSize">The maximum x and y dimensions</param>
         /// <returns>This method returns a System.Drawing.SizeF structure that represents the
-        /// size, in DIP (Device Independent Pixels) units of the string specified by the text parameter as drawn 
+        /// size, in DIP (Device Independent Pixels) units of the string specified by the text parameter as drawn
         /// with the format parameter</returns>
         public static SizeF MeasureText(string text, D2dTextFormat textFormat, SizeF maxSize)
         {
@@ -372,8 +372,8 @@ namespace Sce.Atf.Direct2D
         }
 
         /// <summary>
-        /// Creates a D2dLinearGradientBrush with the specified points and colors</summary>        
-        /// <param name="gradientStops">An array of D2dGradientStop structures that describe the colors in the brush's gradient 
+        /// Creates a D2dLinearGradientBrush with the specified points and colors</summary>
+        /// <param name="gradientStops">An array of D2dGradientStop structures that describe the colors in the brush's gradient
         /// and their locations along the gradient line</param>
         /// <returns>A new instance of D2dLinearGradientBrush</returns>
         public static D2dLinearGradientBrush CreateLinearGradientBrush(params D2dGradientStop[] gradientStops)
@@ -386,7 +386,7 @@ namespace Sce.Atf.Direct2D
         /// extend mode, and gamma interpolation. It has no transform and has a base opacity of 1.0.</summary>
         /// <param name="pt1">A System.Drawing.PointF structure that represents the starting point of the linear gradient</param>
         /// <param name="pt2">A System.Drawing.PointF structure that represents the endpoint of the linear gradient</param>
-        /// <param name="gradientStops">An array of D2dGradientStop structures that describe the colors in the brush's gradient 
+        /// <param name="gradientStops">An array of D2dGradientStop structures that describe the colors in the brush's gradient
         /// and their locations along the gradient line</param>
         /// <param name="extendMode">The behavior of the gradient outside the [0,1] normalized range</param>
         /// <param name="gamma">The space in which color interpolation between the gradient stops is performed</param>
@@ -495,7 +495,7 @@ namespace Sce.Atf.Direct2D
 
         /// <summary>
         /// Creates an empty Direct2D Bitmap from specified width and height
-        /// Pixel format is set to 32 bit ARGB with premultiplied alpha</summary>      
+        /// Pixel format is set to 32 bit ARGB with premultiplied alpha</summary>
         /// <param name="width">Width of the bitmap in pixels</param>
         /// <param name="height">Height of the bitmap in pixels</param>
         /// <param name="createBackupBitmap">If true a GDI bitmap is created and used

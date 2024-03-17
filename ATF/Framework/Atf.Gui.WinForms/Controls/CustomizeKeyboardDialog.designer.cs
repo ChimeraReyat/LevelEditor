@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 namespace Sce.Atf.Controls
 {
@@ -56,139 +56,139 @@ namespace Sce.Atf.Controls
             this.grpShortUsed.SuspendLayout();
             this.grpDescription.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // grpCommands
-            // 
+            //
             this.grpCommands.Controls.Add(this.lstCommand);
             resources.ApplyResources(this.grpCommands, "grpCommands");
             this.grpCommands.Name = "grpCommands";
             this.grpCommands.TabStop = false;
-            // 
+            //
             // lstCommand
-            // 
+            //
             resources.ApplyResources(this.lstCommand, "lstCommand");
             this.lstCommand.FormattingEnabled = true;
             this.lstCommand.Name = "lstCommand";
             this.lstCommand.SelectedIndexChanged += new System.EventHandler(this.lstCommand_SelectedIndexChanged);
-            // 
+            //
             // btnRemoveShortcut
-            // 
+            //
             resources.ApplyResources(this.btnRemoveShortcut, "btnRemoveShortcut");
             this.btnRemoveShortcut.Name = "btnRemoveShortcut";
             this.btnRemoveShortcut.UseVisualStyleBackColor = true;
             this.btnRemoveShortcut.Click += new System.EventHandler(this.btnRemoveShortcut_Click);
-            // 
+            //
             // btnAssignShortcut
-            // 
+            //
             resources.ApplyResources(this.btnAssignShortcut, "btnAssignShortcut");
             this.btnAssignShortcut.Name = "btnAssignShortcut";
             this.btnAssignShortcut.UseVisualStyleBackColor = true;
             this.btnAssignShortcut.Click += new System.EventHandler(this.btnAssignShortcut_Click);
-            // 
+            //
             // txtNewShortcut
-            // 
+            //
             resources.ApplyResources(this.txtNewShortcut, "txtNewShortcut");
             this.txtNewShortcut.Name = "txtNewShortcut";
             this.txtNewShortcut.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNewShortcut_KeyDown);
-            // 
+            //
             // grpCurKey
-            // 
+            //
             this.grpCurKey.Controls.Add(this.btnSetToDefault);
             this.grpCurKey.Controls.Add(this.lblCurShortcut);
             this.grpCurKey.Controls.Add(this.btnRemoveShortcut);
             resources.ApplyResources(this.grpCurKey, "grpCurKey");
             this.grpCurKey.Name = "grpCurKey";
             this.grpCurKey.TabStop = false;
-            // 
+            //
             // btnSetToDefault
-            // 
+            //
             resources.ApplyResources(this.btnSetToDefault, "btnSetToDefault");
             this.btnSetToDefault.Name = "btnSetToDefault";
             this.btnSetToDefault.UseVisualStyleBackColor = true;
             this.btnSetToDefault.Click += new System.EventHandler(this.btnSetToDefault_Click);
-            // 
+            //
             // lblCurShortcut
-            // 
+            //
             this.lblCurShortcut.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this.lblCurShortcut, "lblCurShortcut");
             this.lblCurShortcut.Name = "lblCurShortcut";
-            // 
+            //
             // grpNewShortcut
-            // 
+            //
             this.grpNewShortcut.Controls.Add(this.btnAddShortcut);
             this.grpNewShortcut.Controls.Add(this.txtNewShortcut);
             this.grpNewShortcut.Controls.Add(this.btnAssignShortcut);
             resources.ApplyResources(this.grpNewShortcut, "grpNewShortcut");
             this.grpNewShortcut.Name = "grpNewShortcut";
             this.grpNewShortcut.TabStop = false;
-            // 
+            //
             // btnAddShortcut
-            // 
+            //
             resources.ApplyResources(this.btnAddShortcut, "btnAddShortcut");
             this.btnAddShortcut.Name = "btnAddShortcut";
             this.btnAddShortcut.UseVisualStyleBackColor = true;
             this.btnAddShortcut.Click += new System.EventHandler(this.btnAddShortcut_Click);
-            // 
+            //
             // grpShortUsed
-            // 
+            //
             this.grpShortUsed.Controls.Add(this.lblUsedBy);
             resources.ApplyResources(this.grpShortUsed, "grpShortUsed");
             this.grpShortUsed.Name = "grpShortUsed";
             this.grpShortUsed.TabStop = false;
-            // 
+            //
             // lblUsedBy
-            // 
+            //
             this.lblUsedBy.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this.lblUsedBy, "lblUsedBy");
             this.lblUsedBy.Name = "lblUsedBy";
-            // 
+            //
             // btnCancel
-            // 
+            //
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.btnCancel, "btnCancel");
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.UseVisualStyleBackColor = true;
-            // 
+            //
             // cxMenu
-            // 
+            //
             this.cxMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.mnuClear});
             this.cxMenu.Popup += new System.EventHandler(this.cxMenue_Popup);
-            // 
+            //
             // mnuClear
-            // 
+            //
             this.mnuClear.Index = 0;
             resources.ApplyResources(this.mnuClear, "mnuClear");
             this.mnuClear.Click += new System.EventHandler(this.mnuClear_Click);
-            // 
+            //
             // btnOK
-            // 
+            //
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             resources.ApplyResources(this.btnOK, "btnOK");
             this.btnOK.Name = "btnOK";
             this.btnOK.UseVisualStyleBackColor = true;
-            // 
+            //
             // grpDescription
-            // 
+            //
             this.grpDescription.Controls.Add(this.lblCmdDescription);
             resources.ApplyResources(this.grpDescription, "grpDescription");
             this.grpDescription.Name = "grpDescription";
             this.grpDescription.TabStop = false;
-            // 
+            //
             // lblCmdDescription
-            // 
+            //
             resources.ApplyResources(this.lblCmdDescription, "lblCmdDescription");
             this.lblCmdDescription.Name = "lblCmdDescription";
-            // 
+            //
             // btnAllDefault
-            // 
+            //
             resources.ApplyResources(this.btnAllDefault, "btnAllDefault");
             this.btnAllDefault.Name = "btnAllDefault";
             this.btnAllDefault.UseVisualStyleBackColor = true;
             this.btnAllDefault.Click += new System.EventHandler(this.btnAllDefault_Click);
-            // 
+            //
             // CustomizeKeyboardDialog
-            // 
+            //
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnAllDefault);

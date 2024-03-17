@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -19,8 +19,8 @@ namespace LevelEditor.Terrain
 
     /// <summary>
     /// Base class for terrain map</summary>
-    public abstract class TerrainMap : DomNodeAdapter, 
-        INameable, 
+    public abstract class TerrainMap : DomNodeAdapter,
+        INameable,
         IEditableResourceOwner,
         ITerrainSurface
     {
@@ -28,8 +28,8 @@ namespace LevelEditor.Terrain
         {
             base.OnNodeSet();
 
-            var annotations = Annotations.GetAllAnnotation(DomNode.Type, "scea.dom.editors.attribute");            
-            //could be automated 
+            var annotations = Annotations.GetAllAnnotation(DomNode.Type, "scea.dom.editors.attribute");
+            //could be automated
             m_textureInfos.Add(new TerrainMapTextureInfo(DomNode, Schema.terrainMapType.diffuseAttribute, annotations));
             m_textureInfos.Add(new TerrainMapTextureInfo(DomNode, Schema.terrainMapType.normalAttribute, annotations));
             m_textureInfos.Add(new TerrainMapTextureInfo(DomNode, Schema.terrainMapType.specularAttribute, annotations));
@@ -43,15 +43,15 @@ namespace LevelEditor.Terrain
             {
                 INativeObject nobj = this.As<INativeObject>();
                 IntPtr retVal = IntPtr.Zero;
-                nobj.InvokeFunction("GetMaskMapInstanceId", IntPtr.Zero, out retVal);                
+                nobj.InvokeFunction("GetMaskMapInstanceId", IntPtr.Zero, out retVal);
                 if (retVal == IntPtr.Zero) return 0;
-                return (*(ulong*)retVal.ToPointer());               
+                return (*(ulong*)retVal.ToPointer());
             }
         }
         public ImageData GetSurface()
         {
             ulong instId = GetSurfaceInstanceId();
-            return instId != 0 ? new ImageData(instId) : null;            
+            return instId != 0 ? new ImageData(instId) : null;
         }
 
         public void ApplyDirtyRegion(Bound2di box)
@@ -107,8 +107,8 @@ namespace LevelEditor.Terrain
         {
             get { return this.GetParentAs<TerrainGob>(); }
         }
-        
-             
+
+
         #region INameable Members
         public string Name
         {
@@ -142,7 +142,7 @@ namespace LevelEditor.Terrain
                 using (ImageData img = GetSurface())
                 {
                     img.Save(maskuri);
-                }                
+                }
                 Dirty = false;
             }
         }
@@ -160,7 +160,7 @@ namespace LevelEditor.Terrain
     /// <summary>
     /// Terrain texture layer.</summary>
     public class LayerMap : TerrainMap
-    {        
+    {
         public static LayerMap Create(Uri maskuri)
         {
             DomNode node = new DomNode(Schema.layerMapType.Type);
@@ -211,7 +211,7 @@ namespace LevelEditor.Terrain
             {
                 m_displayName = attrInfo.Name;
                 m_description = attrInfo.Name;
-            }                        
+            }
         }
 
         public string Name

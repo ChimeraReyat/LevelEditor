@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -32,7 +32,7 @@ namespace Sce.Atf.Applications
             IFileDialogService fileDialogService)
         {
             CommandService = commandService;
-            
+
             DocumentRegistry = documentRegistry;
             documentRegistry.ActiveDocumentChanging += ActiveDocumentChanging;
             documentRegistry.ActiveDocumentChanged += ActiveDocumentChanged;
@@ -597,7 +597,7 @@ namespace Sce.Atf.Applications
         }
 
         /// <summary>
-        /// Creates a Uri under a specified directory, with a file name containing the specified string and extension, 
+        /// Creates a Uri under a specified directory, with a file name containing the specified string and extension,
         /// which currently doesn't exist on the file system</summary>
         /// <param name="directoryName">The base directory path under which the new Uri should reside</param>
         /// <param name="fileName">The base file name to be included in the new Uri, e.g., "Untitled".</param>
@@ -760,7 +760,7 @@ namespace Sce.Atf.Applications
             catch (Exception ex)
             {
                 // DAN: Added this - if an exception occurs during line:
-                // DocumentRegistry.ActiveDocument = document; 
+                // DocumentRegistry.ActiveDocument = document;
                 // then we need to remove it
                 if (DocumentRegistry.ActiveDocument == document)
                     DocumentRegistry.Remove(document);

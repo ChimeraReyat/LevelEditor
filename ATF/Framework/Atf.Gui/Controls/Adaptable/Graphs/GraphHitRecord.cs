@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Drawing;
 using System.Linq;
@@ -109,7 +109,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// <summary>
         /// Gets or sets the subnode that was hit</summary>
         /// <remarks>Subnodes are used to describe child objects in the hierarchical node.</remarks>
-        public TNode SubNode 
+        public TNode SubNode
         {
             get { return SubItem.As<TNode>(); }
         }

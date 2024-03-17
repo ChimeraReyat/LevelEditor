@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -92,7 +92,7 @@ namespace Sce.Atf.Applications.Controls
 
             if (m_fps > m_maxFps)
                 m_maxFps = m_fps;
-            
+
             m_managedBytes = GC.GetTotalMemory(false);
 
             Process currentProcess = Process.GetCurrentProcess();
@@ -216,13 +216,13 @@ namespace Sce.Atf.Applications.Controls
                     report.AppendLine();
                     report.AppendFormat("Slowest rendering time: {0}ms or {1} ticks".Localize(), slowesttMs, slowestTicks);
                     report.AppendLine();
-                    Clipboard.SetText(report.ToString()); 
+                    Clipboard.SetText(report.ToString());
                     MessageBox.Show(report.ToString(), "The performance report is in the clipboard".Localize());
                 }
             }
         }
 
-        /// <summary> 
+        /// <summary>
         /// Cleans up any resources being used</summary>
         /// <param name="disposing">True iff managed resources should be disposed</param>
         protected override void Dispose(bool disposing)
@@ -306,7 +306,7 @@ namespace Sce.Atf.Applications.Controls
 
         private readonly Stopwatch m_stopWatch = new Stopwatch();
         private readonly Timer m_timer = new Timer();
-        
+
         //# of miliseconds between updates of framerate, etc.
         private const int Interval = 2500;
         private const int StressTestDuration = 5000;

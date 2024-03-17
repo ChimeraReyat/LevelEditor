@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Linq;
@@ -19,7 +19,7 @@ namespace Sce.Atf.Controls.Adaptable
     /// annotations (comments)</summary>
     public class D2dAnnotationAdapter : DraggingControlAdapter,
         IPickingAdapter2,
-        IItemDragAdapter,       
+        IItemDragAdapter,
         IDisposable
     {
 
@@ -40,7 +40,7 @@ namespace Sce.Atf.Controls.Adaptable
         {
             m_theme = theme;
             m_theme.Redraw += theme_Redraw;
-            m_solidBrush = D2dFactory.CreateSolidBrush(Color.FromArgb(128, 120, 120, 120));                
+            m_solidBrush = D2dFactory.CreateSolidBrush(Color.FromArgb(128, 120, 120, 120));
         }
 
         /// <summary>
@@ -143,7 +143,7 @@ namespace Sce.Atf.Controls.Adaptable
         /// <summary>
         /// Performs a pick operation on the diagram annotations</summary>
         /// <param name="p">Picking point</param>
-        /// <returns>Information about which annotation, if any, was hit by point</returns>        
+        /// <returns>Information about which annotation, if any, was hit by point</returns>
         public AnnotationHitEventArgs Pick(Point p)
         {
             return (AnnotationHitEventArgs)((IPickingAdapter2)this).Pick(p);
@@ -151,7 +151,7 @@ namespace Sce.Atf.Controls.Adaptable
 
 
         /// <summary>
-        /// Pick using all bound IPickingAdapter2s</summary>        
+        /// Pick using all bound IPickingAdapter2s</summary>
         private AnnotationHitEventArgs PickAll(Point p)
         {
             DiagramHitRecord hitRecord = null;
@@ -169,7 +169,7 @@ namespace Sce.Atf.Controls.Adaptable
             return annotHit;
         }
 
-      
+
         #region IPickingAdapter2 Members
 
         /// <summary>
@@ -203,7 +203,7 @@ namespace Sce.Atf.Controls.Adaptable
                     contentRect.Size -= Margin.Size;
                     if (contentRect.Contains(p))
                     {
-                        
+
                         // check scroll bar
                         if (textEditor != null && textEditor.VerticalScrollBarVisibe)
                         {
@@ -253,7 +253,7 @@ namespace Sce.Atf.Controls.Adaptable
                         return new AnnotationHitEventArgs(annotation, borderPart);
                     }
 
-                    
+
                     // upper left
                     corner = new Rectangle(inflated.X, inflated.Y, leftPad, topPad);
                     if (corner.Contains(p))
@@ -265,7 +265,7 @@ namespace Sce.Atf.Controls.Adaptable
                         return new AnnotationHitEventArgs(annotation, borderPart);
                     }
 
-                    
+
                     // upper right
                     corner = new Rectangle(contentRect.Right, inflated.Y, rightPad, topPad);
                     if (corner.Contains(p))
@@ -328,7 +328,7 @@ namespace Sce.Atf.Controls.Adaptable
                         };
                         return new AnnotationHitEventArgs(annotation, borderPart);
 
-                    }                
+                    }
                 }
             }
 
@@ -341,11 +341,11 @@ namespace Sce.Atf.Controls.Adaptable
         /// <returns>Items that overlap with the rectangle, in client coordinates</returns>
         IEnumerable<object> IPickingAdapter2.Pick(Rectangle bounds)
         {
-            if (m_annotatedDiagram == null || PickingDisabled) 
+            if (m_annotatedDiagram == null || PickingDisabled)
                 return EmptyEnumerable<object>.Instance;
 
             List<object> hit = new List<object>();
-                        
+
             if (m_transformAdapter != null)
                 bounds = GdiUtil.InverseTransform(m_transformAdapter.Transform, bounds);
 
@@ -420,7 +420,7 @@ namespace Sce.Atf.Controls.Adaptable
 
         void IItemDragAdapter.BeginDrag(ControlAdapter initiator)
         {
-            m_draggingAnnotations = m_selectionContext.GetSelection<IAnnotation>().ToArray();            
+            m_draggingAnnotations = m_selectionContext.GetSelection<IAnnotation>().ToArray();
             m_newPositions = new Point[m_draggingAnnotations.Length];
             m_oldPositions = new Point[m_draggingAnnotations.Length];
             for (int i = 0; i < m_draggingAnnotations.Length; i++)
@@ -477,12 +477,12 @@ namespace Sce.Atf.Controls.Adaptable
             d2dControl.KeyPress += control_KeyPress;
             d2dControl.PreviewKeyDown += control_PreviewKeyDown;
             d2dControl.GotFocus += control_GotFocus;
-            d2dControl.LostFocus += control_LostFocus;            
-            
+            d2dControl.LostFocus += control_LostFocus;
+
             base.Bind(control);
         }
 
-       
+
         /// <summary>
         /// Unbinds the adapter from the adaptable control</summary>
         /// <param name="control">Adaptable control</param>
@@ -494,7 +494,7 @@ namespace Sce.Atf.Controls.Adaptable
             d2dControl.KeyPress -= control_KeyPress;
             d2dControl.PreviewKeyDown -= control_PreviewKeyDown;
             d2dControl.GotFocus -= control_GotFocus;
-            d2dControl.LostFocus -= control_LostFocus;      
+            d2dControl.LostFocus -= control_LostFocus;
             m_transformAdapter = null;
             m_autoTranslateAdapter = null;
             m_pickingAdapters = null;
@@ -519,7 +519,7 @@ namespace Sce.Atf.Controls.Adaptable
                         //m_observableContext.Reloaded -= context_Reloaded;
                         m_observableContext = null;
                     }
-                    
+
                 }
 
                 m_annotatedDiagram = annotatedContext;
@@ -535,7 +535,7 @@ namespace Sce.Atf.Controls.Adaptable
                        // m_observableContext.Reloaded += context_Reloaded;
                     }
 
-                    m_selectionContext = AdaptedControl.ContextAs<ISelectionContext>();                    
+                    m_selectionContext = AdaptedControl.ContextAs<ISelectionContext>();
                     m_layoutContext = AdaptedControl.ContextAs<ILayoutContext>();
                 }
             }
@@ -552,7 +552,7 @@ namespace Sce.Atf.Controls.Adaptable
             Matrix3x2F invXform = gfx.Transform;
             m_scaleX = invXform.M11;  // get the scale before inverting.
             invXform.Invert();
-                                   
+
             RectangleF graphBound = Matrix3x2F.Transform( invXform,  control.ClientRectangle);
 
             D2dParagraphAlignment paragraphAlign = m_theme.TextFormat.ParagraphAlignment;
@@ -564,8 +564,8 @@ namespace Sce.Atf.Controls.Adaptable
             m_theme.TextFormat.DrawTextOptions = D2dDrawTextOptions.Clip;
             float opacity = m_theme.TextHighlightBrush.Opacity;
             m_theme.TextHighlightBrush.Opacity = 0.5f;
-                
-                    
+
+
 
             bool drawText = (m_scaleX * m_theme.TextFormat.FontHeight) > 5.0f;
             if (!drawText) HideCaret();
@@ -589,7 +589,7 @@ namespace Sce.Atf.Controls.Adaptable
                         bounds.Size = textSize;
                         annotation.SetTextSize(textSize);
                     }
-                   
+
                 }
                 if (!graphBound.IntersectsWith(bounds))
                     continue;
@@ -642,7 +642,7 @@ namespace Sce.Atf.Controls.Adaptable
             }
             AdaptedControl.Invalidate();
         }
-        
+
         /// <summary>
         /// Performs custom actions on adaptable control MouseMove events. The base method should
         /// be called first.</summary>
@@ -654,9 +654,9 @@ namespace Sce.Atf.Controls.Adaptable
             if (e.Button == MouseButtons.None)
             {
                 var annotHitRecord = PickAll(CurrentPoint);
-                
+
                 if (annotHitRecord.Annotation != null && AdaptedControl.Cursor == Cursors.Default)
-                {                    
+                {
                     if (annotHitRecord.Label != null )
                     {
                         AdaptedControl.AutoResetCursor = false;
@@ -665,11 +665,11 @@ namespace Sce.Atf.Controls.Adaptable
                         else
                             AdaptedControl.Cursor = Cursors.SizeAll;
 
-                    }                    
+                    }
                     else if (annotHitRecord.Border != null)
                     {
                         AdaptedControl.AutoResetCursor = false;
-                        var borderPart = annotHitRecord.Border;                        
+                        var borderPart = annotHitRecord.Border;
                         if (borderPart.Border == DiagramBorder.BorderType.Right || borderPart.Border == DiagramBorder.BorderType.Left)
                             AdaptedControl.Cursor = Cursors.SizeWE;
                         else if (borderPart.Border == DiagramBorder.BorderType.Bottom || borderPart.Border == DiagramBorder.BorderType.Top)
@@ -686,10 +686,10 @@ namespace Sce.Atf.Controls.Adaptable
                 }
                 else
                     AdaptedControl.AutoResetCursor = true;
-            }            
+            }
         }
 
-        
+
 
         /// <summary>
         /// Handles mouse up event</summary>
@@ -707,7 +707,7 @@ namespace Sce.Atf.Controls.Adaptable
 
             var hitRecord = PickAll(e.Location); // use all pick adapters.
 
-            if (hitRecord.Annotation == null) 
+            if (hitRecord.Annotation == null)
                 return;
 
             var annotationEditor = m_annotationEditors[hitRecord.Annotation];
@@ -718,7 +718,7 @@ namespace Sce.Atf.Controls.Adaptable
                 {
                     annotationEditor.SetSelectionFromPoint(hitRecord.Position.X, hitRecord.Position.Y, false);
                     annotationEditor.SetSelection(TextEditor.SelectionMode.SingleWord, 0, true, false);
-                }                
+                }
             }
             else
             {
@@ -768,16 +768,16 @@ namespace Sce.Atf.Controls.Adaptable
                         if (m_mousePick.Annotation == m_editingAnnotation)
                             m_selecting = true;
                         else
-                        {                            
+                        {
                             foreach (var itemDragAdapter in AdaptedControl.AsAll<IItemDragAdapter>())
                                 itemDragAdapter.BeginDrag(this);
                         }
                     }
-                                       
+
                     if (m_autoTranslateAdapter != null)
                         // annotation local text scrolling should not operate when dragging out of control's client area
-                        m_autoTranslateAdapter.Enabled = !m_scrolling; 
-                }                             
+                        m_autoTranslateAdapter.Enabled = !m_scrolling;
+                }
             }
         }
 
@@ -790,11 +790,11 @@ namespace Sce.Atf.Controls.Adaptable
 
             if (m_resizing)
             {
-                ResizeAnnotation(m_mousePick.Border);                
-            } 
+                ResizeAnnotation(m_mousePick.Border);
+            }
             else if (m_scrolling)
             {
-                ScrollAnnotation(m_mousePick.Part.As<DiagramScrollBar>());                
+                ScrollAnnotation(m_mousePick.Part.As<DiagramScrollBar>());
             }
             else if (m_selecting)
             {
@@ -805,7 +805,7 @@ namespace Sce.Atf.Controls.Adaptable
                     {
                         var annotationEditor = m_annotationEditors[hitRecord.Annotation];
                         annotationEditor.SetSelectionFromPoint(hitRecord.Position.X, hitRecord.Position.Y, true);
-                    }                    
+                    }
                 }
                 D2dControl.Invalidate();
             }
@@ -824,12 +824,12 @@ namespace Sce.Atf.Controls.Adaptable
                     bounds.Y = m_oldPositions[i].Y + delta.Y;
                     m_newPositions[i] = bounds.Location;
                     m_layoutContext.SetBounds(annotation, bounds, BoundsSpecified.Location); //world coordinates
-                }                                          
+                }
             }
 
             if (m_isDragInitiator)
                 D2dControl.DrawD2d();
-            
+
         }
 
         /// <summary>
@@ -844,7 +844,7 @@ namespace Sce.Atf.Controls.Adaptable
             {
                 foreach (IItemDragAdapter itemDragAdapter in AdaptedControl.AsAll<IItemDragAdapter>())
                     itemDragAdapter.EndingDrag(); //call ourselves, too
-                
+
                 transactionContext.DoTransaction(
                         () =>
                         {
@@ -879,9 +879,9 @@ namespace Sce.Atf.Controls.Adaptable
 
             m_draggingAnnotations = null;
             m_newPositions = null;
-            m_oldPositions = null;           
+            m_oldPositions = null;
             m_resizing = false;
-            m_scrolling = false;            
+            m_scrolling = false;
             m_selecting = false;
             AdaptedControl.Invalidate();
         }
@@ -903,16 +903,16 @@ namespace Sce.Atf.Controls.Adaptable
             g.FillRectangle(bounds, backColor);
 
             g.DrawRectangle(bounds, m_theme.GetOutLineBrush(style), borderThickness);
-       
+
             //// draw titlebar
             //if (style == DiagramDrawingStyle.LastSelected || style == DiagramDrawingStyle.Selected)
             //{
             //    var titleBarRect = new RectangleF(bounds.X, bounds.Y, bounds.Width, Margin.Top - 1);
             //    g.FillRectangle(titleBarRect, ControlPaint.Dark(backColor));
             //}
-            //// line seperate titlebar from text content     
+            //// line seperate titlebar from text content
             //g.DrawLine(bounds.X, bounds.Y + Margin.Top-1, bounds.X + bounds.Width, bounds.Y + Margin.Top-1, ControlPaint.Dark(backColor), borderThickness);
-            
+
             // draw content
             if (drawText)
             {
@@ -921,7 +921,7 @@ namespace Sce.Atf.Controls.Adaptable
                 contentBounds.Width = Math.Max(contentBounds.Width, MinimumWidth);
                 contentBounds.Height = Math.Max(contentBounds.Height, MinimumHeight);
                 var textBounds = contentBounds;
-                
+
                 TextEditor textEditor;
                 if (!m_annotationEditors.TryGetValue(annotation,out textEditor))
                 {
@@ -935,7 +935,7 @@ namespace Sce.Atf.Controls.Adaptable
                     if (textLayout.Height >  textLayout.LayoutHeight) // need v-scroll bar
                     {
                         textLayout.LayoutWidth = contentBounds.Width - ScrollBarWidth - 2 * ScrollBarMargin;
-                      
+
                     }
 
                     textEditor = new TextEditor
@@ -945,11 +945,11 @@ namespace Sce.Atf.Controls.Adaptable
                         TopLine =  0,
                         VerticalScrollBarVisibe = textLayout.Height > textLayout.LayoutHeight
                     };
-                    m_annotationEditors.Add(annotation, textEditor);                        
+                    m_annotationEditors.Add(annotation, textEditor);
                 }
                 else if (textEditor.TextLayout.Text != annotation.Text) // text content changed, for example, undo,redo
-                {                
-                    textEditor.ResetText(annotation.Text);                    
+                {
+                    textEditor.ResetText(annotation.Text);
                 }
 
                 int topLine = textEditor.TopLine;
@@ -965,33 +965,33 @@ namespace Sce.Atf.Controls.Adaptable
                     textEditor.Validate();
                 }
 
-                float yOffset = textEditor.GetLineYOffset(topLine);                
+                float yOffset = textEditor.GetLineYOffset(topLine);
                 PointF origin = new PointF(contentBounds.Location.X, contentBounds.Location.Y - yOffset);
 
                 g.PushAxisAlignedClip(contentBounds);
 
-               
+
 
                 // adjust caret.
                 // pull out this code to the caller.
                 if ( annotation == m_editingAnnotation  && m_caretCreated)
-                {                    
+                {
                     var caretRect = textEditor.GetCaretRect();
-                    caretRect.Offset(origin);                   
-                    // set Windows caret position                  
+                    caretRect.Offset(origin);
+                    // set Windows caret position
                     if (contentBounds.IntersectsWith(caretRect) && AdaptedControl.Focused)
                     {
                         Matrix3x2F xform = m_transformAdapter != null ? m_transformAdapter.Transform
                             : g.Transform;
                         var caretClientRect = Matrix3x2F.Transform(xform, caretRect);
-                        float ratio = m_scaleX*m_theme.TextFormat.FontHeight/CaretHeight;                      
+                        float ratio = m_scaleX*m_theme.TextFormat.FontHeight/CaretHeight;
                         if (ratio > 1.1f || ratio < 0.9f) // adjust caret height
                         {
                             CaretHeight = (int)(m_scaleX*m_theme.TextFormat.FontHeight);
                             User32.DestroyCaret();
                             User32.CreateCaret(AdaptedControl.Handle, IntPtr.Zero, CaretWidth, CaretHeight);
                         }
-                        // align bottom    
+                        // align bottom
                         User32.SetCaretPos((int) caretClientRect.X, (int)(caretClientRect.Y + caretClientRect.Height - CaretHeight));
                         if (!m_rmbPressed)
                             AdaptedControl.HasKeyboardFocus = true;
@@ -1013,11 +1013,11 @@ namespace Sce.Atf.Controls.Adaptable
                         g.FillRectangle(highlightRect, hibrush);
                     }
                 }
-                
-                // draw text 
+
+                // draw text
                 g.DrawTextLayout(origin, textEditor.TextLayout, foreColor);
 
-                
+
 
                 g.PopAxisAlignedClip();
 
@@ -1031,12 +1031,12 @@ namespace Sce.Atf.Controls.Adaptable
                    // if (m_scrolling)
                    // {
                         var trackBounds = new RectangleF(contentBounds.Right - ScrollBarMargin - ScrollBarWidth, contentBounds.Y, ScrollBarWidth, contentBounds.Height);
-                        g.FillRectangle(trackBounds, Color.Gainsboro);                    
+                        g.FillRectangle(trackBounds, Color.Gainsboro);
                    // }
                     var thumbBounds = new RectangleF(contentBounds.Right - ScrollBarMargin - ScrollBarWidth, contentBounds.Y + vMin, ScrollBarWidth, vMax - vMin);
                     g.FillRectangle(thumbBounds, Color.DimGray);
-                }                
-            }                
+                }
+            }
         }
 
         // 'location' is in world coordinates
@@ -1093,7 +1093,7 @@ namespace Sce.Atf.Controls.Adaptable
                     m_layoutContext.SetBounds(diagramBorder.Item, ConstrainBounds(newBounds), BoundsSpecified.Size);
                     break;
 
-            }          
+            }
         }
 
         private Rectangle ConstrainBounds(Rectangle annotationBounds)
@@ -1122,9 +1122,9 @@ namespace Sce.Atf.Controls.Adaptable
                 newTopLine = annotationData.TopLine;
             annotationData.TopLine =  newTopLine >=0 ?  newTopLine:0;
 
-            annotationData.ResetText(annotation.Text); 
+            annotationData.ResetText(annotation.Text);
         }
-        
+
         private Rectangle GetBounds(IAnnotation annotation)
         {
             Rectangle bounds = annotation.Bounds;
@@ -1142,7 +1142,7 @@ namespace Sce.Atf.Controls.Adaptable
             return bounds;
         }
 
-      
+
         #region text editing
 
         private void control_KeyPress(object sender, KeyPressEventArgs e)
@@ -1161,16 +1161,16 @@ namespace Sce.Atf.Controls.Adaptable
             var textProperty = annotation.GetType().GetProperty("Text");
             if (!textProperty.CanWrite)
                 return;
-               
+
             var transactionContext = AdaptedControl.ContextAs<ITransactionContext>();
 
             // accepts input chars under WM_CHAR message only
             if (AdaptedControl.IsImeChar)
                 return;
-      
+
             switch (e.KeyChar)
             {
-                case  '\r':                    
+                case  '\r':
                     transactionContext.DoTransaction(() =>
                         {
                             DeleteTextSelection(annotation);
@@ -1206,13 +1206,13 @@ namespace Sce.Atf.Controls.Adaptable
                         }, EditAnnotation);
                     break;
                 default:
-                    if (e.KeyChar >= 0x20) // allow normal characters 
+                    if (e.KeyChar >= 0x20) // allow normal characters
                     {
                         InsertChar(annotation, annotationEditor, e.KeyChar);
                         AdaptedControl.Invalidate();
                     }
                     break;
-            }     
+            }
         }
 
         private void control_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -1233,7 +1233,7 @@ namespace Sce.Atf.Controls.Adaptable
                 return;
 
             var transactionContext = AdaptedControl.ContextAs<ITransactionContext>();
-      
+
             var key = e.KeyData & Keys.KeyCode;
             bool ctrlPressed = (e.KeyData & Keys.Control) == Keys.Control;
             bool shiftPressed = (e.KeyData & Keys.Shift) == Keys.Shift;
@@ -1326,7 +1326,7 @@ namespace Sce.Atf.Controls.Adaptable
                 CopyToClipboard(annotation);
             }
             else if (e.KeyCode == Keys.V && ctrlPressed)
-            {              
+            {
                 transactionContext.DoTransaction(() =>
                 {
                     PasteFromClipboard(annotation);
@@ -1378,11 +1378,11 @@ namespace Sce.Atf.Controls.Adaptable
         void control_GotFocus(object sender, EventArgs e)
         {
             CaretHeight = (int) (m_scaleX* m_theme.TextFormat.FontHeight);// AdaptedControl.Font.Height;
-            User32.CreateCaret(AdaptedControl.Handle, IntPtr.Zero, CaretWidth, CaretHeight);           
+            User32.CreateCaret(AdaptedControl.Handle, IntPtr.Zero, CaretWidth, CaretHeight);
             m_caretCreated = true;
             User32.ShowCaret(AdaptedControl.Handle);
             HideCaret(); // sets caret outside client area.
-            
+
         }
 
         private void BeginEditAnnotation(IAnnotation annotation)
@@ -1393,7 +1393,7 @@ namespace Sce.Atf.Controls.Adaptable
                 throw new InvalidOperationException("BeginEditAnnotation is already called");
             m_editingAnnotation = annotation;
             AdaptedControl.HasKeyboardFocus = false;
-           
+
 
 
         }
@@ -1403,7 +1403,7 @@ namespace Sce.Atf.Controls.Adaptable
             HideCaret();
         }
 
-        
+
 
         /// <summary>
         /// Deletes any existing selection</summary>
@@ -1411,22 +1411,22 @@ namespace Sce.Atf.Controls.Adaptable
         public void DeleteTextSelection(IAnnotation annotation)
         {
             if (m_annotationEditors.ContainsKey(annotation))
-            {             
+            {
                 var textProperty = annotation.GetType().GetProperty("Text");
                 if (textProperty.CanWrite)
                 {
                     var annotationEditor = m_annotationEditors[annotation];
                     annotationEditor.UpdateSelectionRange();
                     if (annotationEditor.SelectionLength > 0)
-                    {                  
+                    {
                         var newValue = annotationEditor.RemoveTextAt(annotation.Text, annotationEditor.SelectionStart,
                                                                      annotationEditor.SelectionLength);
                         textProperty.SetValue(annotation, newValue, null);
                         annotationEditor.SetSelection(TextEditor.SelectionMode.AbsoluteLeading, annotationEditor.SelectionStart, false, false);
-                        
+
                     }
                 }
-             
+
             }
         }
 
@@ -1443,7 +1443,7 @@ namespace Sce.Atf.Controls.Adaptable
                 InsertText(annotation, text);
                 annotationEditor.SetSelection(TextEditor.SelectionMode.RightChar, text.Length, false, false);
             }
-            
+
         }
 
         private void CopyToClipboard(IAnnotation annotation)
@@ -1460,11 +1460,11 @@ namespace Sce.Atf.Controls.Adaptable
             {
                 var textProperty = annotation.GetType().GetProperty("Text");
                 if (textProperty.CanWrite)
-                {                
+                {
                     //DeleteTextSelection(annotation);
                     var annotationEditor = m_annotationEditors[annotation];
                     var newValue = annotationEditor.InsertTextAt(annotation.Text, text);
-                    textProperty.SetValue(annotation, newValue, null);                 
+                    textProperty.SetValue(annotation, newValue, null);
 
                 }
 
@@ -1494,7 +1494,7 @@ namespace Sce.Atf.Controls.Adaptable
         /// <summary>
         /// Tests when the annotation is selected and the adapted control has keyboard focus</summary>
         /// <param name="annotation">IAnnotation to test</param>
-        /// <returns>True iff the adapted control has input focus,  the annotation node is selected, 
+        /// <returns>True iff the adapted control has input focus,  the annotation node is selected,
         /// and text selected for the annotation node</returns>
         public bool CanCopyText(IAnnotation annotation)
         {
@@ -1521,7 +1521,7 @@ namespace Sce.Atf.Controls.Adaptable
             return string.Empty;
         }
 
-        
+
 
         private void HideCaret()
         {
@@ -1542,8 +1542,8 @@ namespace Sce.Atf.Controls.Adaptable
         private int CaretHeight=12;
 
         private D2dSolidColorBrush m_solidBrush;
-        private readonly Dictionary<IAnnotation, TextEditor> m_annotationEditors = new Dictionary<IAnnotation, TextEditor>(); 
-        private D2dDiagramTheme m_theme;        
+        private readonly Dictionary<IAnnotation, TextEditor> m_annotationEditors = new Dictionary<IAnnotation, TextEditor>();
+        private D2dDiagramTheme m_theme;
         private ITransformAdapter m_transformAdapter;
         private IAutoTranslateAdapter m_autoTranslateAdapter;
 
@@ -1557,8 +1557,8 @@ namespace Sce.Atf.Controls.Adaptable
 
         private AnnotationHitEventArgs m_mousePick;
         private IAnnotation[] m_draggingAnnotations;
-        
-        private IAnnotation m_editingAnnotation; 
+
+        private IAnnotation m_editingAnnotation;
 
         private Point[] m_newPositions;
         private Point[] m_oldPositions;
@@ -1566,8 +1566,8 @@ namespace Sce.Atf.Controls.Adaptable
         private Rectangle m_startBounds;
         private float m_scaleX = 1.0f;
         private bool m_resizing;
-        private bool m_scrolling;        
-        private bool m_selecting;    
+        private bool m_scrolling;
+        private bool m_selecting;
         private int  m_startTopLine;
         private bool m_caretCreated;
         //private bool m_editingText;

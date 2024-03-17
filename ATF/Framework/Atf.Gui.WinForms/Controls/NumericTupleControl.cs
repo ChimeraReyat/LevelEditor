@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -37,9 +37,9 @@ namespace Sce.Atf.Controls
             Define(numericType, names);
         }
 
-        
 
-       
+
+
 
         /// <summary>
         /// Gets or sets whether axis labels should be hidden. The labels are visible by default.</summary>
@@ -61,7 +61,7 @@ namespace Sce.Atf.Controls
             if (color == null || color.Length == 0)
                 throw new ArgumentException("color");
             m_labelColors = color;
-            
+
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace Sce.Atf.Controls
 
             while (Controls.Count > 0)
                 Controls[0].Dispose();
-            
+
             if (s_lblFormat == null)
             {
                 s_lblFormat = new StringFormat();
@@ -105,8 +105,8 @@ namespace Sce.Atf.Controls
             m_labelWidth = new int[names.Length];
             m_labelWidth[0] = -1; // to indicate uninitialized state.
             SuspendLayout();
-            
-            
+
+
             // custom tab handling.
             TabStop = false;
             for (int i = 0; i < names.Length; i++)
@@ -114,13 +114,13 @@ namespace Sce.Atf.Controls
                 var textBox = new NumericTextBox(m_numericType);
                 textBox.BorderStyle = BorderStyle.None;
                 textBox.TabStop = false;
-                textBox.Name = names[i];                                
+                textBox.Name = names[i];
                 textBox.ScaleFactor = m_scaleFactor;
-                textBox.ValueEdited += textBox_ValueEdited;            
+                textBox.ValueEdited += textBox_ValueEdited;
                 Controls.Add(textBox);
-                
-            }            
-           
+
+            }
+
             ResumeLayout();
         }
 
@@ -223,7 +223,7 @@ namespace Sce.Atf.Controls
         {
             UpdateHeight();
             int cellSize = (Width / Controls.Count);
-           
+
             SuspendLayout();
 
             if (HideAxisLabel)
@@ -240,7 +240,7 @@ namespace Sce.Atf.Controls
             {
                 if (m_labelWidth[0] == -1)
                     ComputeLabelWidth();
-                const int margin = 3;                
+                const int margin = 3;
                 int x = 0, c = 0;
                 foreach (Control control in Controls)
                 {
@@ -251,12 +251,12 @@ namespace Sce.Atf.Controls
             }
             ResumeLayout(true);
 
-            // Invalidate the Control to ensure that 1) OnPaint() gets called below so that  
-            // the labels get placed correctly and 2) the PaintEventArgs.ClipRectangle is as  
-            // large as it needs to be. Without Invalidate(), the ClipRectangle could be very  
-            // small or the paint event may not even happen at all.  
+            // Invalidate the Control to ensure that 1) OnPaint() gets called below so that
+            // the labels get placed correctly and 2) the PaintEventArgs.ClipRectangle is as
+            // large as it needs to be. Without Invalidate(), the ClipRectangle could be very
+            // small or the paint event may not even happen at all.
             Invalidate();
-            base.OnResize(e);            
+            base.OnResize(e);
         }
 
         /// <summary>
@@ -318,7 +318,7 @@ namespace Sce.Atf.Controls
             PerformLayout();
             Invalidate();
         }
-       
+
         /// <summary>
         /// Processes a dialog key</summary>
         /// <param name="keyData">One of the System.Windows.Forms.Keys values that represents the key to process</param>
@@ -335,15 +335,15 @@ namespace Sce.Atf.Controls
                 }
             }
 
-            int index = focusTextBox == null ? -1 : Controls.IndexOf(focusTextBox);                
+            int index = focusTextBox == null ? -1 : Controls.IndexOf(focusTextBox);
             if (keyData == Keys.Tab || keyData == Keys.Enter)
-            {                
+            {
                 // if on last NumericTextBox then don't process tab
-                NumericTextBox last = (NumericTextBox)Controls[Controls.Count - 1];                                                
+                NumericTextBox last = (NumericTextBox)Controls[Controls.Count - 1];
                 if (focusTextBox != last)
                 {
                     Controls[index + 1].Focus();
-                    return true;                    
+                    return true;
                 }
             }
             else if (keyData == (Keys.Tab | Keys.Shift))
@@ -354,7 +354,7 @@ namespace Sce.Atf.Controls
                     Controls[index - 1].Focus();
                     return true;
 
-                }               
+                }
             }
             return base.ProcessDialogKey(keyData);
         }

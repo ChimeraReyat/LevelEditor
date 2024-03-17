@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 
 using System.Collections.Generic;
@@ -12,11 +12,11 @@ using LevelEditorCore;
 
 namespace LevelEditor.DomNodeAdapters
 {
-   
+
     /// <summary>
     /// Root node in a LevelEditor Game document</summary>
     public class Game : DomNodeAdapter, IGame
-    {        
+    {
         #region INameable Members
 
         /// <summary>
@@ -52,8 +52,8 @@ namespace LevelEditor.DomNodeAdapters
         /// are NOT inserted as children of this object but rather as children
         /// of the GameObjectFolder child (thus becoming grand children of Game)</remarks>
         public bool CanAddChild(object child)
-        {            
-            return child.Is<GameReference>();            
+        {
+            return child.Is<GameReference>();
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace LevelEditor.DomNodeAdapters
         /// are NOT inserted as children of this object but rather as children
         /// of the GameObjectFolder child (thus becoming grand children of Game).</remarks>
         public bool AddChild(object child)
-        {            
+        {
             GameReference gameref = child.As<GameReference>();
             if (gameref != null)
             {
@@ -71,15 +71,15 @@ namespace LevelEditor.DomNodeAdapters
                 grefList.Add(gameref);
                 return true;
             }
-            return false;           
+            return false;
         }
 
         #endregion
-                       
+
         #region IGame Members
 
         /// <summary>
-        /// Gets the Grid child</summary>        
+        /// Gets the Grid child</summary>
         public IGrid Grid
         {
             get { return GetChild<IGrid>(Schema.gameType.gridChild); }
@@ -89,7 +89,7 @@ namespace LevelEditor.DomNodeAdapters
         {
             get { return m_parent; }
         }
-              
+
         public IEnumerable<IReference<IGame>> GameReferences
         {
             get { return GetChildList<IReference<IGame>>(Schema.gameType.gameReferenceChild); }
@@ -97,7 +97,7 @@ namespace LevelEditor.DomNodeAdapters
 
         public IGameObjectFolder RootGameObjectFolder
         {
-            get 
+            get
             {
                 GameObjectFolder rootFolder = GetChild<GameObjectFolder>(Schema.gameType.gameObjectFolderChild);
                 if (rootFolder == null)
@@ -106,7 +106,7 @@ namespace LevelEditor.DomNodeAdapters
                     rootFolder.Name = "GameObjects".Localize("this is the name of a folder in the project lister");
                     SetChild(Schema.gameType.gameObjectFolderChild, rootFolder);
                 }
-                return rootFolder;              
+                return rootFolder;
             }
 
         }
@@ -117,7 +117,7 @@ namespace LevelEditor.DomNodeAdapters
             gobGroup.Name = "GameObjectGroup".Localize("this is the name of a folder in the project lister");
             return gobGroup;
         }
-       
+
         public IReference<IResource> CreateResourceReference(IResource resource)
         {
             return ResourceReference.Create(resource);

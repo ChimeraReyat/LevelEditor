@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -8,7 +8,7 @@ namespace Sce.Atf.Controls
 {
     /// <summary>
     /// Renders the items of a tree control with details in columns.
-    /// To display node details in columns, fill the info.Properties from your actual node data 
+    /// To display node details in columns, fill the info.Properties from your actual node data
     /// in IItemView.GetInfo(). For each node detail(column), you need to construct a DataEditor
     /// derived data editor to display/edit the node data.</summary>
     /// <remarks>This class is intended to be used in conjunction with TreeListControl.</remarks>
@@ -52,7 +52,7 @@ namespace Sce.Atf.Controls
 
             UpdateColumnWidths(node, info, g);
             int xOffset = treeListControl.TreeWidth;
-            for (int i = 0; i < info.Properties.Length; ++i) 
+            for (int i = 0; i < info.Properties.Length; ++i)
             {
                 var dataEditor = info.Properties[i] as DataEditor;
                 if (dataEditor != null) // show object data details in columns
@@ -61,7 +61,7 @@ namespace Sce.Atf.Controls
                         (TrackingEditor.Name == dataEditor.Name))
                         dataEditor = TrackingEditor;
                     var clip = new Rectangle(xOffset, y, treeListControl.Columns[i].ActualWidth, treeListControl.GetRowHeight(node));
-                    if (i == info.Properties.Length-1) // extends last column 
+                    if (i == info.Properties.Length-1) // extends last column
                         clip.Width = node.TreeControl.ActualClientSize.Width - xOffset;
                     g.SetClip(clip);
                     dataEditor.PaintValue(g, clip);

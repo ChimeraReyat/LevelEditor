@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Windows.Forms;
@@ -47,24 +47,24 @@ namespace RenderingInterop
                 return false;
 
             Camera camera = vc.Camera;
-            
+
             Matrix4F view = camera.ViewMatrix;
             Matrix4F vp = view  * camera.ProjectionMatrix;
             Matrix4F wvp = HitMatrix * vp;
-            
+
             Ray3F rayL = vc.GetRay(scrPt,wvp);
 
             m_hitRegion = m_translatorControl.Pick(vc, HitMatrix, view, rayL, HitRayV);
-            
-            bool picked = m_hitRegion != HitRegion.None;                      
+
+            bool picked = m_hitRegion != HitRegion.None;
             return picked;
         }
 
         public override void Render(ViewControl vc)
-        {                                                
+        {
             Matrix4F normWorld = GetManipulatorMatrix();
-            if (normWorld == null) return;            
-            m_translatorControl.Render(vc, normWorld);        
+            if (normWorld == null) return;
+            m_translatorControl.Render(vc, normWorld);
         }
 
         public override void OnBeginDrag()
@@ -83,14 +83,14 @@ namespace RenderingInterop
             m_duplicating = Control.ModifierKeys == m_duplicateKey;
 
             if (m_duplicating)
-            { 
+            {
                 List<DomNode> originals = new List<DomNode>();
                 foreach (DomNode node in rootDomNodes)
                 {
                     ITransformable transformable = node.As<ITransformable>();
                     if (!CanManipulate(transformable)) continue;
-                    
-                    originals.Add(node);                    
+
+                    originals.Add(node);
                 }
                 if (originals.Count > 0)
                 {
@@ -118,23 +118,23 @@ namespace RenderingInterop
                     selectionContext.SetRange(newSelection);
                     NodeList.AddRange(copies.AsIEnumerable<ITransformable>());
                 }
-                
+
             }
             else
             {
                 foreach (DomNode node in rootDomNodes)
                 {
                     ITransformable transformable = node.As<ITransformable>();
-                    if (!CanManipulate(transformable)) continue;                    
+                    if (!CanManipulate(transformable)) continue;
                     NodeList.Add(transformable);
                 }
 
                 if (NodeList.Count > 0)
-                    transactionContext.Begin("Move".Localize());                
+                    transactionContext.Begin("Move".Localize());
             }
 
             m_originalValues = new Vec3F[NodeList.Count];
-            m_originalRotations = new Vec3F[NodeList.Count];            
+            m_originalRotations = new Vec3F[NodeList.Count];
             for(int k = 0; k < NodeList.Count; k++)
             {
                 ITransformable node = NodeList[k];
@@ -142,7 +142,7 @@ namespace RenderingInterop
                 if (notifier != null) notifier.OnBeginDrag();
                 m_originalValues[k] = node.Translation;
                 m_originalRotations[k] = node.Rotation;
-            }            
+            }
         }
 
 
@@ -154,14 +154,14 @@ namespace RenderingInterop
             bool hitAxis = m_hitRegion == HitRegion.XAxis
                 || m_hitRegion == HitRegion.YAxis
                 || m_hitRegion == HitRegion.ZAxis;
-            
+
             Matrix4F proj = vc.Camera.ProjectionMatrix;
-                      
-            // create ray in view space.            
+
+            // create ray in view space.
             Ray3F rayV = vc.GetRay(scrPt, proj);
             Vec3F translate = m_translatorControl.OnDragging(rayV);
 
-            ISnapSettings snapSettings = (ISnapSettings)DesignView;            
+            ISnapSettings snapSettings = (ISnapSettings)DesignView;
             bool snapToGeom = Control.ModifierKeys == m_snapGeometryKey;
 
             if (snapToGeom)
@@ -175,16 +175,16 @@ namespace RenderingInterop
                 Vec3F manipMove;
                 if (hitAxis)
                 {
-                    //Make rayw to point toward moving axis and starting 
+                    //Make rayw to point toward moving axis and starting
                     // from manipulator’s world position.
                     rayW.Direction = Vec3F.Normalize(translate);
-                    rayW.Origin = manipPos;                    
+                    rayW.Origin = manipPos;
                     manipMove = Vec3F.ZeroVector;
-                    m_cancelDrag = true; //stop further snap-to's   
+                    m_cancelDrag = true; //stop further snap-to's
                 }
                 else
                 {
-                    manipMove = rayW.ProjectPoint(manipPos) - manipPos;                                       
+                    manipMove = rayW.ProjectPoint(manipPos) - manipPos;
                 }
 
                 for (int i = 0; i < NodeList.Count; i++)
@@ -200,7 +200,7 @@ namespace RenderingInterop
                     parentWorldToLocal.Invert(parentLocalToWorld);
 
                     rayW.MoveToIncludePoint(orgPosW + snapOffset + manipMove);
-                    
+
                     HitRecord[] hits = GameEngine.RayPick(view, proj, rayW, true);
                     bool cansnap = false;
                     HitRecord target = new HitRecord();
@@ -247,8 +247,8 @@ namespace RenderingInterop
                                  AxisSystemType.YIsUp);
                         }
                     }
-                }                
-            }           
+                }
+            }
             else
             {
                 IGrid grid = DesignView.Context.Cast<IGame>().Grid;
@@ -267,17 +267,17 @@ namespace RenderingInterop
                     Vec3F localTranslation;
                     parentWorldToLocal.TransformVector(translate, out localTranslation);
                     Vec3F trans = m_originalValues[i] + localTranslation;
-                   
+
                     if(snapToGrid)
-                    {                    
+                    {
                         if(grid.Snap)
                             trans = grid.SnapPoint(trans);
                         else
-                            trans.Y = gridHeight;                    
+                            trans.Y = gridHeight;
                     }
 
                     node.Translation = trans;
-                }                
+                }
             }
         }
 
@@ -286,10 +286,10 @@ namespace RenderingInterop
             if (m_hitRegion != HitRegion.None && NodeList.Count > 0)
             {
                 for (int k = 0; k < NodeList.Count; k++)
-                {                    
+                {
                     IManipulatorNotify notifier = NodeList[k].As<IManipulatorNotify>();
                     if (notifier != null) notifier.OnEndDrag();
-                }        
+                }
 
                 var transactionContext = DesignView.Context.As<ITransactionContext>();
                 try
@@ -311,8 +311,8 @@ namespace RenderingInterop
         }
 
         #endregion
-          
-        
+
+
         private bool CanManipulate(ITransformable node)
         {
             bool result = node != null
@@ -327,35 +327,35 @@ namespace RenderingInterop
             ITransformable node = GetManipulatorNode(TransformationTypes.Translation);
             if (node == null ) return null;
 
-            ISnapSettings snapSettings = (ISnapSettings)DesignView;            
+            ISnapSettings snapSettings = (ISnapSettings)DesignView;
             Path<DomNode> path = new Path<DomNode>(node.Cast<DomNode>().GetPath());
             Matrix4F localToWorld = TransformUtils.CalcPathTransform(path, path.Count - 1);
-            
+
             Matrix4F toworld = new Matrix4F();
             if (snapSettings.ManipulateLocalAxis)
             {
                 toworld.Set(localToWorld);
-                toworld.Normalize(toworld);                
+                toworld.Normalize(toworld);
             }
             else
             {
-                toworld.Translation = localToWorld.Translation;                
+                toworld.Translation = localToWorld.Translation;
             }
 
             Vec3F offset = TransformUtils.CalcSnapFromOffset(node, snapSettings.SnapFrom);
-          
+
             // Offset by pivot
             Matrix4F P = new Matrix4F();
             P.Translation = offset;
             toworld.Mul(toworld,P);
-                        
+
             return toworld;
         }
 
         /// <summary>
         /// Clear local cache</summary>
         private void Clear()
-        {            
+        {
             NodeList.Clear();
             m_originalValues = null;
             m_originalRotations = null;
@@ -364,15 +364,15 @@ namespace RenderingInterop
         [Import(AllowDefault=false)]
         private ISnapFilter m_snapFilter;
 
-        
+
         private TranslatorControl m_translatorControl;
-        private HitRegion m_hitRegion = HitRegion.None;        
+        private HitRegion m_hitRegion = HitRegion.None;
         private bool m_cancelDrag;
-        private bool m_duplicating;        
+        private bool m_duplicating;
         private Vec3F[] m_originalValues;
-        private Vec3F[] m_originalRotations;                
+        private Vec3F[] m_originalRotations;
         private Keys m_snapGridKey = Keys.Control;
         private Keys m_snapGeometryKey = Keys.Shift;
-        private Keys m_duplicateKey = Keys.Control | Keys.Shift;              
-    }    
+        private Keys m_duplicateKey = Keys.Control | Keys.Shift;
+    }
 }

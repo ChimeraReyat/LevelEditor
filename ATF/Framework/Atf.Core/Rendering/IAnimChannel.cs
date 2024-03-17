@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 
@@ -12,7 +12,7 @@ namespace Sce.Atf.Rendering
         /// <summary>
         /// Timestep with values only</summary>
         kTimeStep,
-        
+
         /// <summary>
         /// Linear interpolation with key times</summary>
         kLinear,
@@ -90,7 +90,7 @@ namespace Sce.Atf.Rendering
             get;
             set;
         }
-        
+
         /// <summary>
         /// Gets or sets the child AnimData list</summary>
         float[] KeyValues

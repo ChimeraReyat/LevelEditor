@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel.Composition;
@@ -13,7 +13,7 @@ namespace LevelEditorCore
 {
     /// <summary>
     /// Thumbnail resolver for image resources
-    /// The ImageThumbnailResolver in ATF does not resize the image which result 
+    /// The ImageThumbnailResolver in ATF does not resize the image which result
     /// large memory usage.</summary>
     [Export(typeof(ImageThumbnailResolver))]
     [Export(typeof(IThumbnailResolver))]

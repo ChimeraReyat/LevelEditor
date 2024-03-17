@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -431,8 +431,8 @@ namespace Sce.Atf.Controls.PropertyEditing
 
 
         /// <summary>
-        /// Gets or sets a value determining if only properties defined by an ICustomTypeDescriptor 
-        /// adapter are used. Otherwise ATF defaults to use all public properties for objects 
+        /// Gets or sets a value determining if only properties defined by an ICustomTypeDescriptor
+        /// adapter are used. Otherwise ATF defaults to use all public properties for objects
         /// without such custom adapters. False by default.</summary>
         public static bool UseCustomTypeDescriptorsOnly { get; set; }
 

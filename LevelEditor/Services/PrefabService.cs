@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -22,7 +22,7 @@ namespace LevelEditor
     /// <summary>
     /// Prefab service</summary>
     /// <remarks>
-    /// There are some common code between this class and 
+    /// There are some common code between this class and
     /// PrototypingService class need to be factored out</remarks>
     [Export(typeof(IInitializable))]
     [Export(typeof(IResourceResolver))]
@@ -45,7 +45,7 @@ namespace LevelEditor
                CommandVisibility.Menu, this);
 
             if (m_scriptingService != null)
-                m_scriptingService.SetVariable(this.GetType().Name, this);            
+                m_scriptingService.SetVariable(this.GetType().Name, this);
 
         }
 
@@ -59,7 +59,7 @@ namespace LevelEditor
             if (prefab != null)
             {
                 PrefabInstance instance = PrefabInstance.Create(prefab);
-                return instance.As<IGameObject>();              
+                return instance.As<IGameObject>();
             }
             return null;
         }
@@ -81,7 +81,7 @@ namespace LevelEditor
                     using (Stream stream = File.OpenRead(fileName))
                     {
                         var reader = new CustomDomXmlReader(Globals.ResourceRoot, m_schemaLoader);
-                        DomNode node = reader.Read(stream, uri);                        
+                        DomNode node = reader.Read(stream, uri);
                         resource = Prefab.Create(node, uri);
                     }
                 }
@@ -144,7 +144,7 @@ namespace LevelEditor
 
         void ICommandClient.UpdateCommand(object commandTag, CommandState commandState)
         {
-            
+
         }
 
         #endregion
@@ -172,7 +172,7 @@ namespace LevelEditor
                             yield return gob;
 
                     }
-                }                
+                }
             }
         }
 
@@ -200,14 +200,14 @@ namespace LevelEditor
             var list = prefab.GetChildList(Schema.prefabType.gameObjectChild);
             Vec3F center = bound.Center;
             foreach (IGameObject gob in copyList)
-            {                
+            {
                 gob.Translation = gob.Translation - center;
-                gob.UpdateTransform(); 
+                gob.UpdateTransform();
                 list.Add(gob.As<DomNode>());
-            }            
+            }
             return prefab;
         }
-        
+
         [Import(AllowDefault = false)]
         private IMainWindow m_mainWindow = null;
 
@@ -233,7 +233,7 @@ namespace LevelEditor
 
         private const string m_ext = ".prefab";
         private string m_fileFilter = string.Format("Prefab (*{0})|*{0}", m_ext);
-        
+
     }
 
     public class Prefab : DomNodeAdapter, IPrefab
@@ -279,7 +279,7 @@ namespace LevelEditor
 
         #endregion
 
-        private Uri m_uri;        
+        private Uri m_uri;
         private IEnumerable<IGameObject> m_gobs;
     }
 }

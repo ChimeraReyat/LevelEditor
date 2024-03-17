@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Runtime.InteropServices;
@@ -17,13 +17,13 @@ namespace RenderingInterop
     {
         protected override void OnNodeSet()
         {
-            base.OnNodeSet();            
-            DomNode node = DomNode;           
-            node.AttributeChanged += node_AttributeChanged;            
+            base.OnNodeSet();
+            DomNode node = DomNode;
+            node.AttributeChanged += node_AttributeChanged;
             TypeId = (uint)DomNode.Type.GetTag(NativeAnnotations.NativeType);
-            
+
         }
-       
+
         void node_AttributeChanged(object sender, AttributeEventArgs e)
         {
             // process events only for the DomNode attached to this adapter.
@@ -32,10 +32,10 @@ namespace RenderingInterop
             UpdateNativeProperty(e.AttributeInfo);
         }
 
-        
+
         /// <summary>
-        /// Updates all the shared properties  
-        /// between this and native object 
+        /// Updates all the shared properties
+        /// between this and native object
         /// only call onece.
         /// </summary>
         public void UpdateNativeOjbect()
@@ -46,7 +46,7 @@ namespace RenderingInterop
             }
         }
 
-      
+
         unsafe private void UpdateNativeProperty(AttributeInfo attribInfo)
         {
             object idObj = attribInfo.GetTag(NativeAnnotations.NativeProperty);
@@ -58,12 +58,12 @@ namespace RenderingInterop
             AttributeInfo mappedAttribute = attribInfo.GetTag(NativeAnnotations.MappedAttribute) as AttributeInfo;
             DomNodeType definingType = (mappedAttribute != null) ? mappedAttribute.DefiningType : attribInfo.DefiningType;
             uint typeId = (uint)definingType.GetTag(NativeAnnotations.NativeType);
-            
+
             Type clrType = attribInfo.Type.ClrType;
             Type elmentType = clrType.GetElementType();
 
             object data = this.DomNode.GetAttribute(attribInfo);
-            
+
             if (clrType.IsArray && elmentType.IsPrimitive)
             {
                 GCHandle pinHandle = new GCHandle();
@@ -79,7 +79,7 @@ namespace RenderingInterop
                 {
                     if (pinHandle.IsAllocated)
                         pinHandle.Free();
-                }                
+                }
             }
             else
             {
@@ -109,7 +109,7 @@ namespace RenderingInterop
                     sz = sizeof(float);
                 }
                 else if (clrType == typeof(bool))
-                {                  
+                {
                     bool val = (bool)data;
                     ptr = new IntPtr(&val);
                     sz = sizeof(bool);
@@ -178,7 +178,7 @@ namespace RenderingInterop
                 {
                     if(data != null && !string.IsNullOrWhiteSpace(data.ToString()))
                     {
-                        Uri uri = (Uri)data;                        
+                        Uri uri = (Uri)data;
                         string str = uri.LocalPath;
                         fixed (char* chptr = str)
                         {
@@ -197,8 +197,8 @@ namespace RenderingInterop
                     if(nativeGob != null)
                     {
                         ptr = new IntPtr((void*)nativeGob.InstanceId);
-                        sz = sizeof(ulong);                        
-                    }                    
+                        sz = sizeof(ulong);
+                    }
                 }
 
                 GameEngine.SetObjectProperty(typeId, InstanceId, id, ptr, sz);
@@ -209,17 +209,17 @@ namespace RenderingInterop
         {
             get;
             private set;
-        }        
+        }
 
         /// <summary>
-        /// this method is exclusively used by GameEngine class.                
+        /// this method is exclusively used by GameEngine class.
         public void SetNativeHandle(ulong instanceId)
-        {            
-            m_instanceId = instanceId;           
+        {
+            m_instanceId = instanceId;
         }
 
         private ulong m_instanceId;
-        
+
         #region INativeObject Members
         public void InvokeFunction(string fn, IntPtr arg, out IntPtr retval)
         {

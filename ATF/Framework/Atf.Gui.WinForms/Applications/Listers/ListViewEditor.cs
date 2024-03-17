@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -57,7 +57,7 @@ namespace Sce.Atf.Applications
 
             listViewAdapter = new ListViewAdapter(listView);
         }
-       
+
 
         #region IInitializable Members
 
@@ -367,9 +367,9 @@ namespace Sce.Atf.Applications
         [Import(AllowDefault = true)]
         private IStatusService m_statusService;
 
-        [Import(AllowDefault = true)] 
+        [Import(AllowDefault = true)]
         private ISettingsService m_settingsService;
-        
+
         [ImportMany]
         private IEnumerable<Lazy<IContextMenuCommandProvider>> m_contextMenuCommandProviders;
 

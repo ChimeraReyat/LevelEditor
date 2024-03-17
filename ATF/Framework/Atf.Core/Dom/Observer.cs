@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 namespace Sce.Atf.Dom
 {
@@ -15,7 +15,7 @@ namespace Sce.Atf.Dom
             DomNode.AttributeChanged += OnAttributeChanged;
             DomNode.ChildInserted += DomNode_ChildInserted;
             DomNode.ChildRemoved += DomNode_ChildRemoved;
-            
+
             AddSubtree(DomNode);
         }
 

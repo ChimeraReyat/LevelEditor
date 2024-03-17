@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace Sce.Atf
         /// Tries to parse a string into an enum of type T</summary>
         /// <typeparam name="T">Enum type</typeparam>
         /// <param name="value">String to parse</param>
-        /// <param name="result">If successful, result is set to the matching enum. Otherwise, 
+        /// <param name="result">If successful, result is set to the matching enum. Otherwise,
         /// result is set to the default value of type T.</param>
         /// <returns>True iff the string was successfully matched to a member of the enum</returns>
         /// <exception cref="InvalidOperationException"> if T is not actually an enum type</exception>
@@ -233,7 +233,7 @@ namespace Sce.Atf
                         // as a previous entry.
                         //
                         // If this is problematic, remove line below, and
-                        // re-type DisplayStrings as a multimap.  However, 
+                        // re-type DisplayStrings as a multimap.  However,
                         // doing so might constitute a breaking change.
 
                         if (result.DisplayStrings.ContainsKey(enumValue))

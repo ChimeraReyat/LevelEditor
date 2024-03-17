@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -10,15 +10,15 @@ using Sce.Atf;
 namespace LevelEditor
 {
     /// <summary>
-    /// Splash screen used by any application 
+    /// Splash screen used by any application
     /// the user Application need to provide splash image.</summary>
     public class SplashForm : Form
-    {       
+    {
         /// <summary>
-        /// Create and Show Splash Form</summary>        
+        /// Create and Show Splash Form</summary>
         public static void ShowForm(Type type, string resourcePath)
         {
-            if (theInstance != null) return;            
+            if (theInstance != null) return;
             theInstance = new SplashForm(type, resourcePath.ToString());
             theInstance.Show();
             Application.DoEvents();
@@ -37,7 +37,7 @@ namespace LevelEditor
 
         /// <summary>
         /// construct Splash Form and assing background image if provided.
-        /// </summary>        
+        /// </summary>
         private SplashForm(Type type, string resourcePath)
         {
             Bitmap bkgImage = null;
@@ -54,9 +54,9 @@ namespace LevelEditor
 
             this.SuspendLayout();
 
-            // 
+            //
             // lblAppVer
-            //             
+            //
             this.lblAppVer = new Label();
             this.lblAppVer.BackColor = Color.Transparent;
             this.lblAppVer.ForeColor = Color.LightGray;
@@ -65,7 +65,7 @@ namespace LevelEditor
             this.lblAppVer.Text = "Version " + Application.ProductVersion;
             this.lblAppVer.Width = 200;
             lblAppVer.AutoSize = true;
-            
+
 
             // lblATFVer
             this.lblATFVer = new System.Windows.Forms.Label();
@@ -76,7 +76,7 @@ namespace LevelEditor
             this.lblATFVer.Text = "Uses ATF Version " + AtfVersion.GetVersion();
             this.lblATFVer.Width = 200;
             lblATFVer.AutoSize = true;
-            
+
 
             //
             // lblCopyright
@@ -89,11 +89,11 @@ namespace LevelEditor
             this.lblCopyright.Text = copyright;
             this.lblCopyright.Width = 500;
             this.AutoSize = true;
-            
 
-            // 
+
+            //
             // SplashForm
-            //             
+            //
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ControlBox = false;
@@ -122,7 +122,7 @@ namespace LevelEditor
 
             SizeChanged += (sender, e) =>
                 {
-                    // Reposition labels.                  
+                    // Reposition labels.
                     const int x = 10;
                     int y = Height - lblCopyright.Height - 6;
 

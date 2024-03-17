@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -15,7 +15,7 @@ namespace Sce.Atf.Controls.Adaptable
     /// Adapter to draw a grid on a diagram and to perform layout constraints
     /// using that grid</summary>
     public class D2dGridAdapter : ControlAdapter, ILayoutConstraint
-    {        
+    {
         /// <summary>
         /// Gets or sets whether the grid is visible</summary>
         public bool Visible
@@ -168,19 +168,19 @@ namespace Sce.Atf.Controls.Adaptable
             Color gridColor = AdaptedControl.BackColor;
             float intensity = ((float)gridColor.R + (float)gridColor.G + (float)gridColor.B) / 3;
             float shading = (intensity < 128) ? m_gridContrast : -m_gridContrast;
-            m_gridColor = ColorUtil.GetShade(gridColor, 1 + shading);            
+            m_gridColor = ColorUtil.GetShade(gridColor, 1 + shading);
         }
 
         private void control_BackColorChanged(object sender, EventArgs e)
         {
             SetGridColor();
         }
-     
+
         // draw dragged events
         private void control_DrawingD2d(object sender, EventArgs e)
         {
             if (m_visible)
-            {                
+            {
                 var d2dControl = AdaptedControl as D2dAdaptableControl;
                 Matrix3x2F xform = d2dControl.D2dGraphics.Transform;
                 d2dControl.D2dGraphics.Transform = Matrix3x2F.Identity;
@@ -206,7 +206,7 @@ namespace Sce.Atf.Controls.Adaptable
             if (AdaptedControl != null)
                 AdaptedControl.Invalidate();
         }
-        
+
         private ITransformAdapter m_transformAdapter;
         private Color m_gridColor;
         private float m_gridContrast = 0.25f;

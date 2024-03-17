@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel.Composition;
@@ -9,12 +9,12 @@ using Sce.Atf;
 using LevelEditorCore;
 
 namespace RenderingInterop
-{    
+{
     [Export(typeof (IResourceResolver))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class AssetResolver : IResourceResolver
     {
-        
+
         #region IResourceResolver Members
 
         public IResource Resolve(Uri uri)
@@ -24,7 +24,7 @@ namespace RenderingInterop
             string ext = Path.GetExtension(fileName).ToLower();
             var res = m_gameEngine.Info.ResourceInfos.GetByType(ResourceTypes.Model);
             if(res.IsSupported(ext))
-                resource = new ModelResource(uri,ResourceTypes.Model);                       
+                resource = new ModelResource(uri,ResourceTypes.Model);
 
             return resource;
         }
@@ -36,8 +36,8 @@ namespace RenderingInterop
             {
                 m_uri = uri;
                 m_type = type;
-            }      
-    
+            }
+
             #region IResource Members
             /// <summary>
             /// Gets a string identifying the type of the resource to the end-user</summary>
@@ -62,10 +62,10 @@ namespace RenderingInterop
             /// Event that is raised after the resource's URI changes</summary>
             public event EventHandler<UriChangedEventArgs> UriChanged
                 = delegate { };
-            
+
             #endregion
             private string m_type;
-            private Uri m_uri;            
+            private Uri m_uri;
         }
 
         [Import(AllowDefault=false)]

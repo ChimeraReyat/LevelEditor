@@ -1,4 +1,4 @@
-﻿namespace Sce.Atf.Applications
+namespace Sce.Atf.Applications
 {
     partial class ReconcileForm
     {
@@ -35,18 +35,18 @@
             this.reconcileBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(25, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(190, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Modifiled files(Select files to check out)";
-            // 
+            //
             // localModifiedListBox
-            // 
+            //
             this.localModifiedListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.localModifiedListBox.CheckOnClick = true;
@@ -55,18 +55,18 @@
             this.localModifiedListBox.Name = "localModifiedListBox";
             this.localModifiedListBox.Size = new System.Drawing.Size(754, 169);
             this.localModifiedListBox.TabIndex = 1;
-            // 
+            //
             // label2
-            // 
+            //
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(28, 232);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(241, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Local files not in depot(Selec files to mark for add)";
-            // 
+            //
             // localfilesNotInDepotListBox
-            // 
+            //
             this.localfilesNotInDepotListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.localfilesNotInDepotListBox.FormattingEnabled = true;
@@ -74,9 +74,9 @@
             this.localfilesNotInDepotListBox.Name = "localfilesNotInDepotListBox";
             this.localfilesNotInDepotListBox.Size = new System.Drawing.Size(751, 199);
             this.localfilesNotInDepotListBox.TabIndex = 3;
-            // 
+            //
             // reconcileBtn
-            // 
+            //
             this.reconcileBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.reconcileBtn.Location = new System.Drawing.Point(606, 501);
             this.reconcileBtn.Name = "reconcileBtn";
@@ -85,9 +85,9 @@
             this.reconcileBtn.Text = "Reconcile";
             this.reconcileBtn.UseVisualStyleBackColor = true;
             this.reconcileBtn.Click += new System.EventHandler(this.reconcileBtn_Click);
-            // 
+            //
             // cancelBtn
-            // 
+            //
             this.cancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelBtn.Location = new System.Drawing.Point(704, 500);
             this.cancelBtn.Name = "cancelBtn";
@@ -96,9 +96,9 @@
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
-            // 
+            //
             // ReconcileForm
-            // 
+            //
             this.AcceptButton = this.reconcileBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -139,7 +139,7 @@ namespace Sce.Atf
         public const int CB_GETCOMBOBOXINFO = 0x0164;
         public const int CB_MSGMAX = 0x0165;
 
-        // ListView messages 
+        // ListView messages
         public const int LVM_FIRST = 0x1000;
         public const int HDM_FIRST = 0x1200;
         public const int HDM_SETFOCUSEDITEM = HDM_FIRST + 28;
@@ -601,8 +601,8 @@ namespace Sce.Atf
         /// Examines messages that are in the Windows message queue for this thread</summary>
         /// <param name="msg">Pointer to area that receives message</param>
         /// <param name="hWnd">Handle to window</param>
-        /// <param name="messageFilterMin">Value to indicate first message to receive. 
-        /// Set to WM_KEYFIRST (0x0100) for the first keyboard message or 
+        /// <param name="messageFilterMin">Value to indicate first message to receive.
+        /// Set to WM_KEYFIRST (0x0100) for the first keyboard message or
         /// WM_MOUSEFIRST (0x0200) for the first mouse message.</param>
         /// <param name="messageFilterMax">Value to indicate last message to receive.
         /// Set to WM_KEYLAST for the last keyboard message or WM_MOUSELAST for the last mouse message.</param>
@@ -623,11 +623,11 @@ namespace Sce.Atf
         /// Waits until one or more objects are in the signaled state or timeout occurs</summary>
         /// <param name="nCount">Number of object handles in pHandles</param>
         /// <param name="pHandles">Array of handles for objects being monitored</param>
-        /// <param name="bWaitAll">True to wait for all objects to get signaled. False if only wait until one object is signaled; 
+        /// <param name="bWaitAll">True to wait for all objects to get signaled. False if only wait until one object is signaled;
         /// in this case, the return value indicated which object was signaled</param>
         /// <param name="dwMilliseconds">Time out period in milliseconds</param>
         /// <param name="dwWakeMask">Mask values that indicate what signals the function waits for</param>
-        /// <returns>WAIT_FAILED iff function timed out. Otherwise, returns a value indicating what event caused the function to return, 
+        /// <returns>WAIT_FAILED iff function timed out. Otherwise, returns a value indicating what event caused the function to return,
         /// such as an object being signaled.</returns>
         [DllImport(DllName)]
         public static extern int MsgWaitForMultipleObjects(
@@ -686,7 +686,7 @@ namespace Sce.Atf
 
 
         /// <summary>
-        /// This delegate is used with SetWindowsHookEx(). For more details, see 
+        /// This delegate is used with SetWindowsHookEx(). For more details, see
         /// http://msdn.microsoft.com/en-us/library/ms644990. </summary>
         /// <param name="code">The message ID depends on the HookType that was used. It will be ShellEvents
         /// for WH_SHELL or it will be CbtEvents for WH_CBT, for example. If it's less than zero, then that
@@ -769,7 +769,7 @@ namespace Sce.Atf
         /// <param name="threadID">The thread ID from calling AppDomain.GetCurrentThreadId().
         /// Use the pragma "warning disable 612,618" and "warning restore 612,618" to get rid
         /// of the compiler warning.</param>
-        /// <returns>If successful, handle to the hook procedure. If fails, NULL. 
+        /// <returns>If successful, handle to the hook procedure. If fails, NULL.
         /// To get extended error information, call GetLastError().</returns>
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         public static extern IntPtr SetWindowsHookEx(HookType code, WindowsHookCallback func, IntPtr hInstance, int threadID);

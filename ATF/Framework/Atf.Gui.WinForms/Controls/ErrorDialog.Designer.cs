@@ -1,4 +1,4 @@
-﻿namespace Sce.Atf.Controls
+namespace Sce.Atf.Controls
 {
     /// <summary>
     /// Dialog to display error messages to user; used by ErrorDialogService</summary>
@@ -32,28 +32,28 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
-            // 
+            //
             // okButton
-            // 
+            //
             resources.ApplyResources(this.okButton, "okButton");
             this.okButton.Name = "okButton";
             this.okButton.UseVisualStyleBackColor = true;
-            // 
+            //
             // textBox1
-            // 
+            //
             resources.ApplyResources(this.textBox1, "textBox1");
             this.textBox1.BackColor = System.Drawing.SystemColors.Control;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Name = "textBox1";
-            // 
+            //
             // checkBox1
-            // 
+            //
             resources.ApplyResources(this.checkBox1, "checkBox1");
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.UseVisualStyleBackColor = true;
-            // 
+            //
             // ErrorDialog
-            // 
+            //
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.checkBox1);

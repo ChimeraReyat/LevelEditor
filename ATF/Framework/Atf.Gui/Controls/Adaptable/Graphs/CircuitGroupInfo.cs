@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,11 +19,11 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         }
 
         #region INotifyPropertyChanged members
-        
+
         /// <summary>
         /// Event that is raised if any of the properties on this object are changed</summary>
         public event PropertyChangedEventHandler PropertyChanged;
-        
+
         #endregion
 
         /// <summary>

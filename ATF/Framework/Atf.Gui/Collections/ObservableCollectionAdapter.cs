@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections;
@@ -64,8 +64,8 @@ namespace Sce.Atf.Collections
             {
                 case NotifyCollectionChangedAction.Add:
                     result = new NotifyCollectionChangedEventArgs(
-                        NotifyCollectionChangedAction.Add, 
-                        ConvertList(e.NewItems), 
+                        NotifyCollectionChangedAction.Add,
+                        ConvertList(e.NewItems),
                         e.NewStartingIndex);
                     break;
                 case NotifyCollectionChangedAction.Move:

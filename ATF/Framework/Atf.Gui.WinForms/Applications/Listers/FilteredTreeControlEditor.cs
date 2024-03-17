@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel.Composition;
@@ -52,7 +52,7 @@ namespace Sce.Atf.Applications
             TreeControl.NodeExpandedChanged += TreeControl_NodeExpandedChanged;
             TreeControl.ItemRendererChanged += (sender, e) => UpdateTreeItemRenderer();
         }
-        
+
         /// <summary>
         /// Gets StringSearchInputUI instance</summary>
         public StringSearchInputUI SearchInputUI
@@ -89,7 +89,7 @@ namespace Sce.Atf.Applications
 
         /// <summary>
         /// Gets or sets a value indicating whether to restore sub-tree expansion state when collapsing a node
-        /// false by default</summary>          
+        /// false by default</summary>
         public bool RestoreSubExpansion
         {
             get;
@@ -106,7 +106,7 @@ namespace Sce.Atf.Applications
             if (filteredTreeView == null || TreeControl == null || filteredTreeView.Root == null)
                 return;
 
-            UpdateTreeItemRenderer();            
+            UpdateTreeItemRenderer();
 
             try
             {
@@ -123,8 +123,8 @@ namespace Sce.Atf.Applications
                     filteredTreeView.ClearCache();
                     filteredTreeView.IsFiltering = true;
 
-                    // collapse then expand all, to show all the matched nodes 
-                    Collapse();                    
+                    // collapse then expand all, to show all the matched nodes
+                    Collapse();
                     TreeControl.ExpandAll();
                     TreeControl.Invalidate();
                 }
@@ -134,8 +134,8 @@ namespace Sce.Atf.Applications
                     if (m_searching)
                     {// Search stopped: restore expansion
                         m_searching = false;
-                        Collapse();                        
-                        TreeControl.Root.Expanded = true; 
+                        Collapse();
+                        TreeControl.Root.Expanded = true;
                         filteredTreeView.RestoreExpansion(TreeControl.Root, TreeControlAdapter);
                         TreeControl.Invalidate();
                     }
@@ -163,10 +163,10 @@ namespace Sce.Atf.Applications
                 itemRenderer.FilteringStatus = filteredTreeView.GetNodeFilteringStatus;
             }
         }
-        // hold the node that need to be expanded         
+        // hold the node that need to be expanded
         private TreeControl.Node m_toExpand;
         private void TreeControl_NodeExpandedChanging(object sender, TreeControl.CancelNodeEventArgs e)
-        {            
+        {
             var treeView = TreeView.As<FilteredTreeView>();
             // early exit
             if (m_updating || !m_searching || e.Node.Tag == null
@@ -210,7 +210,7 @@ namespace Sce.Atf.Applications
             }
         }
         private void TreeControl_NodeExpandedChanged(object sender, TreeControl.NodeEventArgs e)
-        {            
+        {
             var treeView = TreeView.As<FilteredTreeView>();
             // early exit
             if (m_updating || !m_searching || e.Node.Tag == null
@@ -243,14 +243,14 @@ namespace Sce.Atf.Applications
                 SearchInputUI.ClearSearch();
         }
 
-        
+
         private void Collapse()
         {
             if (TreeControl.ShowRoot)
             {
                 TreeControl.Root.Expanded = false;
-                TreeControlAdapter.Refresh(TreeControl.Root.Tag);            
-            }                
+                TreeControlAdapter.Refresh(TreeControl.Root.Tag);
+            }
             else
             {
                 TreeControl.Root.Children.ForEach(child => child.Expanded = false);

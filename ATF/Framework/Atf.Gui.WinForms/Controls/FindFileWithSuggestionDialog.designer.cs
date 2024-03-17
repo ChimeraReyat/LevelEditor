@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 namespace Sce.Atf.Controls
 {
@@ -43,82 +43,82 @@ namespace Sce.Atf.Controls
             this.missingFileLabel = new System.Windows.Forms.TextBox();
             this.suggestedFileLabel = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            // 
+            //
             // label2
-            // 
+            //
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            // 
+            //
             // specifyRadioButton
-            // 
+            //
             resources.ApplyResources(this.specifyRadioButton, "specifyRadioButton");
             this.specifyRadioButton.Name = "specifyRadioButton";
             this.specifyRadioButton.UseVisualStyleBackColor = true;
-            // 
+            //
             // ignoreRadioButton
-            // 
+            //
             resources.ApplyResources(this.ignoreRadioButton, "ignoreRadioButton");
             this.ignoreRadioButton.Name = "ignoreRadioButton";
             this.ignoreRadioButton.UseVisualStyleBackColor = true;
-            // 
+            //
             // ignoreAllRadioButton
-            // 
+            //
             resources.ApplyResources(this.ignoreAllRadioButton, "ignoreAllRadioButton");
             this.ignoreAllRadioButton.Name = "ignoreAllRadioButton";
             this.ignoreAllRadioButton.UseVisualStyleBackColor = true;
-            // 
+            //
             // OkButton
-            // 
+            //
             this.OkButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             resources.ApplyResources(this.OkButton, "OkButton");
             this.OkButton.Name = "OkButton";
             this.OkButton.UseVisualStyleBackColor = true;
-            // 
+            //
             // cancelButton
-            // 
+            //
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.cancelButton, "cancelButton");
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.UseVisualStyleBackColor = true;
-            // 
+            //
             // acceptAllRadioButton
-            // 
+            //
             resources.ApplyResources(this.acceptAllRadioButton, "acceptAllRadioButton");
             this.acceptAllRadioButton.Checked = true;
             this.acceptAllRadioButton.Name = "acceptAllRadioButton";
             this.acceptAllRadioButton.TabStop = true;
             this.acceptAllRadioButton.UseVisualStyleBackColor = true;
-            // 
+            //
             // acceptRadioButton
-            // 
+            //
             resources.ApplyResources(this.acceptRadioButton, "acceptRadioButton");
             this.acceptRadioButton.Name = "acceptRadioButton";
             this.acceptRadioButton.UseVisualStyleBackColor = true;
-            // 
+            //
             // label3
-            // 
+            //
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            // 
+            //
             // missingFileLabel
-            // 
+            //
             resources.ApplyResources(this.missingFileLabel, "missingFileLabel");
             this.missingFileLabel.Name = "missingFileLabel";
             this.missingFileLabel.ReadOnly = true;
-            // 
+            //
             // suggestedFileLabel
-            // 
+            //
             resources.ApplyResources(this.suggestedFileLabel, "suggestedFileLabel");
             this.suggestedFileLabel.Name = "suggestedFileLabel";
             this.suggestedFileLabel.ReadOnly = true;
-            // 
+            //
             // FindFileWithSuggestionDialog
-            // 
+            //
             this.AcceptButton = this.OkButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

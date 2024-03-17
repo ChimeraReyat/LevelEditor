@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -52,7 +52,7 @@ namespace Sce.Atf.Controls.Timelines
             get
             {
                 return
-                    m_mouseMoveHitRecord != null && 
+                    m_mouseMoveHitRecord != null &&
                     m_owner.DragOverThreshold &&
                     !m_owner.IsUsingMouse;
             }
@@ -308,7 +308,7 @@ namespace Sce.Atf.Controls.Timelines
         {
             Rectangle clientRectangle = m_owner.ClientRectangle;
             Matrix transform = m_owner.Transform;
-            
+
             if (IsMovingSelection && m_ghosts != null)
             {
                 m_owner.Renderer.DrawGhosts(

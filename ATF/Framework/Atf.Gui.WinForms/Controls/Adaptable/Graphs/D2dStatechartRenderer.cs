@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -26,10 +26,10 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         public D2dStatechartRenderer(D2dDiagramTheme theme)
         {
             m_theme = theme;
-            UpdateToTheme();                        
+            UpdateToTheme();
             m_theme.Redraw += theme_Redraw;
             m_stateRect.RadiusX = CornerRadius;
-            m_stateRect.RadiusY = CornerRadius;                            
+            m_stateRect.RadiusY = CornerRadius;
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             Point endPoint,
             D2dGraphics g)
         {
-            // put endpoint into statechart space            
+            // put endpoint into statechart space
             var inverse = g.Transform;
             inverse.Invert();
             PointF end = Matrix3x2F.TransformPoint(inverse, endPoint);
@@ -144,11 +144,11 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             if (!string.IsNullOrEmpty(label))
             {
                 BezierCurve2F curve = new BezierCurve2F(p1, p2, p3, p4);
-                Vec2F midpoint = curve.Evaluate(0.5f);                
+                Vec2F midpoint = curve.Evaluate(0.5f);
                 g.DrawText(label, m_centerText, new PointF(midpoint.X, midpoint.Y), m_theme.TextBrush);
             }
         }
-       
+
         /// <summary>
         /// Finds node and/or edge hit by the given point</summary>
         /// <param name="graph">Graph to test</param>
@@ -251,7 +251,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             OnRedraw();
         }
 
-      
+
         private bool Pick(TEdge edge, Vec2F v)
         {
             int tolerance = m_theme.PickTolerance;
@@ -266,7 +266,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         }
 
         private void Draw(TNode state, D2dGraphics g, bool outline)
-        {            
+        {
             RectangleF bounds = state.Bounds;
             if (state.Type != StateType.Normal)
             {
@@ -278,7 +278,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 float radInPixel = scaleX * CornerRadius;
 
                 IComplexState<TNode, TEdge> complexState = state as IComplexState<TNode, TEdge>;
-               
+
                 StateIndicators indicators = state.Indicators;
                 if ((indicators & StateIndicators.Active) != 0)
                 {
@@ -292,7 +292,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                     }
                 }
 
-                
+
                 if (radInPixel > MinRadiusInPixel)
                 {
                     m_stateRect.Rect = bounds;
@@ -324,7 +324,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                         new PointF(bounds.X + CornerRadius, bounds.Y + Margin), m_theme.TextBrush);
                 }
 
-                
+
 
                 //RectangleF textBounds = new RectangleF(
                 //    (float)(bounds.Left + 4),
@@ -362,7 +362,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             else
             {
                 m_stateRect.Rect = bounds;
-                g.FillRoundedRectangle(m_stateRect, m_theme.GhostBrush);                
+                g.FillRoundedRectangle(m_stateRect, m_theme.GhostBrush);
             }
         }
 
@@ -378,21 +378,21 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 
             switch (state.Type)
             {
-                case StateType.Start:                    
+                case StateType.Start:
                     g.FillEllipse(innerEllipse, m_theme.TextBrush);
                     break;
                 case StateType.Final:
                     g.DrawEllipse(ellipse, m_theme.OutlineBrush, 3.0f);
-                    g.FillEllipse(innerEllipse, m_theme.TextBrush);                    
+                    g.FillEllipse(innerEllipse, m_theme.TextBrush);
                     break;
                 case StateType.ShallowHistory:
                     g.DrawText("H", m_centerText, bounds, m_theme.TextBrush);
                     break;
-                case StateType.DeepHistory:                
+                case StateType.DeepHistory:
                     g.DrawText("H*", m_centerText, bounds, m_theme.TextBrush);
                     break;
-                case StateType.Conditional:                    
-                    g.DrawText("C", m_centerText, bounds, m_theme.TextBrush);                    
+                case StateType.Conditional:
+                    g.DrawText("C", m_centerText, bounds, m_theme.TextBrush);
                     break;
             }
 
@@ -401,7 +401,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         }
 
         private void DrawOutline(TNode state, D2dBrush brush, D2dGraphics g)
-        {            
+        {
             RectangleF bounds = state.Bounds;
             if (state.Type != StateType.Normal)
             {
@@ -420,10 +420,10 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 {
                     g.DrawRectangle(bounds, brush, m_theme.StrokeWidth);
                 }
-                
+
             }
         }
-             
+
         private void Draw(TEdge edge, D2dBrush brush, D2dGraphics g)
         {
             PointF p1, p2, p3, p4;
@@ -646,7 +646,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 m_fontHeight = m_theme.TextFormat.FontHeight;
             }
         }
-      
+
         // Level of detail control variables.
 
         private const float MinRadiusInPixel = 3.0f;
@@ -658,7 +658,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         private float m_fontHeight;
         private const int StateMargin = 32;
         private const int ArrowSize = 8;
-        private const int Margin = 4; // minimum spacing for various purposes        
+        private const int Margin = 4; // minimum spacing for various purposes
         private D2dRoundedRect m_stateRect = new D2dRoundedRect();
     }
 }

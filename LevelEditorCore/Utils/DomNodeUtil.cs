@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using Sce.Atf.Dom;
 using Sce.Atf.VectorMath;
@@ -19,7 +19,7 @@ namespace LevelEditorCore
             return new Vec3F((float[])domNode.GetAttribute(attribute));
         }
 
-      
+
         /// <summary>
         /// Sets the DomNode Value to the given Vec3F</summary>
         /// <param name="domNode">DomNode holding value</param>

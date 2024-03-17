@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -23,7 +23,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// <summary>
         /// Gets type of layer folder</summary>
         protected abstract DomNodeType LayerFolderType { get; }
-    
+
 
         /// <summary>
         /// Constructor</summary>
@@ -41,7 +41,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             m_layerLister = layerLister;
         }
 
-      
+
         private enum CommandTag
         {
             AddLayerFolder,
@@ -140,7 +140,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         }
 
         #endregion
-     
+
         private readonly LayerLister m_layerLister;
         private readonly ICommandService m_commandService;
         private readonly IContextRegistry m_contextRegistry;

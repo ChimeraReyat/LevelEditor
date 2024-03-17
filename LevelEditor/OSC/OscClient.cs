@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -358,14 +358,14 @@ namespace LevelEditor.OSC
         {
             var data = new[]
             {
-                new Tuple<string, object>(SolidAddress, GetRenderFlags(GlobalRenderFlags.Solid)), 
-                new Tuple<string, object>(WireAddress, GetRenderFlags(GlobalRenderFlags.WireFrame)), 
-                new Tuple<string, object>(SolidAndWireAddress, GetRenderFlags(GlobalRenderFlags.Solid | GlobalRenderFlags.WireFrame)), 
-                new Tuple<string, object>(TexturesAddress, GetRenderFlags(GlobalRenderFlags.Textured)), 
-                new Tuple<string, object>(LightingAddress, GetRenderFlags(GlobalRenderFlags.Lit)), 
-                new Tuple<string, object>(BackfacesAddress, GetRenderFlags(GlobalRenderFlags.RenderBackFace)), 
-                new Tuple<string, object>(ShadowsAddress, GetRenderFlags(GlobalRenderFlags.Shadows)), 
-                new Tuple<string, object>(NormalsAddress, GetRenderFlags(GlobalRenderFlags.RenderNormals)), 
+                new Tuple<string, object>(SolidAddress, GetRenderFlags(GlobalRenderFlags.Solid)),
+                new Tuple<string, object>(WireAddress, GetRenderFlags(GlobalRenderFlags.WireFrame)),
+                new Tuple<string, object>(SolidAndWireAddress, GetRenderFlags(GlobalRenderFlags.Solid | GlobalRenderFlags.WireFrame)),
+                new Tuple<string, object>(TexturesAddress, GetRenderFlags(GlobalRenderFlags.Textured)),
+                new Tuple<string, object>(LightingAddress, GetRenderFlags(GlobalRenderFlags.Lit)),
+                new Tuple<string, object>(BackfacesAddress, GetRenderFlags(GlobalRenderFlags.RenderBackFace)),
+                new Tuple<string, object>(ShadowsAddress, GetRenderFlags(GlobalRenderFlags.Shadows)),
+                new Tuple<string, object>(NormalsAddress, GetRenderFlags(GlobalRenderFlags.RenderNormals)),
             };
             Send(data);
         }
@@ -465,7 +465,7 @@ namespace LevelEditor.OSC
                     }
                 }
             }
-           
+
         }
 
         // Gets or sets a particular byte of a 32-bit integer on a DomNode's attribute.
@@ -479,7 +479,7 @@ namespace LevelEditor.OSC
             {
                 m_bitShift = byteIndex * 8;
             }
-            
+
             // Gets the color as a 32-bit integer and extracts the correct byte.
             public override object GetValue(object component)
             {
@@ -524,15 +524,15 @@ namespace LevelEditor.OSC
                 return;
             var data = new[]
             {
-                new Tuple<string, object>(GlobalAmbientRed, (float)dirLight.Ambient.R), 
-                new Tuple<string, object>(GlobalAmbientBlue, (float)dirLight.Ambient.B), 
-                new Tuple<string, object>(GlobalAmbientGreen, (float)dirLight.Ambient.G), 
-                new Tuple<string, object>(GlobalSpecularRed, (float)dirLight.Specular.R), 
-                new Tuple<string, object>(GlobalSpecularBlue, (float)dirLight.Specular.B), 
-                new Tuple<string, object>(GlobalSpecularGreen, (float)dirLight.Specular.G), 
-                new Tuple<string, object>(GlobalDiffuseRed, (float)dirLight.Diffuse.R), 
-                new Tuple<string, object>(GlobalDiffuseBlue, (float)dirLight.Diffuse.B), 
-                new Tuple<string, object>(GlobalDiffuseGreen, (float)dirLight.Diffuse.G), 
+                new Tuple<string, object>(GlobalAmbientRed, (float)dirLight.Ambient.R),
+                new Tuple<string, object>(GlobalAmbientBlue, (float)dirLight.Ambient.B),
+                new Tuple<string, object>(GlobalAmbientGreen, (float)dirLight.Ambient.G),
+                new Tuple<string, object>(GlobalSpecularRed, (float)dirLight.Specular.R),
+                new Tuple<string, object>(GlobalSpecularBlue, (float)dirLight.Specular.B),
+                new Tuple<string, object>(GlobalSpecularGreen, (float)dirLight.Specular.G),
+                new Tuple<string, object>(GlobalDiffuseRed, (float)dirLight.Diffuse.R),
+                new Tuple<string, object>(GlobalDiffuseBlue, (float)dirLight.Diffuse.B),
+                new Tuple<string, object>(GlobalDiffuseGreen, (float)dirLight.Diffuse.G),
             };
             Send(data);
         }

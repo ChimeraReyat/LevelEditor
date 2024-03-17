@@ -1,13 +1,13 @@
-//Copyright © 2015 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2015 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.ComponentModel;
 
 namespace Sce.Atf
 {
     /// <summary>
-    /// Attribute to tag a field as having a description, which can be localized by 
+    /// Attribute to tag a field as having a description, which can be localized by
     /// development tool LocalizableStringExtractor.  For more specifics, refer to that project.
-    /// When specified on a class element, instead of DescriptionAttribute, any code looking for 
+    /// When specified on a class element, instead of DescriptionAttribute, any code looking for
     /// DescriptionAttribute class elements will receive the localized version of the description</summary>
     public class LocalizedDescriptionAttribute : DescriptionAttribute
     {
@@ -17,7 +17,7 @@ namespace Sce.Atf
 
         /// <summary>
         /// Constructor used when [LocalizedDescription("Some description")] is declared before any class element</summary>
-        public LocalizedDescriptionAttribute(string description) 
+        public LocalizedDescriptionAttribute(string description)
             : base(description) { }
 
         /// <summary>

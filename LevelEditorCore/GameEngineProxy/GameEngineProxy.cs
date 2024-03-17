@@ -1,4 +1,4 @@
-﻿//Copyright © 2015 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2015 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -6,17 +6,17 @@ using System.Collections.Generic;
 namespace LevelEditorCore
 {
     /// <summary>
-    /// Main interface for communicating 
+    /// Main interface for communicating
     /// with game engine.
     /// It exposes a minimum Egnine API surface required for LevelEditing.
     /// This interface is meant to be expanded to support more features.
-    /// It is implemented as MEF component 
+    /// It is implemented as MEF component
     /// in a separate project</summary>
     public interface IGameEngineProxy
     {
         /// <summary>
         /// Gets Game Egine information.
-        /// The information is retrieved during 
+        /// The information is retrieved during
         /// engine initilization.</summary>
         EngineInfo Info { get; }
 
@@ -28,7 +28,7 @@ namespace LevelEditorCore
         /// <summary>
         /// Updates game world</summary>
         /// <param name="time">Frame time</param>
-        /// <param name="updateType">Update type</param>        
+        /// <param name="updateType">Update type</param>
         void Update(FrameTime time, UpdateType updateType);
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace LevelEditorCore
     public enum UpdateType
     {
         /// <summary>
-        /// Editing, in this mode physics and AI 
+        /// Editing, in this mode physics and AI
         /// should not be updated.
         /// While particle system and other editing related effects
         /// should be updated</summary>

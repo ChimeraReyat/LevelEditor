@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -127,8 +127,8 @@ namespace Sce.Atf.Controls.PropertyEditing
                 clearSearchButton.Click += clearSearchButton_Click;
 
                 m_toolStrip.Items.AddRange(
-                    new ToolStripItem[] { 
-                    dropDownButton, 
+                    new ToolStripItem[] {
+                    dropDownButton,
                     m_patternTextBox,
                     clearSearchButton
                     });
@@ -146,7 +146,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                 resetAllButton.ToolTipText = "Reset all properties".Localize();
                 resetAllButton.Click += (sender, e) =>
                     {
-                        ITransactionContext transaction = m_propertyGridView.EditingContext.As<ITransactionContext>();                        
+                        ITransactionContext transaction = m_propertyGridView.EditingContext.As<ITransactionContext>();
                         transaction.DoTransaction(delegate
                         {
                             ResetAll();
@@ -208,9 +208,9 @@ namespace Sce.Atf.Controls.PropertyEditing
 
             Name = "PropertyGrid";
             Font = m_propertyGridView.Font;
-            FontChanged += (sender, e) => m_propertyGridView.Font = Font;                
+            FontChanged += (sender, e) => m_propertyGridView.Font = Font;
             ResumeLayout(false);
-            PerformLayout();            
+            PerformLayout();
         }
 
         /// <summary>
@@ -409,7 +409,7 @@ namespace Sce.Atf.Controls.PropertyEditing
         /// <param name="name">Name, the bold heading</param>
         /// <param name="description">Longer, non-bold description below the heading</param>
         /// <remarks>This method can be used to set a per-type description when the selection changes.
-        /// When the user selects a property row, the description based on the PropertyDescriptor 
+        /// When the user selects a property row, the description based on the PropertyDescriptor
         /// is displayed and replaces any description that may have been set previously.</remarks>
         public void SetDescription(string name, string description)
         {
@@ -666,7 +666,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                 for (int i = 0; i < tokens.Count; i++)
                 {
                     string text, url;
-                    
+
                     // Look for a wiki-formed hyperlink.
                     string a = tokens[i];
                     text = a;
@@ -739,7 +739,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                 DisposeBoldFont();
                 CreateBoldFont();
                 SetDescription(m_name, m_description);
-                
+
                 // It's odd that this is necessary, but changing skins requires this call,
                 //  otherwise the m_name text does not appear in bold.
                 Invalidate();
@@ -819,16 +819,16 @@ namespace Sce.Atf.Controls.PropertyEditing
             [ StructLayout( LayoutKind.Sequential )]
 		    private struct CHARFORMAT2_STRUCT
 		    {
-			    public UInt32	cbSize; 
-			    public UInt32   dwMask; 
-			    public UInt32   dwEffects; 
-			    public Int32    yHeight; 
-			    public Int32    yOffset; 
-			    public Int32	crTextColor; 
-			    public byte     bCharSet; 
-			    public byte     bPitchAndFamily; 
+			    public UInt32	cbSize;
+			    public UInt32   dwMask;
+			    public UInt32   dwEffects;
+			    public Int32    yHeight;
+			    public Int32    yOffset;
+			    public Int32	crTextColor;
+			    public byte     bCharSet;
+			    public byte     bPitchAndFamily;
 			    [MarshalAs(UnmanagedType.ByValArray, SizeConst=32)]
-			    public char[]   szFaceName; 
+			    public char[]   szFaceName;
 			    public UInt16	wWeight;
 			    public UInt16	sSpacing;
 			    public int		crBackColor; // Color.ToArgb() -> int

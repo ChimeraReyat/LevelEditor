@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Xml;
@@ -20,7 +20,7 @@ namespace LevelEditor
         /// <summary>
         /// Converts attribute to string.
         /// WriteAttributes(..) call this method to convert dom attribute to string
-        /// before writing.        
+        /// before writing.
         /// </summary>
         /// <param name="node">DomNode that owns the attribute to be converted</param>
         /// <param name="attributeInfo">The attribute that need to be converted</param>
@@ -45,7 +45,7 @@ namespace LevelEditor
                 Uri ur = (Uri)value;
                 if (ur.IsAbsoluteUri)
                 {
-                    // todo use schema annotation to choose between resource root and this uri                    
+                    // todo use schema annotation to choose between resource root and this uri
                     if (node.Type == Schema.gameReferenceType.Type
                         || node.Type == Schema.gameObjectReferenceType.Type)
                     {// use this Uri to make it relative.

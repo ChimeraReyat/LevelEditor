@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +10,9 @@ using Sce.Atf.Applications;
 namespace Sce.Atf.Dom
 {
     /// <summary>
-    /// Editing Context for templates library; this is the context that is bound to the TemplateLister 
+    /// Editing Context for templates library; this is the context that is bound to the TemplateLister
     /// when a circuit document becomes the active context. </summary>
-    /// <remarks>This context has its own independent Selection, 
+    /// <remarks>This context has its own independent Selection,
     /// The ITreeView implementation controls the hierarchy in the TemplateLister's TreeControl.
     /// The IItemView implementation controls icons and labels in the TemplateLister's TreeControl.</remarks>
     public abstract class TemplatingContext : SelectionContext,
@@ -66,7 +66,7 @@ namespace Sce.Atf.Dom
             var template = item.As<Template>();
             if (template != null)
                 return template.Name;
-            
+
             return null;
         }
 
@@ -92,9 +92,9 @@ namespace Sce.Atf.Dom
             {
                 var template = item.As<Template>();
                 if (template != null)
-                    template.Name = name; 
+                    template.Name = name;
             }
-        
+
         }
 
         #endregion
@@ -123,7 +123,7 @@ namespace Sce.Atf.Dom
             List<object> instances = new List<object>();
             foreach (object item in items)
             {
-                if (item.Is<Template>())              
+                if (item.Is<Template>())
                     instances.Add(item.Cast<Template>());
                 else if (item.Is<TemplateFolder>())
                     instances.Add(item.Cast<TemplateFolder>());
@@ -169,7 +169,7 @@ namespace Sce.Atf.Dom
         /// <param name="insertingObject">Data to insert; e.g., System.Windows.Forms.IDataObject</param>
         /// <returns>True iff the context can insert the data object</returns>
         /// <remarks>Because non-template objects are promoted into the template library via command explicitly,
-        /// CanInsert() here only needs to deal moving items around inside the template lister; 
+        /// CanInsert() here only needs to deal moving items around inside the template lister;
         /// currently we do not allow drag items from outside then drop onto the template lister
         /// </remarks>
         public bool CanInsert(object insertingObject)
@@ -182,7 +182,7 @@ namespace Sce.Atf.Dom
             if (!m_activeItem.Is<TemplateFolder>())
                 return false;
             bool moving = items.All(item => item.Is<Template>() || item.Is<TemplateFolder>());
-            if (!moving) 
+            if (!moving)
                 return false;
             // disallow moving any item inside an external template folder
             if(items.Any(IsExternalTemplate))
@@ -217,8 +217,8 @@ namespace Sce.Atf.Dom
 
             if (IsMovingItems)
             {
-                // Note: since both templates and template folders are implemented as DomNodes, 
-                // inserting a DomNode to a new parent will auto-remove the node from its old parent, 
+                // Note: since both templates and template folders are implemented as DomNodes,
+                // inserting a DomNode to a new parent will auto-remove the node from its old parent,
                 // so we only need to take care of the insertion part
                 foreach (var item in itemCopies)
                 {
@@ -232,7 +232,7 @@ namespace Sce.Atf.Dom
             {
                 m_lastPromoted.Clear();
                 if (IsExternalTemplate(folder))
-                    folder = RootFolder; // perhaps shouldn't prompt items to an external folder directly, let's add to root folder 
+                    folder = RootFolder; // perhaps shouldn't prompt items to an external folder directly, let's add to root folder
                 for (int index = 0; index < itemCopies.Length; ++index)
                 {
                     var item = itemCopies[index];
@@ -309,9 +309,9 @@ namespace Sce.Atf.Dom
                 info.Label = folder.Name;
                 if (folder.Url != null)
                 {
-                    info.ImageIndex = info.GetImageList().Images.IndexOfKey(info.IsExpandedInView ? Sce.Atf.Resources.ReferenceFolderOpen : 
+                    info.ImageIndex = info.GetImageList().Images.IndexOfKey(info.IsExpandedInView ? Sce.Atf.Resources.ReferenceFolderOpen :
                         Sce.Atf.Resources.ReferenceFolderClosed);
-                    info.HoverText = info.Description = folder.Url.LocalPath;                   
+                    info.HoverText = info.Description = folder.Url.LocalPath;
                 }
                 else
                     info.ImageIndex = info.GetImageList().Images.IndexOfKey(Sce.Atf.Resources.FolderIcon);
@@ -347,7 +347,7 @@ namespace Sce.Atf.Dom
         /// <summary>
         /// Event that is raised when the collection has been reloaded</summary>
         public event EventHandler Reloaded;
-       
+
 
         private void DomNode_AttributeChanged(object sender, AttributeEventArgs e)
         {
@@ -409,13 +409,13 @@ namespace Sce.Atf.Dom
         /// <param name="guid">GUID to search for</param>
         /// <returns>Template matching given GUID</returns>
         public Template SearchForTemplateByGuid(TemplateFolder parentFolder, Guid guid)
-        {        
+        {
             foreach (var template in parentFolder.Templates)
             {
                 if (template.Guid  == guid)
                 {
                     return template;
-                   
+
                 }
             }
 

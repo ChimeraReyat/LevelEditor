@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections;
@@ -147,7 +147,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                 // Initialize Controls
 
                 m_toolStrip = new ToolStrip { Dock = DockStyle.Top };
-                
+
                 m_addButton = new ToolStripButton
                 {
                     Text = "Add".Localize(),
@@ -237,10 +237,10 @@ namespace Sce.Atf.Controls.PropertyEditing
                 ObservableContext = m_context.ContextRegistry.GetActiveContext<IObservableContext>();
                 ValidationContext = m_context.ContextRegistry.GetActiveContext<IValidationContext>();
                 TransactionContext = m_context.ContextRegistry.GetActiveContext<ITransactionContext>();
-                
+
                 foreach (ItemControl control in m_itemControls.Values)
-                {                    
-                    control.Clear();                 
+                {
+                    control.Clear();
                 }
 
             }
@@ -249,7 +249,7 @@ namespace Sce.Atf.Controls.PropertyEditing
 
             /// <summary>
             /// Gets true iff this control can be used indefinitely, regardless of whether the associated
-            /// PropertyEditorControlContext's SelectedObjects property changes, i.e., the selection changes. 
+            /// PropertyEditorControlContext's SelectedObjects property changes, i.e., the selection changes.
             /// This property must be constant for the life of this control.</summary>
             public bool Cacheable
             {
@@ -411,7 +411,7 @@ namespace Sce.Atf.Controls.PropertyEditing
             }
 
             private void OnItemInserted(object item)
-            {                
+            {
                 // If an item is removed and then inserted again in the same transaction, then
                 // it was just moved, so we just need to update its position.
                 // If it was modified as well it will already be in the changed list
@@ -437,7 +437,7 @@ namespace Sce.Atf.Controls.PropertyEditing
             }
 
             private void OnItemRemoved(object item)
-            {                
+            {
                 // If added and removed in the same transaction, add & remove
                 // cancel each other out and we don't need to process them.
                 if (m_pendingItemsInserted.Contains(item))
@@ -597,14 +597,14 @@ namespace Sce.Atf.Controls.PropertyEditing
                             itemControl.Refresh();
                     }
 
-                                      
+
                     // Reorder controls for items that have moved, either
                     // because a lower index item was deleted, or because they've been
                     // (directly or indirectly) been moved up or down.
                     int index = 0;
                     int top = m_singletonMode ? 0 : m_toolStrip.Height;
                     foreach (object item in GetItemsFromContext())
-                    {                                                
+                    {
                         ItemControl itemControl;
                         if (m_itemControls.TryGetValue(item, out itemControl))
                         {
@@ -617,7 +617,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                     }
 
                     // Add controls for added items.
-                    // Currently only adding at the end is supported. If we ever want to support 
+                    // Currently only adding at the end is supported. If we ever want to support
                     // inserting in the middle, then we'd probably want to have this step before .
                     // the index-reordering one.
                     foreach (object item in m_pendingItemsInserted)
@@ -637,7 +637,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                             itemControl = new ItemControl(m_itemControls.Count, item,
                                 m_singletonMode, m_indexColumnWidth, TransactionContext, m_parentPropertyGridView);
                             SkinService.ApplyActiveSkin(itemControl);
-                            Controls.Add(itemControl);                            
+                            Controls.Add(itemControl);
                             itemControl.MouseUp += itemControl_MouseUp;
                         }
                         itemControl.Width = m_toolStrip.Width;
@@ -646,11 +646,11 @@ namespace Sce.Atf.Controls.PropertyEditing
 
                         if (m_singletonMode)
                             itemControl.Dock = DockStyle.Fill;
-                        
+
                         top += itemControl.Height;
                         m_itemControls.Add(item, itemControl);
                         SubscribeItemEvents(itemControl);
-                        
+
                         itemControl.Selected = false;
                     }
 
@@ -709,14 +709,14 @@ namespace Sce.Atf.Controls.PropertyEditing
                 OnMouseUp(newE);
             }
 
-                      
+
             private void ClearPendingChanges()
             {
                 if (m_pendingItemsInserted.Count > 0)
                 {
                     m_pendingItemsInserted.Clear();
                 }
-                
+
                 m_pendingItemsRemoved.Clear();
                 m_pendingItemsChanged.Clear();
             }
@@ -884,15 +884,15 @@ namespace Sce.Atf.Controls.PropertyEditing
             }
 
             private void SubscribeItemEvents(ItemControl itemControl)
-            {                
+            {
                 itemControl.SizeChanged += itemControl_SizeChanged;
             }
 
             private void UnsubscribeItemEvents(ItemControl itemControl)
-            {             
+            {
                 itemControl.SizeChanged -= itemControl_SizeChanged;
             }
-          
+
             void itemControl_SizeChanged(object sender, EventArgs e)
             {
                 if (m_processingPendingChanges || !Visible)
@@ -1036,16 +1036,16 @@ namespace Sce.Atf.Controls.PropertyEditing
 
 
                 ProcessPendingChanges();
-             
+
                 // Restore selection
                 foreach (var movePair in movePairs)
                     m_itemControls[movePair.Key].Selected = true;
                 foreach (var item in unselected)
                     item.Selected = false;
             }
-            
+
             private void SelectItemControl(ItemControl selectedControl, bool useModifierKeys = false)
-            {                                
+            {
                 bool shiftKeyDown = useModifierKeys && (ModifierKeys & Keys.Shift) != 0;
                 bool ctrlKeyDown = useModifierKeys && (ModifierKeys & Keys.Control) != 0;
 
@@ -1125,13 +1125,13 @@ namespace Sce.Atf.Controls.PropertyEditing
                         m_editControl.DescriptionSetter = parentPropertyGridView.DescriptionSetter;
                         m_parentPropertyGridView.SelectedPropertyChanged += ParentSelectedPropertyChanged;
                     }
-                  
+
                     m_editControl.MouseUp += editControl_MouseUp;
                     Controls.Add(m_editControl);
 
                     m_editControl.EditingContextUpdated += (sender, e) => UpdateHeight();
                     m_editControl.Invalidated += (sender, e) => UpdateHeight();
-                    
+
                     Init(index, item, singletonMode, indexColumnWidth, context);
 
                     GotFocus += (sender, e) => m_editControl.Focus();
@@ -1181,7 +1181,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                     m_index = index;
                     m_singletonMode = singletonMode;
                     var editingContext = new EmbeddedPropertyEditingContext(new[] { item }, context);
-                    
+
                     if (!m_singletonMode)
                     {
                         // we need a label
@@ -1211,7 +1211,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                     m_editControl.EditingContext = editingContext;
                     Height = m_editControl.GetPreferredHeight();
                 }
-                
+
                 private void editControl_MouseUp(object sender, MouseEventArgs e)
                 {
                     // Let listeners see right-click events so that they can show context menus.
@@ -1248,9 +1248,9 @@ namespace Sce.Atf.Controls.PropertyEditing
                         }
                     }
                 }
-               
+
                 void selectButton_MouseDown(object sender, EventArgs e)
-                {                  
+                {
                     try
                     {
                         m_useModifierKeys = true;
@@ -1298,7 +1298,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                         return Index % 2 == 0 ? BackColor : alternate;
                     }
                 }
-               
+
                 private int m_index;
                 private bool m_selected;
                 private Label m_selectButton;
@@ -1349,7 +1349,7 @@ namespace Sce.Atf.Controls.PropertyEditing
 
             // Controls that have been marked as not visible and are available for new items.
             private readonly List<ItemControl> m_unusedItemControls = new List<ItemControl>();
-            
+
             // Contexts: we need to keep them as members to be able to unsubscribe subscribed events
             private IObservableContext m_observableContext;
             private IValidationContext m_validationContext;
@@ -1389,6 +1389,6 @@ namespace Sce.Atf.Controls.PropertyEditing
         }
 
 
-       
+
     }
 }

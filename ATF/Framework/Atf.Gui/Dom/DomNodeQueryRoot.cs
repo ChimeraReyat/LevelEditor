@@ -1,4 +1,4 @@
-﻿//Sony Computer Entertainment Confidential
+//Sony Computer Entertainment Confidential
 
 using System;
 using System.Windows.Forms;
@@ -84,7 +84,7 @@ namespace Sce.Atf.Dom
         /// <param name="stringQueryOptions">Bitfield defining which string search types can be selected</param>
         /// <param name="isReplacePattern">Whether or not this match should be used in a subsequent replace operation</param>
         public QueryStringPropertyInput(QueryNode parentNode, StringQuery stringQueryOptions, bool isReplacePattern) :
-            base(parentNode, stringQueryOptions) 
+            base(parentNode, stringQueryOptions)
         {
             m_isReplacePattern = isReplacePattern;
         }

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections.Generic;
 using System.IO;
@@ -129,17 +129,17 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// <returns>Graph path</returns>
         static public string GetGroupPath(Group group)
         {
-            var sb = new StringBuilder(); 
+            var sb = new StringBuilder();
             foreach (var domNode in group.DomNode.Lineage.Reverse())
             {
                 if (domNode.Is<IDocument>())
                     sb.Append(Path.GetFileNameWithoutExtension(domNode.Cast<IDocument>().Uri.LocalPath));
                 else if (domNode.Is<Element>())
                     sb.Append(domNode.Cast<Element>().Name);
-                sb.Append(":");      
+                sb.Append(":");
             }
             if (sb.Length >0)
-                sb.Length -= 1; // remove trailing seperator         
+                sb.Length -= 1; // remove trailing seperator
             return sb.ToString();
         }
 
@@ -167,7 +167,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             if (!hitPath.Last.Is<Element>())
                 return null;
             int fromIndex = hitPath.Count - 1; //start from the hit sub-item
-           
+
             int toIndex = hitPath.IndexOf(destNode);
             if (toIndex < 0 || toIndex > fromIndex)
                 return null;
@@ -228,6 +228,6 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         }
 
         private static EmptyGraph s_emptyGraph = new EmptyGraph();
-  
+
     }
 }

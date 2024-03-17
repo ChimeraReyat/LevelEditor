@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -312,11 +312,11 @@ namespace Sce.Atf.Applications
         /// <summary>
         /// Event fired when TreeListView node is checked</summary>
         public event EventHandler<NodeAdapterEventArgs> ItemChecked;
-        
+
         /// <summary>
         /// Event fired when underlying TreeListView is expanding an item and it needs more user data</summary>
         public event EventHandler<ItemLazyLoadEventArgs> ItemLazyLoad;
-        
+
         /// <summary>
         /// Event fired when the underlying TreeListView (with style set to VirtualList)
         /// is requesting data it doesn't know about</summary>
@@ -707,7 +707,7 @@ namespace Sce.Atf.Applications
                 m_queueInserts.Clear();
                 m_queueUpdates.Clear();
                 m_queueRemoves.Clear();
-                
+
                 m_treeListView.EndUpdate();
             }
         }
@@ -948,7 +948,7 @@ namespace Sce.Atf.Applications
             // Make sure collection can support having children
             if (collection.IsReadOnly && (collection.Owner != null))
                 collection.Owner.IsLeaf = false;
-            
+
             if (collection.IsReadOnly)
                 return;
 

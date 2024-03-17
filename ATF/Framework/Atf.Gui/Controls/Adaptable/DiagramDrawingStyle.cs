@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 namespace Sce.Atf.Controls.Adaptable
 {
@@ -28,7 +28,7 @@ namespace Sce.Atf.Controls.Adaptable
         DragSource,
 
         /// <summary>
-        /// Drawing style for objects that wishes to accept drops during Drag and Drop operations.</summary> 
+        /// Drawing style for objects that wishes to accept drops during Drag and Drop operations.</summary>
         DropTarget,
 
         /// <summary>

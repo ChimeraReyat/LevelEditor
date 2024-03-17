@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel.Composition;
@@ -21,7 +21,7 @@ namespace RenderingInterop
 {
 
     /// <summary>
-    /// Thumbnail resolver for 3d models resources</summary>    
+    /// Thumbnail resolver for 3d models resources</summary>
     [Export(typeof(IThumbnailResolver))]
     [Export(typeof(IInitializable))]
     [PartCreationPolicy(CreationPolicy.Shared)]
@@ -38,14 +38,14 @@ namespace RenderingInterop
             }
             m_game = null;
 
-            
+
         }
         #region IInitializable Members
 
         public void Initialize()
         {
-           
-           
+
+
         }
 
         #endregion
@@ -55,20 +55,20 @@ namespace RenderingInterop
 
         Image IThumbnailResolver.Resolve(Uri resourceUri)
         {
-                        
-            string assetPath = resourceUri.LocalPath;          
+
+            string assetPath = resourceUri.LocalPath;
             string thumbnailPath = GetThumbnailPath(assetPath);
 
             Image img = null;
             // regenerate thumbnail if it doesn't exit or it older than access.
-            if (File.Exists(thumbnailPath) == false 
+            if (File.Exists(thumbnailPath) == false
                 || File.GetLastWriteTime(assetPath) > File.GetLastWriteTime(thumbnailPath))
             {
                 if (m_game == null) Init();
                 m_syncContext.Send(delegate
-                {                    
-                    GenThumbnail(resourceUri, thumbnailPath);                    
-                }, null);                
+                {
+                    GenThumbnail(resourceUri, thumbnailPath);
+                }, null);
             }
 
             if (File.Exists(thumbnailPath) && File.GetLastWriteTime(thumbnailPath) > File.GetLastWriteTime(assetPath))
@@ -78,7 +78,7 @@ namespace RenderingInterop
                     img = new Bitmap(strm);
                 }
             }
-            
+
             return img;
         }
 
@@ -93,14 +93,14 @@ namespace RenderingInterop
         }
 
         private void GenThumbnail(Uri resourceUri, string thumbnailPath)
-        {             
+        {
             NativeObjectAdapter gameLevel = GameEngine.GetGameLevel();
             try
             {
                 IResource resource = m_resourceService.Load(resourceUri);
                 IGameObject gob = m_resourceConverterService.Convert(resource);
                 if (gob == null) return;
-                
+
                 m_game.RootGameObjectFolder.GameObjects.Add(gob);
 
                 GameEngine.SetRenderState(m_renderState);
@@ -112,7 +112,7 @@ namespace RenderingInterop
 
                 IBoundable boundable = gob.Cast<IBoundable>();
                 Sphere3F sphere = boundable.BoundingBox.ToSphere();
-                
+
                 if (Math.Abs(sphere.Radius) <= float.Epsilon)
                     sphere.Radius = 1.0f;
 
@@ -129,7 +129,7 @@ namespace RenderingInterop
                 GameEngine.Begin(m_renderSurface.InstanceId, m_cam.ViewMatrix, m_cam.ProjectionMatrix);
                 GameEngine.RenderGame();
                 GameEngine.End();
-                GameEngine.SaveRenderSurfaceToFile(m_renderSurface.InstanceId, thumbnailPath);                
+                GameEngine.SaveRenderSurfaceToFile(m_renderSurface.InstanceId, thumbnailPath);
                 m_game.RootGameObjectFolder.GameObjects.Remove(gob);
 
                 m_resourceService.Unload(resourceUri);
@@ -138,8 +138,8 @@ namespace RenderingInterop
             {
                 GameEngine.SetGameLevel(gameLevel);
             }
-             
-             
+
+
         }
 
         private void Init()
@@ -147,7 +147,7 @@ namespace RenderingInterop
             NativeObjectAdapter curLevel = GameEngine.GetGameLevel();
             try
             {
-                // create new document by creating a Dom node of the root type defined by the schema                 
+                // create new document by creating a Dom node of the root type defined by the schema
                 DomNode rootNode = new DomNode(m_schemaLoader.GameType, m_schemaLoader.GameRootElement);
                 INameable nameable = rootNode.Cast<INameable>();
                 nameable.Name = "ThumbnailGenerator";
@@ -159,7 +159,7 @@ namespace RenderingInterop
                 NativeGameWorldAdapter gworld = rootNode.Cast<NativeGameWorldAdapter>();
 
                 m_game = rootNode.Cast<IGame>();
-                IGameObjectFolder rootFolder = m_game.RootGameObjectFolder;                
+                IGameObjectFolder rootFolder = m_game.RootGameObjectFolder;
                 m_renderSurface = new TextureRenderSurface(96, 96);
                 m_renderState = new RenderState();
                 m_renderState.RenderFlag = GlobalRenderFlags.Solid | GlobalRenderFlags.Textured | GlobalRenderFlags.Lit | GlobalRenderFlags.Shadows;
@@ -180,7 +180,7 @@ namespace RenderingInterop
             };
 
         }
-        
+
         private SynchronizationContext m_syncContext;
 
         [Import(AllowDefault = false)]
@@ -198,7 +198,7 @@ namespace RenderingInterop
         [Import(AllowDefault = false)]
         private IGameEngineProxy m_gameEngine;
 
-        private IGame m_game;        
+        private IGame m_game;
         private Camera m_cam = new Camera();
         private TextureRenderSurface m_renderSurface;
         private RenderState m_renderState;

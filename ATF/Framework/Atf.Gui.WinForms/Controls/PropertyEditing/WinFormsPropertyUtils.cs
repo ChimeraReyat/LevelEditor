@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
@@ -122,7 +122,7 @@ namespace Sce.Atf.Controls.PropertyEditing
 
                 return value.ToString();
             }
-                
+
             private readonly TypeConverter m_converter;
             private IWindowsFormsEditorService m_editorService;
 

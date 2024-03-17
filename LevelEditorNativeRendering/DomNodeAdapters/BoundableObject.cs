@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -36,7 +36,7 @@ namespace RenderingInterop
                     }
 
                 }
-            }            
+            }
         }
 
 
@@ -65,7 +65,7 @@ namespace RenderingInterop
                     IntPtr data;
                     GameEngine.GetObjectProperty(attrInfo.TypeId, attrInfo.PropertyId, this.Cast<NativeObjectAdapter>().InstanceId
                         , out data, out datasize);
-                    Vec3F* vecptr = (Vec3F*)data.ToPointer();                    
+                    Vec3F* vecptr = (Vec3F*)data.ToPointer();
                     AABB bound = new AABB(vecptr[0], vecptr[1]);
                     return bound;
                 }
@@ -74,6 +74,6 @@ namespace RenderingInterop
         }
 
         private NativeAttributeInfo m_boundsAttrib;
-        private NativeAttributeInfo m_localBoundsAttrib;        
+        private NativeAttributeInfo m_localBoundsAttrib;
     }
 }

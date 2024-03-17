@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.IO;
@@ -75,8 +75,8 @@ namespace Sce.Atf.Controls.PropertyEditing
                     filter.AppendFormat("{0},", parameters[i]);
                 }
                 filter.Append(parameters[parameters.Length - 1]);
-                m_filter = filter.ToString();                
-            }                        
+                m_filter = filter.ToString();
+            }
         }
 
         #endregion
@@ -152,7 +152,7 @@ namespace Sce.Atf.Controls.PropertyEditing
         protected override void InitializeDialog(OpenFileDialog dialog)
         {
             base.InitializeDialog(dialog);
-            
+
             if (m_filter != null)
                 dialog.Filter = m_filter;
 

@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Runtime.InteropServices;
@@ -42,7 +42,7 @@ namespace Sce.Atf
     /// <summary>
     /// BITMAPINFOHEADER class to interoperate with Gdi32.dll</summary>
     [StructLayout(LayoutKind.Sequential)]
-    public class BITMAPINFOHEADER 
+    public class BITMAPINFOHEADER
     {
         public int      biSize = Marshal.SizeOf(typeof(BITMAPINFOHEADER));
         public int      biWidth;
@@ -60,11 +60,11 @@ namespace Sce.Atf
     /// <summary>
     /// BITMAPINFO class to interoperate with Gdi32.dll</summary>
     [StructLayout(LayoutKind.Sequential)]
-    public class BITMAPINFO 
+    public class BITMAPINFO
     {
         public BITMAPINFOHEADER bmiHeader = new BITMAPINFOHEADER();
         [MarshalAs(System.Runtime.InteropServices.UnmanagedType.ByValArray, SizeConst=1024)]
-        public byte[] bmiColors; 
+        public byte[] bmiColors;
     }
 
     /// <summary>

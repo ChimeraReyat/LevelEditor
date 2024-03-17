@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 
@@ -80,26 +80,26 @@ namespace Sce.Atf.Controls
             label1 = new System.Windows.Forms.Label();
             cancelButton = new System.Windows.Forms.Button();
             SuspendLayout();
-            // 
+            //
             // progressBar1
-            // 
+            //
             resources.ApplyResources(progressBar1, "progressBar1");
             progressBar1.Name = "progressBar1";
             progressBar1.Step = 5;
-            // 
+            //
             // label1
-            // 
+            //
             resources.ApplyResources(label1, "label1");
             label1.Name = "label1";
-            // 
+            //
             // cancelButton
-            // 
+            //
             resources.ApplyResources(cancelButton, "cancelButton");
             cancelButton.Name = "cancelButton";
             cancelButton.Click += OnCancelled;
-            // 
+            //
             // ProgressDialog
-            // 
+            //
             resources.ApplyResources(this, "$this");
             CausesValidation = false;
             ControlBox = false;

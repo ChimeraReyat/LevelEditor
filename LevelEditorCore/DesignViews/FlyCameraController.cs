@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.ComponentModel.Composition;
 using System.Drawing;
@@ -67,7 +67,7 @@ namespace LevelEditorCore
                 dir = dir - Camera.LookAt;
 
             bool handled = controlSchm.IsControllingCamera(Control.ModifierKeys, e);
-            
+
 
             if (handled)
             {

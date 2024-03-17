@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -22,19 +22,19 @@ namespace Sce.Atf.Controls.CurveEditing
             Size = new Size(400, 400);
             BackColor =  Color.FromArgb(150, 150, 150);
             ResumeLayout(false);
-            m_scaleTextFont = new Font(Font.Name, 8.25f);            
-            
+            m_scaleTextFont = new Font(Font.Name, 8.25f);
+
             SetStyle(ControlStyles.UserPaint
                 | ControlStyles.AllPaintingInWmPaint
                 | ControlStyles.OptimizedDoubleBuffer
                 | ControlStyles.ResizeRedraw
                 , true);
-                        
+
             MinimumSize = new Size(10, 10);
             Zoom_d = new PointD(1, 1);
         }
 
-        
+
         /// <summary>
         /// Frames to fit a given graph rectangle</summary>
         /// <param name="rect">Rectangle to frame</param>
@@ -46,7 +46,7 @@ namespace Sce.Atf.Controls.CurveEditing
             float hw = w / 2;
             if(rect.Width == 0 || rect.Height == 0 )
                 return;
-            
+
             // uniform zoom
             //float z = Math.Min(w / rect.Width, h / rect.Height);
             //Zoom = new Vec2F(z, z);
@@ -71,7 +71,7 @@ namespace Sce.Atf.Controls.CurveEditing
                         break;
                     }
                 case OriginLockMode.Left:
-                    {                        
+                    {
                         if (rect.Right > 0)
                         {
                             float left = Math.Max(0, rect.Left);
@@ -79,7 +79,7 @@ namespace Sce.Atf.Controls.CurveEditing
                             Zoom = new Vec2F(w / fx, h / rect.Height);
                             Vec2F center = new Vec2F(left + fx / 2, rect.Y + rect.Height / 2);
                             Pan = new Vec2F(hw - center.X * Zoom.X, hh + center.Y * Zoom.Y);
-                        }                        
+                        }
                         break;
                     }
                 case OriginLockMode.LeftTop:
@@ -94,7 +94,7 @@ namespace Sce.Atf.Controls.CurveEditing
                         Zoom = new Vec2F(w / fx, h / fy);
                         Vec2F center = new Vec2F(left + fx / 2, top + fy / 2);
                         Pan = new Vec2F(hw - center.X * Zoom.X, hh + center.Y * Zoom.Y);
-                    }             
+                    }
                     break;
                 case OriginLockMode.LeftBottom:
                     {
@@ -108,7 +108,7 @@ namespace Sce.Atf.Controls.CurveEditing
                             Zoom = new Vec2F(w / fx, h / fy);
                             Vec2F center = new Vec2F(left + fx / 2, top + fy / 2);
                             Pan = new Vec2F(hw - center.X * Zoom.X, hh + center.Y * Zoom.Y);
-                        }                        
+                        }
                         break;
                     }
                 case OriginLockMode.LeftMiddle:
@@ -142,14 +142,14 @@ namespace Sce.Atf.Controls.CurveEditing
                 case OriginLockMode.LeftTop:
                     Pan_d = new PointD(1, 1);
                     break;
-                case OriginLockMode.Left:                    
+                case OriginLockMode.Left:
                 case OriginLockMode.LeftMiddle:
                     Pan_d = new PointD(1, ClientSize.Height / 2);
                     break;
                 case OriginLockMode.LeftBottom:
                     Pan_d = new PointD(1, ClientSize.Height);
-                    break;                    
-            }     
+                    break;
+            }
             if(invalidate)
                 Invalidate();
         }
@@ -177,7 +177,7 @@ namespace Sce.Atf.Controls.CurveEditing
         public void ResetTransform()
         {
             Zoom_d = new PointD(1, 1);
-            PanToOrigin();            
+            PanToOrigin();
             Invalidate();
         }
 
@@ -194,7 +194,7 @@ namespace Sce.Atf.Controls.CurveEditing
         }
 
         /// <summary>
-        /// Transforms x and y-coordinates from graph space to client space</summary>        
+        /// Transforms x and y-coordinates from graph space to client space</summary>
         /// <param name="x">X-coordinate to be transformed</param>
         /// <param name="y">Y-coordinate to be transformed</param>
         /// <returns>Vec2F representing transformed x and y-coordinates in client space</returns>
@@ -207,7 +207,7 @@ namespace Sce.Atf.Controls.CurveEditing
         }
 
         /// <summary>
-        /// Transforms x and y-coordinates from graph space to client space</summary>        
+        /// Transforms x and y-coordinates from graph space to client space</summary>
         /// <param name="x">X-coordinate to be transformed</param>
         /// <param name="y">Y-coordinate to be transformed</param>
         /// <returns>Vec2F representing transformed x and y-coordinates in client space</returns>
@@ -220,7 +220,7 @@ namespace Sce.Atf.Controls.CurveEditing
         }
 
         /// <summary>
-        /// Transforms x-coordinate from graph space to client space</summary>        
+        /// Transforms x-coordinate from graph space to client space</summary>
         /// <param name="x">X-coordinate to be transformed</param>
         /// <returns>Transformed x-coordinate in client space</returns>
         public float GraphToClient(double x)
@@ -229,7 +229,7 @@ namespace Sce.Atf.Controls.CurveEditing
         }
 
         /// <summary>
-        /// Transforms x-coordinate from graph space to client space</summary>        
+        /// Transforms x-coordinate from graph space to client space</summary>
         /// <param name="x">X-coordinate to be transformed</param>
         /// <returns>Transformed x-coordinate in client space</returns>
         public float GraphToClient(float x)
@@ -238,7 +238,7 @@ namespace Sce.Atf.Controls.CurveEditing
         }
 
         /// <summary>
-        /// Transforms tangent from graph space to client space</summary>  
+        /// Transforms tangent from graph space to client space</summary>
         /// <param name="tan">Tangent to transform</param>
         /// <returns>Transformed tangent in client space</returns>
         public Vec2F GraphToClientTangent(Vec2F tan)
@@ -246,7 +246,7 @@ namespace Sce.Atf.Controls.CurveEditing
             return new Vec2F(tan.X * (float)m_scale.X, tan.Y * (float)m_scale.Y);
         }
         /// <summary>
-        /// Transforms x and y-coordinates from client space to graph space</summary>      
+        /// Transforms x and y-coordinates from client space to graph space</summary>
         /// <param name="px">X-coordinate to convert</param>
         /// <param name="py">Y-coordinate to convert</param>
         /// <returns>Vec2F representing transformed point in graph space</returns>
@@ -259,7 +259,7 @@ namespace Sce.Atf.Controls.CurveEditing
         }
 
         /// <summary>
-        /// Transforms x and y-coordinates from client space to graph space</summary>        
+        /// Transforms x and y-coordinates from client space to graph space</summary>
         /// <param name="px">X-coordinate in client space</param>
         /// <param name="py">Y-coordinate in client space</param>
         /// <returns>Point in graph space</returns>
@@ -271,16 +271,16 @@ namespace Sce.Atf.Controls.CurveEditing
         }
 
         /// <summary>
-        /// Transforms x-coordinate from client space to graph space</summary>   
+        /// Transforms x-coordinate from client space to graph space</summary>
         /// <param name="px">X-coordinate in client space</param>
         /// <returns>X-coordinate in graph space</returns>
         public double ClientToGraph_d(double px)
         {
-            return (px - m_trans.X) / m_scale.X;            
+            return (px - m_trans.X) / m_scale.X;
         }
 
         /// <summary>
-        /// Transforms point from client space to graph space</summary>   
+        /// Transforms point from client space to graph space</summary>
         /// <param name="p">Point to be transformed</param>
         /// <returns>Vec2F representing transformed point in graph space</returns>
         public Vec2F ClientToGraph(Vec2F p)
@@ -292,7 +292,7 @@ namespace Sce.Atf.Controls.CurveEditing
         }
 
         /// <summary>
-        /// Transforms x-coordinate from client space to graph space</summary>   
+        /// Transforms x-coordinate from client space to graph space</summary>
         /// <param name="px">X-coordinate to be transformed</param>
         /// <returns>Transformed x-coordinate in graph space</returns>
         public float ClientToGraph(float px)
@@ -308,10 +308,10 @@ namespace Sce.Atf.Controls.CurveEditing
         {
             m_xform.Reset();
             m_xform.Translate((float)m_trans.X, (float)m_trans.Y);
-            m_xform.Scale((float)m_scale.X, (float)m_scale.Y);            
+            m_xform.Scale((float)m_scale.X, (float)m_scale.Y);
             return m_xform;
         }
-       
+
         /// <summary>
         /// Draws horizontal scale and ticks</summary>
         /// <param name="g">Graphics object</param>
@@ -321,15 +321,15 @@ namespace Sce.Atf.Controls.CurveEditing
                 throw new ArgumentNullException("g");
 
             double xleft = ClientToGraph_d(0); // left graph rect.
-            double xright = ClientToGraph_d(m_clientSize.X);  // right of graph rect.            
+            double xright = ClientToGraph_d(m_clientSize.X);  // right of graph rect.
             double x = xleft - xleft % m_majorTickX;
             float height = (float)m_clientSize.Y;
-            float heightWithMargin = height - GridTextMargin;            
+            float heightWithMargin = height - GridTextMargin;
             float lastTextEnd = -Width;
             for (; x <= xright; x += m_majorTickX)
-            {                                
+            {
                 // xform x from graph to client space.
-                float xpos = GraphToClient(x);                
+                float xpos = GraphToClient(x);
                 string strVal = Math.Round(x, 9).ToString();
                 SizeF sz = g.MeasureString(strVal, m_scaleTextFont);
                 float hw = sz.Width * 0.5f;
@@ -339,12 +339,12 @@ namespace Sce.Atf.Controls.CurveEditing
                     g.DrawString(strVal, m_scaleTextFont, m_scaleTextBrush, xpos - hw, heightWithMargin - sz.Height);
                     lastTextEnd = xpos + hw;
                 }
-                
+
             }
         }
 
         /// <summary>
-        /// Draws vertical scale and ticks</summary>        
+        /// Draws vertical scale and ticks</summary>
         /// <param name="g">Graphics object</param>
         public virtual void DrawVerticalScale(Graphics g)
         {
@@ -361,65 +361,65 @@ namespace Sce.Atf.Controls.CurveEditing
                 ybottom = tmp;
             }
 
-            double y = ybottom - ybottom % m_majorTickY;            
+            double y = ybottom - ybottom % m_majorTickY;
             for (; y <= ytop; y += m_majorTickY)
             {
-                float ypos = (float)(m_trans.Y + y * m_scale.Y);                
-                string strVal = Math.Round(y, 9).ToString();                
+                float ypos = (float)(m_trans.Y + y * m_scale.Y);
+                string strVal = Math.Round(y, 9).ToString();
                 g.DrawString(strVal, m_scaleTextFont, m_scaleTextBrush, GridTextMargin, ypos - textHeight / 2);
-            }                   
+            }
         }
 
         /// <summary>
-        /// Draws horizontal grid lines with major ticks</summary>        
+        /// Draws horizontal grid lines with major ticks</summary>
         /// <param name="g">Graphics object</param>
         public virtual void DrawHorizontalMajorTicks(Graphics g)
         {
-            DrawHorizontalTicks(g, m_majorGridlinePen, m_majorTickY);                
+            DrawHorizontalTicks(g, m_majorGridlinePen, m_majorTickY);
         }
 
         /// <summary>
-        /// Draws vertical grid lines with major ticks</summary>        
+        /// Draws vertical grid lines with major ticks</summary>
         /// <param name="g">Graphics object</param>
         public virtual void DrawVerticalMajorTicks(Graphics g)
         {
-            DrawVerticalTicks(g, m_majorGridlinePen, m_majorTickX);            
+            DrawVerticalTicks(g, m_majorGridlinePen, m_majorTickX);
         }
 
         /// <summary>
-        /// Draws horizontal grid lines with minor ticks</summary>        
+        /// Draws horizontal grid lines with minor ticks</summary>
         /// <param name="g">Graphics object</param>
         public virtual void DrawHorizontalMinorTicks(Graphics g)
         {
-            if (DrawMinorTickEnabled) 
-                DrawHorizontalTicks(g, m_minorGridlinePen, m_majorTickY / m_numOfMinorTicks);            
+            if (DrawMinorTickEnabled)
+                DrawHorizontalTicks(g, m_minorGridlinePen, m_majorTickY / m_numOfMinorTicks);
         }
 
 
         /// <summary>
-        /// Draws vertical grid lines with minor ticks</summary>        
+        /// Draws vertical grid lines with minor ticks</summary>
         /// <param name="g">Graphics object</param>
         public virtual void DrawVerticalMinorTicks(Graphics g)
         {
             if (DrawMinorTickEnabled)
                 DrawVerticalTicks(g, m_minorGridlinePen, m_majorTickX / m_numOfMinorTicks);
         }
-        
+
         /// <summary>
         /// Draws x and y labels</summary>
         /// <param name="g">Graphics object</param>
         /// <param name="xLabel">X-axis label</param>
-        /// <param name="yLabel">Y-axis label</param>        
-        /// <param name="color">Optional color</param>        
+        /// <param name="yLabel">Y-axis label</param>
+        /// <param name="color">Optional color</param>
         public virtual void DrawXYLabel(Graphics g, string xLabel, string yLabel, Color? color = null)
         {
             Color c = color != null ? color.Value : Color.Black;
-            
+
             using (SolidBrush brush = new SolidBrush(c))
             {
                 float margin = Math.Min( 2.0f * m_axisLabelFont.Height,40);
                 float leadingspace = 120;
-                g.DrawString(xLabel, m_axisLabelFont, brush, leadingspace, ClientSize.Height - margin);               
+                g.DrawString(xLabel, m_axisLabelFont, brush, leadingspace, ClientSize.Height - margin);
                 Matrix xform = g.Transform;
                 g.RotateTransform(-90);
                 g.TranslateTransform(margin, ClientSize.Height - leadingspace, MatrixOrder.Append);
@@ -429,11 +429,11 @@ namespace Sce.Atf.Controls.CurveEditing
         }
 
         /// <summary>
-        /// Draws coordinate axes</summary>        
+        /// Draws coordinate axes</summary>
         /// <param name="g">Graphics object</param>
         public virtual void DrawCoordinateAxes(Graphics g)
         {
-            if (g == null) 
+            if (g == null)
                 throw new ArgumentNullException("g");
 
             Vec2F center = GraphToClient(0, 0);
@@ -442,11 +442,11 @@ namespace Sce.Atf.Controls.CurveEditing
             if(center.Y > 0 && center.Y < h)
                 g.DrawLine(m_axisPen, 0, center.Y, w, center.Y);
             if(center.X > 0 && center.X < w)
-            g.DrawLine(m_axisPen, center.X, 0, center.X, h);                                       
+            g.DrawLine(m_axisPen, center.X, 0, center.X, h);
         }
 
         /// <summary>
-        /// Drawx cartesian grid</summary>        
+        /// Drawx cartesian grid</summary>
         /// <param name="g">Graphics object</param>
         public virtual void DrawCartesianGrid(Graphics g)
         {
@@ -470,7 +470,7 @@ namespace Sce.Atf.Controls.CurveEditing
             g.CompositingMode = CompositingMode.SourceOver;
             DrawVerticalScale(g);
             DrawHorizontalScale(g);
-            
+
         }
 
         /// <summary>
@@ -488,7 +488,7 @@ namespace Sce.Atf.Controls.CurveEditing
             max.Y = Math.Max(p1.Y, p2.Y);
             return new RectangleF(min.X, min.Y, max.X - min.X, max.Y - min.Y);
         }
-       
+
         /// <summary>
         /// Gets or sets y-axis flip</summary>
         public bool FlipY
@@ -497,7 +497,7 @@ namespace Sce.Atf.Controls.CurveEditing
             set
             {
                 m_flipY = value;
-                m_scale.Y = (m_flipY) ? Math.Abs(m_scale.Y) : -Math.Abs(m_scale.Y);                
+                m_scale.Y = (m_flipY) ? Math.Abs(m_scale.Y) : -Math.Abs(m_scale.Y);
             }
         }
         private bool m_flipY;
@@ -520,7 +520,7 @@ namespace Sce.Atf.Controls.CurveEditing
         public double MinZoom
         {
             get { return m_minZoom; }
-            set 
+            set
             {
                 m_minZoom = Math.Min(value,m_maxZoom);
                 Zoom_d = m_scale;
@@ -533,7 +533,7 @@ namespace Sce.Atf.Controls.CurveEditing
         public double MaxZoom
         {
             get { return m_maxZoom; }
-            set 
+            set
             {
                 m_maxZoom = Math.Max(value, m_minZoom);
                 Zoom_d = m_scale;
@@ -558,7 +558,7 @@ namespace Sce.Atf.Controls.CurveEditing
 
 
         /// <summary>
-        /// Gets or sets Brush used for drawing 
+        /// Gets or sets Brush used for drawing
         /// number scale along the axes</summary>
         public Brush ScaleTextBrush
         {
@@ -584,7 +584,7 @@ namespace Sce.Atf.Controls.CurveEditing
         {
             get { return m_majorGridlinePen; }
             set { SetDisposableVar(ref m_majorGridlinePen, value); }
-        }        
+        }
         private Pen m_majorGridlinePen = new Pen(Color.FromArgb(85, 85, 85));
 
         /// <summary>
@@ -613,7 +613,7 @@ namespace Sce.Atf.Controls.CurveEditing
             set { SetDisposableVar(ref m_axisLabelFont, value); }
         }
         private Font m_axisLabelFont = new Font("Trebuchet MS", 13.0f);
-     
+
         /// <summary>
         /// Gets or sets color used to draw coordinate axes</summary>
         public Color AxisColor
@@ -634,19 +634,19 @@ namespace Sce.Atf.Controls.CurveEditing
         /// Gets or sets color used for drawing scale numbers, x and y axis labels</summary>
         public Color TextColor
         {
-            get 
+            get
             {
                 SolidBrush sb = m_scaleTextBrush as SolidBrush;
                 if (sb == null)
                     throw new InvalidOperationException("ScaleTextBrush is null or not a SolidBruhs");
-                return sb.Color; 
+                return sb.Color;
             }
-            set 
+            set
             {
                 SolidBrush sb = m_scaleTextBrush as SolidBrush;
                 if (sb == null)
                     throw new InvalidOperationException("ScaleTextBrush is null or not a SolidBruhs");
-                sb.Color = value; 
+                sb.Color = value;
             }
         }
 
@@ -683,19 +683,19 @@ namespace Sce.Atf.Controls.CurveEditing
         /// Gets or sets zoom. Same as Zoom property, but holds a double instead of a float</summary>
         public PointD Zoom_d
         {
-            get 
+            get
             {
                 PointD result = new PointD();
                 result.X = m_scale.X;
                 result.Y = Math.Abs(m_scale.Y);
-                return result; 
+                return result;
             }
             set
             {
                 double x = Math.Max(m_minZoom, Math.Min(m_maxZoom, value.X));
                 double y = Math.Max(m_minZoom, Math.Min(m_maxZoom, value.Y));
                 m_scale = m_flipY ? new PointD(x, y) : new PointD(x, -y);
-                // recompute grid span along x and y 
+                // recompute grid span along x and y
                 m_majorTickX = ComputeGridSpan(m_majorTickSpacing / x);
                 m_majorTickY = ComputeGridSpan(m_majorTickSpacing / y);
             }
@@ -705,12 +705,12 @@ namespace Sce.Atf.Controls.CurveEditing
         /// Gets or sets zoom or scale</summary>
         public Vec2F Zoom
         {
-            get 
+            get
             {
                 Vec2F result = new Vec2F();
                 result.X = (float)m_scale.X;
                 result.Y = (float)Math.Abs(m_scale.Y);
-                return result;                
+                return result;
             }
             set
             {
@@ -718,7 +718,7 @@ namespace Sce.Atf.Controls.CurveEditing
                 double y = Math.Max(m_minZoom, Math.Min(m_maxZoom, value.Y));
                 m_scale = m_flipY ? new PointD(x, y) : new PointD(x, -y);
 
-                // recompute grid span along x and y 
+                // recompute grid span along x and y
                 m_majorTickX = ComputeGridSpan(m_majorTickSpacing / x);
                 m_majorTickY = ComputeGridSpan(m_majorTickSpacing / y);
             }
@@ -731,12 +731,12 @@ namespace Sce.Atf.Controls.CurveEditing
         {
             get { return (float)m_majorTickX; }
         }
-        
+
         /// <summary>
         /// Gets major tick along y in graph space</summary>
         public float MajorTickY
         {
-            get { return (float)m_majorTickY; }            
+            get { return (float)m_majorTickY; }
         }
 
         /// <summary>
@@ -758,11 +758,11 @@ namespace Sce.Atf.Controls.CurveEditing
         public float MajorTickSpacing
         {
             get {  return (float)m_majorTickSpacing; }
-            set 
+            set
             {
                 if (value < 10)
                     throw new ArgumentOutOfRangeException("value");
-                m_majorTickSpacing = value; 
+                m_majorTickSpacing = value;
             }
         }
 
@@ -771,11 +771,11 @@ namespace Sce.Atf.Controls.CurveEditing
         public float NumOfMinorTicks
         {
             get { return (float)m_numOfMinorTicks; }
-            set 
+            set
             {
                 if (value >= m_majorTickSpacing)
                     throw new ArgumentOutOfRangeException("value");
-                m_numOfMinorTicks = value; 
+                m_numOfMinorTicks = value;
             }
         }
 
@@ -791,27 +791,27 @@ namespace Sce.Atf.Controls.CurveEditing
             PreviousGraphPoint = CurrentGraphPoint;
         }
         /// <summary>
-        /// Performs custom actions on MouseDown event. Sets data for performing pan and zoom.</summary>        
+        /// Performs custom actions on MouseDown event. Sets data for performing pan and zoom.</summary>
         /// <param name="e">Event args</param>
         protected override void OnMouseDown(MouseEventArgs e)
-        {            
+        {
             Focus();
-            Capture = true;                       
-            ClickPoint = new Vec2F(e.X, e.Y);            
+            Capture = true;
+            ClickPoint = new Vec2F(e.X, e.Y);
             ClickGraphPoint = ClientToGraph(ClickPoint);
             PreviousPoint = ClickPoint;
             PreviousGraphPoint = ClickGraphPoint;
             CurrentPoint = ClickPoint;
-            CurrentGraphPoint = ClickGraphPoint;           
+            CurrentGraphPoint = ClickGraphPoint;
             ClickPan_d = Pan_d;
-            ClickZoom_d = Zoom_d;            
+            ClickZoom_d = Zoom_d;
             m_startDrag = true;
             SelectionRect.Location = ClickPoint;
             base.OnMouseDown(e);
         }
 
         /// <summary>
-        /// Performs custom actions on MouseMove event. Performs pan and zoom depending on m_editAction field.</summary>        
+        /// Performs custom actions on MouseMove event. Performs pan and zoom depending on m_editAction field.</summary>
         /// <param name="e">Event args</param>
         protected override void OnMouseMove(MouseEventArgs e)
         {
@@ -829,24 +829,24 @@ namespace Sce.Atf.Controls.CurveEditing
             {
                 m_dragOverThreshold = true;
             }
-         
+
             base.OnMouseMove(e);
         }
 
         /// <summary>
-        /// Performs custom actions on MouseUp event. Resets a few members.</summary>        
+        /// Performs custom actions on MouseUp event. Resets a few members.</summary>
         /// <param name="e">Event args</param>
         protected override void OnMouseUp(MouseEventArgs e)
-        {                        
+        {
             SelectionRect = RectangleF.Empty;
             m_startDrag = false;
             m_dragOverThreshold = false;
             base.OnMouseUp(e);
             Capture = false;
-        }       
+        }
 
         /// <summary>
-        /// Performs custom actions on MouseWheel event. Zooms uniformly.</summary>        
+        /// Performs custom actions on MouseWheel event. Zooms uniformly.</summary>
         /// <param name="e">Event args</param>
         protected override void OnMouseWheel(MouseEventArgs e)
         {
@@ -859,19 +859,19 @@ namespace Sce.Atf.Controls.CurveEditing
         }
 
         /// <summary>
-        /// Performs custom actions on Resize event. Sets m_clientSize field.</summary>        
+        /// Performs custom actions on Resize event. Sets m_clientSize field.</summary>
         /// <param name="e">Event args</param>
         protected override void OnResize(EventArgs e)
-        {           
+        {
             base.OnResize(e);
             m_clientSize.X = ClientSize.Width;
             m_clientSize.Y = ClientSize.Height;
             UpdatePan();
-           
+
         }
 
         /// <summary>
-        /// Releases the unmanaged resources used by the <see cref="T:System.Windows.Forms.Control" /> and its child controls and 
+        /// Releases the unmanaged resources used by the <see cref="T:System.Windows.Forms.Control" /> and its child controls and
         /// optionally releases the managed resources.</summary>
         /// <param name="disposing">True to release both managed and unmanaged resources; false to release only unmanaged resources</param>
         protected override void Dispose(bool disposing)
@@ -898,9 +898,9 @@ namespace Sce.Atf.Controls.CurveEditing
         {
             if (g == null)
                 throw new ArgumentNullException("g");
-            
+
             double xleft = ClientToGraph_d(0); // left graph rect.
-            double xright = ClientToGraph_d(m_clientSize.X); // right of graph rect.            
+            double xright = ClientToGraph_d(m_clientSize.X); // right of graph rect.
             double x = xleft - xleft % tickLength;
             float height = (float)m_clientSize.Y;
             for (; x <= xright; x += tickLength)
@@ -912,11 +912,11 @@ namespace Sce.Atf.Controls.CurveEditing
 
         }
         /// <summary>
-        /// Draw horizontal ticks.</summary>        
+        /// Draw horizontal ticks.</summary>
         private void DrawHorizontalTicks(Graphics g, Pen p, double tickLength)
         {
              if (g == null)
-                throw new ArgumentNullException("g");            
+                throw new ArgumentNullException("g");
             double ytop = ClientToGraph_d(0, 0).Y;
             double ybottom = ClientToGraph_d(0, m_clientSize.Y).Y;
             if (m_flipY)
@@ -940,17 +940,17 @@ namespace Sce.Atf.Controls.CurveEditing
         {
             double w = ClientSize.Width;
             double h = ClientSize.Height;
-            
+
             switch (m_lockorg)
             {
                 case OriginLockMode.Free:
                     m_minOffsetX = float.MinValue;
                     m_maxOffsetX = float.MaxValue;
-                    m_minOffsetY = float.MinValue;                    
+                    m_minOffsetY = float.MinValue;
                     m_maxOffsetY = float.MaxValue;
                     break;
                 case OriginLockMode.Center:
-                    m_minOffsetX = w / 2;                    
+                    m_minOffsetX = w / 2;
                     m_maxOffsetX = w / 2;
                     m_minOffsetY = h / 2;
                     m_maxOffsetY = h / 2;
@@ -958,7 +958,7 @@ namespace Sce.Atf.Controls.CurveEditing
                 case OriginLockMode.Left:
                     m_minOffsetX = float.MinValue;
                     m_maxOffsetX = 1;
-                    m_minOffsetY = float.MinValue;                    
+                    m_minOffsetY = float.MinValue;
                     m_maxOffsetY = float.MaxValue;
                     break;
                 case OriginLockMode.LeftTop:
@@ -982,17 +982,17 @@ namespace Sce.Atf.Controls.CurveEditing
             }
             if (m_lockorg != OriginLockMode.Free)
                 Pan_d = m_trans;
-            
+
         }
         private static readonly double[] s_spanTable = { 0.1, 0.2, 0.5, 1.0, 2.0, 4.0, 5.0};
         /// <summary>
         /// Method used for calculating grid span.
-        /// There could be a better or more efficient way.</summary>        
+        /// There could be a better or more efficient way.</summary>
         private static double ComputeGridSpan(double attendedSpan)
         {
             double digit = Math.Truncate(Math.Log10(attendedSpan));
             double baseNum = Math.Pow(10, digit);
-            
+
             double minSpan = 0;
             double min = Double.MaxValue;
             for (int i = 0; i < s_spanTable.Length; ++i)
@@ -1005,7 +1005,7 @@ namespace Sce.Atf.Controls.CurveEditing
                     min = dis;
                     minSpan = span;
                 }
-            }            
+            }
             return minSpan;
         }
 
@@ -1015,16 +1015,16 @@ namespace Sce.Atf.Controls.CurveEditing
         /// <summary>Previous point in client space</summary>
         protected Vec2F PreviousPoint;
 
-        /// <summary>Current point in client space</summary>        
+        /// <summary>Current point in client space</summary>
         protected Vec2F CurrentPoint;
 
         /// <summary>Graph space point on mouse down</summary>
         protected Vec2F ClickGraphPoint;
 
-        /// <summary>Previous point in graph space</summary>        
+        /// <summary>Previous point in graph space</summary>
         protected Vec2F PreviousGraphPoint;
 
-        /// <summary>Current point in graph space</summary>        
+        /// <summary>Current point in graph space</summary>
         protected Vec2F CurrentGraphPoint;
 
         /// <summary>Pan value on mouse down</summary>
@@ -1042,10 +1042,10 @@ namespace Sce.Atf.Controls.CurveEditing
         {
             get { return m_dragOverThreshold; }
         }
-       
+
         private bool m_startDrag;
         private float m_dragThreshold = 3.0f;
-        private bool m_dragOverThreshold;        
+        private bool m_dragOverThreshold;
         private PointD m_clientSize;
         private PointD m_trans;
         private PointD m_scale = new PointD(1, 1);
@@ -1055,16 +1055,16 @@ namespace Sce.Atf.Controls.CurveEditing
 
         private double m_minOffsetY = float.MinValue;
         private double m_maxOffsetY = float.MaxValue;
-        
-        private double m_minZoom = 1e-4;        
+
+        private double m_minZoom = 1e-4;
         private double m_maxZoom = 1e5;
-                        
-        // grid related members.        
-        private double m_numOfMinorTicks = 5;                
-        private double m_majorTickSpacing = 50.0f;        
+
+        // grid related members.
+        private double m_numOfMinorTicks = 5;
+        private double m_majorTickSpacing = 50.0f;
         public  const float  GridTextMargin = 3.0f;
         private double m_majorTickY = 60;
-        private double m_majorTickX = 60;               
+        private double m_majorTickX = 60;
         private OriginLockMode m_lockorg = OriginLockMode.Free;
     }
 
@@ -1078,7 +1078,7 @@ namespace Sce.Atf.Controls.CurveEditing
         /// <summary>Lock origin to center</summary>
         Center,
 
-        /// <summary>Lock to positive x axis</summary>                
+        /// <summary>Lock to positive x axis</summary>
         Left,
 
         /// <summary>Lock to left top</summary>
@@ -1091,13 +1091,13 @@ namespace Sce.Atf.Controls.CurveEditing
         LeftBottom,
     }
 
-    
+
     /// <summary>
     /// Double 2D point. Used by canvas 2D.</summary>
     public struct PointD
     {
         /// <summary>
-        /// Constructor</summary>        
+        /// Constructor</summary>
         /// <param name="x">X-coordinate</param>
         /// <param name="y">Y-coordinate</param>
         public PointD(double x, double y)
@@ -1107,7 +1107,7 @@ namespace Sce.Atf.Controls.CurveEditing
         }
 
         /// <summary>
-        /// Auto converts vec2F to PointD</summary> 
+        /// Auto converts vec2F to PointD</summary>
         /// <param name="v">Vec2F to convert to PointD</param>
         /// <returns>Converted PointD</returns>
         public static implicit operator PointD(Vec2F v)
@@ -1119,7 +1119,7 @@ namespace Sce.Atf.Controls.CurveEditing
         }
 
         /// <summary>
-        /// Auto converts PointF to PointD</summary>     
+        /// Auto converts PointF to PointD</summary>
         /// <param name="v">PointF to convert to PointD</param>
         /// <returns>Converted PointD</returns>
         public static implicit operator PointD(PointF v)
@@ -1131,7 +1131,7 @@ namespace Sce.Atf.Controls.CurveEditing
         }
 
         /// <summary>
-        /// Converts PointD to Vec2F. Data loss may occur.</summary>   
+        /// Converts PointD to Vec2F. Data loss may occur.</summary>
         /// <param name="p">PointD to convert to Vec2F</param>
         /// <returns>Converted Vec2F</returns>
         public static explicit operator Vec2F(PointD p)
@@ -1143,7 +1143,7 @@ namespace Sce.Atf.Controls.CurveEditing
         }
 
         /// <summary>
-        /// Convert PointD to PointF. Data loss may occur.</summary>     
+        /// Convert PointD to PointF. Data loss may occur.</summary>
         /// <param name="p">PointD to convert to PointF</param>
         /// <returns>Converted PointF</returns>
         public static explicit operator PointF(PointD p)
@@ -1151,13 +1151,13 @@ namespace Sce.Atf.Controls.CurveEditing
             PointF t = new PointF();
             t.X = (float)p.X;
             t.Y = (float)p.Y;
-            return t;           
+            return t;
         }
 
         /// <summary>X-coordinate</summary>
         public double X;
 
         /// <summary>Y-coordinate</summary>
-        public double Y;       
+        public double Y;
     }
 }

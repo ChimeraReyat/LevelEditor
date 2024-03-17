@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -290,7 +290,7 @@ namespace Sce.Atf
         }
 
         /// <summary>
-        /// Used by auto-registration code in Atf.Gui.Resources to ensure that automatic registration 
+        /// Used by auto-registration code in Atf.Gui.Resources to ensure that automatic registration
         /// is only done once. Does not affect explicit Register calls.</summary>
         public static bool RegistrationStarted
         {

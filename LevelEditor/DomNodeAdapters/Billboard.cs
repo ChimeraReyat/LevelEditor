@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 
 using LevelEditorCore;
@@ -10,6 +10,6 @@ namespace LevelEditor.DomNodeAdapters
         {
             base.OnNodeSet();
             TransformationType = TransformationTypes.Translation | TransformationTypes.Scale;
-        }     
+        }
     }
 }

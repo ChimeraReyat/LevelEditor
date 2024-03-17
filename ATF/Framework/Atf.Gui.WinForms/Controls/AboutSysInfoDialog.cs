@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections;
@@ -24,7 +24,7 @@ namespace Sce.Atf.Controls
             assemblyListView.ColumnClick += assemblyListView_ColumnClick;
 
             // Fill in assembly list
-            try 
+            try
             {
                 // Get all modules
                 foreach (ProcessModule module in Process.GetCurrentProcess().Modules)
@@ -82,7 +82,7 @@ namespace Sce.Atf.Controls
 
         /// <summary>
         /// Cleans up any resources being used</summary>
-        /// <param name="disposing">True to release both managed and unmanaged resources; 
+        /// <param name="disposing">True to release both managed and unmanaged resources;
         /// false to release only unmanaged resources</param>
         protected override void Dispose(bool disposing)
         {
@@ -155,9 +155,9 @@ namespace Sce.Atf.Controls
             this.dateColumnHeader = new System.Windows.Forms.ColumnHeader();
             this.okButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // assemblyListView
-            // 
+            //
             this.assemblyListView.AllowColumnReorder = true;
             resources.ApplyResources(this.assemblyListView, "assemblyListView");
             this.assemblyListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -169,28 +169,28 @@ namespace Sce.Atf.Controls
             this.assemblyListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.assemblyListView.UseCompatibleStateImageBehavior = false;
             this.assemblyListView.View = System.Windows.Forms.View.Details;
-            // 
+            //
             // assemblyColumnHeader
-            // 
+            //
             resources.ApplyResources(this.assemblyColumnHeader, "assemblyColumnHeader");
-            // 
+            //
             // versionColumnHeader
-            // 
+            //
             resources.ApplyResources(this.versionColumnHeader, "versionColumnHeader");
-            // 
+            //
             // dateColumnHeader
-            // 
+            //
             resources.ApplyResources(this.dateColumnHeader, "dateColumnHeader");
-            // 
+            //
             // okButton
-            // 
+            //
             resources.ApplyResources(this.okButton, "okButton");
             this.okButton.Name = "okButton";
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.okButton_Click);
-            // 
+            //
             // AboutSysInfoDialog
-            // 
+            //
             this.AcceptButton = this.okButton;
             resources.ApplyResources(this, "$this");
             this.BackColor = System.Drawing.SystemColors.Control;

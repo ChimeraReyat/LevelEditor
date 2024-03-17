@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +15,7 @@ namespace DomGen
         public const string LeGeNativeProperty = "LeGe.NativeProperty";
         public const string LeGeNativeElement = "LeGe.NativeElement";
         public const string NativeName = "nativeName";
-        public const string NativeType = "nativeType";        
+        public const string NativeType = "nativeType";
         public const string Name = "name";
         public const string Access = "access";
         public const string Set = "set";
@@ -30,7 +30,7 @@ namespace DomGen
             string name = elm.GetAttribute(SchemaStrings.NativeName);
             string type = elm.GetAttribute(SchemaStrings.NativeType);
             string access = elm.GetAttribute(SchemaStrings.Access);
-            bool canSet = true; 
+            bool canSet = true;
             bool canGet = true;
             if (null != access)
             {
@@ -116,7 +116,7 @@ namespace DomGen
     }
 
     // a native class in a class that can be instantiated by the native code.
-    // The class info stores the name of the class as well as inforamtion 
+    // The class info stores the name of the class as well as inforamtion
     // about all the native properties and lists.
     public class NativeClassInfo
     {
@@ -158,7 +158,7 @@ namespace DomGen
 
     }
 
-    // the native schema info contains all the inforation about 
+    // the native schema info contains all the inforation about
     // classes, properties and list supported by the native code.
     public class NativeSchemaInfo
     {
@@ -172,7 +172,7 @@ namespace DomGen
                 IEnumerable<XmlNode> annotations = domType.GetTagLocal<IEnumerable<XmlNode>>();
                 if (annotations == null)
                     continue;
-                                
+
                 NativeClassInfo classInfo = null;
                 foreach (XmlNode annot in annotations)
                 {

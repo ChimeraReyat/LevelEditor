@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 using System.Drawing;
 
 namespace Sce.Atf.Controls.Adaptable
@@ -15,7 +15,7 @@ namespace Sce.Atf.Controls.Adaptable
             m_checkBounds = checkBounds;
         }
 
-       
+
         /// <summary>
         /// Gets the expander's bounding rectangle</summary>
         public RectangleF Bounds

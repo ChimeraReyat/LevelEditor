@@ -1,4 +1,4 @@
-﻿namespace Sce.Atf.Applications
+namespace Sce.Atf.Applications
 {
     partial class OscDialog
     {
@@ -63,20 +63,20 @@
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // label2
-            // 
+            //
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            // 
+            //
             // label3
-            // 
+            //
             resources.ApplyResources(this.label3, "label3");
             this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label3.Name = "label3";
-            // 
+            //
             // m_listView
-            // 
+            //
             resources.ApplyResources(this.m_listView, "m_listView");
             this.m_listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.oscAddress,
@@ -87,65 +87,65 @@
             this.m_listView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.m_listView.UseCompatibleStateImageBehavior = false;
             this.m_listView.View = System.Windows.Forms.View.Details;
-            // 
+            //
             // oscAddress
-            // 
+            //
             resources.ApplyResources(this.oscAddress, "oscAddress");
-            // 
+            //
             // propertyName
-            // 
+            //
             resources.ApplyResources(this.propertyName, "propertyName");
-            // 
+            //
             // propertyType
-            // 
+            //
             resources.ApplyResources(this.propertyType, "propertyType");
-            // 
+            //
             // className
-            // 
+            //
             resources.ApplyResources(this.className, "className");
-            // 
+            //
             // m_okButton
-            // 
+            //
             resources.ApplyResources(this.m_okButton, "m_okButton");
             this.m_okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.m_okButton.Name = "m_okButton";
             this.m_okButton.UseVisualStyleBackColor = true;
             this.m_okButton.Click += new System.EventHandler(this.okButton_Click);
-            // 
+            //
             // m_cancelButton
-            // 
+            //
             resources.ApplyResources(this.m_cancelButton, "m_cancelButton");
             this.m_cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.m_cancelButton.Name = "m_cancelButton";
             this.m_cancelButton.UseVisualStyleBackColor = true;
-            // 
+            //
             // m_toClipboardButton
-            // 
+            //
             resources.ApplyResources(this.m_toClipboardButton, "m_toClipboardButton");
             this.m_toClipboardButton.Name = "m_toClipboardButton";
             this.m_toClipboardButton.UseVisualStyleBackColor = true;
             this.m_toClipboardButton.Click += new System.EventHandler(this.toClipboardButton_Click);
-            // 
+            //
             // m_statusTextBox
-            // 
+            //
             resources.ApplyResources(this.m_statusTextBox, "m_statusTextBox");
             this.m_statusTextBox.Name = "m_statusTextBox";
             this.m_statusTextBox.ReadOnly = true;
-            // 
+            //
             // label5
-            // 
+            //
             resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
-            // 
+            //
             // panel1
-            // 
+            //
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.tableLayoutPanel2);
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
-            // 
+            //
             // tableLayoutPanel2
-            // 
+            //
             resources.ApplyResources(this.tableLayoutPanel2, "tableLayoutPanel2");
             this.tableLayoutPanel2.Controls.Add(this.label8, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.label12, 0, 1);
@@ -153,48 +153,48 @@
             this.tableLayoutPanel2.Controls.Add(this.m_destinationIPAddress, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.m_noDestinationButton, 1, 2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            // 
+            //
             // label8
-            // 
+            //
             resources.ApplyResources(this.label8, "label8");
             this.label8.Name = "label8";
-            // 
+            //
             // label12
-            // 
+            //
             resources.ApplyResources(this.label12, "label12");
             this.label12.Name = "label12";
-            // 
+            //
             // m_destinationPortNumber
-            // 
+            //
             resources.ApplyResources(this.m_destinationPortNumber, "m_destinationPortNumber");
             this.m_destinationPortNumber.Name = "m_destinationPortNumber";
-            // 
+            //
             // m_destinationIPAddress
-            // 
+            //
             resources.ApplyResources(this.m_destinationIPAddress, "m_destinationIPAddress");
             this.m_destinationIPAddress.Name = "m_destinationIPAddress";
-            // 
+            //
             // m_noDestinationButton
-            // 
+            //
             resources.ApplyResources(this.m_noDestinationButton, "m_noDestinationButton");
             this.m_noDestinationButton.Name = "m_noDestinationButton";
             this.m_noDestinationButton.UseVisualStyleBackColor = true;
             this.m_noDestinationButton.Click += new System.EventHandler(this.disableButton_Click);
-            // 
+            //
             // label13
-            // 
+            //
             resources.ApplyResources(this.label13, "label13");
             this.label13.Name = "label13";
-            // 
+            //
             // panel2
-            // 
+            //
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.tableLayoutPanel1);
             resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
-            // 
+            //
             // tableLayoutPanel1
-            // 
+            //
             resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
             this.tableLayoutPanel1.Controls.Add(this.m_hostName, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
@@ -203,47 +203,47 @@
             this.tableLayoutPanel1.Controls.Add(this.label6, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.m_receivingIPAddresses, 1, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            // 
+            //
             // m_hostName
-            // 
+            //
             this.m_hostName.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             resources.ApplyResources(this.m_hostName, "m_hostName");
             this.m_hostName.Name = "m_hostName";
-            // 
+            //
             // label1
-            // 
+            //
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            // 
+            //
             // label4
-            // 
+            //
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
-            // 
+            //
             // m_receivingPortNumber
-            // 
+            //
             resources.ApplyResources(this.m_receivingPortNumber, "m_receivingPortNumber");
             this.m_receivingPortNumber.Name = "m_receivingPortNumber";
-            // 
+            //
             // label6
-            // 
+            //
             resources.ApplyResources(this.label6, "label6");
             this.label6.Name = "label6";
-            // 
+            //
             // m_receivingIPAddresses
-            // 
+            //
             this.m_receivingIPAddresses.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.m_receivingIPAddresses.FormattingEnabled = true;
             resources.ApplyResources(this.m_receivingIPAddresses, "m_receivingIPAddresses");
             this.m_receivingIPAddresses.Name = "m_receivingIPAddresses";
-            // 
+            //
             // label7
-            // 
+            //
             resources.ApplyResources(this.label7, "label7");
             this.label7.Name = "label7";
-            // 
+            //
             // OscDialog
-            // 
+            //
             this.AcceptButton = this.m_okButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

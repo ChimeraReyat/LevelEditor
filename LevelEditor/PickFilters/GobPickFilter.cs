@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 
 using System.ComponentModel.Composition;
@@ -13,14 +13,14 @@ using LevelEditorCore;
 
 
 namespace LevelEditor.PickFilters
-{    
+{
     /// <summary>
-    /// PickFilter that Only allow 
+    /// PickFilter that Only allow
     /// locator-type to be picked.</summary>
     [Export(typeof (IPickFilter))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class LocatorPickFilter :  IPickFilter
-    {             
+    {
         #region IPickFilter Members
 
         public string Name
@@ -29,17 +29,17 @@ namespace LevelEditor.PickFilters
         }
 
         public object Filter(object obj,MouseEventArgs e)
-        {            
+        {
             Path<object> path = obj as Path<object>;
             DomNode node = path != null ? path.Last.As<DomNode>() : Adapters.As<DomNode>(obj);
-            return node == null || Schema.locatorType.Type.IsAssignableFrom(node.Type) ? obj : null;            
+            return node == null || Schema.locatorType.Type.IsAssignableFrom(node.Type) ? obj : null;
         }
-        #endregion              
+        #endregion
     }
 
 
     /// <summary>
-    /// PickFilter that only allow basic shapes 
+    /// PickFilter that only allow basic shapes
     /// to be picked.</summary>
     [Export(typeof(IPickFilter))]
     [PartCreationPolicy(CreationPolicy.Shared)]
@@ -57,13 +57,13 @@ namespace LevelEditor.PickFilters
             Path<object> path = obj as Path<object>;
             DomNode node = path != null ? path.Last.As<DomNode>() : Adapters.As<DomNode>(obj);
             return node == null || Schema.shapeTestType.Type.IsAssignableFrom(node.Type) ? obj : null;
-        }       
-        #endregion       
+        }
+        #endregion
     }
 
 
     /// <summary>
-    /// PickFilter that only allow basic shapes 
+    /// PickFilter that only allow basic shapes
     /// to be picked.</summary>
     [Export(typeof(IPickFilter))]
     [PartCreationPolicy(CreationPolicy.Shared)]

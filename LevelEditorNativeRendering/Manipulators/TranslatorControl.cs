@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -31,11 +31,11 @@ namespace RenderingInterop
 
             m_hitMatrix.Set(world);
             m_hitWorldView = world * view;
-            
-            float sl = s * SquareLength;
-           
 
-            // test xy square.            
+            float sl = s * SquareLength;
+
+
+            // test xy square.
             Vec3F p1 = new Vec3F(0, 0, 0);
             Vec3F p2 = new Vec3F(sl, 0, 0);
             Vec3F p3 = new Vec3F(sl, sl, 0);
@@ -105,7 +105,7 @@ namespace RenderingInterop
 
             Ray3F ray = rayL;
             BoxMtrx.Invert(BoxMtrx);
-            ray.Transform(BoxMtrx);            
+            ray.Transform(BoxMtrx);
             if (box.Intersect(ray))
             {
                 m_hitRegion = HitRegion.XAxis;
@@ -160,16 +160,16 @@ namespace RenderingInterop
             Color YZy = m_hitRegion == HitRegion.YZSquare ? Color.Gold : Manipulator.YAxisColor;
             Color YZz = m_hitRegion == HitRegion.YZSquare ? Color.Gold : Manipulator.ZAxisColor;
 
-           
+
             var axisScale = new Matrix4F();
             axisScale.Scale(new Vec3F(s * Manipulator.AxisThickness, s * (1 - ConeHeight), s * Manipulator.AxisThickness));
             var axisrot = new Matrix4F();
-            
+
 
             // Draw X axis
             axisrot.RotZ(-MathHelper.PiOver2);
             Matrix4F scaleRot  = axisScale * axisrot;
-            Matrix4F axisXform = scaleRot * normWorld;            
+            Matrix4F axisXform = scaleRot * normWorld;
             Util3D.DrawCylinder(axisXform, xcolor);
 
             // draw y
@@ -177,7 +177,7 @@ namespace RenderingInterop
             Util3D.DrawCylinder(axisXform, ycolor);
 
             // draw z
-            axisrot.RotX(MathHelper.PiOver2);            
+            axisrot.RotX(MathHelper.PiOver2);
             scaleRot = axisScale * axisrot;
             axisXform = scaleRot * normWorld;
             Util3D.DrawCylinder(axisXform, Zcolor);
@@ -187,9 +187,9 @@ namespace RenderingInterop
             cubeScale.Scale(CenterCube * s);
             var cubexform = cubeScale * normWorld;
             Util3D.DrawCube(cubexform, Color.White);
-            
 
-            Matrix4F arrowHead = ComputeXhead(normWorld, s);            
+
+            Matrix4F arrowHead = ComputeXhead(normWorld, s);
             Util3D.DrawCone(arrowHead, xcolor);
 
             arrowHead = ComputeYhead(normWorld, s);
@@ -197,7 +197,7 @@ namespace RenderingInterop
 
             arrowHead = ComputeZhead(normWorld, s);
             Util3D.DrawCone(arrowHead, Zcolor);
-            
+
             // draw xy rect.
             Matrix4F scale = new Matrix4F();
             scale.Scale(s * Manipulator.AxisThickness, s * SquareLength, s * Manipulator.AxisThickness);
@@ -237,7 +237,7 @@ namespace RenderingInterop
             Util3D.DrawCylinder(squareXform, YZz);
         }
 
-        
+
         public Vec3F OnDragging(Ray3F rayV)
         {
             if (m_hitRegion == HitRegion.None)
@@ -373,9 +373,9 @@ namespace RenderingInterop
             Matrix4F xform = scale * headrot * trans * normWorld;
             return xform;
         }
-        
+
         private const float ConeHeight = 1.0f / 5.0f;
-        private const float ConeDiameter = 1.0f / 12.0f;        
+        private const float ConeDiameter = 1.0f / 12.0f;
         private const float SquareLength = 0.3f; //the ratio of square length to arrow length
         private const float CenterCube = 1.0f / 12.0f; // the ration of the center cube to arrow length.
         private Matrix4F m_hitWorldView = new Matrix4F();
@@ -385,5 +385,5 @@ namespace RenderingInterop
 
     }
 
-    
+
 }

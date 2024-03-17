@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 
 using LevelEditorCore;
@@ -18,15 +18,15 @@ namespace LevelEditor.DomNodeAdapters
     public class GameObject : DomNodeAdapter, IGameObject
     {
         #region IGameObject Members
-        /// <summary>  
-        /// Gets the game that owns this game object.</summary>  
-        /// <returns>The game that owns this game object, or null if this object isn't owned.</returns>  
+        /// <summary>
+        /// Gets the game that owns this game object.</summary>
+        /// <returns>The game that owns this game object, or null if this object isn't owned.</returns>
         public IGame GetGame()
-        {            
-            return DomNode.GetRoot().As<IGame>();            
+        {
+            return DomNode.GetRoot().As<IGame>();
         }
-        #endregion  
-        
+        #endregion
+
         #region INameable
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace LevelEditor.DomNodeAdapters
         /// Gets and sets the local transformation matrix</summary>
         public virtual Matrix4F Transform
         {
-            get { return new Matrix4F(GetAttribute<float[]>(Schema.gameObjectType.transformAttribute)); }            
+            get { return new Matrix4F(GetAttribute<float[]>(Schema.gameObjectType.transformAttribute)); }
         }
 
         /// <summary>
@@ -85,13 +85,13 @@ namespace LevelEditor.DomNodeAdapters
         public virtual Vec3F Scale
         {
             get { return DomNodeUtil.GetVector(DomNode, Schema.gameObjectType.scaleAttribute); }
-            set 
+            set
             {
                 if ((TransformationType & TransformationTypes.Scale) == 0
                     && (TransformationType & TransformationTypes.UniformScale) == 0)
                     return;
 
-                DomNodeUtil.SetVector(DomNode, Schema.gameObjectType.scaleAttribute, value); 
+                DomNodeUtil.SetVector(DomNode, Schema.gameObjectType.scaleAttribute, value);
             }
         }
 
@@ -100,21 +100,21 @@ namespace LevelEditor.DomNodeAdapters
         public virtual Vec3F Pivot
         {
             get { return DomNodeUtil.GetVector(DomNode, Schema.gameObjectType.pivotAttribute); }
-            set 
+            set
             {
                 if ((TransformationType & TransformationTypes.Pivot) == 0)
                     return;
-                DomNodeUtil.SetVector(DomNode, Schema.gameObjectType.pivotAttribute, value); 
+                DomNodeUtil.SetVector(DomNode, Schema.gameObjectType.pivotAttribute, value);
             }
         }
-                     
+
         /// <summary>
         /// Gets or sets the type of transformation this object can support. By default
         /// all transformation types are supported.</summary>
         public TransformationTypes TransformationType
         {
             get { return GetAttribute<TransformationTypes>(Schema.gameObjectType.transformationTypeAttribute); }
-            set 
+            set
             {
                 int v = (int)value;
                 SetAttribute(Schema.gameObjectType.transformationTypeAttribute, v);
@@ -140,16 +140,16 @@ namespace LevelEditor.DomNodeAdapters
         /// </summary>
         public virtual bool IsLocked
         {
-            get 
-            { 
+            get
+            {
                 bool locked =  GetAttribute<bool>(Schema.gameObjectType.lockedAttribute);
                 if (locked == false)
                 {
                     ILockable lockable = GetParentAs<ILockable>();
-                    if(lockable != null) 
-                        locked = lockable.IsLocked;                        
+                    if(lockable != null)
+                        locked = lockable.IsLocked;
                 }
-                return locked;                    
+                return locked;
             }
             set { SetAttribute(Schema.gameObjectType.lockedAttribute, value); }
         }
@@ -164,13 +164,13 @@ namespace LevelEditor.DomNodeAdapters
         public virtual void GetInfo(ItemInfo info)
         {
             info.ImageIndex = Util.GetTypeImageIndex(DomNode.Type, info.GetImageList());
-            info.Label = Name;                        
+            info.Label = Name;
             if (IsLocked)
-                info.StateImageIndex = info.GetImageList().Images.IndexOfKey(Sce.Atf.Resources.LockImage);            
+                info.StateImageIndex = info.GetImageList().Images.IndexOfKey(Sce.Atf.Resources.LockImage);
         }
-      
-        #endregion          
-           
+
+        #endregion
+
     }
-   
+
 }

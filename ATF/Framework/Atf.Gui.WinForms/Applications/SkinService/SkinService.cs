@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections;
@@ -21,8 +21,8 @@ using Sce.Atf.Controls.PropertyEditing;
 namespace Sce.Atf.Applications
 {
     /// <summary>
-    /// Service that allows for easy customization of an application’s appearance by using inheritable properties 
-    /// that can be applied at run-time and loaded from *.skn (XML format) files. 
+    /// Service that allows for easy customization of an application’s appearance by using inheritable properties
+    /// that can be applied at run-time and loaded from *.skn (XML format) files.
     /// Skin files can affect any public property of any control in an application.</summary>
     [Export(typeof(IInitializable))]
     [Export(typeof(SkinService))]
@@ -37,7 +37,7 @@ namespace Sce.Atf.Applications
         /// Initialize instance</summary>
         void IInitializable.Initialize()
         {
-            CommonInit();            
+            CommonInit();
             if (m_settingsService != null)
             {
                 m_settingsService.RegisterSettings(this,
@@ -53,7 +53,7 @@ namespace Sce.Atf.Applications
                 RegisterCommands();
 
             WinFormsUtil.WindowCreated += WindowCreated;
-            WinFormsUtil.WindowDestroyed += WindowDestroyed;            
+            WinFormsUtil.WindowDestroyed += WindowDestroyed;
         }
 
         #region ICommandClient Members
@@ -61,7 +61,7 @@ namespace Sce.Atf.Applications
         /// <summary>
         /// Skin commands enum</summary>
         public enum SkinCommands
-        {            
+        {
             /// <summary>
             /// Show Skin Editor</summary>
             SkinEdit,
@@ -133,7 +133,7 @@ namespace Sce.Atf.Applications
                 case SkinCommands.SkinEdit:
                     enabled = true;
                     break;
-                
+
                 case SkinCommands.SkinLoad:
                     enabled = FileDialogService != null;
                     break;
@@ -183,7 +183,7 @@ namespace Sce.Atf.Applications
                         SkinsDirectory = Directory.GetParent(newSkinPath).FullName;
                     }
                     break;
-               
+
                 case SkinCommands.SkinReset:
                     ResetSkin();
                     break;
@@ -310,7 +310,7 @@ namespace Sce.Atf.Applications
 
             using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
-                OpenSkinFile(stream, filePath);                
+                OpenSkinFile(stream, filePath);
             }
         }
 
@@ -327,15 +327,15 @@ namespace Sce.Atf.Applications
                 return;
 
             try
-            {                
-                ActiveSkin = new Skin { SkinFile = skinFileDisplayText, Styles = new List<SkinStyle>() };               
-                var skinFile = new XmlDocument();               
+            {
+                ActiveSkin = new Skin { SkinFile = skinFileDisplayText, Styles = new List<SkinStyle>() };
+                var skinFile = new XmlDocument();
                 using (XmlTextReader reader = new XmlTextReader(stream))
                 {
                     reader.Namespaces = false;
-                    skinFile.Load(reader);                   
+                    skinFile.Load(reader);
                 }
-                                
+
                 // If the skin file passed validation, load it up
                 LoadSkin(skinFile);
 
@@ -398,7 +398,7 @@ namespace Sce.Atf.Applications
         /// the skin will be applied to all of its child controls</summary>
         /// <param name="control">Control to which skin is applied</param>
         public static void ApplyActiveSkin(Object control)
-        {            
+        {
             ApplyActiveSkin(control, null);
         }
 
@@ -406,7 +406,7 @@ namespace Sce.Atf.Applications
         /// Gets or sets the starting directory that the user sees when opening a skin
         /// file when there is no currently active skin. If this property is null, the
         /// default directory is chosen, which will be the user's previously picked skin directory.
-        /// If there is an active skin, this property is ignored. The default value is null.</summary> 
+        /// If there is an active skin, this property is ignored. The default value is null.</summary>
         public static string SkinsDirectory { get; private set; }
 
         /// <summary>
@@ -422,7 +422,7 @@ namespace Sce.Atf.Applications
         {
             get { return SkinnableObjects.OfType<Control>(); }
         }
-        
+
         /// <summary>
         /// Gets the objects to which a skin can be applied. Might be the empty list, but won't be null.</summary>
         protected virtual IEnumerable<object> SkinnableObjects
@@ -431,7 +431,7 @@ namespace Sce.Atf.Applications
             {
                 if (MainForm != null)
                     yield return MainForm;
-                
+
                 // This is probably a good time to clean-up any garbage-collected items.
                 s_skinnableObjects.RemoveWhere(key => !key.IsAlive);
 
@@ -474,8 +474,8 @@ namespace Sce.Atf.Applications
         {
             if (CommandService != null)
             {
-                CommandService.RegisterCommand(SkinLoad, this);                
-                CommandService.RegisterCommand(SkinEdit, this);                
+                CommandService.RegisterCommand(SkinLoad, this);
+                CommandService.RegisterCommand(SkinEdit, this);
                 CommandService.RegisterCommand(SkinReset, this);
             }
         }
@@ -487,8 +487,8 @@ namespace Sce.Atf.Applications
         {
             if (CommandService != null)
             {
-                CommandService.UnregisterCommand(SkinLoad, this);                
-                CommandService.UnregisterCommand(SkinEdit, this);                
+                CommandService.UnregisterCommand(SkinLoad, this);
+                CommandService.UnregisterCommand(SkinEdit, this);
                 CommandService.UnregisterCommand(SkinReset, this);
             }
         }
@@ -515,15 +515,15 @@ namespace Sce.Atf.Applications
                 if (m_mainForm != null && m_mainForm != value)
                     throw new InvalidOperationException("setting the MainForm multiple times is not currently supported");
                 m_mainForm = value;
-                m_mainForm.Load += m_mainForm_Load;                
-                m_mainForm.FormClosed  += m_mainForm_FormClosed;                
+                m_mainForm.Load += m_mainForm_Load;
+                m_mainForm.FormClosed  += m_mainForm_FormClosed;
                 var ncRenderer = new FormNcRenderer(m_mainForm);
                 ncRenderer.Skin = s_ncSkin;
                 ncRenderer.CustomPaintDisabled = ActiveSkin == null;
-                s_formNcRenderers.Add(m_mainForm, ncRenderer);               
+                s_formNcRenderers.Add(m_mainForm, ncRenderer);
             }
         }
-        
+
         /// <summary>
         /// Gets or sets the most-recently-used skin file. Setting this has the effect of loading the
         /// skin file, making it the active skin, and applying it to the main form and skinnable controls.</summary>
@@ -548,7 +548,7 @@ namespace Sce.Atf.Applications
                     //  the MainForm.Load event is raised. But in ATF 3 apps, the MainForm.Load event (mostly?) fires
                     //  first and then the settings are loaded!
                     if (m_mainFormLoaded)
-                        OpenAndApplySkin(m_mruSkinFile);                        
+                        OpenAndApplySkin(m_mruSkinFile);
                     else
                         OpenSkinFile(m_mruSkinFile);
                     SkinsDirectory = Directory.GetParent(m_mruSkinFile).FullName;
@@ -569,14 +569,14 @@ namespace Sce.Atf.Applications
             //Trace.WriteLine("m_mainForm_Load", "SkinService");
             m_mainFormLoaded = true;
             if (m_settingsLoaded)
-                ApplyActiveSkin();            
+                ApplyActiveSkin();
         }
 
         void m_mainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             // Unhook everything to avoid a possible freeze in WinFormsUtil while the app shuts down.
             WinFormsUtil.WindowCreated -= WindowCreated;
-            WinFormsUtil.WindowDestroyed -= WindowDestroyed;            
+            WinFormsUtil.WindowDestroyed -= WindowDestroyed;
         }
 
         void m_mainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -587,8 +587,8 @@ namespace Sce.Atf.Applications
                 bool confirmClose = m_skinEditor.ConfirmCloseActiveDocument();
                 e.Cancel = !confirmClose;
                 if(confirmClose)
-                    m_skinEditor.Close();               
-                
+                    m_skinEditor.Close();
+
             }
         }
 
@@ -614,9 +614,9 @@ namespace Sce.Atf.Applications
         #endif
 
         private static void WindowCreated(Form form)
-        {            
+        {
             ApplyActiveSkin(form, null);
-            
+
             var ncRenderer = new FormNcRenderer(form);
             ncRenderer.Skin = s_ncSkin;
             ncRenderer.CustomPaintDisabled = ActiveSkin == null;
@@ -629,7 +629,7 @@ namespace Sce.Atf.Applications
         }
 
         private void LoadSkin(XmlDocument xmlDoc)
-        {           
+        {
             ActiveSkin.Styles.Clear();
             var rootStyles = new List<SkinStyle>();
 
@@ -638,12 +638,12 @@ namespace Sce.Atf.Applications
 
             // get all the styles
             XmlNodeList styles = root.SelectNodes(StyleElement);
-            
+
             if (styles == null)
                 throw new FileFormatException("Error loading the skin file.");
 
             foreach (XmlElement style in styles)
-            {                
+            {
                 try
                 {
                     string targetTypeValue = style.GetAttribute(TargetTypeAttribute);
@@ -671,7 +671,7 @@ namespace Sce.Atf.Applications
                 ActiveSkin.Styles.AddRange(rootStyles);
             else
                 ActiveSkin = null;
-            
+
         }
 
         /// <summary>
@@ -785,7 +785,7 @@ namespace Sce.Atf.Applications
         {
             var value = new ValueInfo { Type = GetValueType(valueElement) };
             value.Converter = GetValueConverter(valueElement, value.Type);
-            
+
             // get the constructor params and setters for the value
             value.ConstructorParams.AddRange(GetValueConstructorParams(valueElement));
             value.Setters.AddRange(GetSetters(valueElement));
@@ -823,8 +823,8 @@ namespace Sce.Atf.Applications
 
             foreach (XmlElement constructorParamElement in constructorParamNodes)
             {
-                constructorParams.AddRange(from XmlElement constructorParamValue 
-                                           in constructorParamElement.SelectNodes(ValueInfoElement) 
+                constructorParams.AddRange(from XmlElement constructorParamValue
+                                           in constructorParamElement.SelectNodes(ValueInfoElement)
                                            select GetValue(constructorParamValue));
             }
 
@@ -874,7 +874,7 @@ namespace Sce.Atf.Applications
             s_stringToType.Add(typeString, type);
             return type;
         }
-        
+
         private Type GetSetterType(XmlElement setterElement)
         {
             var parentElement = setterElement.ParentNode as XmlElement;
@@ -882,7 +882,7 @@ namespace Sce.Atf.Applications
 
             // parent must be either a style type or a value type
             bool parentIsStyle = (String.CompareOrdinal(parentElement.Name, StyleElement) == 0);
-            
+
             if (parentIsStyle)
             {
                 string styleTargetTypeString = parentElement.GetAttribute(TargetTypeAttribute);
@@ -907,7 +907,7 @@ namespace Sce.Atf.Applications
         {
             // To find the type of the value, we resolve the type in this order:
             //    1. a "type" attribute on the value element. if the value's parent is
-            //        "constructorParams" and it does not have a type attribute, we error out.    
+            //        "constructorParams" and it does not have a type attribute, we error out.
             //    2. the type of the property specified by "propertyName" of the parent setter.
             var parentElement = valueElement.ParentNode as XmlElement;
             string typeString = valueElement.GetAttribute(TypeAttribute);
@@ -915,7 +915,7 @@ namespace Sce.Atf.Applications
             if (String.IsNullOrEmpty(typeString) && String.CompareOrdinal(parentElement.Name, ConstructorParamsElement) == 0)
                 throw new FileFormatException("Constructor parameters must have their type explicitly specified in the skin file.");
 
-            // If GetTypeFromString returns null, search the parent for the type. 
+            // If GetTypeFromString returns null, search the parent for the type.
             // Note the parent must be a setter type.
             Type valueType = GetTypeFromString(typeString) ?? GetSetterType(parentElement);
 
@@ -1003,7 +1003,7 @@ namespace Sce.Atf.Applications
                 if(valueInfo.Converter.CanConvertTo(null, valueInfo.Type))
                     instance = valueInfo.Converter.ConvertTo(null,CultureInfo.InvariantCulture,valueInfo.Value, valueInfo.Type);
             }
-            
+
             return instance;
         }
 
@@ -1024,7 +1024,7 @@ namespace Sce.Atf.Applications
                 var newEntry = GetInstance(null, null, item);
                 addMethod.Invoke(instance, new object[] { newEntry });
             }
-            
+
             return instance;
         }
 
@@ -1036,7 +1036,7 @@ namespace Sce.Atf.Applications
             foreach (KeyValuePair<Tuple<WeakKey<object>, PropertyInfo>, object> keyValue in s_originalPropertyValues)
             {
                 Tuple<WeakKey<object>, PropertyInfo> tuple = keyValue.Key;
-                
+
                 object control = tuple.Item1.Target;
                 if (control != null)
                 {
@@ -1072,7 +1072,7 @@ namespace Sce.Atf.Applications
             //  it once a skin has been loaded. This is promised behavior. We want to allow
             //  clients to call ApplyActiveSkin before a skin has loaded.
             s_skinnableObjects.Add(new WeakKey<object>(control));
-            
+
 
             if (ActiveSkin == null)
                 return;
@@ -1093,7 +1093,7 @@ namespace Sce.Atf.Applications
             var control = obj as Control;
             if (control != null)
                 control.SuspendLayout();
-            
+
 
             Type controlType = obj.GetType();
 
@@ -1169,7 +1169,7 @@ namespace Sce.Atf.Applications
         }
 
         private void ApplySkinToNonClientArea()
-        {                
+        {
             if (ActiveSkin == null) return;
             SkinStyle style = null;
             foreach (SkinStyle st in ActiveSkin.Styles)
@@ -1228,7 +1228,7 @@ namespace Sce.Atf.Applications
                 if (!s_skinnedControls.Add(control))
                     Trace.WriteLine("DUPLICATE CONTROL WOULD NOT HAVE BEEN CAUGHT: " + control, "SkinService");
                 #endif
-                
+
                 Type controlType = obj.GetType();
 
                 // Apply the best matching SkinStyle, if any.
@@ -1268,7 +1268,7 @@ namespace Sce.Atf.Applications
             // Children, such as menus and toolbars, may have been added since ActiveSkin last changed.
             if (control != null)
                 control.ResumeLayout();
-            
+
         }
 
         // Finds the best matching skin style for the given target type, or null.
@@ -1329,7 +1329,7 @@ namespace Sce.Atf.Applications
             {
                 if(value.GetType() != typeof(string))
                     throw new InvalidOperationException("Can only convert from strings to other representations.");
-                
+
                 // We determine what to do based on type of the destination property.
                 if (destinationType == typeof(Double))
                     return new DoubleConverter().ConvertTo(null, culture, value, destinationType);
@@ -1361,7 +1361,7 @@ namespace Sce.Atf.Applications
         private class Skin
         {
             public string SkinFile;
-            public List<SkinStyle> Styles = new List<SkinStyle>(); 
+            public List<SkinStyle> Styles = new List<SkinStyle>();
         }
 
         private class SkinStyle
@@ -1435,7 +1435,7 @@ namespace Sce.Atf.Applications
 
         [Import(AllowDefault = true)]
         private ISettingsService m_settingsService;
-        
+
         private static readonly DefaultTypeConverter s_defaultTypeConverter = new DefaultTypeConverter();
 
         // form to NcRenderer map.
@@ -1450,7 +1450,7 @@ namespace Sce.Atf.Applications
         //  objects that are not Controls can be passed in, so let's use a WeakReference. Ideally, this
         //  would not contain any of the children of any Form that is also in the HashSet.
         private static readonly HashSet<WeakKey<object>> s_skinnableObjects = new HashSet<WeakKey<object>>();
-        
+
         private static readonly Dictionary<Tuple<WeakKey<object>, PropertyInfo>, object> s_originalPropertyValues =
             new Dictionary<Tuple<WeakKey<object>, PropertyInfo>, object>();
         private static readonly Dictionary<string, Type> s_stringToType = new Dictionary<string, Type>();
@@ -1462,7 +1462,7 @@ namespace Sce.Atf.Applications
             false);
         private static readonly Type s_inertButtonType =
             Type.GetType("WeifenLuo.WinFormsUI.Docking.VS2005DockPaneCaption+InertButton, WeifenLuo.WinFormsUI.Docking");
-        
+
         #if TRACE_SKINSERVICE
         //Controls that have been skinned by the ActiveSkin. Needs to be cleared each time s_activeSkin changes.
         private static readonly HashSet<Control> s_skinnedControls = new HashSet<Control>();
@@ -1486,7 +1486,7 @@ namespace Sce.Atf.Applications
         private const string TargetTypeAttribute = "targetType";
         //private const string NameAttribute = "name";
         private const string ConverterAttribute = "converter";
-        private const BindingFlags PropertyLookupType = BindingFlags.Instance | 
+        private const BindingFlags PropertyLookupType = BindingFlags.Instance |
                                                         BindingFlags.Static   |
                                                         BindingFlags.NonPublic |
                                                         BindingFlags.Public;

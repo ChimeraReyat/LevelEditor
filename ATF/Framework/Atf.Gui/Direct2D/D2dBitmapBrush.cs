@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Drawing;
 using SharpDX;
@@ -10,8 +10,8 @@ namespace Sce.Atf.Direct2D
     /// Paints an area with a bitmap</summary>
     public class D2dBitmapBrush : D2dBrush
     {
-        /// <summary>    
-        /// Gets the bitmap source that this brush uses to paint</summary>            
+        /// <summary>
+        /// Gets the bitmap source that this brush uses to paint</summary>
         public D2dBitmap Bitmap
         {
             get { return m_bitmap; }
@@ -22,11 +22,11 @@ namespace Sce.Atf.Direct2D
                 brush.Bitmap = m_bitmap.NativeBitmap;
             }
         }
-        /// <summary>    
-        /// Gets the method by which the brush horizontally tiles those areas that extend past its bitmap</summary>    
-        /// <remarks>    
+        /// <summary>
+        /// Gets the method by which the brush horizontally tiles those areas that extend past its bitmap</summary>
+        /// <remarks>
         /// Like all brushes, D2dBitmapBrush defines an infinite plane of content. Because bitmaps are finite,
-        /// it relies on an extend mode to determine how the plane is filled horizontally and vertically.</remarks>            
+        /// it relies on an extend mode to determine how the plane is filled horizontally and vertically.</remarks>
         public D2dExtendMode ExtendModeX
         {
             get { return m_extendModeX; }
@@ -37,11 +37,11 @@ namespace Sce.Atf.Direct2D
                 brush.ExtendModeX = (ExtendMode)value;
             }
         }
-        /// <summary>    
-        /// Gets the method by which the brush vertically tiles those areas that extend past its bitmap</summary>    
-        /// <remarks>    
+        /// <summary>
+        /// Gets the method by which the brush vertically tiles those areas that extend past its bitmap</summary>
+        /// <remarks>
         /// Like all brushes, D2dBitmapBrush defines an infinite plane of content. Because bitmaps are finite,
-        /// it relies on an extend mode to determine how the plane is filled horizontally and vertically.</remarks>            
+        /// it relies on an extend mode to determine how the plane is filled horizontally and vertically.</remarks>
         public D2dExtendMode ExtendModeY
         {
             get { return m_extendModeY; }
@@ -53,15 +53,15 @@ namespace Sce.Atf.Direct2D
             }
         }
 
-        /// <summary>    
-        /// Gets the interpolation method used when the brush bitmap is scaled or rotated</summary>    
-        /// <remarks>    
+        /// <summary>
+        /// Gets the interpolation method used when the brush bitmap is scaled or rotated</summary>
+        /// <remarks>
         /// This method gets the interpolation mode of a bitmap, which is specified by the <see cref="T:SharpDX.Direct2D1.BitmapInterpolationMode" /> enumeration type.
-        /// D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR represents nearest neighbor filtering. 
+        /// D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR represents nearest neighbor filtering.
         /// It looks up the bitmap pixel nearest to the current rendering pixel and chooses its exact color.
-        /// D2D1_BITMAP_INTERPOLATION_MODE_LINEAR represents linear filtering, and  interpolates a color from the four nearest bitmap pixels. 
-        /// The interpolation mode of a bitmap also affects subpixel translations. In a subpixel translation, 
-        /// linear interpolation positions the bitmap more precisely to the application request, but blurs the bitmap in the process.</remarks>            
+        /// D2D1_BITMAP_INTERPOLATION_MODE_LINEAR represents linear filtering, and  interpolates a color from the four nearest bitmap pixels.
+        /// The interpolation mode of a bitmap also affects subpixel translations. In a subpixel translation,
+        /// linear interpolation positions the bitmap more precisely to the application request, but blurs the bitmap in the process.</remarks>
         public D2dBitmapInterpolationMode InterpolationMode
         {
             get { return m_interpolationMode; }

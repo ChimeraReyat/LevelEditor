@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel;
@@ -71,7 +71,7 @@ namespace Sce.Atf.Applications.WebServices
                    Command.HelpCheckForUpdate,
                    StandardMenu.Help,
                    StandardCommandGroup.HelpUpdate,
-                   "Check for update...".Localize(), 
+                   "Check for update...".Localize(),
                    "Check for product update".Localize()),
                    this);
 

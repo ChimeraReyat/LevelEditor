@@ -1,4 +1,4 @@
-﻿namespace Sce.Atf.Controls.PropertyEditing
+namespace Sce.Atf.Controls.PropertyEditing
 {
     /// <summary>
     /// Grid control with check boxes for properties</summary>
@@ -33,35 +33,35 @@
             this.PropertiesListBox = new System.Windows.Forms.CheckedListBox();
             this.Description = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
+            //
             // OK
-            // 
+            //
             resources.ApplyResources(this.OK, "OK");
             this.OK.Name = "OK";
             this.OK.UseVisualStyleBackColor = true;
             this.OK.Click += new System.EventHandler(this.OK_Click);
-            // 
+            //
             // Cancel
-            // 
+            //
             resources.ApplyResources(this.Cancel, "Cancel");
             this.Cancel.Name = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
             this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
-            // 
+            //
             // PropertiesListBox
-            // 
+            //
             resources.ApplyResources(this.PropertiesListBox, "PropertiesListBox");
             this.PropertiesListBox.CheckOnClick = true;
             this.PropertiesListBox.FormattingEnabled = true;
             this.PropertiesListBox.Name = "PropertiesListBox";
-            // 
+            //
             // Description
-            // 
+            //
             resources.ApplyResources(this.Description, "Description");
             this.Description.Name = "Description";
-            // 
+            //
             // GridControlShowHidePropertiesDialog
-            // 
+            //
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.Description);

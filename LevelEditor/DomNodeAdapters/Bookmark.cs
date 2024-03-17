@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections.Generic;
 
@@ -41,11 +41,11 @@ namespace LevelEditor.DomNodeAdapters
         public Camera Camera
         {
             get
-            {                                                
+            {
                 DomNode domCam = this.DomNode.GetChild(Schema.bookmarkType.cameraChild);
-                                                  
+
                 // get the state from the DomObject representation of the camera.
-                ViewTypes viewType = (ViewTypes)domCam.GetAttribute(Schema.cameraType.viewTypeAttribute);                
+                ViewTypes viewType = (ViewTypes)domCam.GetAttribute(Schema.cameraType.viewTypeAttribute);
                 Vec3F eye = DomNodeUtil.GetVector(domCam, Schema.cameraType.eyeAttribute);
                 Vec3F lookAtPoint = DomNodeUtil.GetVector(domCam, Schema.cameraType.lookAtPointAttribute);
                 Vec3F upVector = DomNodeUtil.GetVector(domCam, Schema.cameraType.upVectorAttribute);
@@ -72,7 +72,7 @@ namespace LevelEditor.DomNodeAdapters
                 float focusRadius;
                 value.GetState(out viewType, out eye, out lookAtPoint, out upVector, out yFov,
                     out nearZ, out farZ, out focusRadius);
-                               
+
                 DomNode domCam = this.DomNode.GetChild(Schema.bookmarkType.cameraChild);
 
                 domCam.SetAttribute(Schema.cameraType.viewTypeAttribute, (int)viewType);
@@ -86,7 +86,7 @@ namespace LevelEditor.DomNodeAdapters
 
             }
         }
-        
+
         /// <summary>
         /// Gets the list of sub Bookmarks</summary>
         public IList<Bookmark> Bookmarks
@@ -106,7 +106,7 @@ namespace LevelEditor.DomNodeAdapters
         public Bookmark CreateNew()
         {
             DomNode domNode = new DomNode(Schema.bookmarkType.Type);
-            return DomNode.As<Bookmark>();           
+            return DomNode.As<Bookmark>();
         }
         private IList<Bookmark> m_bookmarks;
 

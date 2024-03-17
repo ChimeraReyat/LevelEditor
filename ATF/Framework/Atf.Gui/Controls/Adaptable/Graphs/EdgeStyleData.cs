@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 namespace Sce.Atf.Controls.Adaptable.Graphs
 {
@@ -40,7 +40,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// Gets or sets the edge thickness</summary>
         public float Thickness { get; set; }
 
-  
+
         /// <summary>
         /// Gets or sets the edge data that represents the edge shape</summary>
         public object EdgeData { get; set; }

@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -31,7 +31,7 @@ namespace Sce.Atf.Dom
                         // Use combination of category and name, to allow having properties with the
                         // same display name under different categories.
                         string fullName = string.Format("{0}_{1}", propertyDescriptor.Category, propertyDescriptor.Name);
-                        
+
                         // Filter out duplicate names, so derived type data overrides base type data)
                         if (!names.Contains(fullName))
                         {
@@ -99,7 +99,7 @@ namespace Sce.Atf.Dom
 
         /// <summary>
         /// Returns a type converter for this instance of a component</summary>
-        /// <returns>A System.ComponentModel.TypeConverter that is the converter for this object, 
+        /// <returns>A System.ComponentModel.TypeConverter that is the converter for this object,
         /// or null if there is no System.ComponentModel.TypeConverter for this object</returns>
         TypeConverter ICustomTypeDescriptor.GetConverter()
         {
@@ -117,7 +117,7 @@ namespace Sce.Atf.Dom
 
         /// <summary>
         /// Returns the default property for this instance of a component</summary>
-        /// <returns>A System.ComponentModel.PropertyDescriptor that represents the default property for this object, 
+        /// <returns>A System.ComponentModel.PropertyDescriptor that represents the default property for this object,
         /// or null if this object does not have properties</returns>
         System.ComponentModel.PropertyDescriptor ICustomTypeDescriptor.GetDefaultProperty()
         {
@@ -127,7 +127,7 @@ namespace Sce.Atf.Dom
         /// <summary>
         /// Returns an editor of the specified type for this instance of a component</summary>
         /// <param name="editorBaseType">A System.Type that represents the editor for this object</param>
-        /// <returns>An System.Object of the specified type that is the editor for this object, 
+        /// <returns>An System.Object of the specified type that is the editor for this object,
         /// or null if the editor cannot be found</returns>
         object ICustomTypeDescriptor.GetEditor(Type editorBaseType)
         {

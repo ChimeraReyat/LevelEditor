@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -22,7 +22,7 @@ namespace Sce.Atf
 
             // deriving classes MUST initialize this with some call to Expression.Parameter( <yourtype>, "property"),
             // where <yourtype> is a type implementing IQueryMatch, over which the lambda expression will iterate.
-            m_queryableData = null;    
+            m_queryableData = null;
         }
 
         #region IQueryPredicate elements
@@ -42,7 +42,7 @@ namespace Sce.Atf
                 foreach (object queryMatch in query)
                 {
                     // The tests below are NOT the match test...each queryMatch *is* a bona-fide match.
-                    // Rather, the if statement below confirms a valid 'match pattern' was created, which 
+                    // Rather, the if statement below confirms a valid 'match pattern' was created, which
                     // can be used later to perform a replace operation.
                     IQueryMatch candidate = CreatePredicateMatch(searchItem, queryMatch);
                     if (MatchPattern == null || MatchPattern.Matches(candidate))
@@ -72,7 +72,7 @@ namespace Sce.Atf
         #endregion
 
         /// <summary>
-        /// Method, to be implemented by derived classes, that creates an IQueryable object 
+        /// Method, to be implemented by derived classes, that creates an IQueryable object
         /// that enumerates through the SEARCHABLE elements within the specified object</summary>
         /// <param name="queryItem">Item in which searchable elements should be enumerated</param>
         /// <returns>IQueryable object that enumerates through SEARCHABLE elements within specified object</returns>
@@ -91,14 +91,14 @@ namespace Sce.Atf
             if (queryableElements != null)
             {
                 // 'where' call applies lambda created in the constructor to objects in domNodeProperties
-                MethodCallExpression linqExpression = 
+                MethodCallExpression linqExpression =
                     Expression.Call(typeof(Queryable),
                                      "Where",
                                      new Type[] { queryableElements.ElementType },
                                      queryableElements.Expression,
                                      LambdaExpression);
 
-                // When enumerated on, returnValue will produce only the elements of queryableProperties that 
+                // When enumerated on, returnValue will produce only the elements of queryableProperties that
                 // match the search criteria of the LambdaExpression
                 returnValue = queryableElements.Provider.CreateQuery(linqExpression);
             }
@@ -107,7 +107,7 @@ namespace Sce.Atf
         }
 
         /// <summary>
-        /// Method, to be implemented by derived classes, that returns an encapsulation of the 
+        /// Method, to be implemented by derived classes, that returns an encapsulation of the
         /// specified matching element from the specified search item</summary>
         /// <param name="searchItem">Item for which the matching item was found</param>
         /// <param name="queryMatch">The matching element, which came from searchItem</param>
@@ -353,7 +353,7 @@ namespace Sce.Atf
             // Create expression which tests:
             //
             // (PropertyValueConvertibleToDouble() == true) &&
-            // (((num1 <= num2) && (num1 <= propertyValue) && (propertyValue <= num2)) || 
+            // (((num1 <= num2) && (num1 <= propertyValue) && (propertyValue <= num2)) ||
             //  ((num2 <= num1) && (num2 <= propertyValue) && (propertyValue <= num1)))
             //
             MethodCallExpression convertToDouble = GetConvertToDoubleExpression();
@@ -432,7 +432,7 @@ namespace Sce.Atf
         #endregion
 
         /// <summary>
-        /// Gets or sets the "replace template", that is, the search pattern in the Linq query that should be used 
+        /// Gets or sets the "replace template", that is, the search pattern in the Linq query that should be used
         /// to apply subsequent "replace" operations on the search results.</summary>
         /// <remarks>NOTE: While it does contain part of the search predicate, MatchPattern is NOT involved in the query!
         /// It should not be used to test matches during a search! That is the job of the LambdaExpression.</remarks>

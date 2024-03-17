@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections;
@@ -300,7 +300,7 @@ namespace Sce.Atf.Applications
             try
             {
                 m_changingSelection = true;
-                List<object> newSelection = new List<object>();                
+                List<object> newSelection = new List<object>();
                 foreach(ListViewItem listItem in m_control.SelectedItems)
                 {
                     if (listItem.Tag != null)
@@ -318,7 +318,7 @@ namespace Sce.Atf.Applications
 
                     foreach (object removed in oldSelectionSet.Except(newSelectionSet))
                         OnItemSelected(removed, false);
-                    
+
                     foreach (object added in newSelection.Except(oldSelectionSet))
                         OnItemSelected(added, true);
                 }
@@ -707,7 +707,7 @@ namespace Sce.Atf.Applications
                     return 1;
 
                 object value1, value2;
-                if (subItem1.Tag == null && subItem2.Tag ==null) 
+                if (subItem1.Tag == null && subItem2.Tag ==null)
                 {
                     value1 = subItem1.Text;
                     value2 = subItem2.Text;
@@ -785,7 +785,7 @@ namespace Sce.Atf.Applications
                     hdItem.fmt |= User32.HDF_SORTDOWN;
                 }
                 User32.SendMessageITEM(hHeader, User32.HDM_SETITEM, newColumn, ref hdItem);
-              
+
 
                 m_column = e.Column;
 
@@ -794,7 +794,7 @@ namespace Sce.Atf.Applications
             }
 
             private readonly ListView m_listView;
-            private int m_column = -1; 
+            private int m_column = -1;
             private int m_direction = 1;
         }
 
@@ -818,6 +818,6 @@ namespace Sce.Atf.Applications
         private readonly Dictionary<string, int> m_columnWidths = new Dictionary<string, int>();
         private bool m_allowSorting;
         private bool m_changingSelection;
-        
+
     }
 }

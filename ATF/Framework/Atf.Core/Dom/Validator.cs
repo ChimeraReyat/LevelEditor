@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using Sce.Atf.Adaptation;
@@ -13,7 +13,7 @@ namespace Sce.Atf.Dom
     ///     OnBeginning
     ///     OnEnding
     ///     OnEnded
-    /// 
+    ///
     /// In these DOM-change notification methods, only do your validation logic if Validating
     /// is true, because otherwise your code might end up throwing InvalidTransactionException
     /// during the transaction unrolling stage and the 2nd InvalidTransactionException will
@@ -27,7 +27,7 @@ namespace Sce.Atf.Dom
     ///     OnAttributeChanged
     ///     OnChildInserted
     ///     OnChildRemoved
-    ///     
+    ///
     /// Considering throwing InvalidTransactionException in response to these events or in these
     /// methods:
     ///     OnNodeSet

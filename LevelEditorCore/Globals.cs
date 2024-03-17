@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel.Composition.Hosting;
@@ -9,7 +9,7 @@ namespace LevelEditorCore
 {
     /// <summary>
     /// Global properties and constants</summary>
-    /// <remarks>Generally we try to avoid globals. Most constants should eventually migrate 
+    /// <remarks>Generally we try to avoid globals. Most constants should eventually migrate
     /// to a config file to make it possible to modify them without requiring a binary release.</remarks>
     public static class Globals
     {

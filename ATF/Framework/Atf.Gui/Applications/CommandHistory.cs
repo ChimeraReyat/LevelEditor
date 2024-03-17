@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -28,13 +28,13 @@ namespace Sce.Atf.Applications
 
         /// <summary>
         /// Gets command count.</summary>
-        public int Count 
+        public int Count
         {
             get { return m_commands.Count; }
         }
 
         /// <summary>
-        /// Gets command at the given index</summary>        
+        /// Gets command at the given index</summary>
         public Command this[int index]
         {
             get { return m_commands[index];}
@@ -236,6 +236,6 @@ namespace Sce.Atf.Applications
             }
         }
         private readonly List<Command> m_commands;
-        private readonly CommandCount m_commandCount;                
+        private readonly CommandCount m_commandCount;
     }
 }

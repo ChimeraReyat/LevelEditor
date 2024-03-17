@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing.Design;
@@ -36,7 +36,7 @@ namespace Sce.Atf.Controls.PropertyEditing
         public Control GetEditingControl(PropertyEditorControlContext context)
         {
             // try to hold selection context here for transaction support in property editing
-            m_selectionContext = context.TransactionContext.As<ISelectionContext>(); 
+            m_selectionContext = context.TransactionContext.As<ISelectionContext>();
             return null;
         }
 
@@ -67,7 +67,7 @@ namespace Sce.Atf.Controls.PropertyEditing
             public Func<object, ItemInfo, bool> GetItemInfo;
             /// <summary>
             /// Delegate for getting available types and constructor arguments (object []) to create and add to this collection and its sub-collections</summary>
-            public Func<Path<object>, IEnumerable<Pair<Type, CreateCollectionObject>>> GetCollectionItemCreators; 
+            public Func<Path<object>, IEnumerable<Pair<Type, CreateCollectionObject>>> GetCollectionItemCreators;
         }
 
 
@@ -79,26 +79,26 @@ namespace Sce.Atf.Controls.PropertyEditing
         /// <param name="value">An instance of the value being edited</param>
         /// <returns>The new value of the object. If the value of the object hasn't changed,
         /// this should return the same object it was passed.</returns>
-        public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value) 
+        public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
         {
-            if (context != null    && context.Instance != null    && provider != null) 
+            if (context != null    && context.Instance != null    && provider != null)
             {
                 IWindowsFormsEditorService editorService = (IWindowsFormsEditorService)provider.GetService(typeof(IWindowsFormsEditorService));
 
-                if (editorService != null) 
+                if (editorService != null)
                 {
                     EditingEventArgs e = new EditingEventArgs(value);
                     OnEditorOpening(e);
                     NestedCollectionEditorForm collEditorFrm = CreateForm(context, m_selectionContext, value, e.GetCollectionItemCreators, e.GetItemInfo);
-         
+
                     context.OnComponentChanging();
-                    
- 
+
+
                     if (editorService.ShowDialog(collEditorFrm) == DialogResult.OK)
                     {
                         OnCollectionChanged(context.Instance, value);
                         context.OnComponentChanged();
-                    }                                                
+                    }
                 }
             }
 
@@ -110,9 +110,9 @@ namespace Sce.Atf.Controls.PropertyEditing
         /// Gets the editing style of the Edit method. If the method is not supported, this returns <see cref="F:System.Drawing.Design.UITypeEditorEditStyle.None"></see>.</summary>
         /// <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"></see> that can be used to gain additional context information</param>
         /// <returns>An enum value indicating the provided editing style</returns>
-        public override UITypeEditorEditStyle GetEditStyle(ITypeDescriptorContext context) 
+        public override UITypeEditorEditStyle GetEditStyle(ITypeDescriptorContext context)
         {
-            if (context != null && context.Instance != null) 
+            if (context != null && context.Instance != null)
             {
                 return UITypeEditorEditStyle.Modal;
             }
@@ -144,7 +144,7 @@ namespace Sce.Atf.Controls.PropertyEditing
         /// <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"></see> that can be used to gain additional context information</param>
         /// <param name="selectionContext">Selection context</param>
         /// <param name="value">An instance of the value being edited</param>
-        /// <param name="getCollectionItemCreators">Callback for getting available types and constructor arguments (object []) 
+        /// <param name="getCollectionItemCreators">Callback for getting available types and constructor arguments (object [])
         /// to create and add to this collection and its sub-collections</param>
         /// <param name="getItemInfo">Callback for getting item's display information</param>
         /// <returns>NestedCollectionEditorForm</returns>

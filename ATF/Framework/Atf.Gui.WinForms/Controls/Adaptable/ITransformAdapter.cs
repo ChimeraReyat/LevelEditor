@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -221,8 +221,8 @@ namespace Sce.Atf.Controls.Adaptable
                 Math.Max(minScale.Y, Math.Min(maxScale.Y, scale.Y)));
         }
 
-        
-       
+
+
 
         /// <summary>
         /// Pans the view the minimum necessary so that the given rectangle is visible</summary>

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Drawing;
 
@@ -95,7 +95,7 @@ namespace Sce.Atf
             Shell32.SHFILEINFO shfi = new Shell32.SHFILEINFO();
 
             // Flag SHGFI_USEFILEATTRIBUTES prevents SHGetFileInfo() from attempting
-            // to access the path specified by the first argument.  However, passing 
+            // to access the path specified by the first argument.  However, passing
             // some sort of non-null string is still required, or the call will fail.
             Shell32.SHGetFileInfo("C:\\Windows",
                 Shell32.FILE_ATTRIBUTE_DIRECTORY,

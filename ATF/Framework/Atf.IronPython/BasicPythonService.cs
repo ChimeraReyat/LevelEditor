@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -37,20 +37,20 @@ namespace Sce.Atf.Applications
         /// <returns>ScriptEngine created</returns>
         protected virtual ScriptEngine CreateEngine()
         {
-            // create and init scripting engine. 
+            // create and init scripting engine.
             Dictionary<String, Object> options = new Dictionary<string, object>();
             options["DivisionOptions"] = PythonDivisionOptions.New;
             options["PrivateBinding"] = true;
 
             ScriptEngine engine = Python.CreateEngine(options);
-            
+
             // Set system variables that need to be different from the default.
             // The zipimporter module is on the path_hooks list by default and it throws exceptions and/or
             //  prevents the "import *" command from working on some computers. We don't need it, so let's
             //  remove it.  If you need to re-add it, see detailed comment in ScriptingServices.cs
             ScriptScope sysScope = engine.GetSysModule();
             sysScope.SetVariable("path_hooks", new List());
-            
+
             return engine;
         }
 
@@ -114,7 +114,7 @@ namespace Sce.Atf.Applications
         /// <param name="nmspace">Namespace</param>
         public override void ImportAllTypes(string nmspace)
         {
-            ExecuteStatement(string.Format("from {0} import *", nmspace));            
+            ExecuteStatement(string.Format("from {0} import *", nmspace));
         }
 
         /// <summary>
@@ -122,16 +122,16 @@ namespace Sce.Atf.Applications
         /// <param name="nmspace">Namespace to import from</param>
         /// <param name="typename">Type to import</param>
         public override void ImportType(string nmspace, string typename)
-        {            
+        {
             ExecuteStatement(string.Format("from {0} import {1}", nmspace, typename));
         }
 
         #region IInitializable Members
 
         void IInitializable.Initialize()
-        {           
+        {
         }
 
         #endregion
-    }   
+    }
 }

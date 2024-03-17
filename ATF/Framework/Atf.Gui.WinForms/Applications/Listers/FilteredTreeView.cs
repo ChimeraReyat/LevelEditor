@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -61,13 +61,13 @@ namespace Sce.Atf.Applications
         /// <param name="parent">Parent</param>
         /// <returns>Children objects</returns>
         public IEnumerable<object> GetChildren(object parent)
-        {            
+        {
             var unfiltered = m_treeView.GetChildren(parent);
             if (IsFiltering && !m_exemptedSet.Contains(parent))
                 return unfiltered.Where(item => IsMatched(item) || m_exemptedSet.Contains(item));
-            return unfiltered;            
+            return unfiltered;
         }
-        
+
         internal NodeFilteringStatus GetNodeFilteringStatus(TreeNode node)
         {
             NodeFilteringStatus stat = NodeFilteringStatus.Normal;
@@ -80,15 +80,15 @@ namespace Sce.Atf.Applications
                 if (anymatched)
                 {
                     stat |= NodeFilteringStatus.Visible;
-                    
+
                     // any child mat
                     if (m_treeView.GetChildren(node.Tag).Any(IsMatched))
                         stat |= NodeFilteringStatus.ChildVisible;
-                }               
-            }                
+                }
+            }
             return stat;
         }
-              
+
         internal void SaveExpansion(TreeNode parent)
         {
             if (parent.Tag == null)
@@ -109,7 +109,7 @@ namespace Sce.Atf.Applications
             if (m_expandedNodeMap.TryGetValue(parent.Tag, out expandedItems))
             {
                 m_expandedNodeMap.Remove(parent.Tag);
-                expandedItems.ForEach(item => treeAdapter.Expand(item));                
+                expandedItems.ForEach(item => treeAdapter.Expand(item));
             }
         }
 
@@ -119,17 +119,17 @@ namespace Sce.Atf.Applications
         internal void ClearCache()
         {
             m_matchedNodes.Clear();
-            m_exemptedSet.Clear();            
+            m_exemptedSet.Clear();
         }
-               
+
 
         internal bool IsMatched(object node)
-        {            
+        {
             // if not filtering or the node is already in the matched set.
-            if (!IsFiltering || m_matchedNodes.Contains(node)) 
+            if (!IsFiltering || m_matchedNodes.Contains(node))
                 return true;
-               
-            bool result = false;            
+
+            bool result = false;
             try
             {
                 m_matching = true;
@@ -152,36 +152,36 @@ namespace Sce.Atf.Applications
         // temp list used to hold path when traversing tree.
         private List<object> m_tmpNodelist = new List<object>();
         private bool MatchRecv(object node)
-        {            
-            bool result = false;            
-            m_tmpNodelist.Add(node);            
+        {
+            bool result = false;
+            m_tmpNodelist.Add(node);
             foreach (object child in m_treeView.GetChildren(node))
             {
                 result = MatchRecv(child);
                 if (result )break;
             }
-                  
+
             if (!result && m_filterFunc(node))
             {
                 for (int i = m_tmpNodelist.Count - 1; i >= 0; i--)
                     if (!m_matchedNodes.Add(m_tmpNodelist[i])) break;
                 result = true;
-            }            
-            m_tmpNodelist.RemoveAt(m_tmpNodelist.Count - 1);           
+            }
+            m_tmpNodelist.RemoveAt(m_tmpNodelist.Count - 1);
             return result;
         }
 
 
         /// <summary>
-        /// Check whether calling GetChildren(object parent) will return 
+        /// Check whether calling GetChildren(object parent) will return
         /// all the children.
-        /// GetChildren(object parent) could return all if every child 
+        /// GetChildren(object parent) could return all if every child
         /// either passed the filter or exempt from filtering</summary>
         /// <param name="parent">parent item</param>
         /// <returns>true if all the children will returned</returns>
         internal bool IsFullyExpaned(object parent)
-        {            
-            return m_exemptedSet.Contains(parent) || !m_treeView.GetChildren(parent).Any(child => !IsMatched(child) && !m_exemptedSet.Contains(child));            
+        {
+            return m_exemptedSet.Contains(parent) || !m_treeView.GetChildren(parent).Any(child => !IsMatched(child) && !m_exemptedSet.Contains(child));
         }
 
 
@@ -192,8 +192,8 @@ namespace Sce.Atf.Applications
         {
             m_exemptedSet.Add(parent);
             foreach (object child in m_treeView.GetChildren(parent))
-                if (!IsMatched(child)) 
-                    m_exemptedSet.Add(child);            
+                if (!IsMatched(child))
+                    m_exemptedSet.Add(child);
         }
 
 
@@ -203,7 +203,7 @@ namespace Sce.Atf.Applications
         internal void RemoveFromExemptSet(object parent)
         {
             m_exemptedSet.Remove(parent);
-            m_treeView.GetChildren(parent).ForEach(child => m_exemptedSet.Remove(child));            
+            m_treeView.GetChildren(parent).ForEach(child => m_exemptedSet.Remove(child));
         }
 
         #endregion
@@ -214,7 +214,7 @@ namespace Sce.Atf.Applications
         {
             m_itemView.GetInfo(item, info);
 
-            // Call the filtered GetChildren() 
+            // Call the filtered GetChildren()
             // to determine if node is leaf or not.
             if (!m_matching && !info.IsLeaf)
                 info.IsLeaf = !GetChildren(item).Any();
@@ -266,13 +266,13 @@ namespace Sce.Atf.Applications
                     yield return decendent;
         }
 
-        
+
         private readonly ITreeView m_treeView;
         private readonly IItemView m_itemView;
         private readonly Predicate<object> m_filterFunc;
 
         //re-entry guard
-        private bool m_matching; 
+        private bool m_matching;
 
         // exempted from filtering.
         // used for caching all the items that are exempt from filtering.
@@ -286,8 +286,8 @@ namespace Sce.Atf.Applications
         private HashSet<object> m_matchedNodes = new HashSet<object>();
 
         // Maps subtree item to list of expanded items in the subtree.
-        // This map used for restoring the expansion staste of a subtree.               
+        // This map used for restoring the expansion staste of a subtree.
         private Dictionary<object, List<object>>
-            m_expandedNodeMap = new Dictionary<object, List<object>>();        
+            m_expandedNodeMap = new Dictionary<object, List<object>>();
     }
 }

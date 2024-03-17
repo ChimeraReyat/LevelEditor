@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -382,7 +382,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 {
                     TNode node = m_draggingNodes[i];
                     BoundsSpecified specified = m_layoutContext.CanSetBounds(node);
-                    if (((specified & BoundsSpecified.X) != 0) && 
+                    if (((specified & BoundsSpecified.X) != 0) &&
                         ((specified & BoundsSpecified.Y) != 0))
                     {
 

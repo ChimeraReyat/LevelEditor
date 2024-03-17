@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Diagnostics;
@@ -14,10 +14,10 @@ namespace RenderingInterop
     public unsafe class ImageData : DisposableObject
     {
         /// <summary>
-        /// Construct Image data</summary>        
+        /// Construct Image data</summary>
         public ImageData() : this(0)
         {
-            
+
         }
 
         public ImageData(ulong instanceId)
@@ -43,14 +43,14 @@ namespace RenderingInterop
 
         public byte GetPixelByte(int x, int y)
         {
-            bool valid = x >= 0 && x < Width && y >= 0 && y < Height;               
+            bool valid = x >= 0 && x < Width && y >= 0 && y < Height;
             if (!valid) return (byte)0;
             byte* pixelPtr = (byte*)m_data + y * m_rowPitch + x * m_bytesPerPixel;
             return *pixelPtr;
         }
 
         /// <summary>
-        /// Get pixel at (x,y) and apply clamp 
+        /// Get pixel at (x,y) and apply clamp
         /// for out of range coordinates.
         /// </summary>
         /// <param name="x"></param>
@@ -61,14 +61,14 @@ namespace RenderingInterop
             if (m_format != ImageDataFORMAT.R32_FLOAT)
                 throw new InvalidOperationException("Invalid Image format");
             x = Sce.Atf.MathUtil.Clamp(x, 0, Width - 1);
-            y = Sce.Atf.MathUtil.Clamp(y, 0, Height - 1);                        
+            y = Sce.Atf.MathUtil.Clamp(y, 0, Height - 1);
             byte* pixelPtr = (byte*)m_data + y * m_rowPitch + x * m_bytesPerPixel;
             return  *(float*)pixelPtr;
         }
-       
+
         public byte* GetPixel(int x, int y)
         {
-            bool valid = x >= 0 && x < Width && y >= 0 && y < Height;            
+            bool valid = x >= 0 && x < Width && y >= 0 && y < Height;
             if (!valid) return null;
 
             byte* pixelPtr = ((byte*)m_data + y * m_rowPitch + x * m_bytesPerPixel);
@@ -81,8 +81,8 @@ namespace RenderingInterop
             *pixel = val;
         }
 
-        public void SetPixel(int x, int y, float val)         
-        {            
+        public void SetPixel(int x, int y, float val)
+        {
             int w = Width;
             int h = Height;
             bool valid = x >= 0 && x < w && y >= 0 && y < h && Format == ImageDataFORMAT.R32_FLOAT;
@@ -92,7 +92,7 @@ namespace RenderingInterop
             int row = RowPitch;
             int bpp = BytesPerPixel;
             float* ptr = (float*)((byte*)Data + y * row + x * bpp);
-            *ptr = val;            
+            *ptr = val;
         }
         public void InitNew(int width, int height, ImageDataFORMAT format)
         {
@@ -102,25 +102,25 @@ namespace RenderingInterop
                 IntPtr retval = IntPtr.Zero;
                 GameEngine.InvokeMemberFn(m_instanceId, "CreateNew", (IntPtr)ptr, out retval);
             }
-            RefreshCachedProperties();            
+            RefreshCachedProperties();
         }
 
         public void Save(Uri ur)
         {
             if (!ur.IsAbsoluteUri)
                 throw new ArgumentException("uri must be absolute");
-            string localPath = ur.LocalPath;            
+            string localPath = ur.LocalPath;
             fixed (char* ptr = localPath)
             {
                 IntPtr retval = IntPtr.Zero;
                 GameEngine.InvokeMemberFn(m_instanceId, "SaveToFile", (IntPtr)ptr, out retval);
-            }            
+            }
         }
         public void LoadFromFile(Uri ur)
         {
             if (!ur.IsAbsoluteUri)
                 throw new ArgumentException("uri must be absolute");
-            string localPath = ur.LocalPath;            
+            string localPath = ur.LocalPath;
             if (!File.Exists(localPath))
                 throw new FileNotFoundException(localPath);
             fixed (char* chptr = localPath)
@@ -128,7 +128,7 @@ namespace RenderingInterop
                 IntPtr ptr = new IntPtr((void*)chptr);
                 int sz = localPath.Length * 2;
                 GameEngine.SetObjectProperty(TypeId, m_instanceId, LoadFromFileId, ptr, sz);
-            }            
+            }
             RefreshCachedProperties();
         }
 
@@ -137,19 +137,19 @@ namespace RenderingInterop
             GameEngine.SetObjectProperty(TypeId, m_instanceId, ConvertId, (uint)format);
             RefreshCachedProperties();
         }
-        
+
         public bool IsValid
         {
             get { return m_instanceId != 0; }
         }
         public int Width
         {
-            get { return m_width; }            
+            get { return m_width; }
         }
 
         public int Height
         {
-            get { return m_height; }            
+            get { return m_height; }
         }
 
         public int BytesPerPixel
@@ -169,7 +169,7 @@ namespace RenderingInterop
 
         public IntPtr Data
         {
-            get { return m_data; }            
+            get { return m_data; }
         }
         public ulong InstanceId
         {
@@ -204,7 +204,7 @@ namespace RenderingInterop
             Debug.Assert(valid);
             if (!valid) return;
 
-            // restore 
+            // restore
             int rowPitch = bound.Width * BytesPerPixel;
             fixed (byte* srcptr = data)
             {
@@ -251,11 +251,11 @@ namespace RenderingInterop
         }
 
         private void RefreshCachedProperties()
-        {            
+        {
             // data pointer.
             int datasize;
             GameEngine.GetObjectProperty(TypeId, BufferPointerId, m_instanceId, out m_data, out datasize);
-            
+
 
             uint format;
             GameEngine.GetObjectProperty(TypeId, FormatId, m_instanceId, out format);
@@ -289,22 +289,22 @@ namespace RenderingInterop
         private bool m_manageLifetime;
         private ulong m_instanceId;
     }
-     
+
     /// <summary>
     /// subset of DXGI format.</summary>
     public enum ImageDataFORMAT : uint
-    {                                                
-        R8G8B8A8_UNORM = 28,                        
-        R32_FLOAT = 41,                        
-        R16_FLOAT = 54,                
-        R16_UINT = 57,        
-        R16_SINT = 59,        
+    {
+        R8G8B8A8_UNORM = 28,
+        R32_FLOAT = 41,
+        R16_FLOAT = 54,
+        R16_UINT = 57,
+        R16_SINT = 59,
         R8_UNORM = 61,
-        R8_UINT = 62,        
-        R8_SINT = 64,                
+        R8_UINT = 62,
+        R8_SINT = 64,
         B8G8R8A8_UNORM = 87,
         B8G8R8X8_UNORM = 88
     }
-    
-   
+
+
 }

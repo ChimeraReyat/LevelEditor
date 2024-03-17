@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -18,10 +18,10 @@ namespace LevelEditor
 {
     /// <summary>
     /// Context for the LayerLister. </summary>
-    /// <remarks>This context has its own independent Selection, 
+    /// <remarks>This context has its own independent Selection,
     /// but uses the main GameContext's HistoryContext for undo/redo operations.
-    /// IInstancingContext and IHierarchicalInsertionContext implementations control drag/drop and 
-    /// copy/past operations within the LayerLister (internal), pastes/drops to the 
+    /// IInstancingContext and IHierarchicalInsertionContext implementations control drag/drop and
+    /// copy/past operations within the LayerLister (internal), pastes/drops to the
     /// LayerLister and drag/copies from the LayerLister (external).
     /// The IObservableContext implementation notifies the LayerLister's TreeControl
     /// when a change occurs that requires an update of one or more tree nodes.
@@ -31,7 +31,7 @@ namespace LevelEditor
         IInstancingContext,
         IHierarchicalInsertionContext,
         ILayeringContext,
-        IObservableContext        
+        IObservableContext
     {
         protected override void OnNodeSet()
         {
@@ -43,14 +43,14 @@ namespace LevelEditor
             {
                 m_layerRoot = DomNode.GetChild(Schema.gameType.layersChild);
                 m_layers = new DomNodeListAdapter<ILayer>(m_layerRoot, Schema.layersType.layerChild);
-                
+
                 m_layerRoot.ChildInserted += DomNode_ChildInserted;
                 m_layerRoot.ChildRemoved += DomNode_ChildRemoved;
                 m_layerRoot.AttributeChanged += DomNode_AttributeChanged;
                 GameContext gameContext = DomNode.Cast<GameContext>();
                 IValidationContext validationContext = (IValidationContext)gameContext;
                 validationContext.Ended += validationContext_Ended;
-                m_activeItem = m_layerRoot;                
+                m_activeItem = m_layerRoot;
             }
         }
 
@@ -59,7 +59,7 @@ namespace LevelEditor
             // refresh root.
             LayerLister lister = Globals.MEFContainer.GetExportedValue<LayerLister>();
             if(lister != null)
-                lister.TreeControlAdapter.Refresh(m_layerRoot);                       
+                lister.TreeControlAdapter.Refresh(m_layerRoot);
         }
         private void validationContext_Ended(object sender, EventArgs e)
         {
@@ -97,7 +97,7 @@ namespace LevelEditor
 
         public bool CanDelete()
         {
-            return Selection.Count > 0;            
+            return Selection.Count > 0;
         }
 
         public void Delete()
@@ -125,7 +125,7 @@ namespace LevelEditor
 
 
             foreach (DomNode node in childNodes)
-            {                
+            {
                 if (!node.Is<IGameObject>() || !node.GetRoot().Is<IGame>())
                     return false;
 
@@ -136,8 +136,8 @@ namespace LevelEditor
                 // Don't reparent to same parent
                 if (insertionPoint != DomNode && node.Parent == insertionPoint)
                     return false;
-                
-            }         
+
+            }
             return true;
         }
 
@@ -168,7 +168,7 @@ namespace LevelEditor
                 IGameObject gameObject = node.As<IGameObject>();
                 if (gameObject != null && !layer.Contains(gameObject))
                 {
-                    GameObjectReference newRef = GameObjectReference.Create(node);                    
+                    GameObjectReference newRef = GameObjectReference.Create(node);
                     layer.GameObjectReferences.Add(newRef);
                 }
 
@@ -186,7 +186,7 @@ namespace LevelEditor
                     layer.Layers.Add(otherLayer);
             }
         }
-       
+
         #endregion
 
         #region ILayeringContext Members
@@ -206,7 +206,7 @@ namespace LevelEditor
         }
 
         IEnumerable<object> ITreeView.GetChildren(object parent)
-        {           
+        {
             ILayer layer = Adapters.As<ILayer>(parent);
             if (layer != null)
             {
@@ -219,7 +219,7 @@ namespace LevelEditor
             {
                 foreach (ILayer childLayer in Layers)
                     yield return childLayer;
-            }            
+            }
         }
 
         #endregion
@@ -236,7 +236,7 @@ namespace LevelEditor
                 info.SetCheckState(GetCheckState(layer));
             }
             else
-            {               
+            {
                 IReference<IGameObject> reference = Adapters.As<IReference<IGameObject>>(item);
                 if (reference != null)
                 {
@@ -319,7 +319,7 @@ namespace LevelEditor
             remove { }
         }
 
-       
+
 
         void DomNode_ChildInserted(object sender, ChildEventArgs e)
         {
@@ -332,10 +332,10 @@ namespace LevelEditor
         }
 
         void DomNode_AttributeChanged(object sender, AttributeEventArgs e)
-        {            
-            ItemChanged.Raise(this, new ItemChangedEventArgs<object>(e.DomNode));            
+        {
+            ItemChanged.Raise(this, new ItemChangedEventArgs<object>(e.DomNode));
         }
-       
+
 
         #endregion
 
@@ -402,7 +402,7 @@ namespace LevelEditor
             if (items == null || items.Length == 0)
                 return null;
             return Adapters.AsIEnumerable<DomNode>(items);
-        }        
+        }
         private object m_activeItem;
     }
 }

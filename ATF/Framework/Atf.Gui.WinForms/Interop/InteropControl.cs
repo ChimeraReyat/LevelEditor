@@ -1,4 +1,4 @@
-﻿using System.Windows.Forms;
+using System.Windows.Forms;
 
 using AtfKeys = Sce.Atf.Input.Keys;
 using AtfKeyEventArgs = Sce.Atf.Input.KeyEventArgs;
@@ -57,13 +57,13 @@ namespace Sce.Atf
         /// <returns>False to allow the key press to escape to IsInputKey, OnKeyDown, OnKeyUp, etc.
         /// True to consume this key press, so this
         /// event is not passed on to any other methods or controls.</returns>
-        protected override bool ProcessCmdKey(ref WfMessage msg, WfKeys keyData) 
+        protected override bool ProcessCmdKey(ref WfMessage msg, WfKeys keyData)
         {
             AtfMessage atfMsg = MessageInterop.ToAtf(msg);
-            return ProcessCmdKey(ref atfMsg, KeysInterop.ToAtf(keyData)); 
+            return ProcessCmdKey(ref atfMsg, KeysInterop.ToAtf(keyData));
         }
         /// <summary>
-        /// Process ATF message and command key by calling the base ProcessCmdKey with converted arguments, 
+        /// Process ATF message and command key by calling the base ProcessCmdKey with converted arguments,
         /// which allows this key press to be consumed by owning
         /// controls like PropertyView and PropertyGridView and be seen by ControlHostService.
         /// Returning false allows the key press to escape to IsInputKey, OnKeyDown, OnKeyUp, etc.
@@ -74,10 +74,10 @@ namespace Sce.Atf
         /// <returns>False to allow the key press to escape to IsInputKey, OnKeyDown, OnKeyUp, etc.
         /// True to consume this key press, so this
         /// event is not passed on to any other methods or controls.</returns>
-        protected virtual bool ProcessCmdKey(ref AtfMessage msg, AtfKeys keyData) 
+        protected virtual bool ProcessCmdKey(ref AtfMessage msg, AtfKeys keyData)
         {
             WfMessage wfMsg = MessageInterop.ToWf(msg);
-            return base.ProcessCmdKey(ref wfMsg, KeysInterop.ToWf(keyData)); 
+            return base.ProcessCmdKey(ref wfMsg, KeysInterop.ToWf(keyData));
         }
 
         /// <summary>

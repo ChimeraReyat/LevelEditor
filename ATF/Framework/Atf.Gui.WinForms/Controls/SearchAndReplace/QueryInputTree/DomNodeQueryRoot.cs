@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 
@@ -74,7 +74,7 @@ namespace Sce.Atf.Dom
         /// <param name="stringQueryOptions">Bitfield defining which string search types can be selected</param>
         /// <param name="isReplacePattern">Whether or not this match should be used in a subsequent replace operation</param>
         public QueryStringPropertyInput(QueryNode parentNode, StringQuery stringQueryOptions, bool isReplacePattern) :
-            base(parentNode, stringQueryOptions) 
+            base(parentNode, stringQueryOptions)
         {
             m_isReplacePattern = isReplacePattern;
         }
@@ -95,7 +95,7 @@ namespace Sce.Atf.Dom
                 case DomNodeQuery.PropertySearchTarget.Value:
                     predicate.AddValueStringSearchExpression(TextInput, SelectedItem.Tag, m_isReplacePattern);
                     break;
-                    
+
                 default:
                     throw new InvalidOperationException("Unhandled property search target type");
             }

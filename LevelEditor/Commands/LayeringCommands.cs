@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -19,19 +19,19 @@ namespace LevelEditor.Commands
     /// <summary>
     /// Component to add "Add Layer" command to app. Command is accessible only
     /// by right click (context menu).</summary>
-    [Export(typeof(IInitializable))]   
+    [Export(typeof(IInitializable))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class LayeringCommands :  IInitializable
-    {        
+    {
         public LayeringCommands()
         {
             m_contextMenuStrip = new ContextMenuStrip();
             m_contextMenuStrip.AutoClose = true;
-            
+
             m_addLayer = new ToolStripMenuItem("New Layer".Localize());
             m_addLayer.ToolTipText = "Creates a new layer folder".Localize();
             m_addLayer.Click += (sender, e) => AddNewLayer();
-            
+
             m_deleteLayer = new ToolStripMenuItem("Delete".Localize());
             m_deleteLayer.Click += (sender, e) => Delete();
             m_deleteLayer.ShortcutKeys = Keys.Delete;
@@ -42,18 +42,18 @@ namespace LevelEditor.Commands
             m_contextMenuStrip.Items.Add(m_deleteLayer);
         }
 
-        
+
         #region IInitializable Members
 
         void IInitializable.Initialize()
         {
-            m_layerLister.TreeControl.MouseUp += TreeControl_MouseUp;            
+            m_layerLister.TreeControl.MouseUp += TreeControl_MouseUp;
             m_commandService.ProcessingKey += (sender, e) =>
                 {
                     if (e.KeyData == Sce.Atf.Input.Keys.Delete
                         && m_controlRegistry.ActiveControl == m_layerLister.ControlInfo)
                     {
-                        e.Handled = Delete();                        
+                        e.Handled = Delete();
                     }
                 };
         }
@@ -61,14 +61,14 @@ namespace LevelEditor.Commands
         #endregion
 
         private void TreeControl_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
-        {            
+        {
             if (e.Button == MouseButtons.Right)
             {
                 var instancingContext = m_layerLister.TreeView.As<IInstancingContext>();
                 m_deleteLayer.Enabled = instancingContext.CanDelete();
                 m_deleteLayer.Visible = instancingContext.CanDelete();
                 SkinService.ApplyActiveSkin(m_contextMenuStrip);
-                m_contextMenuStrip.Show(m_layerLister.TreeControl, e.X, e.Y);                
+                m_contextMenuStrip.Show(m_layerLister.TreeControl, e.X, e.Y);
             }
         }
 
@@ -112,7 +112,7 @@ namespace LevelEditor.Commands
                 LayeringContext layeringContext = m_layerLister.TreeView.As<LayeringContext>();
                     if (layeringContext != null)
                         layerList = layeringContext.Layers;
-            }                                
+            }
             if (layerList != null)
             {
                 var transactionContext = m_layerLister.TreeView.As<ITransactionContext>();

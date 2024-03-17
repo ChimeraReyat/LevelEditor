@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 namespace Sce.Atf.Rendering
 {
@@ -46,7 +46,7 @@ namespace Sce.Atf.Rendering
             get;
             set;
         }
-        
+
         /// <summary>
         /// Gets or sets the value attribute name</summary>
         string ValueAttr

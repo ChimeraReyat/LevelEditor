@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -29,7 +29,7 @@ namespace Sce.Atf.Controls.Adaptable
 
         /// <summary>
         /// Callback to custom update translation maximum and minimum</summary>
-        public Action<CanvasAdapter> UpdateTranslateMinMax; 
+        public Action<CanvasAdapter> UpdateTranslateMinMax;
 
         /// <summary>
         /// Gets or sets the canvas bounds</summary>

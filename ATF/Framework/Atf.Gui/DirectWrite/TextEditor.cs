@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 //using System.Diagnostics;
@@ -59,11 +59,11 @@ namespace Sce.Atf.DirectWrite
         /// <summary>
         /// Gets or sets text format object used for text layout</summary>
         public D2dTextFormat TextFormat { get; set; }
-          
+
         /// <summary>
         /// Gets or sets starting position of text selected for editing</summary>
-        public int SelectionStart { get; set; }  
-        
+        public int SelectionStart { get; set; }
+
         /// <summary>
         /// Gets or sets number of characters selected for editing</summary>
         public int SelectionLength { get; set; }
@@ -95,14 +95,14 @@ namespace Sce.Atf.DirectWrite
         private int m_topline;
         /// <summary>
         /// Gets or sets top visible line number</summary>
-        public int TopLine 
+        public int TopLine
         {
             get { return m_topline; }
             set
             {
                 m_topline = value;
                 if (m_topline >= TextLayout.LineCount) m_topline = TextLayout.LineCount - 1;
-                if (m_topline < 0) m_topline = 0;                
+                if (m_topline < 0) m_topline = 0;
             }
         }
 
@@ -134,7 +134,7 @@ namespace Sce.Atf.DirectWrite
             UpdateSelectionRange();
         }
 
-       
+
         private void AlignCaretToNearestCluster(bool isTrailingHit, bool skipZeroWidth)
         {
             // Uses hit-testing to align the current caret position to a whole cluster,
@@ -143,7 +143,7 @@ namespace Sce.Atf.DirectWrite
 
             // Align the caret to the nearest whole cluster.
             HitTestMetrics hitTestMetrics = TextLayout.HitTestTextPosition(m_caretPosition, false);
-        
+
             // The caret position itself is always the leading edge.
             // An additional offset indicates a trailing edge when non-zero.
             // This offset comes from the number of code-units in the
@@ -227,7 +227,7 @@ namespace Sce.Atf.DirectWrite
                     m_caretPosition = absolutePosition + advance;
                     m_caretPositionOffset = 0;
                     {
-                        // Use hit-testing to limit text position.         
+                        // Use hit-testing to limit text position.
                         HitTestMetrics hitTestMetrics = TextLayout.HitTestTextPosition(
                             m_caretPosition,
                             false);
@@ -251,7 +251,7 @@ namespace Sce.Atf.DirectWrite
                             line--;
                             linePosition -= lineMetrics[line].Length;
                             if (line <= TopLine)
-                                TopLine = TopLine - 1 >= 0 ? TopLine - 1 : 0; // scroll down a line of text 
+                                TopLine = TopLine - 1 >= 0 ? TopLine - 1 : 0; // scroll down a line of text
                         }
                         else
                         {
@@ -260,7 +260,7 @@ namespace Sce.Atf.DirectWrite
                             if (line >= lineMetrics.Length)
                                 break; // already bottom line
 
-                            // scroll up a line of text 
+                            // scroll up a line of text
                             TopLine = TopLine + 1;
                         }
 
@@ -275,14 +275,14 @@ namespace Sce.Atf.DirectWrite
                         // Get x of current text position
                         var hitTestMetrics = TextLayout.HitTestTextPosition(
                            m_caretPosition,
-                           m_caretPositionOffset > 0 // trailing if nonzero, else leading edge           
+                           m_caretPositionOffset > 0 // trailing if nonzero, else leading edge
                            );
                         caretX = hitTestMetrics.Point.X;
 
                         // Get y of new position
                         hitTestMetrics = TextLayout.HitTestTextPosition(
                            linePosition,
-                           false// leading edge            
+                           false// leading edge
                            );
                         caretY = hitTestMetrics.Point.Y;
 
@@ -391,7 +391,7 @@ namespace Sce.Atf.DirectWrite
                                 break; // first stopping point after old position.
 
                             clusterPosition += clusterLength;
-                        }              
+                        }
 
                         int rightOfWord = m_caretPosition -1;
                         m_caretPositionOffset = 0;
@@ -405,7 +405,7 @@ namespace Sce.Atf.DirectWrite
                         //    --rightOfWord;
                         //}
                         m_caretPosition = rightOfWord;
-                       
+
 
                     }
                     break;
@@ -443,7 +443,7 @@ namespace Sce.Atf.DirectWrite
                     m_caretAnchor = 0;
                     extendSelection = true;
                     goto fallthrough;
- 
+
                 case SelectionMode.Last:
             fallthrough:
                     m_caretPosition = int.MaxValue;
@@ -476,7 +476,7 @@ namespace Sce.Atf.DirectWrite
                 var lineMetrics = TextLayout.GetLineMetrics();
                 int linePosition;
                 GetLineFromPosition(lineMetrics, m_caretPosition, out  line, out linePosition);
-               
+
                 if (line < TopLine)
                      TopLine = line;
 
@@ -498,8 +498,8 @@ namespace Sce.Atf.DirectWrite
 
         }
 
-      
-       
+
+
         /// <summary>
         /// Obtains the current caret position (in untransformed space)</summary>
         /// <returns>Current caret position rectangle (in untransformed space)</returns>
@@ -507,7 +507,7 @@ namespace Sce.Atf.DirectWrite
         {
              if (TextLayout == null)
                 return new RectangleF();
-          
+
             var caretMetrics = TextLayout.HitTestTextPosition(m_caretPosition, m_caretPositionOffset > 0);
             float caretX = caretMetrics.Point.X;
             float caretY = caretMetrics.Point.Y;
@@ -521,7 +521,7 @@ namespace Sce.Atf.DirectWrite
             }
 
             const int caretThickness = 1;
-            return new RectangleF(caretX - caretThickness/2.0f, caretY, caretThickness, caretMetrics.Height);                     
+            return new RectangleF(caretX - caretThickness/2.0f, caretY, caretThickness, caretMetrics.Height);
         }
 
         /// <summary>
@@ -538,7 +538,7 @@ namespace Sce.Atf.DirectWrite
                 caretBegin = temp;
             }
 
-            // Limit to actual text length.    
+            // Limit to actual text length.
             caretBegin = Math.Min(caretBegin,   TextLayout.Text.Length);
             caretEnd = Math.Min(caretEnd, TextLayout.Text.Length);
             SelectionStart = caretBegin;
@@ -580,7 +580,7 @@ namespace Sce.Atf.DirectWrite
         public void ResetText(string newText)
         {
             RecreateLayout(newText);
-            // Limit to actual text length.    
+            // Limit to actual text length.
             m_caretPosition = Math.Min(m_caretPosition, TextLayout.Text.Length);
             m_caretPositionOffset = 0;
             m_caretAnchor = m_caretPosition;
@@ -641,7 +641,7 @@ namespace Sce.Atf.DirectWrite
             for (int i = 0; i < lineMetrics.Length;++i)
             {
                 totalHeight += lineMetrics[i].Height;
-                if (totalHeight > TextLayout.LayoutHeight) 
+                if (totalHeight > TextLayout.LayoutHeight)
                     break;
                 ++numVisibleLines;
             }
@@ -688,7 +688,7 @@ namespace Sce.Atf.DirectWrite
             if (TopLine > maxTopLine)
                 TopLine = maxTopLine;
 
-  
+
             //Trace.TraceInformation("Validate topline: {0} current line: {1}, caret {2} ", TopLine, line, m_caretPosition);
         }
 

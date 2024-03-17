@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -25,7 +25,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         protected abstract AttributeInfo IndexAttribute { get; }
 
         /// <summary>
-        /// Gets floating y-coordinate attribute for group pin. 
+        /// Gets floating y-coordinate attribute for group pin.
         /// Floating pin location y value is user defined (x value is auto-generated).</summary>
         protected abstract AttributeInfo PinYAttribute { get; }
 
@@ -44,7 +44,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// <summary>
         /// Gets visible attribute for group pin</summary>
         protected abstract AttributeInfo VisibleAttribute { get; }
-     
+
         /// <summary>
         /// Constructor that subscribes to Changed event</summary>
         public GroupPin()
@@ -105,7 +105,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 inputSide
                 ? InternalElement.InputPin(InternalPinIndex).Name
                 : InternalElement.OutputPin(InternalPinIndex).Name;
-                   
+
             return InternalElement.Name + ":" + pinName;
         }
 
@@ -228,14 +228,14 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             yield return this;
             var current = this;
             while (current.InternalElement.Is<Group>())
-            {     
+            {
                 // go down
                 var childSubGraph = current.InternalElement.Cast<Group>();
                 current = inputSide ? childSubGraph.InputGroupPins.First(x => x.PinTarget == PinTarget) :
                       childSubGraph.OutputGroupPins.First(x => x.PinTarget == PinTarget);
                 yield return current;
 
-            } 
+            }
         }
 
         /// <summary>
@@ -379,7 +379,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             var current = this;
             instancingNode = null;
             while (current.InternalElement.Is<Group>()) // traverse down
-            {         
+            {
                 if (current.InternalElement.Is<IReference<DomNode>>())
                 {
                     if (instancingNode == null)
@@ -388,7 +388,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 
                 var childSubGraph = current.InternalElement.Cast<Group>();
                 current = inputSide ? childSubGraph.InputGroupPins.First(x => x.Index == current.InternalPinIndex) :
-                      childSubGraph.OutputGroupPins.First(x => x.Index == current.InternalPinIndex);               
+                      childSubGraph.OutputGroupPins.First(x => x.Index == current.InternalPinIndex);
             }
 
             if ( current.InternalElement.Is<IReference<DomNode>>()) // case for plain node references

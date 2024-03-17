@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -9,7 +9,7 @@ using Sce.Atf.Adaptation;
 namespace Sce.Atf.Applications.NetworkTargetServices
 {
     /// <summary>
-    /// Commands to operate on currently selected targets. 
+    /// Commands to operate on currently selected targets.
     /// Command is accessible only by right click (context menu).</summary>
     [Export(typeof(IInitializable))]
     [Export(typeof(IContextMenuCommandProvider))]
@@ -17,7 +17,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class TargetCommands : ICommandClient, IContextMenuCommandProvider, IInitializable
     {
-   
+
         /// <summary>
         /// Gets or sets the command service to use</summary>
         [Import(AllowDefault = true)]
@@ -89,7 +89,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                 }
             }
 
-         
+
         }
 
         #endregion
@@ -111,11 +111,11 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                 {
                      return m_selectedTargets.All(target => target.Protocol == Deci4pTargetInfo.ProtocolName);
                 }
-              
+
                 return false;
             }
-          
-            // add target 
+
+            // add target
             if (m_addTargetsCmdTags.Contains(commandTag))
             {
                 foreach (var targetProvider in TargetProviders)
@@ -129,9 +129,9 @@ namespace Sce.Atf.Applications.NetworkTargetServices
 
                 return false;
             }
-                
 
-            // remove target        
+
+            // remove target
             if (m_removeTargetsCmdTags.Contains(commandTag))
             {
                 foreach (var targetProvider in TargetProviders)
@@ -150,7 +150,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
 
                 return false;
             }
-               
+
             return false;
         }
 
@@ -161,12 +161,12 @@ namespace Sce.Atf.Applications.NetworkTargetServices
         {
             if (CommandTag.VitaNeighborhood.Equals(commandTag))
             {
-                // Invoke "Edit Vita Target in Neighborhood" command merely launches the PSP2 Neighborhood app that comes with  Vita SDK installer, 
-                // as if you double click "Neighborhood for PlayStation(R)Vita" on your desktop icon. 
-                // This is intended just for a convenience helper to allow users directly bring up the PSP2 app without a detour to desktop first, 
+                // Invoke "Edit Vita Target in Neighborhood" command merely launches the PSP2 Neighborhood app that comes with  Vita SDK installer,
+                // as if you double click "Neighborhood for PlayStation(R)Vita" on your desktop icon.
+                // This is intended just for a convenience helper to allow users directly bring up the PSP2 app without a detour to desktop first,
                 // as PSP2 Neighborhood app can reboot, power off, and do much more for the Vita kit.
 
-                // {BA414141-28C6-7F3C-45FF-14C28C11EE88} is the registered Neighborhood for PlayStation(R)Vita Shell extension 
+                // {BA414141-28C6-7F3C-45FF-14C28C11EE88} is the registered Neighborhood for PlayStation(R)Vita Shell extension
                 System.Diagnostics.Process.Start("Explorer.exe", @"/e,/root,::{BA414141-28C6-7F3C-45FF-14C28C11EE88}");
             }
             else if (m_addTargetsCmdTags.Contains(commandTag))
@@ -226,8 +226,8 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                         yield return cmdTag;
 
                 yield return CommandTag.VitaNeighborhood;
-            }                
-          
+            }
+
         }
 
         #endregion
@@ -250,5 +250,5 @@ namespace Sce.Atf.Applications.NetworkTargetServices
 
       }
 
- 
+
 }

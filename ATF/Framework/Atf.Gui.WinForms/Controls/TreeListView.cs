@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -30,7 +30,7 @@ namespace Sce.Atf.Controls
             CheckedList,
 
             /// <summary>
-            /// A list capable of supporting thousands of items</summary> 
+            /// A list capable of supporting thousands of items</summary>
             VirtualList,
 
             /// <summary>
@@ -84,7 +84,7 @@ namespace Sce.Atf.Controls
             m_control.MouseClick += ControlMouseClick;
             m_control.MouseDoubleClick += ControlMouseDoubleClick;
             m_control.Scroll += ControlScroll;
-            
+
             if (style == Style.VirtualList)
             {
                 m_control.VirtualMode = true;
@@ -403,7 +403,7 @@ namespace Sce.Atf.Controls
         public Node GetNodeAtIndex(int index)
         {
             ListViewItem lstItem;
-            
+
             if (m_control.TheStyle != Style.VirtualList)
             {
                 // Non-virtual list
@@ -1088,7 +1088,7 @@ namespace Sce.Atf.Controls
         private void ControlMouseDown(object sender, MouseEventArgs e)
         {
             EnsureEditingTerminated();
-            
+
             var clientPoint = new Point(e.X, e.Y);
             SetLastHit(clientPoint);
         }
@@ -1314,7 +1314,7 @@ namespace Sce.Atf.Controls
                 CanPropertyChange.Raise(this, args);
                 if (!args.CanChange)
                     return;
-                
+
                 m_editBox.Bounds = hitinfo.SubItem.Bounds;
                 m_currentEditNode = node;
                 m_currentEditColumnIndex = columnIndex;
@@ -1627,7 +1627,7 @@ namespace Sce.Atf.Controls
 
                 if (IsSet(NodeChangeTypes.Properties, changeTypes))
                     UpdateProperties(node, lstItem, Columns.Count);
-                
+
                 if (IsSet(NodeChangeTypes.ImageIndex, changeTypes))
                     lstItem.ImageIndex = node.ImageIndex;
 
@@ -1917,7 +1917,7 @@ namespace Sce.Atf.Controls
                 return;
 
             // Hit test against expander buttons
-            if ((m_control.TheStyle == Style.TreeList || m_control.TheStyle == Style.CheckedTreeList) 
+            if ((m_control.TheStyle == Style.TreeList || m_control.TheStyle == Style.CheckedTreeList)
                 && node.HitRect.Contains(e.Location))
             {
                 node.Expanded = !node.Expanded;
@@ -2283,7 +2283,7 @@ namespace Sce.Atf.Controls
         private readonly ColumnCollection m_columns;
         private readonly ListViewItemSorter m_listViewItemSorter;
         private readonly TextBox m_editBox;
-        
+
         private readonly List<ListViewItem> m_insertQueue =
             new List<ListViewItem>();
 

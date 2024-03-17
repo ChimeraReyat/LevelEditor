@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -18,11 +18,11 @@ namespace LevelEditorCore
     {
         /// <summary>
         /// Constructor</summary>
-        public DesignViewControl(DesignView designView)        
+        public DesignViewControl(DesignView designView)
         {
             DesignView = designView;
-            this.Camera.SetPerspective((float)(Math.PI / 4), 1.0f, 0.1f, designView.CameraFarZ);            
-            
+            this.Camera.SetPerspective((float)(Math.PI / 4), 1.0f, 0.1f, designView.CameraFarZ);
+
         }
 
         /// <summary>
@@ -35,8 +35,8 @@ namespace LevelEditorCore
         }
 
 
-  
-     
+
+
         /// <summary>
         /// Gets a value indicating if mouse movement passed the DragThreshold in x or y</summary>
         public bool DragOverThreshold
@@ -64,7 +64,7 @@ namespace LevelEditorCore
             }
         }
         private IGameLoop m_gameLoop;
-        
+
 
         /// <summary>
         /// Raises the <see cref="E:System.Windows.Forms.Control.MouseDown"></see> event.
@@ -77,22 +77,22 @@ namespace LevelEditorCore
                 return;
 
             Focus();
-            
+
             FirstMousePoint = CurrentMousePoint = new Point(e.X, e.Y);
             m_dragOverThreshold = false;
-            
+
             if (DesignView.Context != null)
-            {                
+            {
                 bool handled = CameraController.MouseDown(this, e);
                 if (handled)
                 {
                     m_mouseDownAction = MouseDownAction.ControllingCamera;
                 }
                 else if (e.Button == MouseButtons.Left)
-                {// either regular pick or manipulator pick.                    
+                {// either regular pick or manipulator pick.
                     if (DesignView.Manipulator != null && DesignView.Manipulator.Pick(this, e.Location))
                     {
-                        m_mouseDownAction = MouseDownAction.Manipulating;                        
+                        m_mouseDownAction = MouseDownAction.Manipulating;
                     }
                     else
                     {
@@ -102,9 +102,9 @@ namespace LevelEditorCore
             }
             DesignView.InvalidateViews();
             base.OnMouseDown(e);
-            
-        }        
-        
+
+        }
+
         /// <summary>
         /// Raises the <see cref="E:System.Windows.Forms.Control.MouseMove"></see> event.
         /// </summary>
@@ -149,7 +149,7 @@ namespace LevelEditorCore
                     }
                 }
                 else if (DesignView.Manipulator != null)
-                {                    
+                {
                     bool picked = DesignView.Manipulator.Pick(this, e.Location);
                     this.Cursor = picked ? Cursors.SizeAll : Cursors.Default;
                     DesignView.InvalidateViews();
@@ -159,7 +159,7 @@ namespace LevelEditorCore
                     this.Cursor = Cursors.Default;
                 }
             }
-           
+
             if(m_dragOverThreshold)
                 m_hitIndex = -1;
 
@@ -205,23 +205,23 @@ namespace LevelEditorCore
                     contextMenuCommandProviders.GetCommands(DesignView.Context, target);
 
                 ICommandService commandService = Globals.MEFContainer.GetExportedValue<ICommandService>();
-                commandService.RunContextMenu(commands, screenPoint);                
+                commandService.RunContextMenu(commands, screenPoint);
             }
 
             m_mouseDownAction = MouseDownAction.None;
 
             DesignView.InvalidateViews();
             base.OnMouseUp(e);
-            
+
         }
 
-        
+
         protected virtual void HandlePick(MouseEventArgs e)
         {
             SelectMode selectMode = InputScheme.GetSelectMode(Control.ModifierKeys);
             ISelectionContext selection = DesignView.Context.As<ISelectionContext>();
             IList<object> hits = Pick(e);
-            bool multiSelect = DragOverThreshold;            
+            bool multiSelect = DragOverThreshold;
             if (multiSelect == false && hits.Count > 0)
             {
                 List<object> singleHit = new List<object>();
@@ -229,7 +229,7 @@ namespace LevelEditorCore
                 {
                     m_hitIndex++;
                     if (m_hitIndex >= hits.Count)
-                        m_hitIndex = 0;            
+                        m_hitIndex = 0;
                     singleHit.Add(hits[m_hitIndex]);
                 }
                 else
@@ -238,7 +238,7 @@ namespace LevelEditorCore
                 }
                 hits = singleHit;
             }
-                            
+
             switch (selectMode)
             {
                 case SelectMode.Normal:
@@ -277,8 +277,8 @@ namespace LevelEditorCore
             protected set;
             get;
         }
-      
-        private bool m_dragOverThreshold;               
+
+        private bool m_dragOverThreshold;
         private MouseDownAction m_mouseDownAction;
         private int m_hitIndex = -1;
         private PropertyEditor m_propEditor;
@@ -287,21 +287,21 @@ namespace LevelEditorCore
             None,
             ControllingCamera,
             Picking,
-            Manipulating,            
+            Manipulating,
         }
 
     }
 
-    /// <summary>    
+    /// <summary>
     /// ControlScheme was stored in canvascontrol3d
     /// which created dependecy between CameraControllers and canvascontrol3d
-    /// 
+    ///
     /// this is temp location to store global control scheme.
     /// </summary>
     public static class InputScheme
     {
         /// <summary>
-        /// Gets and sets active control scheme        
+        /// Gets and sets active control scheme
         /// </summary>
         public static Sce.Atf.Rendering.ControlScheme ActiveControlScheme
         {
@@ -312,13 +312,13 @@ namespace LevelEditorCore
         public static SelectMode GetSelectMode(Keys modifiers)
         {
             Sce.Atf.Input.Keys modkeys = KeysInterop.ToAtf(modifiers);
-            if (ActiveControlScheme.ToggleSelection != Sce.Atf.Input.Keys.None 
+            if (ActiveControlScheme.ToggleSelection != Sce.Atf.Input.Keys.None
                 && modkeys == ActiveControlScheme.ToggleSelection)
                 return SelectMode.Toggle;
-            if (ActiveControlScheme.AddSelection != Sce.Atf.Input.Keys.None 
+            if (ActiveControlScheme.AddSelection != Sce.Atf.Input.Keys.None
                 && modkeys == ActiveControlScheme.AddSelection)
                 return SelectMode.Extend;
-            if (ActiveControlScheme.RemoveSelection != Sce.Atf.Input.Keys.None 
+            if (ActiveControlScheme.RemoveSelection != Sce.Atf.Input.Keys.None
                 && modkeys == ActiveControlScheme.RemoveSelection)
                 return SelectMode.Remove;
             return SelectMode.Normal;

@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 //#define TEST_COMMAND_SORTING
 
@@ -633,7 +633,7 @@ namespace Sce.Atf.Applications
 
         private void EraseShortcut(Keys shortcut)
         {
-            // If the shortcut already exists then erase it. 
+            // If the shortcut already exists then erase it.
             if (m_shortcuts.ContainsKey(shortcut))
             {
                 object existingCommandTag = m_shortcuts[shortcut];

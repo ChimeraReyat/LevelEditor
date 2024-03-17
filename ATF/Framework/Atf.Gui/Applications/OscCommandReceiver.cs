@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -9,7 +9,7 @@ namespace Sce.Atf.Applications
     /// Listens for Open Sound Control messages that can trigger the execution of commands
     /// in this application. The format for the OSC addresses are /{menu name}/{command name}
     /// with spaces and illegal characters removed. (See IOscService.)
-    /// 
+    ///
     /// In the TypeCatalog, this OscCommandReceiver component can only see commands that were
     /// previously registered with the ICommandService. So, in order to see all commands, put
     /// this component last in the TypeCatalog.</summary>
@@ -53,7 +53,7 @@ namespace Sce.Atf.Applications
         {
             return m_addressesToCommands.Keys;
         }
-        
+
         private void OscServiceMessageReceived(object sender, OscMessageReceivedArgs e)
         {
             CommandInfo cmdInfo;

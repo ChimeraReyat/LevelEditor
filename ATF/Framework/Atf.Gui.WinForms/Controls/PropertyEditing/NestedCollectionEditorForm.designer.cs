@@ -1,4 +1,4 @@
-﻿namespace Sce.Atf.Controls.PropertyEditing
+namespace Sce.Atf.Controls.PropertyEditing
 {
     /// <summary>
     /// Nested collections editor form</summary>
@@ -39,58 +39,58 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // splitContainer1
-            // 
+            //
             resources.ApplyResources(this.splitContainer1, "splitContainer1");
             this.splitContainer1.Name = "splitContainer1";
-            // 
+            //
             // splitContainer1.Panel1
-            // 
+            //
             this.splitContainer1.Panel1.Controls.Add(this.deleteButton);
             this.splitContainer1.Panel1.Controls.Add(this.downButton);
             this.splitContainer1.Panel1.Controls.Add(this.upButton);
             this.splitContainer1.Panel1.Controls.Add(this.addButton);
             this.splitContainer1.Panel1.Controls.Add(this.comboBox1);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
-            // 
+            //
             // deleteButton
-            // 
+            //
             resources.ApplyResources(this.deleteButton, "deleteButton");
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.UseVisualStyleBackColor = true;
-            // 
+            //
             // downButton
-            // 
+            //
             resources.ApplyResources(this.downButton, "downButton");
             this.downButton.Name = "downButton";
             this.downButton.UseVisualStyleBackColor = true;
-            // 
+            //
             // upButton
-            // 
+            //
             resources.ApplyResources(this.upButton, "upButton");
             this.upButton.Name = "upButton";
             this.upButton.UseVisualStyleBackColor = true;
-            // 
+            //
             // addButton
-            // 
+            //
             resources.ApplyResources(this.addButton, "addButton");
             this.addButton.Name = "addButton";
             this.addButton.UseVisualStyleBackColor = true;
-            // 
+            //
             // comboBox1
-            // 
+            //
             resources.ApplyResources(this.comboBox1, "comboBox1");
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Name = "comboBox1";
-            // 
+            //
             // label1
-            // 
+            //
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            // 
+            //
             // NestedCollectionEditorForm
-            // 
+            //
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer1);

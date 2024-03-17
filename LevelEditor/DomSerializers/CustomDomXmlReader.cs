@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 
@@ -10,7 +10,7 @@ namespace LevelEditor
     /// <summary>
     /// custom dom xml reader.
     /// for any attribute of type anyuri.
-    /// this reader will convert relative uri to absolute 
+    /// this reader will convert relative uri to absolute
     /// using either resource-root or resource uri.
     /// </summary>
     internal class CustomDomXmlReader : DomXmlReader
@@ -23,7 +23,7 @@ namespace LevelEditor
 
         /// <summary>
         /// Converts the give string to attribute value and set it to given node
-        /// using attributeInfo.         
+        /// using attributeInfo.
         /// </summary>
         /// <param name="node">DomNode </param>
         /// <param name="attributeInfo">attributeInfo to set</param>
@@ -48,7 +48,7 @@ namespace LevelEditor
                     Uri ur = (Uri)value;
                     if (!ur.IsAbsoluteUri)
                     {
-                        // todo use schema annotation to decide what to use 
+                        // todo use schema annotation to decide what to use
                         // for converting relative uri to absolute.
                         if (node.Type == Schema.gameReferenceType.Type
                             || node.Type == Schema.gameObjectReferenceType.Type)

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -93,7 +93,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             var group = type as Group;
             if (group == null)
             {
-                return type.Inputs.FirstOrDefault(p => p.Index == index);                
+                return type.Inputs.FirstOrDefault(p => p.Index == index);
             }
             return group.InputPin(index);
         }
@@ -109,7 +109,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             if (group == null)
             {
                 return type.Outputs.FirstOrDefault(p => p.Index == index);
-                
+
             }
             return group.OutputPin(index);
         }

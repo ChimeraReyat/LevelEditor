@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections.Generic;
 using System.IO;
@@ -23,7 +23,7 @@ namespace Sce.Atf
         /// Gets all file paths matching the search pattern in a given directory and its sub-directories</summary>
         /// <param name="rootPath">Root directory path</param>
         /// <param name="searchPattern">Search pattern for matching file paths.
-        /// The pattern can contain 2 wildcard characters: "*" matches zero or more characters; 
+        /// The pattern can contain 2 wildcard characters: "*" matches zero or more characters;
         /// "?" matches exactly zero or one character.</param>
         /// <returns>Array of file paths matching the search pattern from the given directories</returns>
         /// <remarks>Searches directories and all subdirectories.
@@ -37,7 +37,7 @@ namespace Sce.Atf
         /// Gets all file paths matching the search pattern in given directory and optional sub-directories</summary>
         /// <param name="rootPath">Root directory path</param>
         /// <param name="searchPattern">Search pattern for matching file paths.
-        /// The pattern can contain 2 wildcard characters: "*" matches zero or more characters; 
+        /// The pattern can contain 2 wildcard characters: "*" matches zero or more characters;
         /// "?" matches exactly zero or one character.</param>
         /// <param name="option">Whether or not to search recursively, i.e., search sub-directories</param>
         /// <returns>Array of file paths matching the search pattern from the given directory and optional sub-directories</returns>
@@ -61,13 +61,13 @@ namespace Sce.Atf
         }
 
         /// <summary>
-        /// Gets all file paths that match the given search pattern, one at a time by using 'yield', 
+        /// Gets all file paths that match the given search pattern, one at a time by using 'yield',
         /// in the given directory and sub-directories. Wildcards can be used. This is an
         /// efficient way of looking for the first match or first N matches, because the searching
         /// can be stopped when a match is found.</summary>
         /// <param name="rootPath">The directory to begin looking in</param>
         /// <param name="searchPattern">Search pattern for matching file paths.
-        /// The pattern can contain 2 wildcard characters: "*" matches zero or more characters; 
+        /// The pattern can contain 2 wildcard characters: "*" matches zero or more characters;
         /// "?" matches exactly zero or one character.</param>
         /// <returns>Array of file paths matching the search pattern in the given directory and all
         /// its sub-directories</returns>

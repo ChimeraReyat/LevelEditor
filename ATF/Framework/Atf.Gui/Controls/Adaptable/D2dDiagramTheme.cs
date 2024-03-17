@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -19,45 +19,45 @@ namespace Sce.Atf.Controls.Adaptable
         {
 
         }
-        
+
         /// <summary>
         /// Constructor with parameters</summary>
         /// <param name="fontFamilyName">Font family name for theme</param>
         /// <param name="fontSize">Font size</param>
         public D2dDiagramTheme(string fontFamilyName, float fontSize)
-        {            
-            m_d2dTextFormat = D2dFactory.CreateTextFormat(fontFamilyName, fontSize);            
+        {
+            m_d2dTextFormat = D2dFactory.CreateTextFormat(fontFamilyName, fontSize);
             m_fillBrush = D2dFactory.CreateSolidBrush(SystemColors.Window);
             m_fillTitleBrush = D2dFactory.CreateSolidBrush(Color.YellowGreen);
             m_textBrush = D2dFactory.CreateSolidBrush(SystemColors.WindowText);
             m_outlineBrush = D2dFactory.CreateSolidBrush(SystemColors.ControlDark);
-            m_highlightBrush = D2dFactory.CreateSolidBrush(SystemColors.Highlight);                                   
+            m_highlightBrush = D2dFactory.CreateSolidBrush(SystemColors.Highlight);
             m_lastHighlightBrush = D2dFactory.CreateSolidBrush(SystemColors.Highlight);
             m_textHighlightBrush = D2dFactory.CreateSolidBrush(SystemColors.Highlight);
             m_hotBrush = D2dFactory.CreateSolidBrush(SystemColors.HotTrack);
             m_dragSourceBrush = D2dFactory.CreateSolidBrush(Color.SlateBlue);
             m_dropTargetBrush = D2dFactory.CreateSolidBrush(Color.Chartreuse);
-            m_ghostBrush = D2dFactory.CreateSolidBrush(Color.White);            
+            m_ghostBrush = D2dFactory.CreateSolidBrush(Color.White);
             m_hiddenBrush = D2dFactory.CreateSolidBrush(Color.LightGray);
             m_templatedInstance = D2dFactory.CreateSolidBrush(Color.Yellow);
-            m_copyInstance = D2dFactory.CreateSolidBrush(Color.Green);     
+            m_copyInstance = D2dFactory.CreateSolidBrush(Color.Green);
             //m_errorBrush = D2dFactory.CreateSolidBrush(Color.Tomato);
-            m_infoBrush = D2dFactory.CreateSolidBrush(SystemColors.Info);            
+            m_infoBrush = D2dFactory.CreateSolidBrush(SystemColors.Info);
             m_hoverBorderBrush = D2dFactory.CreateSolidBrush(SystemColors.ControlDarkDark);
 
             int fontHeight = (int)TextFormat.FontHeight;
             m_rowSpacing = fontHeight + PinMargin;
             m_pinOffset = (fontHeight - m_pinSize) / 2;
-        
-            D2dGradientStop[] gradstops = 
-            { 
+
+            D2dGradientStop[] gradstops =
+            {
                 new D2dGradientStop(Color.White, 0),
                 new D2dGradientStop(Color.LightSteelBlue, 1.0f),
             };
             m_fillLinearGradientBrush = D2dFactory.CreateLinearGradientBrush(gradstops);
 
-            D2dGradientStop[] errorStops = 
-            { 
+            D2dGradientStop[] errorStops =
+            {
                 new D2dGradientStop(Color.White, 0),
                 new D2dGradientStop(Color.MediumVioletRed, 1.0f),
             };
@@ -65,7 +65,7 @@ namespace Sce.Atf.Controls.Adaptable
 
             StrokeWidth = 2;
         }
-       
+
         /// <summary>
         /// Gets row spacing in pixels between pins on element</summary>
         public virtual int RowSpacing { get { return m_rowSpacing; } }
@@ -83,7 +83,7 @@ namespace Sce.Atf.Controls.Adaptable
         private int m_pinOffset;
         private int m_pinSize = 8;
         private int m_pinMargin = 2;
-       
+
         /// <summary>
         /// Registers a brush (pen) with a unique key</summary>
         /// <param name="key">Key to access brush</param>
@@ -112,7 +112,7 @@ namespace Sce.Atf.Controls.Adaptable
             m_brushes.TryGetValue(key, out pen);
             return pen;
         }
-       
+
         /// <summary>
         /// Registers a bitmap with a unique key</summary>
         /// <param name="key">Key to access bitmap</param>
@@ -165,7 +165,7 @@ namespace Sce.Atf.Controls.Adaptable
         }
 
         /// <summary>
-        /// Gets or sets default Stroke width used for drawing outline</summary>        
+        /// Gets or sets default Stroke width used for drawing outline</summary>
         public float StrokeWidth
         {
             get;
@@ -186,7 +186,7 @@ namespace Sce.Atf.Controls.Adaptable
             get { return m_outlineBrush; }
             set { SetDisposableField(value, ref m_outlineBrush); }
         }
-       
+
         /// <summary>
         /// Gets or sets the gradient brush (pen) used to fill diagram items</summary>
         public D2dLinearGradientBrush FillGradientBrush
@@ -250,7 +250,7 @@ namespace Sce.Atf.Controls.Adaptable
             get { return m_ghostBrush; }
             set { SetDisposableField(value, ref m_ghostBrush); }
         }
-       
+
         /// <summary>
         /// Gets or sets the brush (pen) used to outline hidden diagram items</summary>
         public D2dBrush HiddenBrush
@@ -274,7 +274,7 @@ namespace Sce.Atf.Controls.Adaptable
             get { return m_copyInstance; }
             set { SetDisposableField(value, ref m_copyInstance); }
         }
-               
+
         /// <summary>
         /// Gets or sets the brush (pen) used to fill hot-tracked diagram items</summary>
         public D2dBrush HotBrush
@@ -314,7 +314,7 @@ namespace Sce.Atf.Controls.Adaptable
             get { return m_infoBrush; }
             set { SetDisposableField(value, ref m_infoBrush); }
         }
-              
+
         /// <summary>
         /// Gets or sets the brush (pen) used to hover border</summary>
         public D2dBrush HoverBorderBrush
@@ -382,7 +382,7 @@ namespace Sce.Atf.Controls.Adaptable
 
                 foreach (D2dBitmap bitmap in m_bitmaps.Values)
                     bitmap.Dispose();
-                m_bitmaps.Clear();                                    
+                m_bitmaps.Clear();
             }
 
             base.Dispose(disposing);
@@ -395,7 +395,7 @@ namespace Sce.Atf.Controls.Adaptable
             get { return m_pickTolerance; }
             set { m_pickTolerance = value; }
         }
-  
+
         /// <summary>
         /// Gets the theme's brush (pen) for the given drawing style</summary>
         /// <param name="style">Drawing style</param>
@@ -443,14 +443,14 @@ namespace Sce.Atf.Controls.Adaptable
                 OnRedraw();
             }
         }
-         
+
         private readonly Dictionary<object, D2dBrush> m_brushes = new Dictionary<object, D2dBrush>();
         private readonly Dictionary<object, D2dBrush> m_titleBrushes = new Dictionary<object, D2dBrush>();
-        private readonly Dictionary<object, D2dBitmap> m_bitmaps = new Dictionary<object, D2dBitmap>();        
+        private readonly Dictionary<object, D2dBitmap> m_bitmaps = new Dictionary<object, D2dBitmap>();
         private D2dTextFormat m_d2dTextFormat;
         private D2dBrush m_fillBrush;
         private D2dBrush m_fillTitleBrush;
-        private D2dBrush m_textBrush;        
+        private D2dBrush m_textBrush;
         private D2dBrush m_highlightBrush;
         private D2dBrush m_textHighlightBrush;
         private D2dBrush m_lastHighlightBrush;
@@ -461,12 +461,12 @@ namespace Sce.Atf.Controls.Adaptable
         private D2dBrush m_hotBrush;
         private D2dBrush m_dropTargetBrush;
         private D2dBrush m_dragSourceBrush;
-        private D2dBrush m_errorBrush;        
-        private D2dBrush m_infoBrush;        
-        private D2dBrush m_outlineBrush;                         
-        private D2dBrush m_hoverBorderBrush;        
+        private D2dBrush m_errorBrush;
+        private D2dBrush m_infoBrush;
+        private D2dBrush m_outlineBrush;
+        private D2dBrush m_hoverBorderBrush;
         private D2dLinearGradientBrush m_fillLinearGradientBrush;
         private int m_pickTolerance = 3;
     }
-    
+
 }

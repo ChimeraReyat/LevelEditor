@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Drawing;
 using SharpDX.Direct2D1;
@@ -26,7 +26,7 @@ namespace Sce.Atf.Direct2D
     }
 
     /// <summary>
-    /// Class with operations on a GeometrySink, which is a path that can contain lines, arcs, 
+    /// Class with operations on a GeometrySink, which is a path that can contain lines, arcs,
     /// cubic Bezier curves, and quadratic Bezier curves</summary>
     /// <remarks>For more information, see http://sharpdx.org/documentation/api. </remarks>
     public sealed class D2dGeometrySink : D2dResource

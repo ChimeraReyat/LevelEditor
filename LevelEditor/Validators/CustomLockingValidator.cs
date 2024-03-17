@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using Sce.Atf.Dom;
 using Sce.Atf.Adaptation;
@@ -36,14 +36,14 @@ namespace LevelEditor
                 if (m_visible == visible)
                 {
                     base.OnAttributeChanged(sender, e);
-                }            
+                }
             }
             else
             {
                 base.OnAttributeChanged(sender, e);
             }
 
-            
+
         }
         private IVisibilityContext m_visibilityContext;
         private bool m_visible;

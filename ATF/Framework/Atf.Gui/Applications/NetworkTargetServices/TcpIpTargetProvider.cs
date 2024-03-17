@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -90,7 +90,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
 
         void IInitializable.Initialize()
         {
-         
+
             if (m_settingsService != null)
             {
                 m_settingsService.Saving += settingsService_Saving;
@@ -98,7 +98,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                 m_settingsService.RegisterSettings(this,
                     new BoundPropertyDescriptor(this, () => PersistedTargets, "Targets".Localize(), null, null)
                 );
-              
+
             }
         }
         #endregion
@@ -135,17 +135,17 @@ namespace Sce.Atf.Applications.NetworkTargetServices
 
                 var loadingStages = new[]
                 {
-                    new 
+                    new
                     {
                         SettingsPath = perUserSettingsPath,
                         Scope = TargetScope.PerUser
-                    }, 
+                    },
 
-                    new  
+                    new
                     {
                         SettingsPath = allUsersSettingsPath,
                         Scope = TargetScope.AllUsers
-                    },                          
+                    },
                 };
 
                 foreach (var stage in loadingStages)
@@ -194,17 +194,17 @@ namespace Sce.Atf.Applications.NetworkTargetServices
 
                 var savingStages = new[]
                 {
-                    new 
+                    new
                     {
                         SettingsPath = perUserSettingsPath,
                         Scope = TargetScope.PerUser
-                    }, 
+                    },
 
-                    new  
+                    new
                     {
                         SettingsPath = allUsersSettingsPath,
                         Scope = TargetScope.AllUsers
-                    },                          
+                    },
                 };
 
                 foreach (var stage in savingStages)
@@ -229,7 +229,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                         xmlDoc.AppendChild(targetsNode);
                     }
                     if (targetsNode == null)
-                        return;                 
+                        return;
 
                     // remove all existing targets provided by this provider
                     var targetsToRemove = new List<XmlNode>();
@@ -254,8 +254,8 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                         tcpTargets = xmlDoc.CreateElement("TcpTargets");
                         targetsNode.AppendChild(tcpTargets);
                     }
- 
-                    string results = SerializeTargets(stage.Scope);                                 
+
+                    string results = SerializeTargets(stage.Scope);
                     var tempRootNode = xmlDoc.CreateElement("TcpTargets");
                     tempRootNode.InnerXml = results;
                     if (tempRootNode.FirstChild != null)
@@ -265,7 +265,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                             var target = child.CloneNode(false);
                             tcpTargets.AppendChild(target);
                         }
-                          
+
                     xmlDoc.Save(settingsPath);
                 }
             }
@@ -315,7 +315,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
             }
         }
 
-       
+
         /// <summary>
         /// Converts targets of the given scope into a string value for persisting</summary>
         /// <param name="scope">Target scope</param>
@@ -342,7 +342,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                         elem.SetAttribute("provider", Id);
                     if (target.FixedPort > 0)
                         elem.SetAttribute("fixedport", target.FixedPort.ToString());
-                     
+
                     root.AppendChild(elem);
                 }
 
@@ -371,7 +371,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
 
             foreach (XmlElement elem in nodes)
             {
-               
+
                 if (scope != TargetScope.PerApp)
                 {
                     var provider = elem.GetAttribute("provider");
@@ -396,9 +396,9 @@ namespace Sce.Atf.Applications.NetworkTargetServices
 
             foreach (var targetConsumer in TargetConsumers)
                 targetConsumer.TargetsChanged(this, m_targets);
- 
+
         }
-     
+
         /// <summary>
         /// Gets or sets target consumers</summary>
         [ImportMany]
@@ -494,5 +494,5 @@ namespace Sce.Atf.Applications.NetworkTargetServices
             return newTarget;
         }
     }
- 
+
 }

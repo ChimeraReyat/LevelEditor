@@ -1,4 +1,4 @@
-﻿//Sony Computer Entertainment Confidential
+//Sony Computer Entertainment Confidential
 
 using System;
 using System.Collections.Generic;
@@ -191,7 +191,7 @@ namespace Sce.Atf.Controls.Adaptable
 
         private void control_ContextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void control_FontChanged(object sender, EventArgs e)
@@ -357,7 +357,7 @@ namespace Sce.Atf.Controls.Adaptable
         private Dictionary<PropertyDescriptor, ColumnInfo> m_columnInfo =
             new Dictionary<PropertyDescriptor, ColumnInfo>(); // cache widths for descriptors
         private Dictionary<string, int> m_savedColumnWidths =
-             new Dictionary<string, int>(); // last saved column widths 
+             new Dictionary<string, int>(); // last saved column widths
 
         private ColumnHeaders m_columnHeaders;
 

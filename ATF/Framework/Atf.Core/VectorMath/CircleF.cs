@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 
@@ -111,26 +111,26 @@ namespace Sce.Atf.VectorMath
             return true;
 
             // From http://mathforum.org/library/drmath/view/51710.html
-            // First, let C1 and C2 be the centers of the Circlefs with radii r1 and 
+            // First, let C1 and C2 be the centers of the Circlefs with radii r1 and
             // r2, and let d be the distance between C1 and C2.
-            // 
-            // Now let V1 be the unit vector from C1 to C2, and let V2 be the unit 
+            //
+            // Now let V1 be the unit vector from C1 to C2, and let V2 be the unit
             // vector perpendicular to V1.
-            // 
+            //
             // Also let V3 be the vector from C1 to one of the intersection points.
-            // 
+            //
             // Finally, let A be the angle between V1 and V3.
-            // 
+            //
             // From the law of cosines we know that
-            // 
+            //
             //         r2^2 = r1^2 + d^2 - 2*r1*d*cos(A)
-            // 
+            //
             // With this equation we can solve for 'A'.
-            // 
+            //
             // The intersection points will be
-            // 
+            //
             //         C1 + [r1*cos(A)]*V1 + [r1*sin(A)]*V2
-            // 
+            //
             //         C1 + [r1*cos(A)]*V1 - [r1*sin(A)]*V2
 
             // a simple unit test

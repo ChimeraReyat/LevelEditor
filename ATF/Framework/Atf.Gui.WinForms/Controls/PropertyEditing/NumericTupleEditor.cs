@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel;
@@ -79,7 +79,7 @@ namespace Sce.Atf.Controls.PropertyEditing
 
         #endregion
 
-        
+
         /// <summary>
         /// Gets or sets whether axis labels should be hidden. The labels are visible by default.</summary>
         public bool HideAxisLabel
@@ -116,7 +116,7 @@ namespace Sce.Atf.Controls.PropertyEditing
             editingControl.HideAxisLabel = HideAxisLabel;
             editingControl.SetLabelBackColors(m_labelColors);
             SkinService.ApplyActiveSkin(editingControl);
-            return editingControl;            
+            return editingControl;
         }
 
         #endregion
@@ -126,9 +126,9 @@ namespace Sce.Atf.Controls.PropertyEditing
         /// <summary>
         /// Gets the editor style used by the <see cref="M:System.Drawing.Design.UITypeEditor.EditValue(System.IServiceProvider,System.Object)"></see> method</summary>
         /// <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"></see> that can be used to gain additional context information</param>
-        /// <returns>A <see cref="T:System.Drawing.Design.UITypeEditorEditStyle"></see> value that indicates the style of editor used 
-        /// by the <see cref="M:System.Drawing.Design.UITypeEditor.EditValue(System.IServiceProvider,System.Object)"></see> method. 
-        /// If the <see cref="T:System.Drawing.Design.UITypeEditor"></see> does not support this method, 
+        /// <returns>A <see cref="T:System.Drawing.Design.UITypeEditorEditStyle"></see> value that indicates the style of editor used
+        /// by the <see cref="M:System.Drawing.Design.UITypeEditor.EditValue(System.IServiceProvider,System.Object)"></see> method.
+        /// If the <see cref="T:System.Drawing.Design.UITypeEditor"></see> does not support this method,
         /// <see cref="M:System.Drawing.Design.UITypeEditor.GetEditStyle"></see> returns
         /// <see cref="F:System.Drawing.Design.UITypeEditorEditStyle.None"></see>.</returns>
         public override UITypeEditorEditStyle GetEditStyle(ITypeDescriptorContext context)
@@ -200,7 +200,7 @@ namespace Sce.Atf.Controls.PropertyEditing
 
             /// <summary>
             /// Gets true iff this control can be used indefinitely, regardless of whether the associated
-            /// PropertyEditorControlContext's SelectedObjects property changes, i.e., the selection changes. 
+            /// PropertyEditorControlContext's SelectedObjects property changes, i.e., the selection changes.
             /// This property must be constant for the life of this control.</summary>
             public bool Cacheable
             {
@@ -232,6 +232,6 @@ namespace Sce.Atf.Controls.PropertyEditing
 
             private readonly PropertyEditorControlContext m_context;
             private bool m_refreshing;
-        }     
+        }
     }
 }

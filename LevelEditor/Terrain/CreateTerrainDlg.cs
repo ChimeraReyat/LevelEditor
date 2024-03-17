@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Windows.Forms;
@@ -19,7 +19,7 @@ namespace LevelEditor.Terrain
 
             ResourceRoot = resourceRoot;
             InitializeComponent();
-            
+
             // populate valid height map sizes
             object[] hmapSizes = { 129, 257, 513, 1025, 2049, 4097, 8193 };
 
@@ -28,7 +28,7 @@ namespace LevelEditor.Terrain
 
             m_hmapRowsCmbox.Items.AddRange(hmapSizes);
             m_hmapRowsCmbox.SelectedIndex = 2;
-             
+
             object[] cellsizes = {  0.125f,0.25f,0.5f,1.0f,2.0f,4.0f,8.0f,16.0f,32.0f};
 
             m_cellsizeCmbox.Items.AddRange(cellsizes);
@@ -86,7 +86,7 @@ namespace LevelEditor.Terrain
                 return sc;
             }
         }
-               
+
         private void ComputeTerrainSize()
         {
             int u = HmapCols;
@@ -98,18 +98,18 @@ namespace LevelEditor.Terrain
                 m_terrainSizeLbl.Text
                     = string.Format("Terrain Size: {0} x {1} units", (u * cz), (v * cz));
                 m_numVertslbl.Text = "Total number of vertices: " + (u * v);
-                    
+
             }
             else
             {
-                m_terrainSizeLbl.Text = "Terrain Size:";                
-            }                
+                m_terrainSizeLbl.Text = "Terrain Size:";
+            }
         }
 
         private void SelectedIndexChangedCmbox(object sender, EventArgs e)
         {
             ComputeTerrainSize();
-        }        
+        }
         private void TextChangedCombox(object sender, EventArgs e)
         {
             ComputeTerrainSize();
@@ -134,7 +134,7 @@ namespace LevelEditor.Terrain
             {
                 if (string.IsNullOrWhiteSpace(m_hmtxt.Text))
                     throw new Exception("Please choose heightmap");
-                string fullPath = Path.GetFullPath(m_hmtxt.Text);                
+                string fullPath = Path.GetFullPath(m_hmtxt.Text);
             }
             catch (Exception ex)
             {
@@ -206,7 +206,7 @@ namespace LevelEditor.Terrain
                 dlg.InitialDirectory = ResourceRoot;
                 if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
                 {
-                    string filename = dlg.FileName;                    
+                    string filename = dlg.FileName;
                     string error = string.Empty;
                     if (!filename.StartsWith(ResourceRoot, StringComparison.OrdinalIgnoreCase))
                     {
@@ -240,7 +240,7 @@ namespace LevelEditor.Terrain
                     string filename = dlg.FileName;
                     string error = string.Empty;
 
-                    if(m_importedHeightMap != null) 
+                    if(m_importedHeightMap != null)
                         m_importedHeightMap.Dispose();
 
                     m_importedHeightMap = new ImageData();
@@ -265,7 +265,7 @@ namespace LevelEditor.Terrain
                                 m_hmapRowsCmbox.SelectedItem = r;
                                 break;
                             }
-                        }                        
+                        }
                     }
                     else
                     {
@@ -273,12 +273,12 @@ namespace LevelEditor.Terrain
                         m_importedHeightMap = null;
                         error = "unsupported file type ";
                     }
-                        
+
                     if (!string.IsNullOrEmpty(error))
                     {
                         MessageBox.Show(this, error, "Error importing heightmap", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
-                    }                    
+                    }
                 }
             }
         }

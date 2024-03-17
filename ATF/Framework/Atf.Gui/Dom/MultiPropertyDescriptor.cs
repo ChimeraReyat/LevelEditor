@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -22,7 +22,7 @@ namespace Sce.Atf.Dom
         /// <summary>
         /// Constructor</summary>
         /// <param name="masterDescriptor">Master descriptor to serve as template.
-        /// Name, PropertyType, Category, Description, ReadOnly, Editor, Converter 
+        /// Name, PropertyType, Category, Description, ReadOnly, Editor, Converter
         /// and Attributes of this descriptor are all used.</param>
         public MultiPropertyDescriptor(SysPropertyDescriptor masterDescriptor)
             : base(
@@ -135,10 +135,10 @@ namespace Sce.Atf.Dom
         }
 
         /// <summary>
-        /// Returns a property descriptor of the specified component 
+        /// Returns a property descriptor of the specified component
         /// that matches the m_key member, or null if none found</summary>
         /// <param name="component">Component for which to find a matching descriptor</param>
-        /// <returns>A property descriptor of the specified component 
+        /// <returns>A property descriptor of the specified component
         /// that matches the key member, or null if none found</returns>
         public SysPropertyDescriptor FindDescriptor(object component)
         {

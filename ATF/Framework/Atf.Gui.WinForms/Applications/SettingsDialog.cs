@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -55,9 +55,9 @@ namespace Sce.Atf.Applications
             TreeControl.Node firstNode = null;
             if (pathName != null)
                 firstNode = m_treeControlAdapter.ExpandPath(m_settingsService.GetSettingsPath(pathName));
-            if (firstNode == null) // in case pathName is not null, but ExpandPath returns null  
+            if (firstNode == null) // in case pathName is not null, but ExpandPath returns null
                 firstNode = m_treeControl.ExpandToFirstLeaf();
-            
+
 
 
             firstNode.Selected = true;
@@ -196,64 +196,64 @@ namespace Sce.Atf.Applications
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // cancelButton
-            // 
+            //
             resources.ApplyResources(this.cancelButton, "cancelButton");
             this.cancelButton.DialogResult = DialogResult.Cancel;
             this.cancelButton.Name = "cancelButton";
-            // 
+            //
             // okButton
-            // 
+            //
             resources.ApplyResources(this.okButton, "okButton");
             this.okButton.DialogResult = DialogResult.OK;
             this.okButton.Name = "okButton";
-            // 
+            //
             // defaultsButton
-            // 
+            //
             resources.ApplyResources(this.defaultsButton, "defaultsButton");
             this.defaultsButton.Name = "defaultsButton";
-            // 
+            //
             // buttonPanel
-            // 
+            //
             this.buttonPanel.BorderStyle = BorderStyle.FixedSingle;
             this.buttonPanel.Controls.Add(this.defaultsButton);
             this.buttonPanel.Controls.Add(this.okButton);
             this.buttonPanel.Controls.Add(this.cancelButton);
             resources.ApplyResources(this.buttonPanel, "buttonPanel");
             this.buttonPanel.Name = "buttonPanel";
-            // 
+            //
             // upperPanel
-            // 
+            //
             this.upperPanel.Controls.Add(this.splitContainer);
             resources.ApplyResources(this.upperPanel, "upperPanel");
             this.upperPanel.Name = "upperPanel";
-            // 
+            //
             // splitContainer
-            // 
+            //
             resources.ApplyResources(this.splitContainer, "splitContainer1");
             this.splitContainer.Name = "splitContainer1";
-            // 
+            //
             // splitContainer1.Panel1
-            // 
+            //
             this.splitContainer.Panel1.Controls.Add(this.treePanel);
-            // 
+            //
             // splitContainer1.Panel2
-            // 
+            //
             this.splitContainer.Panel2.Controls.Add(this.propertiesPanel);
-            // 
+            //
             // treePanel
-            // 
+            //
             resources.ApplyResources(this.treePanel, "treePanel");
             this.treePanel.Name = "treePanel";
-            // 
+            //
             // propertiesPanel
-            // 
+            //
             resources.ApplyResources(this.propertiesPanel, "propertiesPanel");
             this.propertiesPanel.Name = "propertiesPanel";
-            // 
+            //
             // SettingsDialog
-            // 
+            //
             resources.ApplyResources(this, "$this");
             this.Controls.Add(this.upperPanel);
             this.Controls.Add(this.buttonPanel);

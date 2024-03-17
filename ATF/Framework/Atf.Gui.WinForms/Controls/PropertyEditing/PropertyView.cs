@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -110,7 +110,7 @@ namespace Sce.Atf.Controls.PropertyEditing
             else
             {
                 // if FontStyle.Bold is not supported,
-                // create new Font instead of cloning.                
+                // create new Font instead of cloning.
                 BoldFont = new Font(base.Font, base.Font.Style);
             }
         }
@@ -142,7 +142,7 @@ namespace Sce.Atf.Controls.PropertyEditing
         /// <param name="descriptor">Property descriptor</param>
         protected void SetFont(Control control, PropertyDescriptor descriptor)
         {
-            // SkinService throws exception because 
+            // SkinService throws exception because
            //  Control.Font get disposed.  Alan
             //Sce.Atf.Dom.AttributePropertyDescriptor attr_descriptor = descriptor as Sce.Atf.Dom.AttributePropertyDescriptor;
             //if ((attr_descriptor != null) && (attr_descriptor.AttributeInfo.Type.Type == Sce.Atf.Dom.AttributeTypes.String))
@@ -161,7 +161,7 @@ namespace Sce.Atf.Controls.PropertyEditing
         #region Data Binding
 
         #region IPropertyEditingControlOwner implementation
-        
+
         /// <summary>
         /// Gets the list of selected objects for the current editing context</summary>
         public object[] SelectedObjects
@@ -244,7 +244,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                     OnEditingContextChanged();
 
                     EditingContextChanged.Raise(this, EventArgs.Empty);
-                    
+
                 }
             }
         }
@@ -285,7 +285,7 @@ namespace Sce.Atf.Controls.PropertyEditing
 
             // some property control need to be refreshed
             // when assigning new editing-context.
-            RefreshEditingControls(); 
+            RefreshEditingControls();
             Invalidate();
             EditingContextUpdated.Raise(this, EventArgs.Empty);
         }
@@ -686,7 +686,7 @@ namespace Sce.Atf.Controls.PropertyEditing
             for (int i = 0; i < descriptors.Count; i++)
             {
                 PropertyDescriptor descriptor = descriptors[i];
-                if (!descriptor.IsBrowsable) 
+                if (!descriptor.IsBrowsable)
                     continue;
                 if (FilterPattern.Length == 0 || descriptor.Name.ToLower().Contains(FilterPattern.ToLower()))
                 {
@@ -798,7 +798,7 @@ namespace Sce.Atf.Controls.PropertyEditing
             if (control != null)
             {
                 // Not visible by default because toggling of property columns sets visibility.
-                control.Visible = false;               
+                control.Visible = false;
                 SetFont(control, descriptor);
                 if (customizeAttribute != null)
                 {
@@ -812,7 +812,7 @@ namespace Sce.Atf.Controls.PropertyEditing
             return property;
         }
 
-       
+
 
         private void AddChildProperty(Property property, bool reflected, ref int index)
         {
@@ -821,10 +821,10 @@ namespace Sce.Atf.Controls.PropertyEditing
             {
                 if (reflected && m_processedDescriptors.Contains(childPd))
                     continue; // detect cycles in reflected properties
-                
+
                 bool childPdReflected = childPd.GetType().Name == "ReflectPropertyDescriptor";
                 if (childPdReflected && (!reflected))
-                    continue; // do not mix with the reflected 
+                    continue; // do not mix with the reflected
 
                 Property childProperty = BuildProperty(childPd, index++);
                 childProperties.Add(childPd);
@@ -857,7 +857,7 @@ namespace Sce.Atf.Controls.PropertyEditing
         {
             foreach (Property p in m_activeProperties)
             {
-                p.Context.TransactionContext = null;               
+                p.Context.TransactionContext = null;
 
                 Control control = p.Control;
                 if (control != null)
@@ -870,9 +870,9 @@ namespace Sce.Atf.Controls.PropertyEditing
                         control.Font = null;
                         control.Dispose();
                     }
-                    else if (m_editingContext == null) 
+                    else if (m_editingContext == null)
                     {
-                         control.Visible = false;                            
+                         control.Visible = false;
                     }
 
                 }
@@ -1283,39 +1283,39 @@ namespace Sce.Atf.Controls.PropertyEditing
             /// <summary>
             /// PropertyDescriptor</summary>
             public PropertyDescriptor Descriptor;
-            
+
             /// <summary>
             /// Property category</summary>
             public Category Category;
-            
+
             /// <summary>
             /// PropertyEditorControlContext</summary>
             public PropertyEditorControlContext Context;
-            
+
             /// <summary>
             /// Index in list of properties in property editor</summary>
             public int DescriptorIndex;
-            
+
             /// <summary>
             /// Whether listed first in its category</summary>
             public bool FirstInCategory;
-            
+
             /// <summary>
             /// Whether sorting disabled for this property</summary>
             public bool DisableSort;
-            
+
             /// <summary>
             /// Whether to disable dragging for this property</summary>
             public bool DisableDragging;
-            
+
             /// <summary>
             /// Whether to disable resizing for this property</summary>
             public bool DisableResize;
-            
+
             /// <summary>
             /// Whether to disable editing for this property</summary>
             public bool DisableEditing;
-            
+
             /// <summary>
             /// Whether to hide UI label for this property</summary>
             public bool HideDisplayName;
@@ -1478,7 +1478,7 @@ namespace Sce.Atf.Controls.PropertyEditing
             {
                 parentName = null;
                 childName = null;
-                
+
                 int firstSlash = fullName.IndexOf('\\');
                 if (firstSlash < 0)
                     return false;
@@ -1505,7 +1505,7 @@ namespace Sce.Atf.Controls.PropertyEditing
             new Dictionary<PropertyDescriptor, Property>(); //includes those in m_activeProperties
         private PropertySorting m_propertySorting = PropertySorting.ByCategory;
         private readonly Dictionary<string, bool> m_categoryExpanded = new Dictionary<string, bool>();
-        private readonly HashSet<PropertyDescriptor> m_processedDescriptors 
+        private readonly HashSet<PropertyDescriptor> m_processedDescriptors
             = new HashSet<PropertyDescriptor>(); // used for parent-child cycle detection only
         private List<string> m_customSortOrder;
 
@@ -1563,7 +1563,7 @@ namespace Sce.Atf.Controls.PropertyEditing
             /// whole row in the 2-column property editor</param>
             public CustomizeAttribute(string propertyName, int columnWidth=0, bool disableSort=false, bool disableDragging=false,
                 bool disableResize = false, bool disableEditing = false, bool hideDisplayName = false,
-                int horizontalEditorOffset = -1, bool nameHasWholeRow = false) 
+                int horizontalEditorOffset = -1, bool nameHasWholeRow = false)
                 : base(propertyName, columnWidth, disableSort, disableDragging, disableResize, disableEditing,
                     hideDisplayName, horizontalEditorOffset, nameHasWholeRow)
             {

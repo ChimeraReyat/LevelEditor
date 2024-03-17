@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.ComponentModel.Composition;
 
@@ -107,7 +107,7 @@ namespace LevelEditor.Commands
 
         /// <summary>
         /// Updates command state for given command</summary>
-        /// <remarks>This is used e.g. to set the check next to a menu command or 
+        /// <remarks>This is used e.g. to set the check next to a menu command or
         /// to show a toolbar button as pressed</remarks>
         /// <param name="commandTag">Command</param>
         /// <param name="commandState">Command info to update</param>

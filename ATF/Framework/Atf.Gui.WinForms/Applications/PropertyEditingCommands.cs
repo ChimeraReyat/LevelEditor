@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -148,7 +148,7 @@ namespace Sce.Atf.Applications
                 switch ((Command)commandTag)
                 {
                     case Command.CopyProperty:
-                        return m_descriptor != null 
+                        return m_descriptor != null
                             && !(m_descriptor is ChildPropertyDescriptor)
                             && !(m_descriptor is ChildAttributeCollectionPropertyDescriptor);
 
@@ -161,7 +161,7 @@ namespace Sce.Atf.Applications
                         }
 
                     case Command.ResetProperty:
-                        return CanResetValue(editingContext.Items, m_descriptor);                        
+                        return CanResetValue(editingContext.Items, m_descriptor);
 
                     case Command.CopyAll:
                         {
@@ -177,7 +177,7 @@ namespace Sce.Atf.Applications
                             }
                             break;
                         }
-                   
+
                     case Command.PasteAll:
                         return m_descriptorToValue.Count > 0;
 
@@ -188,7 +188,7 @@ namespace Sce.Atf.Applications
                                 return true;
                         }
                         break;
-                       
+
                     case Command.ViewInTextEditor:
                         if (m_descriptor != null && m_descriptor.GetEditor(typeof(UITypeEditor)) is FileUriEditor)
                             return true;
@@ -242,11 +242,11 @@ namespace Sce.Atf.Applications
                         },
                         string.Format("Reset: {0}".Localize("'Reset' is a verb and this is the name of a command"),
                             m_descriptor.DisplayName));
-                    break;               
+                    break;
                 case Command.CopyAll:
                     {
                         m_descriptorToValue.Clear();
-                        var lastObject = editingContext.Items.LastOrDefault();                      
+                        var lastObject = editingContext.Items.LastOrDefault();
                         foreach (var descriptor in editingContext.PropertyDescriptors)
                         {
                             if( (descriptor is ChildPropertyDescriptor))
@@ -258,20 +258,20 @@ namespace Sce.Atf.Applications
 
                             m_descriptorToValue.Add(descriptor.GetPropertyDescriptorKey(),
                                 descriptor.GetValue(lastObject));
-                        }                        
+                        }
                     }
                     break;
 
                 case Command.PasteAll:
                     {
                         transactionContext.DoTransaction(delegate
-                        {                            
+                        {
                             foreach (var descriptor in editingContext.PropertyDescriptors)
                             {
                                 if (descriptor.IsReadOnly) continue; ;
                                 object value;
                                 if (m_descriptorToValue.TryGetValue(descriptor.GetPropertyDescriptorKey(), out value))
-                                {                                    
+                                {
                                     foreach (object item in editingContext.Items)
                                     {
                                         PropertyUtils.SetProperty(item,
@@ -281,7 +281,7 @@ namespace Sce.Atf.Applications
                                 }
                             }
 
-                        }, "Paste All".Localize("'Paste' is a verb and this is the name of a command"));                        
+                        }, "Paste All".Localize("'Paste' is a verb and this is the name of a command"));
                     }
                     break;
 
@@ -299,7 +299,7 @@ namespace Sce.Atf.Applications
                     },
                         "Reset All Properties".Localize("'Reset' is a verb and this is the name of a command"));
                     break;
-               
+
                 case Command.ViewInTextEditor:
                     {
                         var fileUriEditor = m_descriptor.GetEditor(typeof(UITypeEditor)) as FileUriEditor;
@@ -334,13 +334,13 @@ namespace Sce.Atf.Applications
         /// <param name="target">Right clicked object, or null if none</param>
         /// <returns>Enumeration of command tags for context menu</returns>
         public IEnumerable<object> GetCommands(object context, object target)
-        {        
-            m_contextRef = new WeakReference(context.As<IPropertyEditingContext>());            
+        {
+            m_contextRef = new WeakReference(context.As<IPropertyEditingContext>());
 
             IPropertyEditingContext editingContext = GetPropertyEditingContext();
             m_descriptor = null;
             PropertyDescriptor descriptor = target as PropertyDescriptor;
-           
+
             if(editingContext != null)
             {
                  if (descriptor != null && editingContext.PropertyDescriptors.Contains(descriptor))
@@ -375,13 +375,13 @@ namespace Sce.Atf.Applications
             return edcontext ?? (m_propertyEditor == null ? null
                 : m_propertyEditor.PropertyGrid.PropertyGridView.EditingContext);
         }
-        private bool CanPaste(object srcValue, 
-            PropertyDescriptor srcDescriptor, 
-            PropertyDescriptor destDescriptor, 
+        private bool CanPaste(object srcValue,
+            PropertyDescriptor srcDescriptor,
+            PropertyDescriptor destDescriptor,
             object destValue)
-        {            
+        {
             if (srcDescriptor == null
-                || destDescriptor == null               
+                || destDescriptor == null
                 || destDescriptor.IsReadOnly
                 || srcDescriptor.PropertyType != destDescriptor.PropertyType
                 || (destDescriptor is ChildAttributeCollectionPropertyDescriptor)
@@ -403,7 +403,7 @@ namespace Sce.Atf.Applications
                 }
             }
 
-            
+
             return true;
         }
 
@@ -421,14 +421,14 @@ namespace Sce.Atf.Applications
 
         #endregion
         private enum Command
-        {          
+        {
             CopyProperty,
             PasteProperty,
             ResetProperty,
             CopyAll,
             PasteAll,
             ResetAll,
-            ViewInTextEditor, 
+            ViewInTextEditor,
             CreateNewPropertyEditor,
         }
 
@@ -445,7 +445,7 @@ namespace Sce.Atf.Applications
         // used for copy all and paste all.
         private readonly Dictionary<string, object>
             m_descriptorToValue = new Dictionary<string, object>();
-        
+
         private readonly ICommandService m_commandService;
         private readonly SelectionPropertyEditingContext m_defaultContext = new SelectionPropertyEditingContext();
 

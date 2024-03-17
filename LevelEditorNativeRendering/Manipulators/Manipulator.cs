@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -31,8 +31,8 @@ namespace RenderingInterop
         {
             Matrix4F normWorld = GetManipulatorMatrix();
             if (normWorld == null) return false;
-            HitRayV = vc.GetRay(scrPt, vc.Camera.ProjectionMatrix);            
-            HitMatrix.Set(normWorld);            
+            HitRayV = vc.GetRay(scrPt, vc.Camera.ProjectionMatrix);
+            HitMatrix.Set(normWorld);
             return true;
         }
         public abstract void Render(ViewControl vc);
@@ -48,7 +48,7 @@ namespace RenderingInterop
 
         #endregion
         protected abstract Matrix4F GetManipulatorMatrix();
-        
+
         protected ITransformable GetManipulatorNode(TransformationTypes xformType)
         {
             ITransformable manipNode = null;
@@ -65,11 +65,11 @@ namespace RenderingInterop
                     if (selectionCntx.SelectionContains(item))
                     {
                         var xformable = pathnode.As<ITransformable>();
-                        if (xformable != null 
+                        if (xformable != null
                             && (xformable.TransformationType & xformType) != 0
                             && visibilityContext.IsVisible(pathnode))
                         {
-                            manipNode = xformable;                           
+                            manipNode = xformable;
                         }
                         break;
                     }
@@ -96,7 +96,7 @@ namespace RenderingInterop
         {
             get;
             private set;
-        }        
+        }
         protected Ray3F HitRayV;  // hit ray in view space.
 
 

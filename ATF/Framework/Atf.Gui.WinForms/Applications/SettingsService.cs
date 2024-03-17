@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -145,7 +145,7 @@ namespace Sce.Atf.Applications
                     }
                 }
             }
-            // Load default settings if exist.            
+            // Load default settings if exist.
             if (File.Exists(m_defaultSettingsPath))
             {
                 using (Stream stream = File.OpenRead(m_defaultSettingsPath))
@@ -164,7 +164,7 @@ namespace Sce.Atf.Applications
 
         /// <summary>
         /// Gets or sets whether or not the left tree control navigation
-        /// should follow the Windows Explorer model</summary>     
+        /// should follow the Windows Explorer model</summary>
         public TreeControl.KeyboardShortcuts NavigationBehavior
         {
             get { return m_navigationBehavior; }
@@ -655,8 +655,8 @@ namespace Sce.Atf.Applications
 
             // leaf node is user settings object
             foreach (Tree<object> leaf in node.Children)
-            {                
-                UserSettingsInfo info = leaf.Value as UserSettingsInfo; 
+            {
+                UserSettingsInfo info = leaf.Value as UserSettingsInfo;
                 if (info != null && info.Name == pathSegments[pathSegments.Length - 1])
                 {
                     path[path.Length - 1] = leaf;

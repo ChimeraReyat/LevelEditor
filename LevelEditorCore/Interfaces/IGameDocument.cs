@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -30,10 +30,10 @@ namespace LevelEditorCore
         /// to notify parent document that one or more resources is changed </summary>
         /// <param name="resOwner">the resource owner</param>
         void NotifyEditableResourceOwnerDirtyChanged(IEditableResourceOwner resOwner);
-        
-        
+
+
         /// <summary>
-        /// Event that is raised when Dirty property of any 
+        /// Event that is raised when Dirty property of any
         /// child of type IEditableResourceOwner changes</summary>
         event EventHandler<ItemChangedEventArgs<IEditableResourceOwner>> EditableResourceOwnerDirtyChanged;
 

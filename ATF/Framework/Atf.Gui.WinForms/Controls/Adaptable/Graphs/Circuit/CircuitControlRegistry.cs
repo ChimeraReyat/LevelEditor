@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
@@ -12,8 +12,8 @@ using Sce.Atf.Dom;
 namespace Sce.Atf.Controls.Adaptable.Graphs
 {
     /// <summary>
-    /// Component  to  provide convenient service to register/unregister circuit controls created for circuit groups, 
-    /// synchronize UI updates for circuit controls due to group renaming,  circuit element insertion/deletion,  
+    /// Component  to  provide convenient service to register/unregister circuit controls created for circuit groups,
+    /// synchronize UI updates for circuit controls due to group renaming,  circuit element insertion/deletion,
     /// and the closing of documents/controls. This only works if the IDocument can be adapted to a DomNode.</summary>
     [Export(typeof(CircuitControlRegistry))]
     [PartCreationPolicy(CreationPolicy.Shared)]
@@ -82,7 +82,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         {
             return (from ctrol in m_circuitNodeControls where ctrol.Key == domNode select ctrol.Value.Second).FirstOrDefault();
         }
-        
+
         /// <summary>
         ///  Get the associated DomNode for the circuit control</summary>
         ///  <param name="control">Circuit control</param>
@@ -152,7 +152,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             var group = e.DomNode.As<Group>();
             if (group != null && (group.IsNameAttribute(e.AttributeInfo)))
             {
-                // update ControlInfo.Name for all group controls 
+                // update ControlInfo.Name for all group controls
                 foreach (var circuitControl in m_circuitNodeControls)
                 {
                     if (circuitControl.Key.Is<Group>())

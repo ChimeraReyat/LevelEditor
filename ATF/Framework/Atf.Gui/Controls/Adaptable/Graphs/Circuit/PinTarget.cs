@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using Sce.Atf.Dom;
 
@@ -10,7 +10,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
     {
         /// <summary>
         /// Constructor</summary>
-        /// <param name="targetDomNode">The circuit element on which this pin is originally defined,  
+        /// <param name="targetDomNode">The circuit element on which this pin is originally defined,
         /// i.e., the element this pin is associated with at the lowest level (leaf node) in the graph</param>
         /// <param name="targetPinIndex">The pin index on the defining element</param>
         /// <param name="referencingDomNode">DomNode that instances the template that the pin is associated with</param>
@@ -21,7 +21,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             m_instancingNode = referencingDomNode;
         }
 
-     
+
         /// <summary>
         /// Gets the ultimate DomNode(representing a circuit element) that the pin binds</summary>
         public DomNode LeafDomNode
@@ -119,6 +119,6 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         private readonly DomNode m_leafDomNode;
         private readonly int m_leafPinIndex;
         private DomNode m_instancingNode; // non-null for pin targets of a template instance
-   
+
     }
 }

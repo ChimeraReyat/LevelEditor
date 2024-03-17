@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 
 using System;
@@ -16,8 +16,8 @@ using Sce.Atf.Controls.PropertyEditing;
 namespace Sce.Atf.Applications.NetworkTargetServices
 {
     /// <summary>
-    /// Service that queries and enumerates target objects. It consumes target providers created by the application. 
-    /// Each provider is responsible for discovering and reporting targets of a specific type and their parameters, 
+    /// Service that queries and enumerates target objects. It consumes target providers created by the application.
+    /// Each provider is responsible for discovering and reporting targets of a specific type and their parameters,
     /// while the service combines all the targets' information into a heterogeneous list view for displaying and editing.</summary>
     [Export(typeof(IInitializable))]
     [Export(typeof(ITargetConsumer))]
@@ -31,7 +31,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
         [ImportingConstructor]
         public TargetEnumerationService(IControlHostService controlHostService)
         {
-            m_controlHostService = controlHostService;            
+            m_controlHostService = controlHostService;
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
             targetForm.ShowInTaskbar = false;
             targetForm.MaximizeBox = false;
             targetForm.MinimizeBox = false;
-            
+
             targetForm.Controls.Add(m_userControl);
             targetForm.Text = title;
 
@@ -180,7 +180,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                         elem.SetAttribute("protocol", target.Protocol);
                         elem.SetAttribute("scope", target.Scope.ToString());
                         root.AppendChild(elem);
-                    }                 
+                    }
                 }
 
                 if (xmlDoc.DocumentElement.ChildNodes.Count == 0)
@@ -216,9 +216,9 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                 }
             }
         }
-   
+
         private class DummmyTargetInfo: TargetInfo{}
-   
+
         #endregion
 
         #region ITargetConsumer
@@ -240,7 +240,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
             else
             {
                 MainForm.Invoke(new MethodInvoker(() => UpdateTargetsView(targetProvider, targets)));
-            }       
+            }
         }
 
         /// <summary>
@@ -309,7 +309,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
         /// UnregisterControl. The IControlHostClient has to call RegisterControl again
         /// if it wants to re-register this Control.</remarks>
         public bool Close(Control control)
-        {          
+        {
             return true;
         }
 
@@ -321,7 +321,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                 return;
             MainForm.Invoke(new MethodInvoker(() => ListViewSelectTargets(targets, valueEqual)));
         }
-       
+
         [ImportMany]
         private IEnumerable<ITargetProvider> m_targetProviders= null;
 
@@ -361,7 +361,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
             m_userControl = new UserControl { Margin = new Padding(3) };
             //panel.BackColor = Color.DeepSkyBlue;
             m_userControl.Dock = DockStyle.Fill;
-           
+
             m_userControl.AutoSize = true;
 
             m_addTargetButton = new SplitButton();
@@ -371,18 +371,18 @@ namespace Sce.Atf.Applications.NetworkTargetServices
 
             m_addTargetButton.Anchor = AnchorStyles.Left | AnchorStyles.Bottom;
             m_addTargetButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-  
-            m_listView = new DataBoundListView();          
+
+            m_listView = new DataBoundListView();
             m_listView.DataSource = m_targets;
             m_listView.BindingContext = m_userControl.BindingContext;
             m_listView.AlternatingRowColors = true;
             m_listView.MultiSelect = false;
             m_listView.CheckBoxes = true;
-            
+
             //m_listView.BackColor = SystemColors.MenuHighlight;
             m_listView.Location = new Point(m_userControl.Margin.Left, m_userControl.Margin.Top);
             m_listView.Size = new Size(m_userControl.Width - m_userControl.Margin.Left - m_userControl.Margin.Right,
-                m_userControl.Height - m_userControl.Margin.Top - m_userControl.Margin.Bottom - 
+                m_userControl.Height - m_userControl.Margin.Top - m_userControl.Margin.Bottom -
                 m_addTargetButton.Height - m_addTargetButton.Margin.Top - m_addTargetButton.Margin.Size.Height);
             m_listView.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             m_listView.Name = "targetsListView";
@@ -390,7 +390,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
             m_listView.ItemChecked += listView_ItemChecked;
             m_listView.ItemCheck += listView_ItemCheck;
             m_listView.MouseUp += listView_MouseUp;
-         
+
             m_userControl.Controls.Add(m_listView);
             m_userControl.Controls.Add(m_addTargetButton);
 
@@ -406,7 +406,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                 m_userControl.Controls.Add(m_okButton);
             }
 
-        
+
             m_addTargetButton.ShowSplit = true;
             m_addTargetButton.ContextMenuStrip = new ContextMenuStrip();
             foreach (var targetProvider in TargetProviders)
@@ -438,7 +438,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
             return m_userControl;
         }
 
-     
+
         /// <summary>
         /// Performs custom actions when menu strip item clicked</summary>
         /// <param name="sender">Sender control</param>
@@ -473,14 +473,14 @@ namespace Sce.Atf.Applications.NetworkTargetServices
 
             if (ContextMenuCommandProviders == null)
                 return;
-            
+
             m_targetsPicked.Clear();
             foreach (int index in m_listView.SelectedIndices)
                 m_targetsPicked.Add(m_targets[index]);
             IEnumerable<object> commands = ContextMenuCommandProviders.GetCommands(this, m_targetsPicked);
 
             Point screenPoint = m_listView.PointToScreen(new Point(e.X, e.Y));
-            CommandService.RunContextMenu(commands, screenPoint);         
+            CommandService.RunContextMenu(commands, screenPoint);
         }
 
         /// <summary>
@@ -508,13 +508,13 @@ namespace Sce.Atf.Applications.NetworkTargetServices
             if (m_listView.SortingItems)
                 return;
             if (m_listView.MultiSelect)
-            {            
+            {
                 var currentSelected = SelectedTargets.ToList();
 
                 if (!m_targetsLastChecked.OrderBy(x => x.Endpoint).SequenceEqual(currentSelected.OrderBy(x => x.Endpoint)))
                     OnSelectedTargetsChanged(new SelectedTargetsChangedArgs(m_targetsLastChecked, SelectedTargets));
             }
-            else 
+            else
             {
                 if (e.Item.Checked)
                 {
@@ -568,12 +568,12 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                 foreach (var item in itemsToAdd)
                     m_targets.Add(item);
             }
- 
-            // scan new targets to select, remove obsolete targets that no longer belong to any provider      
+
+            // scan new targets to select, remove obsolete targets that no longer belong to any provider
             foreach ( var target in m_targets)
             {
                 bool toRemove = true;
-                
+
                 foreach (var provider in m_providerTargets.Keys)
                 {
                     if (m_providerTargets.ContainsKeyValue(provider, target))
@@ -596,7 +596,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                 m_targets.Remove(item);
             if (itemsToRemove.Count >0)
                 m_listView.Refresh();
-            
+
             if (itemsToSelect.Count >0)
                 ListViewSelectTargets(itemsToSelect, true);
         }
@@ -631,7 +631,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                     item.Checked = false;
             }
 
-            List<TargetInfo> targetsToSelect = null; 
+            List<TargetInfo> targetsToSelect = null;
             if (valueEqual)
             {
                 targetsToSelect = new List<TargetInfo>();
@@ -647,21 +647,21 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                            n.Name == target.Name && n.Endpoint == target.Endpoint);
                         break;
                     }
-                }           
+                }
             }
             else
             {
                 targetsToSelect = targets.ToList();
                 m_targetsToSelect.Clear();
             }
-          
-           
+
+
             foreach (var target in targetsToSelect)
             {
                 int index = m_targets.IndexOf(target);
                 if (index != -1 && index < m_listView.Items.Count)
                     m_listView.Items[index].Checked = true;
-            }          
+            }
         }
 
         /// <summary>

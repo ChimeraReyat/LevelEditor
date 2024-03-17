@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -168,7 +168,7 @@ namespace Sce.Atf.Controls.ConsoleBox
             e.Handled = e.KeyCode == Keys.Up ||
                         e.KeyCode == Keys.Down ||
                         e.KeyCode == Keys.Left ||
-                        e.KeyCode == Keys.Right || 
+                        e.KeyCode == Keys.Right ||
                         e.KeyCode == Keys.Home ||
                         e.KeyCode == Keys.End;
 
@@ -623,7 +623,7 @@ namespace Sce.Atf.Controls.ConsoleBox
             MoveCaretToPrompt();
 
             var indent = new String(' ', SpacesPerIndent);
-            
+
             int level = lastLine.Replace("\t", indent).TakeWhile(Char.IsWhiteSpace).Count();
             if (IsCompoundStatement(lastLine))
                 level += SpacesPerIndent;
@@ -689,7 +689,7 @@ namespace Sce.Atf.Controls.ConsoleBox
 
                 SelectionLength = Math.Abs(length);
 
-                Point start = (length < 0) 
+                Point start = (length < 0)
                     ? GetPositionFromCharIndex(SelectionStart + SelectionLength) // TODO: Cannot set caret to end
                     : GetPositionFromCharIndex(SelectionStart);
 

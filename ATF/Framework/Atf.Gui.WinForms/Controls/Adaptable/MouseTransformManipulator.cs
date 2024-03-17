@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -208,11 +208,11 @@ namespace Sce.Atf.Controls.Adaptable
 
                 if (m_selfSetTranslation != m_transformAdapter.Translation)
                 {
-                    // It is quite possible that another transformation adapter binded to the same canvas can 
-                    // modify the shared ITransformAdapter in succession without releasing the mouse button. 
-                    // For example  MMD panning with this adapter followed by MouseWheelManipulator for zooming. 
+                    // It is quite possible that another transformation adapter binded to the same canvas can
+                    // modify the shared ITransformAdapter in succession without releasing the mouse button.
+                    // For example  MMD panning with this adapter followed by MouseWheelManipulator for zooming.
                     // Need to resync mouse starting position
-                    m_startingTranslation = m_transformAdapter.Translation;                
+                    m_startingTranslation = m_transformAdapter.Translation;
                     m_firstPoint = currentPoint;
                 }
 
@@ -280,7 +280,7 @@ namespace Sce.Atf.Controls.Adaptable
                     PointF translation = new PointF(
                         m_firstPoint.X - m_scaleCenterStart.X * scale.X,
                         m_firstPoint.Y - m_scaleCenterStart.Y * scale.Y);
-                    
+
                     m_transformAdapter.SetTransform(
                         scale.X,
                         scale.Y,

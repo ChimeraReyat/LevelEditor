@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 /******************************************************************/
 /*****                                                        *****/
@@ -243,9 +243,9 @@ namespace Sce.Atf.Controls.ColorEditing
             this.m_ctrl_ThinBox = new Sce.Atf.Controls.ColorEditing.VerticalColorSlider();
             ((System.ComponentModel.ISupportInitialize)(this.m_pbx_BlankBox)).BeginInit();
             this.SuspendLayout();
-            // 
+            //
             // m_pbx_BlankBox
-            // 
+            //
             this.m_pbx_BlankBox.BackColor = System.Drawing.Color.Black;
             this.m_pbx_BlankBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.m_pbx_BlankBox.Location = new System.Drawing.Point(316, 11);
@@ -253,117 +253,117 @@ namespace Sce.Atf.Controls.ColorEditing
             this.m_pbx_BlankBox.Size = new System.Drawing.Size(62, 70);
             this.m_pbx_BlankBox.TabIndex = 3;
             this.m_pbx_BlankBox.TabStop = false;
-            // 
+            //
             // m_cmd_OK
-            // 
+            //
             this.m_cmd_OK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.m_cmd_OK.Location = new System.Drawing.Point(412, 12);
             this.m_cmd_OK.Name = "m_cmd_OK";
             this.m_cmd_OK.Size = new System.Drawing.Size(72, 23);
             this.m_cmd_OK.TabIndex = 4;
             this.m_cmd_OK.Text = "OK";
-            // 
+            //
             // m_cmd_Cancel
-            // 
+            //
             this.m_cmd_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.m_cmd_Cancel.Location = new System.Drawing.Point(412, 41);
             this.m_cmd_Cancel.Name = "m_cmd_Cancel";
             this.m_cmd_Cancel.Size = new System.Drawing.Size(72, 23);
             this.m_cmd_Cancel.TabIndex = 5;
             this.m_cmd_Cancel.Text = "Cancel";
-            // 
+            //
             // m_txt_Hue
-            // 
+            //
             this.m_txt_Hue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             this.m_txt_Hue.Location = new System.Drawing.Point(352, 101);
             this.m_txt_Hue.Name = "m_txt_Hue";
             this.m_txt_Hue.Size = new System.Drawing.Size(35, 21);
             this.m_txt_Hue.TabIndex = 6;
             this.m_txt_Hue.Leave += new System.EventHandler(this.m_txt_Hue_Leave);
-            // 
+            //
             // m_txt_Sat
-            // 
+            //
             this.m_txt_Sat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             this.m_txt_Sat.Location = new System.Drawing.Point(352, 126);
             this.m_txt_Sat.Name = "m_txt_Sat";
             this.m_txt_Sat.Size = new System.Drawing.Size(35, 21);
             this.m_txt_Sat.TabIndex = 7;
             this.m_txt_Sat.Leave += new System.EventHandler(this.m_txt_Sat_Leave);
-            // 
+            //
             // m_txt_Bright
-            // 
+            //
             this.m_txt_Bright.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             this.m_txt_Bright.Location = new System.Drawing.Point(352, 151);
             this.m_txt_Bright.Name = "m_txt_Bright";
             this.m_txt_Bright.Size = new System.Drawing.Size(35, 21);
             this.m_txt_Bright.TabIndex = 8;
             this.m_txt_Bright.Leave += new System.EventHandler(this.m_txt_Bright_Leave);
-            // 
+            //
             // m_txt_Red
-            // 
+            //
             this.m_txt_Red.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             this.m_txt_Red.Location = new System.Drawing.Point(352, 190);
             this.m_txt_Red.Name = "m_txt_Red";
             this.m_txt_Red.Size = new System.Drawing.Size(35, 21);
             this.m_txt_Red.TabIndex = 9;
             this.m_txt_Red.Leave += new System.EventHandler(this.m_txt_Red_Leave);
-            // 
+            //
             // m_txt_Green
-            // 
+            //
             this.m_txt_Green.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             this.m_txt_Green.Location = new System.Drawing.Point(352, 215);
             this.m_txt_Green.Name = "m_txt_Green";
             this.m_txt_Green.Size = new System.Drawing.Size(35, 21);
             this.m_txt_Green.TabIndex = 10;
             this.m_txt_Green.Leave += new System.EventHandler(this.m_txt_Green_Leave);
-            // 
+            //
             // m_txt_Blue
-            // 
+            //
             this.m_txt_Blue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             this.m_txt_Blue.Location = new System.Drawing.Point(352, 240);
             this.m_txt_Blue.Name = "m_txt_Blue";
             this.m_txt_Blue.Size = new System.Drawing.Size(35, 21);
             this.m_txt_Blue.TabIndex = 11;
             this.m_txt_Blue.Leave += new System.EventHandler(this.m_txt_Blue_Leave);
-            // 
+            //
             // m_txt_Cyan
-            // 
+            //
             this.m_txt_Cyan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             this.m_txt_Cyan.Location = new System.Drawing.Point(447, 101);
             this.m_txt_Cyan.Name = "m_txt_Cyan";
             this.m_txt_Cyan.Size = new System.Drawing.Size(35, 21);
             this.m_txt_Cyan.TabIndex = 15;
             this.m_txt_Cyan.Leave += new System.EventHandler(this.m_txt_Cyan_Leave);
-            // 
+            //
             // m_txt_Magenta
-            // 
+            //
             this.m_txt_Magenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             this.m_txt_Magenta.Location = new System.Drawing.Point(447, 126);
             this.m_txt_Magenta.Name = "m_txt_Magenta";
             this.m_txt_Magenta.Size = new System.Drawing.Size(35, 21);
             this.m_txt_Magenta.TabIndex = 16;
             this.m_txt_Magenta.Leave += new System.EventHandler(this.m_txt_Magenta_Leave);
-            // 
+            //
             // m_txt_Yellow
-            // 
+            //
             this.m_txt_Yellow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             this.m_txt_Yellow.Location = new System.Drawing.Point(447, 151);
             this.m_txt_Yellow.Name = "m_txt_Yellow";
             this.m_txt_Yellow.Size = new System.Drawing.Size(35, 21);
             this.m_txt_Yellow.TabIndex = 17;
             this.m_txt_Yellow.Leave += new System.EventHandler(this.m_txt_Yellow_Leave);
-            // 
+            //
             // m_txt_K
-            // 
+            //
             this.m_txt_K.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             this.m_txt_K.Location = new System.Drawing.Point(447, 176);
             this.m_txt_K.Name = "m_txt_K";
             this.m_txt_K.Size = new System.Drawing.Size(35, 21);
             this.m_txt_K.TabIndex = 18;
             this.m_txt_K.Leave += new System.EventHandler(this.m_txt_K_Leave);
-            // 
+            //
             // m_txt_Hex
-            // 
+            //
             this.m_txt_Hex.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             this.m_txt_Hex.Location = new System.Drawing.Point(416, 239);
             this.m_txt_Hex.MaxLength = 8;
@@ -372,20 +372,20 @@ namespace Sce.Atf.Controls.ColorEditing
             this.m_txt_Hex.TabIndex = 19;
             this.m_txt_Hex.Text = "AAAAAAAA";
             this.m_txt_Hex.Leave += new System.EventHandler(this.m_txt_Hex_Leave);
-            // 
+            //
             // m_rbtn_Hue
-            // 
+            //
             this.m_rbtn_Hue.Location = new System.Drawing.Point(316, 101);
             this.m_rbtn_Hue.Name = "m_rbtn_Hue";
             this.m_rbtn_Hue.Size = new System.Drawing.Size(38, 24);
             this.m_rbtn_Hue.TabIndex = 20;
             this.m_rbtn_Hue.Text = "H:";
-            this.m_rbtn_Hue.AutoSize = true;            
+            this.m_rbtn_Hue.AutoSize = true;
             this.m_rbtn_Hue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.m_rbtn_Hue.CheckedChanged += new System.EventHandler(this.m_rbtn_Hue_CheckedChanged);
-            // 
+            //
             // m_rbtn_Sat
-            // 
+            //
             this.m_rbtn_Sat.Location = new System.Drawing.Point(316, 126);
             this.m_rbtn_Sat.Name = "m_rbtn_Sat";
             this.m_rbtn_Sat.Size = new System.Drawing.Size(38, 24);
@@ -394,9 +394,9 @@ namespace Sce.Atf.Controls.ColorEditing
             this.m_rbtn_Sat.AutoSize = true;
             this.m_rbtn_Sat.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.m_rbtn_Sat.CheckedChanged += new System.EventHandler(this.m_rbtn_Sat_CheckedChanged);
-            // 
+            //
             // m_rbtn_Bright
-            // 
+            //
             this.m_rbtn_Bright.Location = new System.Drawing.Point(316, 151);
             this.m_rbtn_Bright.Name = "m_rbtn_Bright";
             this.m_rbtn_Bright.Size = new System.Drawing.Size(38, 24);
@@ -405,9 +405,9 @@ namespace Sce.Atf.Controls.ColorEditing
             this.m_rbtn_Bright.AutoSize = true;
             this.m_rbtn_Bright.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.m_rbtn_Bright.CheckedChanged += new System.EventHandler(this.m_rbtn_Bright_CheckedChanged);
-            // 
+            //
             // m_rbtn_Red
-            // 
+            //
             this.m_rbtn_Red.Location = new System.Drawing.Point(316, 190);
             this.m_rbtn_Red.Name = "m_rbtn_Red";
             this.m_rbtn_Red.Size = new System.Drawing.Size(38, 24);
@@ -416,9 +416,9 @@ namespace Sce.Atf.Controls.ColorEditing
             this.m_rbtn_Red.AutoSize = true;
             this.m_rbtn_Red.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.m_rbtn_Red.CheckedChanged += new System.EventHandler(this.m_rbtn_Red_CheckedChanged);
-            // 
+            //
             // m_rbtn_Green
-            // 
+            //
             this.m_rbtn_Green.Location = new System.Drawing.Point(316, 215);
             this.m_rbtn_Green.Name = "m_rbtn_Green";
             this.m_rbtn_Green.Size = new System.Drawing.Size(38, 24);
@@ -427,9 +427,9 @@ namespace Sce.Atf.Controls.ColorEditing
             this.m_rbtn_Green.AutoSize = true;
             this.m_rbtn_Green.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.m_rbtn_Green.CheckedChanged += new System.EventHandler(this.m_rbtn_Green_CheckedChanged);
-            // 
+            //
             // m_rbtn_Blue
-            // 
+            //
             this.m_rbtn_Blue.Location = new System.Drawing.Point(316, 240);
             this.m_rbtn_Blue.Name = "m_rbtn_Blue";
             this.m_rbtn_Blue.Size = new System.Drawing.Size(38, 24);
@@ -438,141 +438,141 @@ namespace Sce.Atf.Controls.ColorEditing
             this.m_rbtn_Blue.AutoSize = true;
             this.m_rbtn_Blue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.m_rbtn_Blue.CheckedChanged += new System.EventHandler(this.m_rbtn_Blue_CheckedChanged);
-            // 
+            //
             // m_lbl_HexPound
-            // 
+            //
             this.m_lbl_HexPound.Location = new System.Drawing.Point(402, 243);
             this.m_lbl_HexPound.Name = "m_lbl_HexPound";
             this.m_lbl_HexPound.Size = new System.Drawing.Size(16, 14);
             this.m_lbl_HexPound.TabIndex = 27;
             this.m_lbl_HexPound.Text = "#";
-            // 
+            //
             // m_lbl_Cyan
-            // 
+            //
             this.m_lbl_Cyan.Location = new System.Drawing.Point(423, 105);
             this.m_lbl_Cyan.Name = "m_lbl_Cyan";
             this.m_lbl_Cyan.Size = new System.Drawing.Size(24, 16);
             this.m_lbl_Cyan.TabIndex = 31;
             this.m_lbl_Cyan.Text = "C:";
             this.m_lbl_Cyan.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
+            //
             // m_lbl_Magenta
-            // 
+            //
             this.m_lbl_Magenta.Location = new System.Drawing.Point(423, 131);
             this.m_lbl_Magenta.Name = "m_lbl_Magenta";
             this.m_lbl_Magenta.Size = new System.Drawing.Size(24, 16);
             this.m_lbl_Magenta.TabIndex = 32;
             this.m_lbl_Magenta.Text = "M:";
             this.m_lbl_Magenta.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
+            //
             // m_lbl_Yellow
-            // 
+            //
             this.m_lbl_Yellow.Location = new System.Drawing.Point(423, 156);
             this.m_lbl_Yellow.Name = "m_lbl_Yellow";
             this.m_lbl_Yellow.Size = new System.Drawing.Size(24, 16);
             this.m_lbl_Yellow.TabIndex = 33;
             this.m_lbl_Yellow.Text = "Y:";
             this.m_lbl_Yellow.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
+            //
             // m_lbl_K
-            // 
+            //
             this.m_lbl_K.Location = new System.Drawing.Point(423, 181);
             this.m_lbl_K.Name = "m_lbl_K";
             this.m_lbl_K.Size = new System.Drawing.Size(24, 16);
             this.m_lbl_K.TabIndex = 34;
             this.m_lbl_K.Text = "K:";
             this.m_lbl_K.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
+            //
             // m_lbl_Primary_Color
-            // 
+            //
             this.m_lbl_Primary_Color.Location = new System.Drawing.Point(317, 12);
             this.m_lbl_Primary_Color.Name = "m_lbl_Primary_Color";
             this.m_lbl_Primary_Color.Size = new System.Drawing.Size(60, 34);
             this.m_lbl_Primary_Color.TabIndex = 36;
             this.m_lbl_Primary_Color.Click += new System.EventHandler(this.m_lbl_Primary_Color_Click);
-            // 
+            //
             // m_lbl_Secondary_Color
-            // 
+            //
             this.m_lbl_Secondary_Color.Location = new System.Drawing.Point(317, 46);
             this.m_lbl_Secondary_Color.Name = "m_lbl_Secondary_Color";
             this.m_lbl_Secondary_Color.Size = new System.Drawing.Size(60, 34);
             this.m_lbl_Secondary_Color.TabIndex = 37;
             this.m_lbl_Secondary_Color.Click += new System.EventHandler(this.m_lbl_Secondary_Color_Click);
-            // 
+            //
             // m_lbl_Hue_Symbol
-            // 
+            //
             this.m_lbl_Hue_Symbol.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             this.m_lbl_Hue_Symbol.Location = new System.Drawing.Point(389, 102);
             this.m_lbl_Hue_Symbol.Name = "m_lbl_Hue_Symbol";
             this.m_lbl_Hue_Symbol.Size = new System.Drawing.Size(16, 21);
             this.m_lbl_Hue_Symbol.TabIndex = 40;
             this.m_lbl_Hue_Symbol.Text = "";
-            // 
+            //
             // m_lbl_Saturation_Symbol
-            // 
+            //
             this.m_lbl_Saturation_Symbol.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             this.m_lbl_Saturation_Symbol.Location = new System.Drawing.Point(389, 130);
             this.m_lbl_Saturation_Symbol.Name = "m_lbl_Saturation_Symbol";
             this.m_lbl_Saturation_Symbol.Size = new System.Drawing.Size(16, 21);
             this.m_lbl_Saturation_Symbol.TabIndex = 41;
             this.m_lbl_Saturation_Symbol.Text = "%";
-            // 
+            //
             // m_lbl_Bright_Symbol
-            // 
+            //
             this.m_lbl_Bright_Symbol.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             this.m_lbl_Bright_Symbol.Location = new System.Drawing.Point(389, 155);
             this.m_lbl_Bright_Symbol.Name = "m_lbl_Bright_Symbol";
             this.m_lbl_Bright_Symbol.Size = new System.Drawing.Size(16, 21);
             this.m_lbl_Bright_Symbol.TabIndex = 42;
             this.m_lbl_Bright_Symbol.Text = "%";
-            // 
+            //
             // m_lbl_Cyan_Symbol
-            // 
+            //
             this.m_lbl_Cyan_Symbol.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             this.m_lbl_Cyan_Symbol.Location = new System.Drawing.Point(483, 103);
             this.m_lbl_Cyan_Symbol.Name = "m_lbl_Cyan_Symbol";
             this.m_lbl_Cyan_Symbol.Size = new System.Drawing.Size(16, 21);
             this.m_lbl_Cyan_Symbol.TabIndex = 43;
             this.m_lbl_Cyan_Symbol.Text = "%";
-            // 
+            //
             // m_lbl_Magenta_Symbol
-            // 
+            //
             this.m_lbl_Magenta_Symbol.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             this.m_lbl_Magenta_Symbol.Location = new System.Drawing.Point(483, 130);
             this.m_lbl_Magenta_Symbol.Name = "m_lbl_Magenta_Symbol";
             this.m_lbl_Magenta_Symbol.Size = new System.Drawing.Size(16, 21);
             this.m_lbl_Magenta_Symbol.TabIndex = 44;
             this.m_lbl_Magenta_Symbol.Text = "%";
-            // 
+            //
             // m_lbl_Yellow_Symbol
-            // 
+            //
             this.m_lbl_Yellow_Symbol.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             this.m_lbl_Yellow_Symbol.Location = new System.Drawing.Point(483, 155);
             this.m_lbl_Yellow_Symbol.Name = "m_lbl_Yellow_Symbol";
             this.m_lbl_Yellow_Symbol.Size = new System.Drawing.Size(16, 21);
             this.m_lbl_Yellow_Symbol.TabIndex = 45;
             this.m_lbl_Yellow_Symbol.Text = "%";
-            // 
+            //
             // m_txt_A
-            // 
+            //
             this.m_txt_A.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             this.m_txt_A.Location = new System.Drawing.Point(447, 208);
             this.m_txt_A.Name = "m_txt_A";
             this.m_txt_A.Size = new System.Drawing.Size(35, 21);
             this.m_txt_A.TabIndex = 46;
             this.m_txt_A.Leave += new System.EventHandler(this.m_txt_A_Leave);
-            // 
+            //
             // m_lbl_A
-            // 
+            //
             this.m_lbl_A.Location = new System.Drawing.Point(404, 213);
             this.m_lbl_A.Name = "m_lbl_A";
             this.m_lbl_A.Size = new System.Drawing.Size(43, 16);
             this.m_lbl_A.TabIndex = 47;
             this.m_lbl_A.Text = "Alpha:";
             this.m_lbl_A.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
+            //
             // m_ctrl_BigBox
-            // 
+            //
             this.m_ctrl_BigBox.DrawStyle = Sce.Atf.Controls.ColorEditing.ColorBox.eDrawStyle.Hue;
             hsl1.A = 1;
             hsl1.H = 0;
@@ -585,9 +585,9 @@ namespace Sce.Atf.Controls.ColorEditing
             this.m_ctrl_BigBox.Size = new System.Drawing.Size(260, 260);
             this.m_ctrl_BigBox.TabIndex = 39;
             this.m_ctrl_BigBox.ColorChanged += new System.EventHandler(this.m_ctrl_BigBox_ColorChanged);
-            // 
+            //
             // m_ctrl_ThinBox
-            // 
+            //
             this.m_ctrl_ThinBox.DrawStyle = Sce.Atf.Controls.ColorEditing.VerticalColorSlider.eDrawStyle.Hue;
             hsl2.A = 1;
             hsl2.H = 0;
@@ -600,10 +600,10 @@ namespace Sce.Atf.Controls.ColorEditing
             this.m_ctrl_ThinBox.Size = new System.Drawing.Size(40, 264);
             this.m_ctrl_ThinBox.TabIndex = 38;
             this.m_ctrl_ThinBox.ColorChanged += new System.EventHandler(this.m_ctrl_ThinBox_ColorChanged);
-            // 
+            //
             // ColorPicker
-            // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;            
+            //
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(513, 280);
             this.Controls.Add(this.m_lbl_A);
             this.Controls.Add(this.m_txt_A);
@@ -666,7 +666,7 @@ namespace Sce.Atf.Controls.ColorEditing
             m_hsl = m_ctrl_BigBox.HSL;
             m_rgb = AdobeColors.HSL_to_RGB(m_hsl);
             m_cmyk = AdobeColors.RGB_to_CMYK(m_rgb);
-            
+
             m_txt_Hue.Text =        Round(m_hsl.H * 360).ToString();
             m_txt_Sat.Text =        Round(m_hsl.S * 100).ToString();
             m_txt_Bright.Text =     Round(m_hsl.L * 100).ToString();
@@ -709,7 +709,7 @@ namespace Sce.Atf.Controls.ColorEditing
             m_hsl = m_ctrl_ThinBox.HSL;
             m_rgb = AdobeColors.HSL_to_RGB(m_hsl);
             m_cmyk = AdobeColors.RGB_to_CMYK(m_rgb);
-            
+
             m_txt_Hue.Text =        Round(m_hsl.H * 360).ToString();
             m_txt_Sat.Text =        Round(m_hsl.S * 100).ToString();
             m_txt_Bright.Text =     Round(m_hsl.L * 100).ToString();
@@ -805,7 +805,7 @@ namespace Sce.Atf.Controls.ColorEditing
             m_ctrl_ThinBox.HSL = m_hsl;
 
             m_cmyk = AdobeColors.RGB_to_CMYK(m_rgb);
-            
+
             m_txt_Hue.Text =        Round(m_hsl.H * 360).ToString();
             m_txt_Sat.Text =        Round(m_hsl.S * 100).ToString();
             m_txt_Bright.Text =     Round(m_hsl.L * 100).ToString();
@@ -844,7 +844,7 @@ namespace Sce.Atf.Controls.ColorEditing
             m_lbl_Primary_Color.Update();
 
             m_cmyk = AdobeColors.RGB_to_CMYK(m_rgb);
-            
+
             m_txt_Hue.Text =        Round(m_hsl.H * 360).ToString();
             m_txt_Sat.Text =        Round(m_hsl.S * 100).ToString();
             m_txt_Bright.Text =     Round(m_hsl.L * 100).ToString();
@@ -1504,7 +1504,7 @@ namespace Sce.Atf.Controls.ColorEditing
         private int Round(double val)
         {
             int ret_val = (int)val;
-            
+
             int temp = (int)(val * 100);
 
             if ( (temp % 100) >= 50 )

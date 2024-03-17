@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -142,7 +142,7 @@ namespace Sce.Atf.Dom
                 }
 
                 // Sort DomNodeTypes, so that base types are always before derived types
-                // Bucket sort by depth in the inheritance tree 
+                // Bucket sort by depth in the inheritance tree
                 // Time: O(n * d) with n = number of DomNodeTypes, d = depth of inheritance tree
                 var sortedTypes = new List<List<DomNodeType>>();
                 foreach (DomNodeType type in GetNodeTypes())
@@ -206,7 +206,7 @@ namespace Sce.Atf.Dom
                 {
                     if (keyValuePair.Value.Count > 0)
                     {
-                        keyValuePair.Key.SetTag<IEnumerable<XmlNode>>(keyValuePair.Value); 
+                        keyValuePair.Key.SetTag<IEnumerable<XmlNode>>(keyValuePair.Value);
                     }
                 }
                 ParseAnnotations(schemaSet, m_annotations);
@@ -372,7 +372,7 @@ namespace Sce.Atf.Dom
         /// Removes the node type with the specified name </summary>
         /// <param name="name">Name of node type</param>
         /// <returns>
-        /// true if the node typ is successfully found and removed; otherwise, false.  
+        /// true if the node typ is successfully found and removed; otherwise, false.
         /// This method returns false if name is not found in the defined node type.
         /// </returns>
         public bool RemoveNodeType(string name)
@@ -752,7 +752,7 @@ namespace Sce.Atf.Dom
                     }
 
                     if (childNodeType != null)
-                    {                        
+                    {
                         int minOccurs = (int)Math.Min(element.MinOccurs, Int32.MaxValue);
                         int maxOccurs = (int)Math.Min(element.MaxOccurs, Int32.MaxValue);
 
@@ -762,18 +762,18 @@ namespace Sce.Atf.Dom
                             if (parent.MinOccurs != 1)
                                 minOccurs = (int)Math.Min(Math.Max(element.MinOccurs, parent.MinOccurs), Int32.MaxValue);
                             if (parent.MaxOccurs != 1)
-                                maxOccurs = (int)Math.Min(Math.Max(element.MaxOccurs, parent.MaxOccurs), Int32.MaxValue);                            
+                                maxOccurs = (int)Math.Min(Math.Max(element.MaxOccurs, parent.MaxOccurs), Int32.MaxValue);
                         }
                         else if (particle.Parent is XmlSchemaSequence)
-                        {   
-                            var parent = (XmlSchemaSequence)particle.Parent;                            
+                        {
+                            var parent = (XmlSchemaSequence)particle.Parent;
                             if (parent.MinOccurs != 1)
                                 minOccurs = (int)Math.Min(Math.Max(element.MinOccurs, parent.MinOccurs), Int32.MaxValue);
                             if (parent.MaxOccurs != 1)
                                 maxOccurs = (int)Math.Min(Math.Max(element.MaxOccurs, parent.MaxOccurs), Int32.MaxValue);
-                            
+
                         }
-                      
+
                         ChildInfo childInfo = new ChildInfo(GetFieldName(element.QualifiedName), childNodeType, maxOccurs > 1);
 
                         if ( (minOccurs > 0 || maxOccurs < Int32.MaxValue)

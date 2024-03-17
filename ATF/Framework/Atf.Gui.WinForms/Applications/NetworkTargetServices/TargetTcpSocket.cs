@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Net;
@@ -172,7 +172,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                     m_theSocket.BeginConnect(ipaddr,target.Port, m_connectClb,target);
                     m_ConnectionInProgress = true;
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -268,7 +268,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                     {
                         m_theSocket.BeginReceive(buf, 0, m_messageSize, SocketFlags.None, m_recieveClb, buf);
                     }
-                }               
+                }
             }
             catch (Exception ex)
             {
@@ -289,7 +289,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
 
         #region Private Methods
 
-        
+
         /// <summary>
         /// Receive callback</summary>
         /// <param name="ar">Operation status passed from begin/receive</param>
@@ -384,7 +384,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
             {
                 handler(this, ex);
             }, null);
-            
+
         }
 
         private void OnDisconnected()
@@ -424,7 +424,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
         private volatile Socket m_theSocket;  // the only socket object.
         private volatile Target m_curTarget;   // the ip:port of the server for the current conneciton.
         private readonly AsyncCallback m_recieveClb;   // recieve callback.
-        private readonly AsyncCallback m_connectClb;   // recieve callback.        
+        private readonly AsyncCallback m_connectClb;   // recieve callback.
         private readonly SynchronizationContext m_cctx;
         private volatile object m_syncSocket = new object(); // used to synchronization.
         private int m_messageSize;

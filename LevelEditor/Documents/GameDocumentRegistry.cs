@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -29,7 +29,7 @@ namespace LevelEditor
             get
             {
                 for (int i = 1; i < m_documents.Count; i++)
-                    yield return m_documents[i];                
+                    yield return m_documents[i];
             }
         }
 
@@ -39,11 +39,11 @@ namespace LevelEditor
         }
 
         public IGameDocument FindDocument(Uri ur)
-        {           
+        {
             foreach (var doc in m_documents)
                 if(doc.Uri == ur)
-                    return doc;            
-            return null;            
+                    return doc;
+            return null;
         }
 
         public bool Contains(IGameDocument doc)
@@ -63,22 +63,22 @@ namespace LevelEditor
             private set;
         }
 
-        public event EventHandler<ItemInsertedEventArgs<IGameDocument>> DocumentAdded = delegate { };   
+        public event EventHandler<ItemInsertedEventArgs<IGameDocument>> DocumentAdded = delegate { };
         public event EventHandler<ItemRemovedEventArgs<IGameDocument>> DocumentRemoved = delegate { };
         public event EventHandler<ItemChangedEventArgs<IGameDocument>> DocumentDirtyChanged = delegate { };
-        public event EventHandler<ItemChangedEventArgs<IGameDocument>> DocumentUriChanged = delegate { };        
+        public event EventHandler<ItemChangedEventArgs<IGameDocument>> DocumentUriChanged = delegate { };
         public event EventHandler<ItemChangedEventArgs<IEditableResourceOwner>> EditableResourceOwnerDirtyChanged = delegate { };
-        
+
         public void Add(IGameDocument doc)
         {
             if (doc == null)
                 throw new ArgumentNullException("doc");
-            
+
             if(!m_documents.Contains(doc))
             {
                 m_documents.Add(doc);
                 doc.DirtyChanged += OnDocumentDirtyChanged;
-                doc.UriChanged += OnDocumentUriChanged;                
+                doc.UriChanged += OnDocumentUriChanged;
                 doc.EditableResourceOwnerDirtyChanged += OnResourceDirtyChanged;
                 UpdateAnyDocDirty();
                 UpdateAnyResourceDirty();
@@ -89,7 +89,7 @@ namespace LevelEditor
         public void Remove(IGameDocument doc)
         {
             if (doc == null)
-                return;                
+                return;
 
             if (!m_documents.Contains(doc))
                 return;
@@ -134,7 +134,7 @@ namespace LevelEditor
         private void OnDocumentUriChanged(object sender, UriChangedEventArgs e)
         {
             UpdateAnyResourceDirty();
-            IGameDocument doc = (IGameDocument)sender;            
+            IGameDocument doc = (IGameDocument)sender;
             DocumentUriChanged(this, new ItemChangedEventArgs<IGameDocument>(doc));
         }
         private void UpdateAnyDocDirty()
@@ -148,10 +148,10 @@ namespace LevelEditor
         }
 
         /// <summary>
-        /// Find all objects of type T in all the open game documents</summary>        
+        /// Find all objects of type T in all the open game documents</summary>
         public IEnumerable<T> FindAll<T>()
             where T : class
-        {            
+        {
             foreach (IGameDocument doc in Documents)
             {
                 DomNode folderNode = doc.RootGameObjectFolder.Cast<DomNode>();
@@ -174,6 +174,6 @@ namespace LevelEditor
             }
         }
 
-        private readonly List<IGameDocument> m_documents = new List<IGameDocument>();        
+        private readonly List<IGameDocument> m_documents = new List<IGameDocument>();
     }
 }

@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.ComponentModel.Composition;
 using System.Windows.Forms;
@@ -13,14 +13,14 @@ using Resources = LevelEditorCore.Resources;
 using PropertyDescriptor = System.ComponentModel.PropertyDescriptor;
 
 namespace RenderingInterop
-{   
+{
     /// <summary>
     /// Commands for switching the active DesignControl's rendering mode</summary>
     [Export(typeof(IInitializable))]
     [Export(typeof(RenderCommands))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class RenderCommands : ICommandClient, IInitializable
-    {       
+    {
         #region IInitializable Members
 
         public virtual void Initialize()
@@ -28,8 +28,8 @@ namespace RenderingInterop
             // register a custom menu without any commands, so it won't appear in the main menu bar
             MenuInfo menuInfo = m_commandService.RegisterMenu(this, "RenderModes", "Rendering modes");
             ToolStrip strip = menuInfo.GetToolStrip();
-          
-             CommandInfo cmdInfo = m_commandService.RegisterCommand(                
+
+             CommandInfo cmdInfo = m_commandService.RegisterCommand(
                 Command.RenderSmooth,
                 StandardMenu.View,
                 m_commandGroup,
@@ -41,7 +41,7 @@ namespace RenderingInterop
                 this);
              strip.Items.Add(cmdInfo.GetButton());
 
-             cmdInfo = m_commandService.RegisterCommand(                
+             cmdInfo = m_commandService.RegisterCommand(
                 Command.RenderWireFrame,
                 StandardMenu.View,
                 m_commandGroup,
@@ -53,7 +53,7 @@ namespace RenderingInterop
                 this);
              strip.Items.Add(cmdInfo.GetButton());
 
-            cmdInfo = m_commandService.RegisterCommand(                
+            cmdInfo = m_commandService.RegisterCommand(
                 Command.RenderOutlined,
                 StandardMenu.View,
                 m_commandGroup,
@@ -65,7 +65,7 @@ namespace RenderingInterop
                 this);
             strip.Items.Add(cmdInfo.GetButton());
 
-            cmdInfo = m_commandService.RegisterCommand(                
+            cmdInfo = m_commandService.RegisterCommand(
                 Command.RenderTextured,
                 StandardMenu.View,
                 m_commandGroup,
@@ -78,7 +78,7 @@ namespace RenderingInterop
             strip.Items.Add(cmdInfo.GetButton());
 
 
-            cmdInfo = m_commandService.RegisterCommand(                
+            cmdInfo = m_commandService.RegisterCommand(
                 Command.RenderLight,
                 StandardMenu.View,
                 m_commandGroup,
@@ -90,7 +90,7 @@ namespace RenderingInterop
                 this);
             strip.Items.Add(cmdInfo.GetButton());
 
-            cmdInfo = m_commandService.RegisterCommand(                
+            cmdInfo = m_commandService.RegisterCommand(
                 Command.RenderBackFace,
                 StandardMenu.View,
                 m_commandGroup,
@@ -127,7 +127,7 @@ namespace RenderingInterop
              this);
             strip.Items.Add(cmdInfo.GetButton());
 
-            m_commandService.RegisterCommand(                
+            m_commandService.RegisterCommand(
                 Command.RenderCycle,
                 StandardMenu.View,
                 m_commandGroup,
@@ -137,7 +137,7 @@ namespace RenderingInterop
                 null,
                 CommandVisibility.Menu,
                 this);
-          
+
             //cmdInfo = m_commandService.RegisterCommand(
             //  Command.RealTime,
             //  StandardMenu.View,
@@ -151,9 +151,9 @@ namespace RenderingInterop
             //strip.Items.Add(cmdInfo.GetButton());
 
             ControlInfo controlInfo = new ControlInfo("Render settings", "per view port render settings", StandardControlGroup.Hidden);
-            
+
             m_propertyGrid = new Sce.Atf.Controls.PropertyEditing.PropertyGrid();
-            m_controlHostService.RegisterControl(m_propertyGrid, controlInfo, null);                       
+            m_controlHostService.RegisterControl(m_propertyGrid, controlInfo, null);
 
             if (m_scriptingService != null)
                 m_scriptingService.SetVariable("renderCommands", this);
@@ -178,11 +178,11 @@ namespace RenderingInterop
             var context = m_propertyGrid.PropertyGridView.EditingContext as RenderStateEditingContext;
             if (context == null || context.Item != rs)
             {
-                context = new RenderStateEditingContext(rs);                
+                context = new RenderStateEditingContext(rs);
                 m_propertyGrid.Bind(context);
             }
-            
-                      
+
+
             switch ((Command)commandTag)
             {
                 case Command.RenderSmooth:
@@ -197,7 +197,7 @@ namespace RenderingInterop
                     return true;
                 case Command.RenderTextured:
                     return (rs.RenderFlag & GlobalRenderFlags.Solid) != 0;
-                
+
             }
 
             return false;
@@ -212,36 +212,36 @@ namespace RenderingInterop
             {
                 NativeDesignControl control = (NativeDesignControl)m_designView.ActiveView;
                 RenderState rs = control.RenderState;
-                
+
                 switch ((Command)commandTag)
                 {
                     case Command.RenderSmooth:
                         rs.RenderFlag &= ~(GlobalRenderFlags.WireFrame | GlobalRenderFlags.RenderBackFace);
                         rs.RenderFlag |= (GlobalRenderFlags.Solid | GlobalRenderFlags.Lit | GlobalRenderFlags.Textured);
-                        
+
                         break;
 
                     case Command.RenderWireFrame:
                         rs.RenderFlag |= (GlobalRenderFlags.WireFrame ); //| RenderFlags.RenderBackFace
                         rs.RenderFlag &= ~(GlobalRenderFlags.Solid | GlobalRenderFlags.Lit | GlobalRenderFlags.Textured);
-                        
+
                         break;
 
                     case Command.RenderOutlined:
                         rs.RenderFlag |= (GlobalRenderFlags.WireFrame | GlobalRenderFlags.Solid |
                             GlobalRenderFlags.Lit | GlobalRenderFlags.Textured);
                         rs.RenderFlag &= ~GlobalRenderFlags.RenderBackFace;
-                        
+
                         break;
 
                     case Command.RenderTextured:
                         rs.RenderFlag ^= GlobalRenderFlags.Textured;
-                        
+
                         break;
 
                     case Command.RenderLight:
                         rs.RenderFlag ^= GlobalRenderFlags.Lit;
-                        
+
                         break;
 
                     case Command.RenderBackFace:
@@ -272,12 +272,12 @@ namespace RenderingInterop
                         }
                         // wireframe -> outlined
                         goto case Command.RenderOutlined;
-                        
+
                   //  case Command.RealTime:
                   //      m_designView.RealTime = !m_designView.RealTime;
                   //      break;
                 }
-                control.Invalidate();                
+                control.Invalidate();
             }
         }
 
@@ -325,7 +325,7 @@ namespace RenderingInterop
                         state.Check = (flags & GlobalRenderFlags.RenderNormals) == GlobalRenderFlags.RenderNormals;
                         break;
                    // case Command.RealTime:
-                  //      state.Check = m_designView.RealTime;                  
+                  //      state.Check = m_designView.RealTime;
 
                 }
             }
@@ -347,7 +347,7 @@ namespace RenderingInterop
         }
 
         private Sce.Atf.Controls.PropertyEditing.PropertyGrid m_propertyGrid;
-              
+
         [Import(AllowDefault = false)]
         private ICommandService m_commandService;
 
@@ -356,7 +356,7 @@ namespace RenderingInterop
 
         [Import(AllowDefault = false)]
         private IDesignView m_designView = null;
-        
+
         [Import(AllowDefault = true)]
         private ScriptingService m_scriptingService;
 
@@ -381,13 +381,13 @@ namespace RenderingInterop
 
             public IEnumerable<PropertyDescriptor> PropertyDescriptors
             {
-                get 
+                get
                 {
                     if (s_propertyDescriptor == null)
-                    {                        
+                    {
                         var colorEd = new Sce.Atf.Controls.ColorPickerEditor();
-                        string category = "Render Settings".Localize();                        
-                        
+                        string category = "Render Settings".Localize();
+
                         s_propertyDescriptor = new PropertyDescriptor[]
                         {
                             new UnboundPropertyDescriptor(typeof(RenderState),"WireFrameColor","Wire FrameColor".Localize(),category,"color used for wireframe mode".Localize(),colorEd),

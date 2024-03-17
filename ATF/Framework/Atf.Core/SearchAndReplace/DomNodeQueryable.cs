@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -23,11 +23,11 @@ namespace Sce.Atf.Dom
             foreach (DomNode domNode in DomNode.Subtree)
             {
                 // The results of one DomNode query associate each predicate with matching dom node properties
-                Dictionary<IQueryPredicate, IList<IQueryMatch>> predicateMatchResults 
+                Dictionary<IQueryPredicate, IList<IQueryMatch>> predicateMatchResults
                     = new Dictionary<IQueryPredicate, IList<IQueryMatch>>();
 
-                // For each queryable item (ie a DomNode) there may be 0 to many "query matches" 
-                // (ie a DomNode property).  On success, predicate.Test() will supply one 
+                // For each queryable item (ie a DomNode) there may be 0 to many "query matches"
+                // (ie a DomNode property).  On success, predicate.Test() will supply one
                 // IQueryMatch per DomNode property that matched.
                 IList<IQueryMatch> matchingPropertiesList;
                 if (predicate.Test(domNode, out matchingPropertiesList))
@@ -107,7 +107,7 @@ namespace Sce.Atf.Dom
             }
 
             ResultsChanged.Raise(this, EventArgs.Empty);
-            
+
             return m_results;
         }
         #endregion

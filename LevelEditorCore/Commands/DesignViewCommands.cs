@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -57,7 +57,7 @@ namespace LevelEditorCore.Commands
         {
 
             bool result = ((commandTag is Command) || (commandTag is ViewTypes));
-                
+
             return result;
         }
 
@@ -66,12 +66,12 @@ namespace LevelEditorCore.Commands
         /// <param name="commandTag">Command to be done</param>
         public void DoCommand(object commandTag)
         {
-            
-            if (commandTag is Command)                       
+
+            if (commandTag is Command)
             {
                 switch ((Command)commandTag)
                 {
-                   
+
                     case Command.SingleView:
 
                         m_designView.ViewMode = ViewModes.Single;
@@ -102,12 +102,12 @@ namespace LevelEditorCore.Commands
         /// <param name="state">State of the command</param>
         public void UpdateCommand(object commandTag, CommandState state)
         {
-            
+
             if (commandTag is Command)
             {
                 switch ((Command)commandTag)
                 {
-                   
+
                     case Command.SingleView:
                         state.Check = m_designView.ViewMode == ViewModes.Single;
                         break;
@@ -136,7 +136,7 @@ namespace LevelEditorCore.Commands
             if (m_designView.Context == context)
             {
                 return m_contextMenuCommands;
-            }                
+            }
             return EmptyEnumerable<object>.Instance;
         }
 
@@ -147,13 +147,13 @@ namespace LevelEditorCore.Commands
             SingleView,                     //per Design View
             QuadView,                       //per Design View
             DualHorizontalView,             //per Design View
-            DualVerticalView,               //per Design View         
+            DualVerticalView,               //per Design View
         }
 
         // The order of these enums determines the order of the command groups in a menu.
         private enum CommandGroup
         {
-            Manipulators = 128, 
+            Manipulators = 128,
             Layouts,
             ProjectionModes,
             Display,
@@ -291,13 +291,13 @@ namespace LevelEditorCore.Commands
                 this);
         }
 
-        
 
-        private object[] m_contextMenuCommands;      
+
+        private object[] m_contextMenuCommands;
 
         [Import(AllowDefault = false)]
         private IDesignView m_designView = null;
-        
+
         private ICommandService m_commandService;
         private IContextRegistry m_contextRegistry;
     }

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -33,7 +33,7 @@ namespace LevelEditor.Terrain
 
             m_decoList.DrawItem2 += DrawItem;
             m_layerList.DrawItem2 += DrawItem;
-            
+
             m_addBtn.Image = ResourceUtil.GetImage16(ATFResources.AddImage);
             m_deleteBtn.Image = ResourceUtil.GetImage16(ATFResources.RemoveImage);
             m_moveUpBtn.Image = ResourceUtil.GetImage16(ATFResources.ArrowUpImage);
@@ -71,7 +71,7 @@ namespace LevelEditor.Terrain
 
             m_noiseRdo.Text = "Noise".Localize();
             m_noiseRdo.Tag = new NoiseBrush(m_noiseRdo.Text);
-            
+
             m_paintEraseRdo.Text = "Paint/Erase".Localize();
             m_paintEraseRdo.Tag = new PaintEraseBrush(m_paintEraseRdo.Text);
 
@@ -79,8 +79,8 @@ namespace LevelEditor.Terrain
             SizeChanged += (sender, e) =>
                 {
                     m_propertyGrid.Width = Width - m_propertyGrid.Left;
-                    m_brushProps.Width = Width - m_brushProps.Left;                    
-                };            
+                    m_brushProps.Width = Width - m_brushProps.Left;
+                };
         }
 
         /// <summary>
@@ -103,10 +103,10 @@ namespace LevelEditor.Terrain
 
         public TerrainMap SelectedTerrainMap
         {
-            get 
+            get
             {
                 ListBox listbox = GetActiveList();
-                return listbox != null ? (TerrainMap)listbox.SelectedItem : null;                
+                return listbox != null ? (TerrainMap)listbox.SelectedItem : null;
             }
         }
 
@@ -123,9 +123,9 @@ namespace LevelEditor.Terrain
             IEnumerable<TerrainGob> terrainGobs = EmptyEnumerable<TerrainGob>.Instance;
             if (gameDocumentRegistry != null)
                 terrainGobs = gameDocumentRegistry.FindAll<TerrainGob>();
-            
+
             TerrainGob curTerrain = m_cmboxTerrain.Items.Count > 0 ? (TerrainGob)m_cmboxTerrain.SelectedItem : null;
-            
+
             m_cmboxTerrain.Enabled = false;
 
             m_cmboxTerrain.BeginUpdate();
@@ -171,13 +171,13 @@ namespace LevelEditor.Terrain
         #endregion
 
         #region event handlers
-       
+
         private void CreateTerrainBtnClick(object sender, EventArgs e)
         {
             using (var dlg = new CreateTerrainDlg(Globals.ResourceRoot.LocalPath))
             {
                 if (dlg.ShowDialog(this) == DialogResult.OK)
-                {                   
+                {
                     TerrainGob terrain = TerrainGob.Create(dlg.TerrainName, dlg.HeightMapPath, dlg.CellSize);
                     var xformable = terrain.As<ITransformable>();
                     xformable.Translation = new Vec3F(-dlg.CellSize * (dlg.HmapCols-1) / 2.0f, 0.0f, -dlg.CellSize * (dlg.HmapRows-1) / 2.0f);
@@ -190,7 +190,7 @@ namespace LevelEditor.Terrain
                         null);
                 }
             }
-        
+
         }
 
         private void CmboxTerrain_SelectedIndexChanged(object sender, EventArgs e)
@@ -199,7 +199,7 @@ namespace LevelEditor.Terrain
             TerrainGob gob = (TerrainGob)cmbbox.SelectedItem;
             Bind(gob);
         }
-       
+
         private void ListBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             ListBox listbox = GetActiveList();
@@ -234,11 +234,11 @@ namespace LevelEditor.Terrain
                 RenderingInterop.NativeGameWorldAdapter
                     gw = GameContext.As<RenderingInterop.NativeGameWorldAdapter>();
                 try
-                {                    
+                {
                     gw.ManageNativeObjectLifeTime = false;
                     object item = listbox.Items[selectedIndex];
                     GameContext.As<ITransactionContext>().DoTransaction(() =>
-                        {                            
+                        {
                             // the item must be terrain map.
                             DomNode node = item.As<DomNode>();
                             DomNode parentNode = node.Parent;
@@ -246,7 +246,7 @@ namespace LevelEditor.Terrain
                             int itemIndex = items.IndexOf(node);
                             System.Diagnostics.Debug.Assert(itemIndex == selectedIndex);
                             items.RemoveAt(itemIndex);
-                            items.Insert(insertionIndex, node);                            
+                            items.Insert(insertionIndex, node);
                         }, "Move Map");
                     listbox.SelectedItem = item;
                 }
@@ -308,14 +308,14 @@ namespace LevelEditor.Terrain
             ListBox listbox = GetActiveList();
             if (listbox == null) return;
             var propcontext = new CustomPropertyEditingContext(listbox.SelectedItem);
-            m_propertyGrid.Bind(propcontext);            
+            m_propertyGrid.Bind(propcontext);
         }
-      
+
         #endregion
 
         #region Draw list item
 
-                
+
         private int m_thumbSize = 96;
         private int m_header = 15;
         private void DrawItem(object sender, DrawItemEventArgs e)
@@ -328,16 +328,16 @@ namespace LevelEditor.Terrain
             Rectangle bounds = e.Bounds;
             bounds.Width -= 1;
             bounds.Height -= 1;
-            
+
             Brush bkgBrush = (e.State & DrawItemState.Selected) == DrawItemState.Selected
                 ? SystemBrushes.Highlight : Brushes.DarkGray;
             // draw bkg
-            e.Graphics.FillRectangle(bkgBrush, bounds);                
-          
+            e.Graphics.FillRectangle(bkgBrush, bounds);
+
             var thumbnailRect = new Rectangle(bounds.X+5, bounds.Y + m_header, m_thumbSize, m_thumbSize);
-                       
+
             foreach (var texInfo in map.TextureInfos)
-            {       
+            {
                 Image img = GetThumNail(texInfo.Uri);
                 var srcRect = new Rectangle(0, 0, img.Width, img.Height);
                 e.Graphics.DrawImage(img, thumbnailRect, srcRect, GraphicsUnit.Pixel);
@@ -356,7 +356,7 @@ namespace LevelEditor.Terrain
         #region helper methods
 
         private void Bind(TerrainGob gob)
-        {            
+        {
             m_terrainPropGrid.Bind(gob);
             m_layerList.Items.Clear();
             m_decoList.Items.Clear();
@@ -376,7 +376,7 @@ namespace LevelEditor.Terrain
             if(terrain != null && m_layersTabControl.SelectedTab != null)
                 return (ListBox)m_layersTabControl.SelectedTab.Controls[0];
             return null;
-        }        
+        }
         private void UpdateButtonStatus()
         {
             //Console.WriteLine("update buttons: " + Environment.TickCount);
@@ -389,7 +389,7 @@ namespace LevelEditor.Terrain
             m_moveDownBtn.Enabled = listbox != null
                 && listbox.SelectedIndex >= 0
                 && listbox.SelectedIndex < (listbox.Items.Count - 1);
-           
+
         }
 
         private Image GetThumNail(Uri ur)
@@ -400,8 +400,8 @@ namespace LevelEditor.Terrain
                 foreach (var resolver in m_thumbnailReslovers)
                 {
                     img = resolver.Resolve(ur);
-                    if (img != null)                    
-                        break;                    
+                    if (img != null)
+                        break;
                 }
                 m_thumbnails.Add(ur, img);
             }
@@ -423,21 +423,21 @@ namespace LevelEditor.Terrain
             RadioButton button = (RadioButton)sender;
             m_selectedBrush = button.Checked ? (TerrainBrush)button.Tag : null;
             if (m_selectedBrush == null)
-                m_brushProps.Bind(null);                            
+                m_brushProps.Bind(null);
             else
-                m_brushProps.Bind(m_selectedBrush);            
-            
+                m_brushProps.Bind(m_selectedBrush);
+
         }
     }
 
-    
+
     public class DoubleBufferedListBox : ListBox
     {
         [Browsable(true)]
         public EventHandler<DrawItemEventArgs> DrawItem2 = delegate { };
 
         public DoubleBufferedListBox()
-        {            
+        {
             this.DoubleBuffered = true;
             SetStyle(ControlStyles.UserPaint
                | ControlStyles.AllPaintingInWmPaint
@@ -446,7 +446,7 @@ namespace LevelEditor.Terrain
                | ControlStyles.Opaque
                , true);
 
-            
+
         }
 
         protected override void OnMouseDown(MouseEventArgs e)

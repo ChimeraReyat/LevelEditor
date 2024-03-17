@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -34,7 +34,7 @@ namespace Sce.Atf.Applications
         {
             m_commandService.RegisterCommand(CommandInfo.ViewFrameSelection, this);
             m_commandService.RegisterCommand(CommandInfo.ViewFrameAll, this);
-            
+
             if (m_scriptingService != null)
                 m_scriptingService.SetVariable("atfView", this);
         }

@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -93,7 +93,7 @@ namespace Sce.Atf.Controls
             }
 
             string valueString = ToString();
-            g.DrawString(valueString, Theme.Font, Theme.TextBrush, left + textOffset, area.Top); 
+            g.DrawString(valueString, Theme.Font, Theme.TextBrush, left + textOffset, area.Top);
         }
 
         private void DrawThumb(Graphics g, Rectangle bounds, TrackBarThumbState state)
@@ -180,8 +180,8 @@ namespace Sce.Atf.Controls
                 throw new InvalidOperationException("ShowSlider must be true");
             float t = ((float)(x - Bounds.Left - Theme.Padding.Left)) / SliderWidth;
             float newValue = Min + t * (Max - Min);
-            //System.Diagnostics.Trace.TraceInformation("Slider value {0}", newValue); 
-            return MathUtil.Clamp(newValue, Min, Max);           
+            //System.Diagnostics.Trace.TraceInformation("Slider value {0}", newValue);
+            return MathUtil.Clamp(newValue, Min, Max);
         }
 
         /// <summary>
@@ -214,7 +214,7 @@ namespace Sce.Atf.Controls
                 if (Min == 0F && Max == 0F) // range not set
                     Value = singleResult;
                 else
-                    Value = MathUtil.Clamp(singleResult, Min, Max);               
+                    Value = MathUtil.Clamp(singleResult, Min, Max);
             }
         }
 

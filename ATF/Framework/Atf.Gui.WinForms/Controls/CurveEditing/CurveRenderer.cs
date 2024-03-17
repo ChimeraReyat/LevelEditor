@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -130,7 +130,7 @@ namespace Sce.Atf.Controls.CurveEditing
                 return;
 
             foreach(var curve in curves)
-            {            
+            {
                 if (!curve.Visible)
                     continue;
 
@@ -156,7 +156,7 @@ namespace Sce.Atf.Controls.CurveEditing
                             {
                                 points.Add(cpt);
                                 regions.Add(PointSelectionRegions.TangentOut);
-                                tanPicked = true;                                
+                                tanPicked = true;
                             }
                         }
 
@@ -267,7 +267,7 @@ namespace Sce.Atf.Controls.CurveEditing
             // draw pre-infinity
             // draw actual
             // draw post-inifiny.
-            
+
             ReadOnlyCollection<IControlPoint> points = curve.ControlPoints;
             if (points.Count == 0)
                 return;
@@ -293,7 +293,7 @@ namespace Sce.Atf.Controls.CurveEditing
             List<PointF> pointList = new List<PointF>(m_canvas.Width / m_tessellation);
             ICurveEvaluator cv = CurveUtils.CreateCurveEvaluator(curve);
             PointF scrPt = new PointF();
-            float bound = 500; // guard again gdi+ overflow.            
+            float bound = 500; // guard again gdi+ overflow.
             float minY = -bound;
             float maxY = h + bound;
 
@@ -318,7 +318,7 @@ namespace Sce.Atf.Controls.CurveEditing
                     g.DrawLines(m_infinityPen, pointList.ToArray());
             }
 
-            // draw actual 
+            // draw actual
             if ((fpt.X > x0 || lpt.X > x0) && (fpt.X < x1 || lpt.X < x1))
             {
                 int leftIndex;
@@ -395,7 +395,7 @@ namespace Sce.Atf.Controls.CurveEditing
         }
 
         /// <summary>
-        /// Draws all the control points for the given curve</summary>        
+        /// Draws all the control points for the given curve</summary>
         /// <param name="curve">Curve</param>
         /// <param name="g">Graphics object</param>
         public void DrawControlPoints(ICurve curve, Graphics g)
@@ -443,7 +443,7 @@ namespace Sce.Atf.Controls.CurveEditing
                 throw new InvalidOperationException("curveControl is already been set");
             m_canvas = control;
         }
-      
+
         /// <summary>
         /// Draws single control point</summary>
         /// <param name="prevTanType">Previous CurveTangentTypes</param>
@@ -520,8 +520,8 @@ namespace Sce.Atf.Controls.CurveEditing
         /// <summary>
         /// Computes indices for pre-last and post-first points on the left and right of the
         /// viewing rectangle.
-        /// Set lIndex to -1 and rIndex to -2 to indicate that curve is completely panned 
-        /// either to left or right of the viewing rectangle.        
+        /// Set lIndex to -1 and rIndex to -2 to indicate that curve is completely panned
+        /// either to left or right of the viewing rectangle.
         /// This method is used by picking and rendering.</summary>
         /// <param name="curve">Curve</param>
         /// <param name="lIndex">Left index</param>
@@ -544,8 +544,8 @@ namespace Sce.Atf.Controls.CurveEditing
             if (points[points.Count - 1].X <= leftgx)
                 return;
 
-            // find the index of the control point that 
-            // comes before the first visible control-point from left.            
+            // find the index of the control point that
+            // comes before the first visible control-point from left.
             for (int i = (points.Count - 1); i >= 0; i--)
             {
                 IControlPoint cp = points[i];
@@ -554,8 +554,8 @@ namespace Sce.Atf.Controls.CurveEditing
                     break;
             }
 
-            // find the index of the control-point that comes after last visible control-point 
-            // from right.            
+            // find the index of the control-point that comes after last visible control-point
+            // from right.
             for (int i = lIndex; i < points.Count; i++)
             {
                 IControlPoint cp = points[i];
@@ -583,9 +583,9 @@ namespace Sce.Atf.Controls.CurveEditing
 
         private Cartesian2dCanvas m_canvas;
         private const float FinLength = 10.0f;
-        private const float sin = 0.5f; // cached value             
-        private const float cos = 0.8660254f; // cached value       
-        
+        private const float sin = 0.5f; // cached value
+        private const float cos = 0.8660254f; // cached value
+
         private SolidBrush m_pointBrush = new SolidBrush(Color.Black);
         private SolidBrush m_pointHiBrush = new SolidBrush(Color.Red);
         private SolidBrush m_tangentArrowHeadBrush = (SolidBrush)Brushes.DarkCyan;
@@ -595,7 +595,7 @@ namespace Sce.Atf.Controls.CurveEditing
 
         private float m_pointSize = 5.0f;
         private float m_tangentLength = 40.0f;
-        private int m_tessellation = 4; // in pixel        
+        private int m_tessellation = 4; // in pixel
         private static readonly PointF[] s_arrowPts = new PointF[3];
     }
 }

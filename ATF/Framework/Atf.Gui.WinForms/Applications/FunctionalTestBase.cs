@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Diagnostics;
@@ -79,19 +79,19 @@ namespace Sce.Atf.Applications
         }
 
         /// <summary>
-        /// Gets the AutomationService object, which is used for 
+        /// Gets the AutomationService object, which is used for
         /// communicating with the application under test</summary>
         public AutomationService AutomationService
         {
             get { return m_automationService; }
         }
-        
+
         /// <summary>
         /// Get or set whether the console output be tagged from test script vs. from the application</summary>
-        /// <remarks>Sometimes it is difficult to tell the difference between output from the test script vs. from the application.  
-        /// Distinguishing between the two is helpful when debugging a failing test, especially if a test fails on the build server but not locally, 
+        /// <remarks>Sometimes it is difficult to tell the difference between output from the test script vs. from the application.
+        /// Distinguishing between the two is helpful when debugging a failing test, especially if a test fails on the build server but not locally,
         /// and all we have to debug the fail is the log output</remarks>
-        public bool TagConsoleOutput 
+        public bool TagConsoleOutput
         {
             get { return m_tagConsoleOutput; }
             set { m_tagConsoleOutput = value; }
@@ -136,12 +136,12 @@ namespace Sce.Atf.Applications
         /// some settings.  (For example, turn off the auto-load previously opened documents
         /// function, which can lead to popup dialogs if a previous document has an error or has moved).
         /// Do this by copying our own "AutomationSettings.xml" file to the executable directory.
-        /// When the application under test is launched, the AutomationCommandLineExecutor 
+        /// When the application under test is launched, the AutomationCommandLineExecutor
         /// will tell the settings service to use this file, bypassing any user-defined settings.
-        /// 
+        ///
         /// Note the AutomationSettings.xml is expected to be found at:
         /// [folderContainingTestProject.exe]\Resources\AutomationSettings.xml
-        /// (In other words, the test project needs to copy the AutomationSettings.xml file 
+        /// (In other words, the test project needs to copy the AutomationSettings.xml file
         /// to its output under a "Resources" directory). </summary>
         protected virtual void SetupAppSettings()
         {
@@ -279,7 +279,7 @@ namespace Sce.Atf.Applications
                 Console.WriteLine("===== End script output ======");
             //An empty string from a script is possible, but bad practice, so still fail on an empty string
             Check(!string.IsNullOrEmpty(fullResult), "Verify script returned a result");
-            
+
             //Successfully ran scripts will print "Success" at the end of execution.  Failed scripts
             //will print an exception with some type of error message.  Check the last message, and make sure
             //the expected message was printed.  If not, return an error code
@@ -309,7 +309,7 @@ namespace Sce.Atf.Applications
         }
 
         /// <summary>
-        /// Executes a python statement on the application in a separate thread 
+        /// Executes a python statement on the application in a separate thread
         /// with a default timeout (1s).  If the statement exceeds the timeout,
         /// the test is failed.  This ensures executing the statement will not
         /// freeze the whole test.</summary>
@@ -320,7 +320,7 @@ namespace Sce.Atf.Applications
             return ExecuteStatementSafe(statement, 1);
         }
         /// <summary>
-        /// Executes a python statement on the application in a separate thread 
+        /// Executes a python statement on the application in a separate thread
         /// with the specified timeout.  If the statement exceeds the timeout,
         /// the test is failed.  This ensures executing the statement will not
         /// freeze the whole test.</summary>
@@ -357,7 +357,7 @@ namespace Sce.Atf.Applications
         }
 
         /// <summary>
-        /// Executes a python script on the application in a separate thread 
+        /// Executes a python script on the application in a separate thread
         /// with a default timeout (30 seconds).  If the statement exceeds the timeout,
         /// the test is failed.  This ensures executing the script will not
         /// freeze the whole test.</summary>
@@ -368,7 +368,7 @@ namespace Sce.Atf.Applications
             return ExecuteScriptSafe(scriptPath, m_timeOutInSecs);
         }
         /// <summary>
-        /// Executes a python script on the application in a separate thread 
+        /// Executes a python script on the application in a separate thread
         /// with the specified timeout.  If the statement exceeds the timeout,
         /// the test is failed.  This ensures executing the script will not
         /// freeze the whole test.</summary>
@@ -428,7 +428,7 @@ namespace Sce.Atf.Applications
                 //Might need to kill the process here?
             }
         }
-        
+
         /// <summary>
         /// Verifies the application has actually exited.  Uses looping to give the application
         /// sufficient time on slow systems before failing</summary>

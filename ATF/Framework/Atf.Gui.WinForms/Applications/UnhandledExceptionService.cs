@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel.Composition;
@@ -11,7 +11,7 @@ namespace Sce.Atf.Applications
     /// A service to catch all unhandled exceptions from the UI thread and present
     /// the user with the option of continuing the application so work can be saved.</summary>
     /// <remarks>See also Sce.Atf.CrashLogger, for non-GUI unhandled exception logging to a
-    /// remote server. If both are used, put CrashLogger in the MEF TypeCatalog before 
+    /// remote server. If both are used, put CrashLogger in the MEF TypeCatalog before
     /// UnhandledExceptionService.</remarks>
     [Export(typeof(IInitializable))]
     [Export(typeof(UnhandledExceptionService))]
@@ -83,7 +83,7 @@ namespace Sce.Atf.Applications
             try
             {
                 var dlg = new UnhandledExceptionDialog();
-                
+
                 // Call ToString() to get the call stack. The Message property may not include that.
                 dlg.ExceptionTextBox.Text = exception.ToString();
 

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -20,7 +20,7 @@ namespace Sce.Atf.Controls
             m_btn.Click += BtnClick;
 
             m_btnFont = new Font(m_btn.Font.FontFamily, 8.0f);
-            
+
             m_btnFormat = new StringFormat { Alignment = StringAlignment.Center };
 
             Controls.Add(m_btn);

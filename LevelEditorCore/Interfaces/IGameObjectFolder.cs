@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections.Generic;
 
@@ -14,7 +14,7 @@ namespace LevelEditorCore
         {
             get;
         }
-         
+
 
         /// <summary>
         /// Get the list of child folders</summary>

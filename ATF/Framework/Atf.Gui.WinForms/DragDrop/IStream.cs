@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Runtime.InteropServices;
@@ -13,16 +13,16 @@ namespace Sce.Atf
     internal interface IStream
     {
         int Read(
-            IntPtr buf, 
+            IntPtr buf,
             int len);
 
         int Write(
-            IntPtr buf, 
+            IntPtr buf,
             int len);
 
         [return: MarshalAs(UnmanagedType.I8)]
         long Seek(
-            [In, MarshalAs(UnmanagedType.I8)] long dlibMove, 
+            [In, MarshalAs(UnmanagedType.I8)] long dlibMove,
             int dwOrigin);
 
         void SetSize(
@@ -30,7 +30,7 @@ namespace Sce.Atf
 
         [return: MarshalAs(UnmanagedType.I8)]
         long CopyTo(
-            [In, MarshalAs(UnmanagedType.Interface)] IStream pstm, 
+            [In, MarshalAs(UnmanagedType.Interface)] IStream pstm,
             [In, MarshalAs(UnmanagedType.I8)] long cb,
             [Out, MarshalAs(UnmanagedType.LPArray)] long[] pcbRead);
 
@@ -38,7 +38,7 @@ namespace Sce.Atf
             int grfCommitFlags);
 
         void Revert();
-        
+
         void LockRegion(
             [In, MarshalAs(UnmanagedType.I8)] long libOffset,
             [In, MarshalAs(UnmanagedType.I8)] long cb,
@@ -46,7 +46,7 @@ namespace Sce.Atf
 
         void UnlockRegion(
             [In, MarshalAs(UnmanagedType.I8)] long libOffset,
-            [In, MarshalAs(UnmanagedType.I8)] 
+            [In, MarshalAs(UnmanagedType.I8)]
             long cb,
             int dwLockType);
 

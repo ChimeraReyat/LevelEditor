@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections;
@@ -14,7 +14,7 @@ using Sce.Atf.Controls.PropertyEditing;
 
 
 namespace Sce.Atf.Controls
-{ 
+{
     /// <summary>
     /// Extends Microsoft's ListView with data binding and cell editing functionalities</summary>
     public class DataBoundListView : ListView
@@ -83,7 +83,7 @@ namespace Sce.Atf.Controls
         /// <summary>
         /// Gets or sets whether list is under sorting operation</summary>
         public bool SortingItems { get; set; }
-   
+
         #region Skin style
 
         /// <summary>
@@ -265,7 +265,7 @@ namespace Sce.Atf.Controls
             }
         }
 
-      
+
 
         /// <summary>
         /// Gets or sets the color used to paint the column header separator lines</summary>
@@ -314,7 +314,7 @@ namespace Sce.Atf.Controls
         private Font m_headerFont = new Font("Helvetica", 9, FontStyle.Bold);
         private Font m_tickFont = new Font("Helvetica", 9, FontStyle.Regular);
         private Font m_boldFont;
-        
+
         private int m_headerHeight;
         #endregion
 
@@ -367,7 +367,7 @@ namespace Sce.Atf.Controls
         /// Gets or sets whether to alternate row colors</summary>
         public bool AlternatingRowColors { get; set; }
 
-      
+
 
 
         /// <summary>
@@ -386,7 +386,7 @@ namespace Sce.Atf.Controls
         /// <returns>True iff character was processed by control</returns>
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            // stop the delete key bubbling up the control hierarchy. 
+            // stop the delete key bubbling up the control hierarchy.
             if (keyData == Keys.Delete)
                 return true;
 
@@ -404,7 +404,7 @@ namespace Sce.Atf.Controls
             }
             else
                 Height = 0;
-        
+
             IntPtr header = User32.SendMessage(Handle, User32.LVM_GETHEADER, IntPtr.Zero, IntPtr.Zero);
             Rectangle hdrBounds = new Rectangle();
             User32.GetClientRect(header, ref hdrBounds);
@@ -436,7 +436,7 @@ namespace Sce.Atf.Controls
                 return;
             }
 
- 
+
             if (m_currencyManager != currencyManager)
             {
                 RememberSelections();
@@ -453,7 +453,7 @@ namespace Sce.Atf.Controls
                     m_currencyManager.ListChanged += currencyManager_ListChanged;
                     m_currencyManager.PositionChanged += currencyManager_PositionChanged;
                 }
-                
+
                 // populate the list from data source
                 BuildListColumns();
                 Reload();
@@ -504,7 +504,7 @@ namespace Sce.Atf.Controls
             {
                 items[i] = ListViewItemFromDataSource(i);
             }
-            
+
             Items.AddRange(items);
 
             if (m_autoColumnWidth)
@@ -519,7 +519,7 @@ namespace Sce.Atf.Controls
         {
             PropertyDescriptorCollection pds = m_currencyManager.GetItemProperties();
             ArrayList items = new ArrayList();
-            object dataItem = m_currencyManager.List[index];      
+            object dataItem = m_currencyManager.List[index];
 
             foreach (ColumnHeader column in Columns)
             {
@@ -540,7 +540,7 @@ namespace Sce.Atf.Controls
             }
             return new ListViewItem((string[])items.ToArray(typeof(string)), GroupingDataItem(dataItem));
         }
-        
+
         private void AddItem(int index)
         {
             ListViewItem item = ListViewItemFromDataSource(index);
@@ -551,12 +551,12 @@ namespace Sce.Atf.Controls
                 AutoResizeColumns();
             }
         }
-        
+
         private void UpdateItem(int index)
         {
             if (index >= 0 && index < Items.Count)
             {
-               
+
                 object dataItem = m_currencyManager.List[index];
                 int j = 0;
                 foreach (ColumnHeader column in Columns)
@@ -568,8 +568,8 @@ namespace Sce.Atf.Controls
                     }
                     ++j;
                 }
-              
-               
+
+
             }
         }
 
@@ -578,8 +578,8 @@ namespace Sce.Atf.Controls
             if (index >= 0 && index < Items.Count)
                 this.Items.RemoveAt(index);
         }
-        
-        
+
+
         private void bindingManager_PositionChanged(object sender, EventArgs e)
         {
             if ((m_currencyManager.Position >=0) &&  (Items.Count > m_currencyManager.Position))
@@ -592,7 +592,7 @@ namespace Sce.Atf.Controls
         private void bindingManager_ListChanged(object sender, ListChangedEventArgs e)
         {
             if (e.ListChangedType == ListChangedType.Reset || e.ListChangedType == ListChangedType.ItemMoved)
-                Reload();        
+                Reload();
             else if (e.ListChangedType == ListChangedType.ItemAdded)
                 AddItem(e.NewIndex);
             else if (e.ListChangedType == ListChangedType.ItemChanged)
@@ -616,9 +616,9 @@ namespace Sce.Atf.Controls
             }
             catch
             {
-                
+
             }
-            Invalidate(); // repaint background 
+            Invalidate(); // repaint background
         }
 
 
@@ -631,10 +631,10 @@ namespace Sce.Atf.Controls
             if (!m_adjustingColumnWidths)
             {
                 m_autoColumnWidth = false; // user manually resizes column
-                if (m_lastNewWidth > 0 && Math.Abs(m_lastNewWidth - Columns[e.ColumnIndex].Width) > 100) // avoid snapping 
+                if (m_lastNewWidth > 0 && Math.Abs(m_lastNewWidth - Columns[e.ColumnIndex].Width) > 100) // avoid snapping
                     Columns[e.ColumnIndex].Width = m_lastNewWidth;
             }
-               
+
         }
 
         /// <summary>
@@ -662,9 +662,9 @@ namespace Sce.Atf.Controls
                     }
                 }
             }
-              
+
         }
-       
+
 
         #endregion
 
@@ -704,13 +704,13 @@ namespace Sce.Atf.Controls
                 XmlElement root = xmlDoc.DocumentElement;
                 if (root == null || root.Name != "Columns")
                     throw new Exception("Invalid ListView settings");
-                
+
                 m_autoColumnWidth = false;
                 XmlNodeList columns = root.SelectNodes("Column");
                 foreach (XmlElement columnElement in columns)
                 {
                     string name = columnElement.GetAttribute("Name");
-    
+
                     string widthString = columnElement.GetAttribute("Width");
                     int width;
                     if (widthString != null && int.TryParse(widthString, out width))
@@ -726,9 +726,9 @@ namespace Sce.Atf.Controls
                             }
                         }
                         if (!matched)
-                            m_autoColumnWidth = true; // mismatch requires reset  
+                            m_autoColumnWidth = true; // mismatch requires reset
                     }
-                  
+
                 }
 
                 m_adjustingColumnWidths = false;
@@ -812,7 +812,7 @@ namespace Sce.Atf.Controls
         protected override void OnDrawSubItem(DrawListViewSubItemEventArgs e)
         {
             base.OnDrawSubItem(e);
- 
+
             if (CheckBoxes && e.ColumnIndex == 0)
             {
                 if (e.Item.Selected && Enabled)
@@ -828,7 +828,7 @@ namespace Sce.Atf.Controls
                         else
                             e.Graphics.FillRectangle(m_alternatingRowBrush2, e.Bounds);
                     }
-                    else 
+                    else
                         e.Graphics.FillRectangle(m_defaultBackBrush, e.Bounds);
                 }
 
@@ -837,10 +837,10 @@ namespace Sce.Atf.Controls
                 var rect = e.Bounds;
                 rect.X += CheckBoxWidth + TextOffset;
                 rect.Width -= CheckBoxWidth + TextOffset;
-               
+
                  // Draw the subitem text
                 var font = e.Item.Checked ? m_boldFont : Font;
-               
+
                 using (StringFormat sf = new StringFormat(StringFormatFlags.LineLimit))
                 {
                     // Store the column text alignment, letting it default
@@ -874,7 +874,7 @@ namespace Sce.Atf.Controls
                         if (!Enabled)
                             brush = m_readOnlyBrush;
                         e.Graphics.DrawString(e.SubItem.Text, font, brush, rect, sf);
-                       
+
                     }
                 }
                 return;
@@ -898,7 +898,7 @@ namespace Sce.Atf.Controls
                 }
 
 
-                // Draw normal text for a subitem 
+                // Draw normal text for a subitem
                 if (e.Item.Selected && Enabled)
                 {
                     e.Graphics.FillRectangle(SystemBrushes.Highlight, e.Bounds);
@@ -933,7 +933,7 @@ namespace Sce.Atf.Controls
                     if (!Enabled)
                         brush = m_readOnlyBrush;
                     e.Graphics.DrawString(e.SubItem.Text, font, brush, bound, sf);
-                  
+
                 }
               }
         }
@@ -963,7 +963,7 @@ namespace Sce.Atf.Controls
 
                 // Draw the standard header background.
                 e.DrawBackground();
-                                
+
                 // Draw the header text.
                 var bound = e.Bounds;
                 bound.Y += 3;
@@ -979,7 +979,7 @@ namespace Sce.Atf.Controls
                 {
                     float w = e.Graphics.MeasureString(e.Header.Text, HeaderFont).Width;
                     if (m_sortColumn == 0)
-                        w += CheckBoxWidth + 2; 
+                        w += CheckBoxWidth + 2;
                     if (e.Bounds.Width > w + s_sortAscendingImage.Width + 8) // get enough room left for the arrow icon
                     {
                         Point pt = new Point(e.Bounds.Location.X + e.Bounds.Width - s_sortAscendingImage.Width - 4,
@@ -996,11 +996,11 @@ namespace Sce.Atf.Controls
                     // draw check mark
                     Point pt = new Point(e.Bounds.Location.X, e.Bounds.Top + 3);
                     e.Graphics.DrawString(m_tickSymbol, m_tickFont, Enabled ? m_columnHeaderCheckMarkBrush : m_columnHeaderCheckMarkBrushDisabled, pt);
-                   
-                    // draw a vertical line to make check mark appear in its own column                 
+
+                    // draw a vertical line to make check mark appear in its own column
                     e.Graphics.DrawLine(m_columnHeaderSeparatorPen, CheckBoxWidth, e.Bounds.Top,
                         CheckBoxWidth, e.Bounds.Bottom - 2);
-                   
+
                 }
             }
         }
@@ -1061,7 +1061,7 @@ namespace Sce.Atf.Controls
                     {
                         int rowIndex = 0;
                         var rowBound = new Rectangle(0, HeaderHeight,0,0);
-                        
+
                         if (rowBound.Top + rowBound.Height < ClientRectangle.Height)
                         {
 
@@ -1088,7 +1088,7 @@ namespace Sce.Atf.Controls
 
         private void DataBoundListView_ColumnClick(object sender, ColumnClickEventArgs e)
         {
- 
+
             IBindingList bindingList = DataSource as IBindingList;
             if (bindingList != null && bindingList.SupportsSorting)
             {
@@ -1145,8 +1145,8 @@ namespace Sce.Atf.Controls
                 int numColumns =  Columns.Count;
                 for (int columnIndex = 0; columnIndex < numColumns; ++columnIndex)
                 {
-                 
-                   float width = g.MeasureString(Columns[columnIndex].Text, HeaderFont).Width + 
+
+                   float width = g.MeasureString(Columns[columnIndex].Text, HeaderFont).Width +
                        2 * s_sortAscendingImage.Width + Margin.Left + Margin.Right +18;
 
                    for (int itemIndex = 0; itemIndex < Items.Count; ++itemIndex)
@@ -1155,10 +1155,10 @@ namespace Sce.Atf.Controls
                        if (w > width)
                            width = w;
                    }
-             
+
                    Columns[columnIndex].Width = (int)width;
                }
-               
+
             }
             if (Items.Count >0)
                 m_autoColumnWidth = false; // AutoResizeColumns() should be called only once when the list is not empty
@@ -1254,7 +1254,7 @@ namespace Sce.Atf.Controls
 
             base.Dispose(disposing);
         }
-     
+
         #region cell editing
 
         /// <summary>
@@ -1271,7 +1271,7 @@ namespace Sce.Atf.Controls
                     m_itemAlreadySelected = true;
                 else
                 {
-                    DisableEditingControl(true);             
+                    DisableEditingControl(true);
                 }
             }
         }
@@ -1300,7 +1300,7 @@ namespace Sce.Atf.Controls
                     }
                     cellLeft += columnHeader.Width;
                 }
-             
+
                 if (row >= 0 && col >= 0)
                 {
                     if (col == 0 && CheckBoxes)
@@ -1318,7 +1318,7 @@ namespace Sce.Atf.Controls
                     OnCellClicked(item);
                 }
             }
-          
+
         }
 
         /// <summary>
@@ -1357,12 +1357,12 @@ namespace Sce.Atf.Controls
                 m_comboBox.DataSource = Enum.GetValues(m_propertyDescriptors[m_currentCol].PropertyType);
                 m_comboBox.Bounds = cellBound;
                 m_activeEditingControl = m_comboBox;
-               
+
             }
             else
             {
                 m_textBox.Bounds = cellBound;
-                m_activeEditingControl = m_textBox;              
+                m_activeEditingControl = m_textBox;
             }
             EnableEditingControl();
         }
@@ -1380,7 +1380,7 @@ namespace Sce.Atf.Controls
 
         private bool IsCellExternalEditor(int row, int col)
         {
-          
+
             var group = Items[row].Group;
             if (group != null && m_groupExternalEditorColumns.ContainsKeyValue(group.Name, Columns[col].Text))
                 return true;
@@ -1394,7 +1394,7 @@ namespace Sce.Atf.Controls
             {
                 if (m_checkBoxWidth == 0)
                      m_checkBoxWidth = CheckBoxRenderer.GetGlyphSize(CreateGraphics(), CheckBoxState.UncheckedNormal).Width + 6;
-               
+
                 return m_checkBoxWidth;
             }
         }
@@ -1456,7 +1456,7 @@ namespace Sce.Atf.Controls
 
         /// <summary>
         /// Event arguments for cell validation events.
-        /// The text entered by the user through the user interface (UI) becomes the FormattedValue property value. 
+        /// The text entered by the user through the user interface (UI) becomes the FormattedValue property value.
         /// This is the value that you can validate before it is parsed into the cell Value property value.</summary>
         public class ListViewCellValidatingEventArgs : CancelEventArgs
         {
@@ -1509,7 +1509,7 @@ namespace Sce.Atf.Controls
             if (CellValidating != null)
                 CellValidating(this, e);
         }
-        
+
 
         private void textBox_LostFocus(object sender, EventArgs e)
         {
@@ -1587,7 +1587,7 @@ namespace Sce.Atf.Controls
         /// <param name="e">Event args</param>
         void activeEditingControl_Leave(object sender, EventArgs e)
         {
-           
+
         }
 
         /// <summary>
@@ -1631,7 +1631,7 @@ namespace Sce.Atf.Controls
                     SetTextBoxFromProperty();
                 else if (m_activeEditingControl == m_comboBox)
                     SetComboBoxFromProperty();
-              
+
             }
             m_activeEditingControl.Leave -= activeEditingControl_Leave;
             m_activeEditingControl.KeyPress -= activeEditingControl_KeyPress;
@@ -1675,7 +1675,7 @@ namespace Sce.Atf.Controls
             string propertyText = PropertyUtils.GetPropertyText(m_currencyManager.List[m_currentRow], m_propertyDescriptors[m_currentCol]);
             m_textBox.Text = propertyText;
             m_textBox.ReadOnly = m_propertyDescriptors[m_currentCol].IsReadOnly;
-            
+
         }
 
         private void SetPropertyFromTextBox()
@@ -1769,7 +1769,7 @@ namespace Sce.Atf.Controls
                         if (grp.Name == groupAttribute.GroupName)
                         {
                             group = grp;
-                           
+
                             break;
                         }
                     }
@@ -1779,7 +1779,7 @@ namespace Sce.Atf.Controls
                         group = new ListViewGroup(groupAttribute.GroupName, groupAttribute.Header);
                         Groups.Add(group);
                     }
-                      
+
                     if (groupAttribute.ReadOnlyProperties != null)
                     {
                         string[] pdNames = groupAttribute.ReadOnlyProperties.Split(',');
@@ -1813,7 +1813,7 @@ namespace Sce.Atf.Controls
 
         private ListChangedEventHandler currencyManager_ListChanged;
         private EventHandler currencyManager_PositionChanged;
- 
+
         private object m_dataSource;
         private string m_dataMember;
         private CurrencyManager m_currencyManager;

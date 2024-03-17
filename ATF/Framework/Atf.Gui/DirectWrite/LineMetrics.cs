@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 namespace Sce.Atf.DirectWrite
 {
@@ -14,7 +14,7 @@ namespace Sce.Atf.DirectWrite
         public bool IsTrimmed;
         /// <summary>Number of text positions in text line. This includes any trailing whitespace and newline characters.</summary>
         public int Length;
-        /// <summary>Number of characters in newline sequence at the end of text line. 
+        /// <summary>Number of characters in newline sequence at the end of text line.
         /// If count is zero, text line was either wrapped or it is the end of text.</summary>
         public int NewlineLength;
         /// <summary>Number of whitespace positions at the end of text line. Newline sequences are considered whitespace.</summary>

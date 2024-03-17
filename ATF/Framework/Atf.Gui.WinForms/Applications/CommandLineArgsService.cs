@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections;
@@ -11,16 +11,16 @@ using System.Windows.Forms;
 namespace Sce.Atf.Applications
 {
     /// <summary>
-    /// Command line arguments parsing service that validates the arguments and facilitates the option access. 
-    /// It assumes that arguments without the option prefix ( '-' and '/') are file names, and tries to 
+    /// Command line arguments parsing service that validates the arguments and facilitates the option access.
+    /// It assumes that arguments without the option prefix ( '-' and '/') are file names, and tries to
     /// auto-load them at application startup.</summary>
     /// <remarks>
-    /// Most options are specified as "-name value" or "/name value", except for 
-    /// boolean options, which are specified as "-name" or "/name". 
+    /// Most options are specified as "-name value" or "/name value", except for
+    /// boolean options, which are specified as "-name" or "/name".
     /// Any command-line arguments that aren't part of an option are "Parameters".
-    /// 
-    /// AutoDocumentService is used to automatically open last opened documents at application startup,  
-    /// but CommandLineArgsService takes precedence to open the files specified from command line,  
+    ///
+    /// AutoDocumentService is used to automatically open last opened documents at application startup,
+    /// but CommandLineArgsService takes precedence to open the files specified from command line,
     /// if both services are instantiated.</remarks>
     [Export(typeof (IInitializable))]
     [Export(typeof (CommandLineArgsService))]
@@ -284,7 +284,7 @@ namespace Sce.Atf.Applications
                         }
                     }
                 }
-            }        
+            }
         }
 
         private readonly IDocumentRegistry m_documentRegistry;
@@ -299,7 +299,7 @@ namespace Sce.Atf.Applications
         [Import(AllowDefault = true)]
         private Form m_mainForm;
 
-  
+
         [ImportMany]
         private IEnumerable<Lazy<IDocumentClient>> m_documentClients;
 

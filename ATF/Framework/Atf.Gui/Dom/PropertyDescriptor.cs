@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -171,7 +171,7 @@ namespace Sce.Atf.Dom
         /// <returns>True iff the property should be persisted</returns>
         public override bool ShouldSerializeValue(object component)
         {
-            return true;           
+            return true;
         }
 
         /// <summary>
@@ -284,7 +284,7 @@ namespace Sce.Atf.Dom
                     throw new AnnotationException(string.Format(
                         "Required name attribute is null or empty.\r\nType: {0}\r\nElement: {1}",
                         type.Name, annotation.Name));
-                
+
                 string displayName = displayNameAttr.Value;
                 if (string.IsNullOrEmpty(displayName))
                     displayName = name;
@@ -402,7 +402,7 @@ namespace Sce.Atf.Dom
         //        <xs:enumeration value="Capable"/>
         //        <xs:enumeration value="Enthusiastic"/>
         //     </xs:restriction>
-        //  </xs:simpleType> 
+        //  </xs:simpleType>
         private static string[] TryGetEnumeration(DomNodeType domNodeType, XmlNode annotation)
         {
             string[] enumeration = null;
@@ -435,7 +435,7 @@ namespace Sce.Atf.Dom
                     }
                 }
             }
-           
+
             return enumeration;
         }
 

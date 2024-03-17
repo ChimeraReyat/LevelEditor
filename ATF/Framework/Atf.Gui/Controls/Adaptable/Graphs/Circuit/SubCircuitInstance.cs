@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using Sce.Atf.Dom;
@@ -13,7 +13,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// <summary>
         /// Gets sub-circuit type attribute</summary>
         protected abstract AttributeInfo TypeAttribute { get; }
-      
+
         /// <summary>
         /// Gets or sets the SubCircuit</summary>
         public SubCircuit SubCircuit

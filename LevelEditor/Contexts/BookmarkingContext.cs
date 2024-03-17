@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -14,14 +14,14 @@ using LevelEditorCore;
 
 namespace LevelEditor
 {
-    public class BookmarkingContext : SelectionContext, 
-        ITreeView, 
-        IItemView, 
+    public class BookmarkingContext : SelectionContext,
+        ITreeView,
+        IItemView,
         IObservableContext,
         IInstancingContext
     {
         protected override void OnNodeSet()
-        {  
+        {
             var gameDocRegistry = Globals.MEFContainer.GetExportedValue<GameDocumentRegistry>();
             if (gameDocRegistry.MasterDocument == null || gameDocRegistry.MasterDocument == this.As<IGameDocument>())
             {
@@ -42,7 +42,7 @@ namespace LevelEditor
         {
             get { return m_bookmarkList; }
         }
-        
+
         #region IInstancingContext Members
 
         public bool CanCopy()
@@ -61,22 +61,22 @@ namespace LevelEditor
         }
 
         public void Insert(object insertingObject)
-        {            
+        {
         }
 
         public bool CanDelete()
         {
-            return Selection.Count > 0;         
+            return Selection.Count > 0;
         }
 
         public void Delete()
         {
             IEnumerable<DomNode> selectedDomNodes = GetSelection<DomNode>();
             foreach (DomNode domNode in DomNode.GetRoots(selectedDomNodes))
-            {                
+            {
                 domNode.RemoveFromParent();
             }
-                       
+
         }
         #endregion
 
@@ -88,18 +88,18 @@ namespace LevelEditor
         }
 
         IEnumerable<object> ITreeView.GetChildren(object parent)
-        {            
+        {
             Bookmark bookmark = Adapters.As<Bookmark>(parent);
             if (bookmark != null)
             {
                 foreach (Bookmark subBookmark in bookmark.Bookmarks)
-                    yield return subBookmark;                
+                    yield return subBookmark;
             }
             else if (parent == m_bookmarkRoot)
             {
                 foreach (Bookmark subBookmark in Bookmarks)
-                    yield return subBookmark;                                
-            }            
+                    yield return subBookmark;
+            }
         }
 
         #endregion
@@ -115,9 +115,9 @@ namespace LevelEditor
                 info.HasCheck = false;
                 info.IsLeaf = bookmark.Bookmarks.Count == 0;
                 info.ImageIndex = info.GetImageList().Images.IndexOfKey(LevelEditorCore.Resources.BookmarkImage);
-            }           
+            }
         }
-      
+
         #endregion
 
         #region IObservableContext Members
@@ -135,21 +135,21 @@ namespace LevelEditor
         }
 
         private void DomNode_AttributeChanged(object sender, AttributeEventArgs e)
-        {            
-            ItemChanged.Raise(this, new ItemChangedEventArgs<object>(e.DomNode));                                        
+        {
+            ItemChanged.Raise(this, new ItemChangedEventArgs<object>(e.DomNode));
         }
 
         private void DomNode_ChildInserted(object sender, ChildEventArgs e)
         {
-            ItemInserted.Raise(this, new ItemInsertedEventArgs<object>(e.Index, e.Child, e.Parent));                
+            ItemInserted.Raise(this, new ItemInsertedEventArgs<object>(e.Index, e.Child, e.Parent));
         }
 
         private void DomNode_ChildRemoved(object sender, ChildEventArgs e)
         {
-            ItemRemoved.Raise(this, new ItemRemovedEventArgs<object>(e.Index, e.Child, e.Parent));                
+            ItemRemoved.Raise(this, new ItemRemovedEventArgs<object>(e.Index, e.Child, e.Parent));
         }
 
         #endregion
-        
+
     }
 }

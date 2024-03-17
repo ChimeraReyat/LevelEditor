@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -41,7 +41,7 @@ namespace Sce.Atf.Dom
             btn.Click += CopyBtnClick;
             m_uberControl.Controls.Add(btn);
             x += btn.Width + 2;
-            
+
             btn = new Button();
             btn.Text = "Clear".Localize("Pressing this button clears the contents of a list");
             size = TextRenderer.MeasureText(btn.Text, btn.Font);
@@ -161,7 +161,7 @@ namespace Sce.Atf.Dom
             {
                 if (m_contextRegistry != null)
                     m_contextRegistry.ActiveContextChanged -= m_contextRegistry_ActiveContextChanged;
-                
+
                 m_contextRegistry = value;
 
                 if (m_contextRegistry != null)
@@ -398,7 +398,7 @@ namespace Sce.Atf.Dom
         private void TreeListViewAdapter_RetrieveVirtualItem(object sender, TreeListViewAdapter.RetrieveVirtualNodeAdapter e)
         {
             // present the list with the most recent change at the top
-            //e.Item = Data[Data.Count - e.ItemIndex - 1]; //error! 
+            //e.Item = Data[Data.Count - e.ItemIndex - 1]; //error!
 
             e.Item = m_data[e.ItemIndex]; //this works, but is not the sorting I want
         }
@@ -584,7 +584,7 @@ namespace Sce.Atf.Dom
                 var item = new DataItem(m_transactionNum, DataType.Begin, transactionName);
                 m_transactionParent = item;
                 m_data.Add(item);
-                    
+
                 ItemInserted.Raise(this, new ItemInsertedEventArgs<object>(-1, item));// index is ignored
             }
 

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -22,7 +22,7 @@ namespace Sce.Atf.Controls.CurveEditing
         /// <summary>
         /// Default constructor</summary>
         public CurveEditingControl() : this(new CurveCanvas())
-        {           
+        {
         }
 
         /// <summary>
@@ -44,12 +44,12 @@ namespace Sce.Atf.Controls.CurveEditing
         }
 
         #endregion
-        
+
         #region public properties and methods
 
         /// <summary>
-        /// Gets or sets whether only selected curves 
-        /// can be edited</summary>        
+        /// Gets or sets whether only selected curves
+        /// can be edited</summary>
         public bool OnlyEditSelectedCurves
         {
             get { return m_curveControl.OnlyEditSelectedCurves; }
@@ -76,7 +76,7 @@ namespace Sce.Atf.Controls.CurveEditing
 
         /// <summary>
         /// Gets or sets enabling restricted control-point translation.
-        /// If enabled, the user can only translate a control point between its 
+        /// If enabled, the user can only translate a control point between its
         /// previous and next control points.</summary>
         public bool RestrictedTranslationEnabled
         {
@@ -90,7 +90,7 @@ namespace Sce.Atf.Controls.CurveEditing
         {
             set { m_curveControl.Context = value; }
         }
-       
+
         /// <summary>
         /// Sets curves</summary>
         public virtual ReadOnlyCollection<ICurve> Curves
@@ -99,12 +99,12 @@ namespace Sce.Atf.Controls.CurveEditing
             {
                 SetUI(value != null && value.Count > 0);
                 m_curveControl.Curves = value;
-                PopulateListView(value);                
+                PopulateListView(value);
                 UpdateCurveTypeSelector();
             }
         }
 
-        
+
         /// <summary>
         /// Frames all the curves</summary>
         public void FitAll()
@@ -112,7 +112,7 @@ namespace Sce.Atf.Controls.CurveEditing
             m_curveControl.FitAll();
         }
 
-        
+
         /// <summary>
         /// Gets or sets origin lock mode</summary>
         public OriginLockMode LockOrigin
@@ -160,9 +160,9 @@ namespace Sce.Atf.Controls.CurveEditing
         {
             if (CurveCanvas.Editing) return;
             base.Refresh();
-            UpdateCurveTypeSelector();            
+            UpdateCurveTypeSelector();
         }
-        
+
         #endregion
 
         /// <summary>
@@ -179,7 +179,7 @@ namespace Sce.Atf.Controls.CurveEditing
             settingsService.RegisterSettings(this,
                     new BoundPropertyDescriptor(
                         this, () => this.InputMode, "Input mode".Localize(), null, null));
-               
+
                 settingsService.RegisterSettings(this,
                    new BoundPropertyDescriptor(
                        this, () => FlipY, "Flip Y-axis".Localize("same as 'flip vertical axis'"), null, null));
@@ -187,7 +187,7 @@ namespace Sce.Atf.Controls.CurveEditing
         private bool m_isSettingRegistered;
 
 
-       
+
         /// <summary>
         /// Gets or sets whether to show or hide tangent editing related menu and toolbar items</summary>
         protected bool ShowTangentEditing
@@ -213,7 +213,7 @@ namespace Sce.Atf.Controls.CurveEditing
         public bool FlipY
         {
             get { return m_curveControl.FlipY; }
-            set 
+            set
             {
                 m_curveControl.FlipY = value;
                 Invalidate();
@@ -335,7 +335,7 @@ namespace Sce.Atf.Controls.CurveEditing
             m_pasteBtn = new ToolStripButton();
             m_delBtn = new ToolStripButton();
 
-            // suspendlayouts            
+            // suspendlayouts
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
@@ -377,7 +377,7 @@ namespace Sce.Atf.Controls.CurveEditing
 
             var editMenuItem = new ToolStripMenuItem("Edit".Localize());
             editMenuItem.DropDown = m_curveControl.ContextMenuStrip;
-           
+
             m_menu.Location = new Point(0, 0);
             m_menu.Name = "m_menu";
 
@@ -387,12 +387,12 @@ namespace Sce.Atf.Controls.CurveEditing
 
             m_menu.RenderMode = ToolStripRenderMode.Professional;
             m_menu.Renderer = new CustomToolStripRenderer(toolstripcolor);
-            
-            
+
+
             m_menu.Size = new Size(898, 31);
             m_menu.TabIndex = 0;
             m_menu.Text = "menuStrip1";
-            
+
 
             foreach (int val in tanTypeValues)
             {
@@ -408,7 +408,7 @@ namespace Sce.Atf.Controls.CurveEditing
                 m_tangentsMenuItem.DropDownItems.Add(item);
             }
 
-            m_tangentsMenuItem.DropDownItems.AddRange(new ToolStripItem[] {                        
+            m_tangentsMenuItem.DropDownItems.AddRange(new ToolStripItem[] {
             m_TangentsSep1,
             m_InTangentMenuItem,
             m_outTangentMenuItem});
@@ -497,13 +497,13 @@ namespace Sce.Atf.Controls.CurveEditing
                 m_curveControl.DrawMinorTickEnabled = !m_curveControl.DrawMinorTickEnabled;
             };
 
-                        
-            m_optionsMenu.DropDownOpening += delegate 
-            { 
+
+            m_optionsMenu.DropDownOpening += delegate
+            {
                 flipYMenuItem.Checked = FlipY;
                 showMinorTicksMenu.Checked = m_curveControl.DrawMinorTickEnabled;
             };
-                       
+
             inputmodeMenu.DropDownItems.Add(m_basicMenuItem);
             inputmodeMenu.DropDownItems.Add(m_advancedInputMenuItem);
 
@@ -531,13 +531,13 @@ namespace Sce.Atf.Controls.CurveEditing
                 }
             };
 
-                        
+
             m_optionsMenu.DropDownItems.Add(inputmodeMenu);
             m_optionsMenu.DropDownItems.Add(lockmenu);
             m_optionsMenu.DropDownItems.Add(flipYMenuItem);
             m_optionsMenu.DropDownItems.Add(showMinorTicksMenu);
-            
-                        
+
+
             // Initialize CurveTypeSelector (with items and labels)
             m_curveTypeLabel = new ToolStripLabel();
             m_curveTypeLabel.Name = "CurveTypeLabel";
@@ -568,11 +568,11 @@ namespace Sce.Atf.Controls.CurveEditing
 
             m_topStrip.Items.AddRange(m_editModeButtons);
             m_topStrip.Items.Add(new ToolStripSeparator());
-            m_topStrip.Items.AddRange(new ToolStripItem[] {                
+            m_topStrip.Items.AddRange(new ToolStripItem[] {
             m_PointLabel,
             m_xTxtBox,
             m_yTxtBox,
-            m_fitBtn,            
+            m_fitBtn,
             });
             m_tanSeparator1 = new ToolStripSeparator();
             m_tanSeparator2 = new ToolStripSeparator();
@@ -644,7 +644,7 @@ namespace Sce.Atf.Controls.CurveEditing
             m_PointLabel.AutoSize = true;
             m_PointLabel.Text = "Stats".Localize();
 
-            
+
             m_xTxtBox.Name = "m_XtxtBox";
             m_xTxtBox.Size = new Size(100, 30);
             m_xTxtBox.Validating += InputBoxValidating;
@@ -674,7 +674,7 @@ namespace Sce.Atf.Controls.CurveEditing
             m_fitBtn.ToolTipText = "Fit " + KeysUtil.KeysToString(CurveCanvas.ShortcutKeys.Fit, true);
             m_fitBtn.Click += delegate { m_curveControl.Fit(); };
             m_fitBtn.ImageScaling = ToolStripItemImageScaling.None;
-            
+
 
 
 
@@ -826,7 +826,7 @@ namespace Sce.Atf.Controls.CurveEditing
             m_infinityBtns[3].Image = new Bitmap(typeof(CurveUtils), "Resources.CycleAfterwithOffset.png");
             m_infinityBtns[3].ToolTipText = "Cycle After with Offset";
 
-            // udo/redo/cut/copy/paste/delete  buttons            
+            // udo/redo/cut/copy/paste/delete  buttons
             m_undoBtn.Name = "m_undoBtn";
             m_undoBtn.DisplayStyle = ToolStripItemDisplayStyle.Image;
             m_undoBtn.Alignment = ToolStripItemAlignment.Left;
@@ -938,7 +938,7 @@ namespace Sce.Atf.Controls.CurveEditing
             splitContainer1.SplitterMoved += splitContainer1_SplitterMoved;
             splitContainer1.SplitterMoving += splitContainer1_SplitterMoving;
 
-            // list view                  
+            // list view
             m_curvesListView.CheckBoxes = true;
             m_curvesListView.Dock = DockStyle.Fill;
             m_curvesListView.HideSelection = false;
@@ -947,7 +947,7 @@ namespace Sce.Atf.Controls.CurveEditing
             m_curvesListView.Name = "m_curvesListView";
             m_curvesListView.Size = new Size(300, 300);
             m_curvesListView.TabIndex = 0;
-            m_curvesListView.TabStop = false;            
+            m_curvesListView.TabStop = false;
             m_curvesListView.UseCompatibleStateImageBehavior = false;
             m_curvesListView.View = View.Details;
             m_curvesListView.ItemChecked += m_curvesListView_ItemChecked;
@@ -956,9 +956,9 @@ namespace Sce.Atf.Controls.CurveEditing
             m_curvesListView.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             m_curvesListView.Columns.Add("Curves", 250);
             m_curvesListView.AllowColumnReorder = false;
-            
-            
-            
+
+
+
             var addMenuItem = new ToolStripMenuItem("Add Point".Localize());
             var listMenuStrip = new ContextMenuStrip();
             m_curvesListView.ContextMenuStrip = listMenuStrip;
@@ -971,7 +971,7 @@ namespace Sce.Atf.Controls.CurveEditing
             {
                 if (m_curvesListView.SelectedItems.Count == 0)
                     return;
-                
+
                 PointF pt;
                 using (var dlg = new AddPointDialog())
                 {
@@ -1014,7 +1014,7 @@ namespace Sce.Atf.Controls.CurveEditing
             Controls.Add(m_topStrip);
             Controls.Add(m_menu);
 
-            // resume layouts.                        
+            // resume layouts.
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
             splitContainer1.ResumeLayout(false);
@@ -1052,17 +1052,17 @@ namespace Sce.Atf.Controls.CurveEditing
 
             Invalidate();
         }
-        
+
         private void Application_Idle(object sender, EventArgs e)
         {
             bool hasSelection = m_curveControl.Selection.Count > 0;
-            
+
             m_undoBtn.Enabled = m_curveControl.HistoryContext.CanUndo;
             m_redoBtn.Enabled = m_curveControl.HistoryContext.CanRedo;
             m_cutBtn.Enabled = hasSelection;
             m_copyBtn.Enabled = hasSelection;
             m_pasteBtn.Enabled = m_curveControl.CanPaste;
-            m_delBtn.Enabled = hasSelection;            
+            m_delBtn.Enabled = hasSelection;
         }
 
         private void splitContainer1_SplitterMoving(object sender, SplitterCancelEventArgs e)
@@ -1098,12 +1098,12 @@ namespace Sce.Atf.Controls.CurveEditing
                     {
                         curve.Visible = e.Item.Checked;
                     }, "Set visibility".Localize());
-                }                         
+                }
                 if (!curve.Visible)
                     m_curveControl.RemoveCurveFromSelection(curve);
 
                 Invalidate();
-            }            
+            }
         }
 
         private bool m_populatingListView;
@@ -1147,7 +1147,7 @@ namespace Sce.Atf.Controls.CurveEditing
             {
                 m_populatingListView = false;
             }
-           
+
         }
 
         private void SetUI(bool enable)
@@ -1157,7 +1157,7 @@ namespace Sce.Atf.Controls.CurveEditing
             foreach (ToolStripItem item in m_menu.Items)
                 item.Enabled = enable;
             m_optionsMenu.Enabled = true;
-            m_helpMenuItem.Enabled = true;            
+            m_helpMenuItem.Enabled = true;
         }
 
         private void CurveEditorControl_Invalidated(object sender, InvalidateEventArgs e)
@@ -1268,7 +1268,7 @@ namespace Sce.Atf.Controls.CurveEditing
                 var curveset = new HashSet<ICurve>();
                 var orglist = new List<Vec2F>();
                 foreach (IControlPoint cpt in m_curveControl.Selection)
-                {                    
+                {
                     orglist.Add(new Vec2F(cpt.X, cpt.Y));
                 }
 
@@ -1295,7 +1295,7 @@ namespace Sce.Atf.Controls.CurveEditing
                                     IControlPoint cpt = m_curveControl.Selection[i];
                                     var orgCpt = orglist[i];
                                     cpt.X = orgCpt.X;
-                                    cpt.Y = orgCpt.Y;                                   
+                                    cpt.Y = orgCpt.Y;
                                 }
                             }
                         }
@@ -1442,7 +1442,7 @@ namespace Sce.Atf.Controls.CurveEditing
         {
             txtBox.Text = "";
             txtBox.Tag = null;
-            txtBox.ReadOnly = !active;            
+            txtBox.ReadOnly = !active;
             txtBox.BackColor = m_inputBoxBkgColor;
         }
 
@@ -1491,7 +1491,7 @@ namespace Sce.Atf.Controls.CurveEditing
                 }
             }
         }
-        
+
         private bool IsImplemented(CurveTangentTypes tanType)
         {
             bool result = false;
@@ -1550,8 +1550,8 @@ namespace Sce.Atf.Controls.CurveEditing
         private ToolStripButton[] m_infinityBtns;
         private bool m_firstPaint = true;
         private ToolStripMenuItem m_basicMenuItem;
-        
-        private ToolStripMenuItem m_advancedInputMenuItem;        
+
+        private ToolStripMenuItem m_advancedInputMenuItem;
         private ToolStripLabel m_curveTypeLabel;
         private ToolStripDropDownButton m_curveTypeSelector;
 
@@ -1607,7 +1607,7 @@ namespace Sce.Atf.Controls.CurveEditing
 
         }
 
-        
+
         private class CustomToolStripRenderer : ToolStripProfessionalRenderer
         {
 
@@ -1617,16 +1617,16 @@ namespace Sce.Atf.Controls.CurveEditing
             public CustomToolStripRenderer(ProfessionalColorTable professionalColorTable)
                 : base(professionalColorTable)
             {
-                
+
             }
 
 
             protected override void OnRenderMenuItemBackground(ToolStripItemRenderEventArgs e)
             {
                 if (e.Item.Enabled)
-                    base.OnRenderMenuItemBackground(e);                
+                    base.OnRenderMenuItemBackground(e);
             }
-            
+
         }
 
         private class AddPointDialog : Form
@@ -1640,43 +1640,43 @@ namespace Sce.Atf.Controls.CurveEditing
                 cancelBtn = new Button();
                 OkBtn = new Button();
                 SuspendLayout();
-                // 
+                //
                 // label1
-                //                 
+                //
                 label1.AutoSize = true;
                 label1.Location = new Point(12, 13);
                 label1.Name = "label1";
                 label1.Size = new Size(18, 18);
                 label1.TabIndex = 0;
                 label1.Text = "X";
-                // 
+                //
                 // label2
-                // 
+                //
                 label2.AutoSize = true;
                 label2.Location = new Point(13, 43);
                 label2.Name = "label2";
                 label2.Size = new Size(17, 18);
                 label2.TabIndex = 1;
                 label2.Text = "Y";
-                // 
+                //
                 // txtBoxX
-                // 
+                //
                 txtBoxX.Location = new Point(36, 7);
                 txtBoxX.Name = "txtBoxX";
                 txtBoxX.Size = new Size(197, 24);
                 txtBoxX.TabIndex = 2;
                 txtBoxX.Text = "0";
-                // 
+                //
                 // textBoxY
-                // 
+                //
                 textBoxY.Location = new Point(36, 37);
                 textBoxY.Name = "textBoxY";
                 textBoxY.Size = new Size(197, 24);
                 textBoxY.TabIndex = 3;
                 textBoxY.Text = "0";
-                // 
+                //
                 // cancelBtn
-                // 
+                //
                 cancelBtn.DialogResult = DialogResult.Cancel;
                 cancelBtn.Location = new Point(158, 77);
                 cancelBtn.Name = "cancelBtn";
@@ -1684,7 +1684,7 @@ namespace Sce.Atf.Controls.CurveEditing
                 cancelBtn.TabIndex = 5;
                 cancelBtn.Text = "&Cancel";
                 cancelBtn.UseVisualStyleBackColor = true;
-                // 
+                //
                 // OkBtn
                 //
                 OkBtn.Location = new Point(77, 77);
@@ -1696,9 +1696,9 @@ namespace Sce.Atf.Controls.CurveEditing
                 OkBtn.Click += OkBtn_Click;
 
 
-                // 
+                //
                 // Form1
-                //                 
+                //
                 AutoScaleMode = AutoScaleMode.None;
                 CancelButton = cancelBtn;
                 ClientSize = new Size(248, 111);
@@ -1775,7 +1775,7 @@ namespace Sce.Atf.Controls.CurveEditing
             private readonly TextBox textBoxY;
             private readonly Button cancelBtn;
             private readonly Button OkBtn;
-        }        
+        }
         #endregion
     }
 

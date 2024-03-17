@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Reflection;
@@ -10,7 +10,7 @@ namespace Sce.Atf
     /// <summary>
     /// This class is used for getting ATF version for a given assembly.
     /// ATF version is different than Assembly version.
-    /// With each new ATF release, all ATF assemblies will have ATFVersion in 
+    /// With each new ATF release, all ATF assemblies will have ATFVersion in
     /// addition to default assembly version and file version.
     /// Client code can use ATF version to enforce compatibility.</summary>
     public class AtfVersion
@@ -81,7 +81,7 @@ namespace Sce.Atf
         public static Version GetEntryAssemblyVersion()
         {
             Assembly assembly = Assembly.GetEntryAssembly();
-            
+
             // Can be null if called from unmanaged code, like in UnitTests.
             if (assembly == null)
                 assembly = Assembly.GetExecutingAssembly();

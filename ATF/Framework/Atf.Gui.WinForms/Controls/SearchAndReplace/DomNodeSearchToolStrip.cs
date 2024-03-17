@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -31,10 +31,10 @@ namespace Sce.Atf.Dom
             m_rootNode.SearchTextEntered += searchSubStrip_SearchTextEntered;
             m_rootNode.OptionChanged += searchSubStrip_OptionsChanged;
 
-            // 
-            // Build toolStrip GUI by retrieving toolstrip item list from tree, and adding 
+            //
+            // Build toolStrip GUI by retrieving toolstrip item list from tree, and adding
             // them to ToolStrip.Items
-            // 
+            //
             SuspendLayout();
             List<ToolStripItem> toolStripItems = new List<ToolStripItem>();
             m_rootNode.GetToolStripItems(toolStripItems);

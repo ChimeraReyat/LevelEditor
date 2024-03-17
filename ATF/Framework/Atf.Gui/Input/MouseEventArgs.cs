@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -29,7 +29,7 @@ namespace Sce.Atf.Input
             Delta = delta;
         }
 
-        /// <summary> 
+        /// <summary>
         /// Gets which mouse button was pressed</summary>
         public MouseButtons Button
         {
@@ -38,7 +38,7 @@ namespace Sce.Atf.Input
         }
 
         /// <summary>
-        /// Gets the number of times the mouse button was pressed and released</summary> 
+        /// Gets the number of times the mouse button was pressed and released</summary>
         public int Clicks
         {
             get;
@@ -61,8 +61,8 @@ namespace Sce.Atf.Input
             private set;
         }
 
-        /// <summary> 
-        /// Gets a signed count of the number of detents the mouse wheel has rotated</summary> 
+        /// <summary>
+        /// Gets a signed count of the number of detents the mouse wheel has rotated</summary>
         public int Delta
         {
             get;

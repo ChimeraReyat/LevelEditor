@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Drawing;
 
@@ -22,7 +22,7 @@ namespace Sce.Atf.Controls
         {
             get { return m_image; }
             set
-            { 
+            {
                 m_image = value;
                 InvalidateControl();
             }
@@ -34,7 +34,7 @@ namespace Sce.Atf.Controls
         {
             get { return m_indicator; }
             set
-            { 
+            {
                 m_indicator = value;
                 InvalidateControl();
             }
@@ -54,7 +54,7 @@ namespace Sce.Atf.Controls
         {
             get { return m_name; }
             set
-            { 
+            {
                 m_name = value;
                 InvalidateControl();
             }

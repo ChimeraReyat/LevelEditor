@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 
@@ -20,7 +20,7 @@ namespace LevelEditor.DomNodeAdapters
             if (Schema.gameObjectType.Type.IsAssignableFrom(this.DomNode.Type) == false)
                 throw new InvalidOperationException("this adapter can only attach to instance of gameobjecttype");
 
-            m_transformable = DomNode.As<ITransformable>();            
+            m_transformable = DomNode.As<ITransformable>();
             DomNode.AttributeChanged += OnAttributeChanged;
         }
 
@@ -28,7 +28,7 @@ namespace LevelEditor.DomNodeAdapters
         {
 
             if (e.AttributeInfo.Equivalent(Schema.gameObjectType.pivotAttribute))
-            {// Update translation to keep object pinned when moving pivot                
+            {// Update translation to keep object pinned when moving pivot
                 Matrix4F L0 = m_transformable.Transform;
                 Matrix4F L1 = TransformUtils.CalcTransform(
                     m_transformable.Translation,
@@ -53,7 +53,7 @@ namespace LevelEditor.DomNodeAdapters
             Matrix4F xform = TransformUtils.CalcTransform(m_transformable);
             SetAttribute(Schema.gameObjectType.transformAttribute, xform.ToArray());
         }
-      
+
         /// <summary>
         /// Returns true iff the specified attribute is translation, rotation or scale</summary>
         /// <param name="attributeInfo"></param>

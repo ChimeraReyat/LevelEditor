@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -131,7 +131,7 @@ namespace Sce.Atf.Controls.Timelines
                 for (int i = 0; i < infos.Count; i++)
                 {
                     SnapOffsetInfo info = infos[i];
-                    
+
                     // if smallestDist is still MaxValue, then adding the tolerance has no effect
                     if (info.m_dist < smallestDist + 0.0001f)
                     {
@@ -193,7 +193,7 @@ namespace Sce.Atf.Controls.Timelines
             }
             if (m_snapInfo.Count == 0)
                 return 0.0f;
-            
+
             // Find the closest IEvent.
             float worldSnapTolerance = GdiUtil.InverseTransformVector(m_owner.Transform, s_snapTolerance);
 

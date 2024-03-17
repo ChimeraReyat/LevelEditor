@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -257,7 +257,7 @@ namespace Sce.Atf.Applications
                     }, CommandInfo.EditPaste.MenuText);
 
                 OnPasted(EventArgs.Empty);
-            }         
+            }
         }
 
         #region ICommandClient Members
@@ -524,7 +524,7 @@ namespace Sce.Atf.Applications
             // If not using the system clipboard we don't care
             if (!UseSystemClipboard)
                 return false;
-            
+
             // If the accept list isn't empty we check it first
             if (AcceptableSystemClipboardFormats.Count > 0)
             {
@@ -550,7 +550,7 @@ namespace Sce.Atf.Applications
                 // Some additional formats exlucded based on this site:
                 // http://bytes.com/topic/c-sharp/answers/636880-how-change-ms-word-data-byte
 
-                "MetaFilePict", 
+                "MetaFilePict",
                 "Embed Source",
                 "Link Source Descriptor",
                 "ObjectLink"

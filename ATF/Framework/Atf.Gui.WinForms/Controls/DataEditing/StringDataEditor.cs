@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Drawing;
 
@@ -41,9 +41,9 @@ namespace Sce.Atf.Controls
         public override void PaintValue(Graphics g, Rectangle area)
         {
             if (ReadOnly)
-                g.DrawString(Value, Theme.Font, Theme.ReadonlyBrush, area.Left + Theme.Padding.Left, area.Top); 
+                g.DrawString(Value, Theme.Font, Theme.ReadonlyBrush, area.Left + Theme.Padding.Left, area.Top);
             else
-                g.DrawString(Value, Theme.Font, Theme.TextBrush, area.Left + Theme.Padding.Left, area.Top); 
+                g.DrawString(Value, Theme.Font, Theme.TextBrush, area.Left + Theme.Padding.Left, area.Top);
         }
 
         /// <summary>

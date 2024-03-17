@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.IO;
@@ -32,13 +32,13 @@ namespace LevelEditor.DomNodeAdapters
 
             if (!Schema.resourceReferenceType.Type.IsAssignableFrom(domtype))
                 return null;
-            
+
             ResourceReference resRef = null;
             if (CanReference(domtype, resource))
             {
                 resRef = new DomNode(domtype).As<ResourceReference>();
                 resRef.m_target = resource;
-                resRef.SetAttribute(Schema.resourceReferenceType.uriAttribute, resource.Uri);                
+                resRef.SetAttribute(Schema.resourceReferenceType.uriAttribute, resource.Uri);
             }
             return resRef;
         }
@@ -51,15 +51,15 @@ namespace LevelEditor.DomNodeAdapters
             var exts = (HashSet<string>)domtype.GetTag(Annotations.ReferenceConstraint.ValidResourceFileExts);
             string reExt = Path.GetExtension(resource.Uri.LocalPath).ToLower();
             bool canReference = exts == null || exts.Contains(".*") || exts.Contains(reExt);
-            return canReference;            
+            return canReference;
         }
-      
+
         protected override void OnNodeSet()
         {
             base.OnNodeSet();
             Uri resUri = GetAttribute<Uri>(Schema.resourceReferenceType.uriAttribute);
             if (resUri != null)
-                m_target = Globals.ResourceService.Load(resUri);            
+                m_target = Globals.ResourceService.Load(resUri);
         }
 
         #region IReference<IResource> Members
@@ -109,7 +109,7 @@ namespace LevelEditor.DomNodeAdapters
                 Slot slot = new Slot(this.DomNode.Parent, this.DomNode.ChildInfo);
                 return slot.CanAddChild(child);
             }
-            return false;            
+            return false;
         }
 
         bool IHierarchical.AddChild(object child)
@@ -128,9 +128,9 @@ namespace LevelEditor.DomNodeAdapters
         }
 
         #endregion
-        
+
         private IResource m_target;
 
-       
+
     }
 }

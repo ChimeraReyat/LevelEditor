@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -16,7 +16,7 @@ using LevelEditorCore.VectorMath;
 namespace LevelEditor.Commands
 {
     /// <summary>
-    /// Commands to move pivot points to the min/center/max of the bounding box 
+    /// Commands to move pivot points to the min/center/max of the bounding box
     /// in X, Y, Z or all coordinates</summary>
     [Export(typeof(IInitializable))]
     [Export(typeof(ICommandClient))]
@@ -37,12 +37,12 @@ namespace LevelEditor.Commands
             // define functions for moving pivots
             //m_functions = new MovePivot[Enum.GetValues(typeof(Command)).Length];
             m_functions = new Func<Vec3F, AABB, Vec3F>[Enum.GetValues(typeof(Command)).Length];
-            
+
             m_functions[(int)Command.XMin] = (Vec3F pivot, AABB aabb) =>
                 {
                     return new Vec3F(aabb.Min.X, pivot.Y, pivot.Z);
                 };
-                
+
             m_functions[(int)Command.XCenter]=(Vec3F pivot, AABB aabb) =>
                 {
                     return new Vec3F(aabb.Center.X, pivot.Y, pivot.Z);
@@ -60,7 +60,7 @@ namespace LevelEditor.Commands
 
             m_functions[(int)Command.YCenter]=(Vec3F pivot, AABB aabb) =>
                 {
-                    return new Vec3F(pivot.X, aabb.Center.Y, pivot.Z); 
+                    return new Vec3F(pivot.X, aabb.Center.Y, pivot.Z);
                 };
 
             m_functions[(int)Command.YMax]=(Vec3F pivot, AABB aabb) =>
@@ -195,7 +195,7 @@ namespace LevelEditor.Commands
                 null,
                 CommandVisibility.Menu,
                 this);
-            
+
         }
 
         #endregion
@@ -213,7 +213,7 @@ namespace LevelEditor.Commands
                 foreach (ITransformable xformable in Transformables)
                     return true;
             }
-            return false;                
+            return false;
         }
 
         /// <summary>
@@ -226,18 +226,18 @@ namespace LevelEditor.Commands
                 Command cmd = (Command)commandTag;
                 var gamecontext = m_contextRegistry.GetActiveContext<IGameContext>();
                 var transactionContext = (ITransactionContext)gamecontext;
-                transactionContext.DoTransaction(() =>                    
+                transactionContext.DoTransaction(() =>
                     {
                         foreach (ITransformable xformable in Transformables)
-                        {                                                        
-                            xformable.Pivot = 
-                                m_functions[(int)cmd](xformable.Pivot, xformable.As<IBoundable>().LocalBoundingBox);                            
+                        {
+                            xformable.Pivot =
+                                m_functions[(int)cmd](xformable.Pivot, xformable.As<IBoundable>().LocalBoundingBox);
                         }
                     }, "Move Pivot".Localize());
 
-            }            
+            }
         }
-      
+
         private IEnumerable<ITransformable> Transformables
         {
             get
@@ -245,19 +245,19 @@ namespace LevelEditor.Commands
                 var gamecontext = m_contextRegistry.GetActiveContext<IGameContext>();
                 var selectinContext = (ISelectionContext)gamecontext;
                 return selectinContext != null ?
-                   selectinContext.GetSelection<ITransformable>() : EmptyArray<ITransformable>.Instance;                
+                   selectinContext.GetSelection<ITransformable>() : EmptyArray<ITransformable>.Instance;
             }
         }
 
         /// <summary>
         /// Updates command state for given command</summary>
-        /// <remarks>This is used e.g. to set the check next to a menu command or 
+        /// <remarks>This is used e.g. to set the check next to a menu command or
         /// to show a toolbar button as pressed</remarks>
         /// <param name="commandTag">Command</param>
         /// <param name="commandState">Command info to update</param>
         public void UpdateCommand(object commandTag, CommandState commandState)
         {
-            
+
         }
 
         #endregion

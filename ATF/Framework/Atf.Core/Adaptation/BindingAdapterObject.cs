@@ -48,7 +48,7 @@ namespace Sce.Atf.Adaptation
             {
                 m_cachedPropertyDescriptors = GenerateDescriptors();
             }
-            
+
             return m_cachedPropertyDescriptors;
         }
 
@@ -96,8 +96,8 @@ namespace Sce.Atf.Adaptation
     }
 
     /// <summary>
-    /// This BindingAdapterObject generates PropertyDescriptors based 
-    /// on adapting the adaptee to all possible types and returning 
+    /// This BindingAdapterObject generates PropertyDescriptors based
+    /// on adapting the adaptee to all possible types and returning
     /// descriptors for each adapter</summary>
     public class BindingAdapterObject : BindingAdapterObjectBase
     {
@@ -133,7 +133,7 @@ namespace Sce.Atf.Adaptation
             if (!s_baseTypesLookup.TryGetValue(adapterType, out descriptors))
             {
                 // If this fails then use reflection to get all base types and interfaces
-                // from this adapter type.  
+                // from this adapter type.
                 // Dont want to lock during this opertation as it is slow
 
                 var baseTypes = new List<Type>(adapterType.GetInterfaces());

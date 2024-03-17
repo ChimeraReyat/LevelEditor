@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -16,9 +16,9 @@ namespace LevelEditorCore.Commands
 {
     /// <summary>
     /// Group and Ungroup game objects commands</summary>
-    /// <remarks>    
+    /// <remarks>
     /// Group: Creates a new GameObjectGroup, moves all the selected GameObjects
-    /// to the newly created group.    
+    /// to the newly created group.
     /// Ungroup: Selected GameObjects that are in a group are moved
     /// to the root GameObjectFolder of their level.
     /// </remarks>
@@ -31,13 +31,13 @@ namespace LevelEditorCore.Commands
         public GroupCommands(ICommandService commandService, IContextRegistry contextRegistry)
         {
             m_commandService = commandService;
-            m_contextRegistry = contextRegistry;            
+            m_contextRegistry = contextRegistry;
         }
 
         /// <summary>
         /// Tests if the gameobjects can be grouped.
-        /// The gameobjects can be grouped if there are more than one 
-        /// and they belong to the same level.</summary>        
+        /// The gameobjects can be grouped if there are more than one
+        /// and they belong to the same level.</summary>
         public bool CanGroup(IEnumerable<IGameObject> gobs)
         {
             // can group if there are more than one gob and they all belong to same level.
@@ -67,8 +67,8 @@ namespace LevelEditorCore.Commands
         }
 
         /// <summary>
-        /// Tests if the Gameobjects can be Ungrouped.        
-        /// </summary>        
+        /// Tests if the Gameobjects can be Ungrouped.
+        /// </summary>
         public bool CanUngroup(IEnumerable<IGameObject> gobs)
         {
             // can ungroup.
@@ -83,7 +83,7 @@ namespace LevelEditorCore.Commands
         /// <summary>
         /// Groups the specified GameObjects</summary>
         /// <param name="gobs">GameObjects to be grouped</param>
-        /// <remarks>Creates a new GameObjectGroup and moves all 
+        /// <remarks>Creates a new GameObjectGroup and moves all
         /// the GameObjects into it.</remarks>
         public IGameObjectGroup Group(IEnumerable<IGameObject> gobs)
         {
@@ -103,7 +103,7 @@ namespace LevelEditorCore.Commands
                 gameObjects.Add(gameObject);
 
                 IBoundable boundable = gameObject.As<IBoundable>();
-                groupBox.Extend(boundable.BoundingBox);                
+                groupBox.Extend(boundable.BoundingBox);
             }
 
             IGameObjectGroup group = game.CreateGameObjectGroup();
@@ -111,7 +111,7 @@ namespace LevelEditorCore.Commands
             node.InitializeExtensions();
             ITransformable transformable = node.As<ITransformable>();
             transformable.Translation = groupBox.Center;
-            
+
             Matrix4F invWorld = new Matrix4F();
             invWorld.Invert(transformable.Transform);
 
@@ -128,11 +128,11 @@ namespace LevelEditorCore.Commands
                 xformable.Translation = trans;
             }
 
-            return group;            
+            return group;
         }
 
         /// <summary>
-        /// Ungroups the specified gameobjects.</summary>        
+        /// Ungroups the specified gameobjects.</summary>
         public IEnumerable<IGameObject> Ungroup(IEnumerable<IGameObject> gobs)
         {
             if (!CanUngroup(gobs))
@@ -149,19 +149,19 @@ namespace LevelEditorCore.Commands
                 List<IGameObject> childList = new List<IGameObject>(group.GameObjects);
                 IGame game = group.As<DomNode>().GetRoot().As<IGame>();
                 // Move children to the root game object folder
-                
+
                 foreach (IGameObject child in childList)
                 {
                     ITransformable xformChild = child.As<ITransformable>();
-                    Matrix4F world = ComputeWorldTransform(xformChild);             
+                    Matrix4F world = ComputeWorldTransform(xformChild);
                     game.RootGameObjectFolder.GameObjects.Add(child);
-                    SetTransform(xformChild, world);                    
+                    SetTransform(xformChild, world);
                     ungrouplist.Add(child);
                 }
                 // Remove group
                 group.Cast<DomNode>().RemoveFromParent();
             }
-            return ungrouplist;            
+            return ungrouplist;
         }
 
         #region IInitializable Members
@@ -216,7 +216,7 @@ namespace LevelEditorCore.Commands
                     {
                         IGameObjectGroup group = Group(SelectedGobs);
                         m_selectionContext.Set(Util.AdaptDomPath(group.As<DomNode>()));
-                    }, "Group".Localize());                    
+                    }, "Group".Localize());
                     break;
                 case StandardCommand.EditUngroup:
                     transactionContext.DoTransaction(delegate
@@ -229,7 +229,7 @@ namespace LevelEditorCore.Commands
                         }
                         m_selectionContext.SetRange(newselection);
 
-                    }, "Ungroup".Localize());                    
+                    }, "Ungroup".Localize());
                     break;
             }
         }
@@ -255,12 +255,12 @@ namespace LevelEditorCore.Commands
                 return rootDomNodes.AsIEnumerable<IGameObject>();
             }
         }
-       
+
         private void ContextRegistry_ActiveContextChanged(object sender, System.EventArgs e)
         {
             if (m_selectionContext != null)
             {
-                m_selectionContext.SelectionChanged -= SelectionChanged;                
+                m_selectionContext.SelectionChanged -= SelectionChanged;
             }
 
             object context = m_contextRegistry.GetActiveContext<IGameContext>();
@@ -268,7 +268,7 @@ namespace LevelEditorCore.Commands
 
             if (m_selectionContext != null)
             {
-                m_selectionContext.SelectionChanged += SelectionChanged;             
+                m_selectionContext.SelectionChanged += SelectionChanged;
             }
 
             m_canGroup = CanGroup(SelectedGobs);
@@ -293,7 +293,7 @@ namespace LevelEditorCore.Commands
                     world.Mul(world, xformNode.Transform);
                 }
             }
-            return world;            
+            return world;
         }
 
         private void SetTransform(ITransformable xform, Matrix4F mtrx)

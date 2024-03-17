@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -18,7 +18,7 @@ namespace Sce.Atf
             : this(null)
         {
         }
-        
+
         /// <summary>
         /// Constructor that specifies the method to test for key equality</summary>
         /// <param name="comparer">The comparer used to compare keys, or null to use the
@@ -27,7 +27,7 @@ namespace Sce.Atf
         {
             m_keyValues = new Dictionary<Key, List<Value>>(comparer);
         }
-        
+
         /// <summary>
         /// Gets all keys in the map</summary>
         public IEnumerable<Key> Keys
@@ -131,7 +131,7 @@ namespace Sce.Atf
             result = values[values.Count - 1];
             return true;
         }
-        
+
         /// <summary>
         /// Indexer, returns collection of values for a given key</summary>
         public IEnumerable<Value> this[Key key]

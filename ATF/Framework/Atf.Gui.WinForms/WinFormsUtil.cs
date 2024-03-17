@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -485,7 +485,7 @@ namespace Sce.Atf
                 // To avoid recursively modifying s_handlesCreatedBeforeForms, copy it first.
                 IntPtr[] handleInts = s_handlesCreatedBeforeForms.ToArray();
                 s_handlesCreatedBeforeForms.Clear();
-                
+
                 // Try to find the Forms.
                 foreach (IntPtr handleInt in handleInts)
                 {
@@ -544,7 +544,7 @@ namespace Sce.Atf
         private static readonly List<ControlEventHandler> s_controlCreatedHandlers = new List<ControlEventHandler>();
         private static readonly List<ControlEventHandler> s_controlDestroyedHandlers = new List<ControlEventHandler>();
         private static readonly List<IntPtr> s_handlesCreatedBeforeForms = new List<IntPtr>();
-        
+
         //We need to prevent this delegate from being garbage collected because only native code calls it
         private static readonly User32.WindowsHookCallback s_callbackDelegate = ShellHookCallback;
         private static IntPtr s_windowsHookHandle = IntPtr.Zero;

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -51,7 +51,7 @@ namespace Sce.Atf.Applications
                 m_toolStripContainer = toolStripContainer;
                 m_toolStripContainer.Dock = DockStyle.Fill;
                 Controls.Add(m_toolStripContainer);
-            }            
+            }
         }
 
         [Import(AllowDefault = true)]
@@ -127,13 +127,13 @@ namespace Sce.Atf.Applications
         {
             try
             {
-                m_loading = true;                
+                m_loading = true;
                 m_showen = false;  // used to test if OnShown is called before finishing OnLoad.
-                
+
                 // TODO:  m_settingsService is intended to be initialized via MEF for ATF 3.0 applications.
                 //        For legacy applications which don't use MEF, it appears these same settings are registered explicitly
-                //        much earlier in ApplicationHostService.cs.  The problem is that we need to ensure we don't try to 
-                //        apply settings until this point, which is an open issue for legacy applications, although the default 
+                //        much earlier in ApplicationHostService.cs.  The problem is that we need to ensure we don't try to
+                //        apply settings until this point, which is an open issue for legacy applications, although the default
                 //        ISettingsService "gets lucky" and defers callbacks long enough to get by.
                 //        See also other comments in this file labled SCREAM_TOOLBAR_STATE_ISSUE
                 if (m_settingsService != null)
@@ -149,14 +149,14 @@ namespace Sce.Atf.Applications
                     }
                 }
 
-                // deserialize  mainform WindowState here works better with DockPanelSuite; 
-                // this fixes an issue to restore window size causes the form to span dual monitors   
+                // deserialize  mainform WindowState here works better with DockPanelSuite;
+                // this fixes an issue to restore window size causes the form to span dual monitors
                 // when the program starts maximized
                 m_mainFormLoaded = true;
                 if (m_maximizeWindow)
                     WindowState = FormWindowState.Maximized;
 
-                // Call base.OnLoad(e) last to ensure Loading event to occur before Loaded event.            
+                // Call base.OnLoad(e) last to ensure Loading event to occur before Loaded event.
                 base.OnLoad(e);
                 Loading.Raise(this, e);
 
@@ -170,10 +170,10 @@ namespace Sce.Atf.Applications
             }
         }
 
-        // Note: in some cases OnShown method will be called while still 
+        // Note: in some cases OnShown method will be called while still
         // inside OnLoad which will mess up the order of Loading and Loaded events.
-        // The following two boolean variables 
-        private bool m_loading; 
+        // The following two boolean variables
+        private bool m_loading;
         private bool m_showen; // shown is called.
 
         /// <summary>
@@ -182,7 +182,7 @@ namespace Sce.Atf.Applications
         protected override void OnShown(EventArgs e)
         {
             m_showen = true;
-            base.OnShown(e);            
+            base.OnShown(e);
             // if m_loading is true then this is called before
             // OnLoad finshed, so in this case don't raise
             // Loaded event because we still processing Loading event.
@@ -272,7 +272,7 @@ namespace Sce.Atf.Applications
         }
 
 
-        
+
 
         /// <summary>
         /// Gets and sets the ToolStripContainer's state</summary>
@@ -291,7 +291,7 @@ namespace Sce.Atf.Applications
                 xmlDoc.AppendChild(root);
 
 
-                // check if tool strip is locked       
+                // check if tool strip is locked
                 bool locked = false;
                 var toolStrips = m_toolStripContainer.TopToolStripPanel.Controls.AsIEnumerable<ToolStrip>()
                         .Concat(m_toolStripContainer.BottomToolStripPanel.Controls.AsIEnumerable<ToolStrip>())
@@ -360,7 +360,7 @@ namespace Sce.Atf.Applications
                         {
                             toolStrip.GripStyle = ToolStripGripStyle.Hidden;
                             toolStrip.AllowItemReorder = false;
-                        }                        
+                        }
                     }
 
                     // walk xml to restore matching toolstrips and items to their previous state
@@ -404,15 +404,15 @@ namespace Sce.Atf.Applications
                         // sort on x.
                         foreach (var toolstripList in rowOrder.Values)
                             toolstripList.Sort(comparer);
-                        
+
                         int cIndex = 0; // keeps track of the toolstrip's index in Controls Collection.
                         int prevHeight = 0; // height of the previous toolstrip in row order.
-                        // Don't use persisted y-position directly, instead compute y-position from cumulative heights of all the previous ToolStrips.  
+                        // Don't use persisted y-position directly, instead compute y-position from cumulative heights of all the previous ToolStrips.
                         // Persisted Y-position is only used for determining Row number for each ToolStrip.
                         int yPos = rowOrder.Count == 0 ? 0 : rowOrder.Keys.First();
                         foreach (var toolStripElements in rowOrder.Values)
                         {
-                            yPos += prevHeight;                            
+                            yPos += prevHeight;
                             foreach (XmlElement toolStripElement in toolStripElements)
                             {
                                 string toolStripName = toolStripElement.GetAttribute("Name");
@@ -422,10 +422,10 @@ namespace Sce.Atf.Applications
 
                                 toolStrip.Parent.Controls.Remove(toolStrip);
                                 panel.Controls.Add(toolStrip);
-                                panel.Controls.SetChildIndex(toolStrip, cIndex++);                                
+                                panel.Controls.SetChildIndex(toolStrip, cIndex++);
                                 if (toolStrip.Height > prevHeight) prevHeight = toolStrip.Height;
                                 string[] coords = toolStripElement.GetAttribute("Location").Split(',');
-                                int xPos = int.Parse(coords[0]);                                                               
+                                int xPos = int.Parse(coords[0]);
                                 toolStrip.Location = new Point(xPos, yPos);
                                 XmlNodeList itemNodes = toolStripElement.ChildNodes;
                                 int j = 0;
@@ -438,8 +438,8 @@ namespace Sce.Atf.Applications
                                         item.Owner.Items.Remove(item);
                                         toolStrip.Items.Insert(j, item);
 
-                                        // ToolStripItem has two visibility properties: Visible and Available. 
-                                        // Visible indicates whether the item is displayed,  
+                                        // ToolStripItem has two visibility properties: Visible and Available.
+                                        // Visible indicates whether the item is displayed,
                                         // Available indicates whether the ToolStripItem should be placed on a ToolStrip.
                                         // Use Available property here for toolstrip layout.
                                         string visible = itemElement.GetAttribute("Visible");
@@ -459,9 +459,9 @@ namespace Sce.Atf.Applications
 
                                         j++;
                                     }
-                                }                                
+                                }
                             } // foreach (XmlElement toolStripElement in toolStripElements)
-                        } // foreach (var toolStripElements in rowOrder.Values)                       
+                        } // foreach (var toolStripElements in rowOrder.Values)
                     } // foreach (XmlElement panelElement in Panels)
                 }
                 finally
@@ -492,7 +492,7 @@ namespace Sce.Atf.Applications
                 if (!toolStrip.Visible)
                     continue;
                 toolStrips.Add(toolStrip.Name, toolStrip);
-                toolStrip.SuspendLayout();                
+                toolStrip.SuspendLayout();
                 foreach (ToolStripItem toolStripItem in toolStrip.Items)
                     toolStripItems.Add(toolStripItem.Name, toolStripItem);
             }
@@ -513,7 +513,7 @@ namespace Sce.Atf.Applications
                 // skip invisible or unnamed  toolStrip
                 if (!toolStrip.Visible || toolStrip.Name == null || toolStrip.Name.Trim().Length == 0)
                     continue;
-                
+
                 XmlElement toolStripElement = xmlDoc.CreateElement("ToolStrip");
                 panelElement.AppendChild(toolStripElement);
 
@@ -586,9 +586,9 @@ namespace Sce.Atf.Applications
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.SuspendLayout();
-            // 
+            //
             // MainForm
-            // 
+            //
             this.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this, "$this");
             this.KeyPreview = true;

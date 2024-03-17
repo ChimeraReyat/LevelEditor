@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Net;
@@ -11,7 +11,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
     public partial class TargetEditDialog : Form
     {
         private Target m_target;
-             
+
         /// <summary>
         /// Constructor</summary>
         /// <param name="defaultPortNumber">Default port number</param>
@@ -35,7 +35,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                 cmbProtocol.DataSource = protocols;
             else
                 cmbProtocol.Enabled = false;
-            
+
             if (target != null)
             {
                 Text = "Edit Target".Localize();
@@ -72,9 +72,9 @@ namespace Sce.Atf.Applications.NetworkTargetServices
         {
             string strName = txtName.Text.Trim();
             string strHost = txtHost.Text.Trim();
-            string strPort = txtPort.Text;            
+            string strPort = txtPort.Text;
             int port = 0;
-            
+
             if (StringUtil.IsNullOrEmptyOrWhitespace(strName))
             {
                 MessageBox.Show(this, "Fill target name".Localize());
@@ -89,8 +89,8 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                 return false;
             }
 
-           
-            
+
+
             // validate port number
             try
             {
@@ -103,7 +103,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                 MessageBox.Show(this,
                     string.Format("Invalid port number".Localize(),
                     IPEndPoint.MinPort, IPEndPoint.MaxPort));
-                return false;                
+                return false;
             }
 
             if (m_target == null)

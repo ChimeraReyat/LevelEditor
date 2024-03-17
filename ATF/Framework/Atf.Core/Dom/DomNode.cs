@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -334,8 +334,8 @@ namespace Sce.Atf.Dom
                 // when an attribute value if default then it wouldn't be serialized by default.
                 // in this case calling GetAttribute() using AttributeInfo of the base node.
                 // then the default value of the base node's attributeInfo is returned
-                // but this incorrect if the derived node has different default value for 
-                // same attribute. (The issues can be reproduced using SimpleDomEditorSample.                                
+                // but this incorrect if the derived node has different default value for
+                // same attribute. (The issues can be reproduced using SimpleDomEditorSample.
                 if (attributeInfo.OwningType != m_type)
                 {
                     // find the attribute owned by this node.
@@ -343,14 +343,14 @@ namespace Sce.Atf.Dom
                     if (attributeInfo.Equivalent(owningAttribInfo))
                         attribute = owningAttribInfo.DefaultValue;
                 }
-                // if this node doesn't own the passed attributeInfo then use the default 
+                // if this node doesn't own the passed attributeInfo then use the default
                 // value of the passed attributeInfo.
                 if(attribute == null)
                 {
                     attribute = attributeInfo.DefaultValue;
                 }
             }
-                
+
 
             return attribute;
         }

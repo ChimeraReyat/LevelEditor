@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -175,11 +175,11 @@ namespace LevelEditor
                     gob.UpdateTransform();
                     gobgroup.GameObjects.Add(gob);
                 }
-                gobchild = gobgroup.As<DomNode>();                
+                gobchild = gobgroup.As<DomNode>();
             }
             else
             {
-                gobchild = copyList[0].As<DomNode>();                
+                gobchild = copyList[0].As<DomNode>();
             }
 
             gobchild.InitializeExtensions();

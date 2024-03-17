@@ -1,9 +1,9 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 namespace Sce.Atf.Applications
 {
     /// <summary>
-    /// Interface for client-defined UI that specifically allows the user to apply replacement data on a 
+    /// Interface for client-defined UI that specifically allows the user to apply replacement data on a
     /// set of search results</summary>
     public interface IReplaceUI : ISearchableContextUI
     {

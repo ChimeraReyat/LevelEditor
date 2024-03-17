@@ -1,11 +1,11 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 
 namespace RenderingInterop
 {
 
-    
+
 
     /// <summary>
     /// Vertex format.</summary>
@@ -23,7 +23,7 @@ namespace RenderingInterop
     }
 
 
-    // Defines how data in a vertex stream is interpreted during a draw call. Reference    
+    // Defines how data in a vertex stream is interpreted during a draw call. Reference
     public enum PrimitiveType
     {
         // Renders the vertices as a list of isolated straight line segments; the count
@@ -41,7 +41,7 @@ namespace RenderingInterop
 
         // Renders the vertices as a triangle strip. The back-face culling flag is flipped
         // automatically on even-numbered triangles.
-        TriangleStrip = 5, // = PrimitiveTopology.TriangleStrip,      
+        TriangleStrip = 5, // = PrimitiveTopology.TriangleStrip,
     }
 
 
@@ -54,7 +54,7 @@ namespace RenderingInterop
         DisableDepthTest  = 1 << 2,
         DisableDepthWrite = 1 << 3,
         Foreground        = 1 << 4,   // foreground layer.
-    };   
+    };
 
     [Flags]
     public enum GlobalRenderFlags : uint

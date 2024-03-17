@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -67,7 +67,7 @@ namespace Sce.Atf.Applications
         /// <summary>
         /// Registers a custom function to be called when collecting auto-complete suggestions for a specific object type.</summary>
         /// <param name="type">The object type</param>
-        /// <param name="trigger">The delimiter that marks the end of a variable name.  
+        /// <param name="trigger">The delimiter that marks the end of a variable name.
         ///                       Note: Currently only '.' and '[' are supported triggers</param>
         /// <param name="func">The function to call that returns a list of suggestions for the associated type</param>
         public void RegisterSuggestor(Type type, string trigger, Func<IEnumerable<string>> func)
@@ -130,7 +130,7 @@ namespace Sce.Atf.Applications
 
             cmd = cmd.Trim();
 
-            // process commands 
+            // process commands
             if (cmd == "cls")
             {
                 m_consoleBox.Clear();

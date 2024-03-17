@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -41,14 +41,14 @@ namespace Sce.Atf.Applications.NetworkTargetServices
         void IInitializable.Initialize()
         {
             if (m_settingsService != null)
-            {                
+            {
                 m_settingsService.RegisterSettings(this,
                     new BoundPropertyDescriptor(this, () => Targets, "Targets".Localize(), null, null)
                 );
 
             }
 
-            RegisterCommand(m_commandService);            
+            RegisterCommand(m_commandService);
         }
 
         #endregion
@@ -69,7 +69,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                 this);
             }
         }
-               
+
         #region ITargetService Members
         /// <summary>
         /// Gets or sets the single selection mode</summary>
@@ -115,7 +115,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
             {
                 foreach (Target t in m_targets.Values)
                     lst.Add((Target)t.Clone());
-                retVal = lst.ToArray();                
+                retVal = lst.ToArray();
             }
             return retVal;
         }
@@ -148,7 +148,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
         /// <returns>Selected target</returns>
         public Target GetSelectedTarget()
         {
-            Target target = null;            
+            Target target = null;
             if (m_targets.Count > 0)
             {
                 foreach (Target t in m_targets.Values)
@@ -156,7 +156,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                     {
                         target = (Target)t.Clone();
                         break;
-                    }               
+                    }
             }
             return target;
         }
@@ -221,7 +221,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
             if (m_protocols != null)
                 throw new Exception("protocols already been set");
             m_protocols = protocols;
-           
+
         }
 
         /// <summary>
@@ -248,7 +248,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
         /// <returns>True iff client can do the command</returns>
         public bool CanDoCommand(object commandTag)
         {
-            return Commands.EditTarget.Equals(commandTag);            
+            return Commands.EditTarget.Equals(commandTag);
         }
 
         /// <summary>
@@ -262,7 +262,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
             }
         }
 
-       
+
         /// <summary>
         /// Updates command state for given command</summary>
         /// <param name="commandTag">Command</param>
@@ -309,13 +309,13 @@ namespace Sce.Atf.Applications.NetworkTargetServices
             set
             {
                 try
-                {  
+                {
                     Dictionary<string, object> protocols = new Dictionary<string, object>();
                     if (m_protocols != null)
                     {
                         foreach (string p in m_protocols)
                             protocols[p] = null;
-                    }                   
+                    }
                     XmlDocument xmlDoc = new XmlDocument();
                     xmlDoc.LoadXml(value);
                     XmlNodeList nodes = xmlDoc.DocumentElement.SelectNodes("Target");
@@ -326,7 +326,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                     {
                         Target t = new Target(elem.GetAttribute("name"),
                             elem.GetAttribute("host"),
-                            int.Parse(elem.GetAttribute("port"))); 
+                            int.Parse(elem.GetAttribute("port")));
                         t.Selected = bool.Parse(elem.GetAttribute("selected"));
                         string protocol = elem.GetAttribute("protocol");
                         if (!String.IsNullOrEmpty(protocol) && protocols.ContainsKey(protocol))

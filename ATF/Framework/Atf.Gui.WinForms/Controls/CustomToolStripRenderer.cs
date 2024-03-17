@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Drawing;
 using System.Windows.Forms;
@@ -6,8 +6,8 @@ using System.Windows.Forms;
 namespace Sce.Atf.Controls
 {
     /// <summary>
-    /// Extends .NET ToolStripProfessionalRenderer class, which 
-    /// handles painting functionality for ToolStrip objects, 
+    /// Extends .NET ToolStripProfessionalRenderer class, which
+    /// handles painting functionality for ToolStrip objects,
     /// applying a custom palette and a streamlined style.
     /// Allows specifying the ProfessionalColorTable and arrow color.</summary>
     public class CustomToolStripRenderer : ToolStripProfessionalRenderer
@@ -41,6 +41,6 @@ namespace Sce.Atf.Controls
         {
             e.ArrowColor = ArrowColor;
             base.OnRenderArrow(e);
-        } 
+        }
     }
 }

@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -125,7 +125,7 @@ namespace Sce.Atf.Dom
             try
             {
                 m_undoingOrRedoing = true;
-                // When sharing a global history, need to synchronize undoing/redoing status for participating historycontexts 
+                // When sharing a global history, need to synchronize undoing/redoing status for participating historycontexts
                 // to prevent commands executed in undo/redo accidentally recorded again into the global history during undo/redo
                 if (globalHistoryContext != null)
                     globalHistoryContext.Cast<GlobalHistoryContext>().SynchronizeUndoRedoStatus(m_undoingOrRedoing);

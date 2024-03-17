@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel;
@@ -183,9 +183,9 @@ namespace Sce.Atf.Controls.PropertyEditing
 
         private void FillCheckedListBoxFromInt(object value, CheckedListBox listBox)
         {
-            if (!(value is int || value is uint))  
-                  throw new ArgumentException("value must be int or uint");  
-            int flags = Convert.ToInt32(value);              
+            if (!(value is int || value is uint))
+                  throw new ArgumentException("value must be int or uint");
+            int flags = Convert.ToInt32(value);
             for (int i = 0; i < m_values.Length; ++i)
             {
                 bool isChecked = (flags & m_values[i]) == m_values[i];
@@ -213,7 +213,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                 }
             }
         }
-        
+
         private string[] m_names;
         private string[] m_displayNames;
         private int[] m_values;

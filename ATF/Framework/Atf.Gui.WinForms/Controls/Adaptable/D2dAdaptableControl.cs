@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Windows.Forms;
@@ -44,7 +44,7 @@ namespace Sce.Atf.Controls.Adaptable
         /// Gets or sets whether to suppress drawing</summary>
         /// <remarks>In few cases where changing large number of elements,
         /// it is important to suppress drawing. Otherwise the rendering control
-        /// is updated per item--instead of per operation.</remarks>                
+        /// is updated per item--instead of per operation.</remarks>
         public bool SuppressDraw
         {
             get;

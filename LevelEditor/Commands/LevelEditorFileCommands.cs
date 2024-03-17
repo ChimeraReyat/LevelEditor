@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel.Composition;
@@ -68,7 +68,7 @@ namespace LevelEditor.Commands
 
             if (!m_gameDocumentRegistry.AnyDocumentDirty
                 && !m_gameDocumentRegistry.AnyEditableResourceOwnerDirty)
-                return true;           
+                return true;
 
             return SafeSave(document, DocumentEventType.Saved);
         }
@@ -78,19 +78,19 @@ namespace LevelEditor.Commands
             GameDocument gameDcument = document as GameDocument;
             if (gameDcument == null)
                 return base.ConfirmClose(document);
-          
+
             bool closeConfirmed = true;
             if (m_gameDocumentRegistry.AnyDocumentDirty
                 || m_gameDocumentRegistry.AnyEditableResourceOwnerDirty)
             {
                 string message = "One or more level and/or external resource is dirty"
                     + Environment.NewLine + "Save Changes?";
-                               
+
                 FileDialogResult result = FileDialogService.ConfirmFileClose(message);
                 if (result == FileDialogResult.Yes)
                 {
                     closeConfirmed = Save(document);
-                }               
+                }
                 else if (result == FileDialogResult.Cancel)
                 {
                     closeConfirmed = false;

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -92,7 +92,7 @@ namespace Sce.Atf.Applications
                 using (Graphics g = Graphics.FromImage(s_cloneImage))
                 {
                     g.Clear(Color.Transparent);
-                    var rect = new Rectangle(1, 1, 8, 10);                        
+                    var rect = new Rectangle(1, 1, 8, 10);
                     g.FillRectangle(Brushes.White, rect);
                     g.DrawRectangle(Pens.Black, rect);
                     rect.Location = new Point(6, 5);
@@ -100,14 +100,14 @@ namespace Sce.Atf.Applications
                     g.DrawRectangle(Pens.Black, rect);
                 }
             }
-            
+
             var cloneButton = new ToolStripButton();
             cloneButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            cloneButton.Image = s_cloneImage;            
+            cloneButton.Image = s_cloneImage;
             cloneButton.Name = "cloneButton";
             cloneButton.Size = new Size(29, 22);
             cloneButton.ToolTipText = "Clone this editor".Localize();
-            cloneButton.Click += (sender, e) => Duplicate();            
+            cloneButton.Click += (sender, e) => Duplicate();
             m_propertyGrid.ToolStrip.Items.Add(cloneButton);
             m_propertyGrid.PropertyGridView.ContextRegistry = ContextRegistry;
             m_propertyGrid.MouseUp += propertyGrid_MouseUp;
@@ -302,9 +302,9 @@ namespace Sce.Atf.Applications
                 if (editingContext == null)
                     throw new ArgumentException("propEditor");
 
-                // don't create cloned property editor 
+                // don't create cloned property editor
                 // if there is nothing to edit
-                if (editingContext.PropertyDescriptors == null || !editingContext.PropertyDescriptors.Any()) 
+                if (editingContext.PropertyDescriptors == null || !editingContext.PropertyDescriptors.Any())
                     return;
 
                 if(editingContext is SelectionPropertyEditingContext)
@@ -312,7 +312,7 @@ namespace Sce.Atf.Applications
                 else
                     m_context = editingContext;
 
-                                                                  
+
                 m_propertyEditor = propEditor;
                 m_propertyEditor.Configure(out m_propertyGrid, out m_controlInfo);
 
@@ -346,11 +346,11 @@ namespace Sce.Atf.Applications
                 m_propertyGrid.Bind(m_propertyEditingContext);
 
                 m_propertyGrid.PropertySorting = propEditor.PropertyGrid.PropertySorting;
-                
+
                 // copy expansion state
                 var zip = propEditor.PropertyGrid.PropertyGridView.Categories.Zip(m_propertyGrid.PropertyGridView.Categories, (src, dest) => new { src, dest });
                 foreach (var pair in zip)
-                {                  
+                {
                     if (pair.dest.Name == pair.src.Name)
                         pair.dest.Expanded = pair.src.Expanded;
                 }
@@ -358,13 +358,13 @@ namespace Sce.Atf.Applications
                 m_propertyGrid.MouseUp += (sender, e) => OnPropertyGridMouseUp(e);
 
                 // subscribe to events.
-                // It is necessary to unsubscribe to allow this object to be garbage collected.               
+                // It is necessary to unsubscribe to allow this object to be garbage collected.
 
                 if (m_propertyEditor.DocumentRegistry != null)
                 {
                     m_propertyEditor.DocumentRegistry.DocumentRemoved += DocumentRegistry_DocumentRemoved;
                     m_propertyEditor.DocumentRegistry.ActiveDocumentChanged += DocumentRegistry_ActiveDocumentChanged;
-                }                              
+                }
                 m_observableContext = m_context.As<IObservableContext>();
                 m_validationContext = m_context.As<IValidationContext>();
 
@@ -399,7 +399,7 @@ namespace Sce.Atf.Applications
 
             private void DocumentRegistry_DocumentRemoved(object sender, ItemRemovedEventArgs<IDocument> e)
             {
-                // if the removed document is equal to m_context or 
+                // if the removed document is equal to m_context or
                 // m_context is part of (child of) the removed document
                 // then close the property editor.
                 if (IsObjectPartOfDocument(e.Item, m_context)) ClearAndUnregister();
@@ -414,7 +414,7 @@ namespace Sce.Atf.Applications
                 if (enumContext != null && enumContext.Items != null)
                 {
                     if (enumContext.Items.Any(elm => AdaptableEquals(elm, obj)))
-                        return true;                    
+                        return true;
                 }
 
                 return false;
@@ -422,7 +422,7 @@ namespace Sce.Atf.Applications
 
             #region IValidationContext and IObservalbeContext event handlers.
 
-            private bool m_validating;            
+            private bool m_validating;
             private void validationContext_Beginning(object sender, EventArgs e)
             {
                 m_validating = true;
@@ -449,7 +449,7 @@ namespace Sce.Atf.Applications
             }
 
             private void observableContext_ItemRemoved(object sender, ItemRemovedEventArgs<object> e)
-            {                
+            {
                 m_propertyEditingContext.RemoveItem(e.Item);
 
                 if (m_propertyEditingContext.PropertyDescriptors.Any())
@@ -472,12 +472,12 @@ namespace Sce.Atf.Applications
             private void EndValidation()
             {
                 m_validating = false;
-                Invalidate();              
+                Invalidate();
             }
 
             #endregion
 
-           
+
             private void ClearAndUnregister()
             {
                 var control = m_propertyGrid;
@@ -494,9 +494,9 @@ namespace Sce.Atf.Applications
                 {
                     m_propertyEditor.DocumentRegistry.DocumentRemoved -= DocumentRegistry_DocumentRemoved;
                     m_propertyEditor.DocumentRegistry.ActiveDocumentChanged -= DocumentRegistry_ActiveDocumentChanged;
-                }                                
+                }
                 if (m_observableContext != null)
-                {                     
+                {
                     m_observableContext.ItemChanged -= observableContext_ItemChanged;
                     m_observableContext.ItemInserted -= observableContext_ItemInserted;
                     m_observableContext.ItemRemoved -= observableContext_ItemRemoved;
@@ -511,7 +511,7 @@ namespace Sce.Atf.Applications
                     m_validationContext = null;
                 }
 
-                
+
                 m_propertyEditingContext = null;
                 m_propertyGrid.Bind(null);
                 m_propertyGrid = null;
@@ -521,11 +521,11 @@ namespace Sce.Atf.Applications
 
             void IControlHostClient.Activate(Control control)
             {
-                
+
             }
 
             void IControlHostClient.Deactivate(Control control)
-            {                
+            {
             }
 
             bool IControlHostClient.Close(Control control)
@@ -560,9 +560,9 @@ namespace Sce.Atf.Applications
 
             private ToolStripButton m_selectionButton;
 
-            // the cloned property editor, edits properties 
+            // the cloned property editor, edits properties
             // of the objects belong to this context.
-            // if this context removed then property editor need 
+            // if this context removed then property editor need
             // to be closed.
             private object m_context;
             private IObservableContext m_observableContext;
@@ -595,7 +595,7 @@ namespace Sce.Atf.Applications
             }
             private class CustomPropertyEditingContext : IPropertyEditingContext, IObservableContext, IAdaptable
             {
-               
+
                 public CustomPropertyEditingContext(IPropertyEditingContext context)
                 {
                     m_transactionContext = context.As<ITransactionContext>();
@@ -603,9 +603,9 @@ namespace Sce.Atf.Applications
                 }
 
                 public void RemoveItem(object item)
-                {                                      
+                {
                     for(int i =0; i < m_items.Count;)
-                    {                        
+                    {
                         if (AdaptableEquals(m_items[i],item))
                         {
                             m_items.RemoveAt(i);
@@ -614,17 +614,17 @@ namespace Sce.Atf.Applications
                         {
                             i++;
                         }
-                    }                    
+                    }
                 }
 
                 #region IAdaptable Members
 
                 object IAdaptable.GetAdapter(Type type)
-                {                    
+                {
                     if (type.IsAssignableFrom(GetType()))
                         return this;
                     else if (type == typeof(ITransactionContext))
-                        return m_transactionContext;                   
+                        return m_transactionContext;
                     return null;
                 }
 
@@ -647,7 +647,7 @@ namespace Sce.Atf.Applications
 
 
                 /// <summary>
-                /// Raises the Reloaded event</summary>                
+                /// Raises the Reloaded event</summary>
                 public void OnReloaded()
                 {
                     Reloaded.Raise(this, EventArgs.Empty);

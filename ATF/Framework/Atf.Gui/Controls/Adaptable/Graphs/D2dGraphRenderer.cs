@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -230,7 +230,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                   if (nodeBounds.IntersectsWith(rect))
                       pickedGraphNodes.Add(node);
               }
-              return pickedGraphNodes;    
+              return pickedGraphNodes;
           }
 
         /// <summary>
@@ -239,7 +239,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         {
             /// <summary>
             /// RouteConnecting is null; no connecting is going on by the user</summary>
-            Normal, 
+            Normal,
             /// <summary>
             /// User is actively connecting wires and this edge route can be connected</summary>
             CanConnect,
@@ -289,7 +289,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         public void SetCustomStyle(object node, DiagramDrawingStyle style)
         {
             if (node != null)
-            {              
+            {
                 m_customStyles[node] = style;
             }
         }

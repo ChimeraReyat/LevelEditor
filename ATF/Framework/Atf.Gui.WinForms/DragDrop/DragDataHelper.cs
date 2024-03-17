@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Drawing;
 using System.Windows.Forms;
@@ -48,8 +48,8 @@ namespace Sce.Atf
 
         /// <summary>
         /// Set the description on a Shell Image drag/drop action.
-        /// Some UI coloring is applied to the text in <paramref name="insert"/> if used by specifying %1 
-        /// in <paramref name="message"/>. 
+        /// Some UI coloring is applied to the text in <paramref name="insert"/> if used by specifying %1
+        /// in <paramref name="message"/>.
         /// The characters %% and %1 are the subset of FormatMessage markers that are processed here.</summary>
         /// <param name="e">The DragEventArgs from the OnDragEnter/OnDragOver event</param>
         /// <param name="message">Text such as "Move to %1"</param>

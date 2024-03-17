@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -31,24 +31,24 @@ namespace RenderingInterop
         }
 
         public override bool Pick(ViewControl vc, Point scrPt)
-        {            
-            m_hitRegion = HitRegion.None;           
-            if (base.Pick(vc, scrPt) == false) 
+        {
+            m_hitRegion = HitRegion.None;
+            if (base.Pick(vc, scrPt) == false)
                 return false;
-                                   
+
             Camera camera = vc.Camera;
 
             float s = Util.CalcAxisScale(vc.Camera, HitMatrix.Translation, AxisLength, vc.Height);
-            
+
             Matrix4F vp = camera.ViewMatrix * camera.ProjectionMatrix;
             Matrix4F wvp = HitMatrix * vp;
-            
+
             // get ray in object space  space.
             Ray3F rayL = vc.GetRay(scrPt, wvp);
-            
-            m_scale = new Vec3F(1, 1, 1);            
+
+            m_scale = new Vec3F(1, 1, 1);
             m_hitScale = s;
-         
+
             Vec3F min = new Vec3F(-0.5f, -0.5f, -0.5f);
             Vec3F max = new Vec3F(0.5f, 0.5f, 0.5f);
             AABB box = new AABB(min, max);
@@ -117,20 +117,20 @@ namespace RenderingInterop
 
         public override void Render(ViewControl vc)
         {
-                                               
+
             Matrix4F normWorld = GetManipulatorMatrix();
             if (normWorld == null) return;
 
-            
+
             Vec3F pos = normWorld.Translation;
             float s = Util.CalcAxisScale(vc.Camera, pos, AxisLength, vc.Height);
-            
+
             Color xcolor = (m_hitRegion == HitRegion.XAxis || m_hitRegion == HitRegion.CenterCube ) ? Color.Gold : XAxisColor;
             Color ycolor = (m_hitRegion == HitRegion.YAxis || m_hitRegion == HitRegion.CenterCube ) ? Color.Gold : YAxisColor;
             Color zcolor = (m_hitRegion == HitRegion.ZAxis || m_hitRegion == HitRegion.CenterCube ) ? Color.Gold : ZAxisColor;
             Color centerCubeColor = (m_hitRegion == HitRegion.CenterCube) ? Color.Gold : Color.White;
 
-           
+
             Vec3F sv = new Vec3F(s, s, s);
             Vec3F axscale = new Vec3F(s * AxisThickness, s, s * AxisThickness);
 
@@ -139,21 +139,21 @@ namespace RenderingInterop
             scale.Scale(axscale);
             Matrix4F rot = new Matrix4F();
             rot.RotZ(-MathHelper.PiOver2);
-            Matrix4F xform = scale * rot * normWorld;           
+            Matrix4F xform = scale * rot * normWorld;
             Util3D.DrawCylinder(xform, xcolor);
 
             axscale.Y = Math.Abs(s * m_scale.Y);
             scale.Scale(axscale);
-            xform = scale * normWorld;           
+            xform = scale * normWorld;
             Util3D.DrawCylinder(xform, ycolor);
             rot.RotX(MathHelper.PiOver2);
             axscale.Y = Math.Abs(s * m_scale.Z);
             scale.Scale(axscale);
             xform = scale * rot * normWorld;
             Util3D.DrawCylinder(xform, zcolor);
-            
+
             Vec3F centerCubeScale = sv * CenterCubeSize;
-            scale.Scale(centerCubeScale);            
+            scale.Scale(centerCubeScale);
             Matrix4F centerCubeXform = scale * normWorld;
             Util3D.DrawCube(centerCubeXform, centerCubeColor);
 
@@ -201,14 +201,14 @@ namespace RenderingInterop
                 // force uniform scaling if any node requires it
                 if ((transNode.TransformationType & TransformationTypes.UniformScale) == TransformationTypes.UniformScale)
                     m_isUniformScaling = true;
-                
+
                 NodeList.Add(transNode);
 
                 IManipulatorNotify notifier = transNode.As<IManipulatorNotify>();
                 if (notifier != null) notifier.OnBeginDrag();
 
             }
-            
+
 
             m_originalValues = new Vec3F[NodeList.Count];
             int k = 0;
@@ -218,22 +218,22 @@ namespace RenderingInterop
             }
 
             if(NodeList.Count > 0)
-                transactionContext.Begin("Scale".Localize());                
+                transactionContext.Begin("Scale".Localize());
         }
 
         public override void OnDragging(ViewControl vc, Point scrPt)
         {
             if (m_hitRegion == HitRegion.None || NodeList.Count == 0)
                 return;
-                       
+
             Matrix4F view = vc.Camera.ViewMatrix;
-            // compute world * view 
+            // compute world * view
             Matrix4F wv = new Matrix4F();
             wv.Mul(HitMatrix, view);
 
-            // create ray in view space.            
+            // create ray in view space.
             Ray3F rayV = vc.GetRay(scrPt,vc.Camera.ProjectionMatrix);
-            
+
 
             Vec3F xAxis = wv.XAxis;
             Vec3F yAxis = wv.YAxis;
@@ -244,7 +244,7 @@ namespace RenderingInterop
             m_scale = new Vec3F(1, 1, 1);
             float scale = 1;
             float a1, a2;
-                  
+
             switch (m_hitRegion)
             {
                 case HitRegion.XAxis:
@@ -254,7 +254,7 @@ namespace RenderingInterop
                         Vec3F axis = (a1 > a2 ? yAxis : zAxis);
                         Vec3F p0 = HitRayV.IntersectPlane(axis, -Vec3F.Dot(axis, origin));
                         Vec3F p1 = rayV.IntersectPlane(axis, -Vec3F.Dot(axis, origin));
-                        float dragAmount = Vec3F.Dot((p1 - p0), xAxis);                                                
+                        float dragAmount = Vec3F.Dot((p1 - p0), xAxis);
                         m_scale.X = 1.0f + dragAmount / m_hitScale;
                         scale = m_scale.X;
                     }
@@ -297,7 +297,7 @@ namespace RenderingInterop
                         m_scale.Y = dragAmount ;
                         m_scale.Z = dragAmount ;
                         scale = m_scale.X;
-                   
+
                     }
                     break;
                 default:
@@ -307,12 +307,12 @@ namespace RenderingInterop
             if(m_isUniformScaling)
                 m_scale = new Vec3F(scale,scale,scale);
 
-            // scale             
+            // scale
             for (int i = 0; i < NodeList.Count; i++)
             {
                 ITransformable transformable = NodeList[i];
                 transformable.Scale = Vec3F.Mul(m_originalValues[i], m_scale);
-            }                                      
+            }
         }
 
         public override void OnEndDrag(ViewControl vc, Point scrPt)
@@ -339,7 +339,7 @@ namespace RenderingInterop
                         Outputs.WriteLine(OutputMessageType.Error, ex.Message);
                 }
             }
-            
+
             NodeList.Clear();
             m_originalValues = null;
             m_hitRegion = HitRegion.None;
@@ -348,7 +348,7 @@ namespace RenderingInterop
 
         private HitRegion m_hitRegion = HitRegion.None;
 
-        
+
         protected override Matrix4F GetManipulatorMatrix()
         {
             ITransformable node = GetManipulatorNode(TransformationTypes.Scale);
@@ -365,18 +365,18 @@ namespace RenderingInterop
             P.Translation = node.Pivot;
             toworld.Mul(P, toworld);
 
-            // Normalize            
+            // Normalize
             toworld.Normalize(toworld);
 
             return toworld;
         }
 
-                
-        private bool m_isUniformScaling;        
-        private Vec3F[] m_originalValues;        
+
+        private bool m_isUniformScaling;
+        private Vec3F[] m_originalValues;
         private float m_hitScale;
-        private Vec3F m_scale;        
-        private const float CenterCubeSize = 1.0f / 6.0f;        
+        private Vec3F m_scale;
+        private const float CenterCubeSize = 1.0f / 6.0f;
         private enum HitRegion
         {
             None,

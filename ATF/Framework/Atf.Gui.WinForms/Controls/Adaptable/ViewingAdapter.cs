@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -38,10 +38,10 @@ namespace Sce.Atf.Controls.Adaptable
         /// <returns>True iff the items can be framed in the current view</returns>
         public bool CanFrame(IEnumerable<object> items)
         {
-            // disallow framing if cursor is inside an annotation editing area   
-            // this fixed the problem that 'A' or 'F' chars cannot be typed into a comment 
+            // disallow framing if cursor is inside an annotation editing area
+            // this fixed the problem that 'A' or 'F' chars cannot be typed into a comment
             // because these 2 chars happen to be shortcuts for ViewFrameSelection and ViewFrameAll commands.
-            if (AdaptedControl.HasKeyboardFocus) 
+            if (AdaptedControl.HasKeyboardFocus)
                 return false;
             return IsBounded(items) || (ToggleFramingEnabled && m_isUnframing);
         }
@@ -73,7 +73,7 @@ namespace Sce.Atf.Controls.Adaptable
 
             // transform bounds from client space to graph space.
             Matrix3x2F invXform = Matrix3x2F.Invert(m_transformAdapter.Transform);
-            var gBounds = Matrix3x2F.Transform(invXform, bounds);            
+            var gBounds = Matrix3x2F.Transform(invXform, bounds);
             var crect = AdaptedControl.ClientRectangle;
             crect.Inflate(-MarginSize.Width, -MarginSize.Height);
             if (crect.Width < 1 || crect.Height < 1) return;
@@ -85,7 +85,7 @@ namespace Sce.Atf.Controls.Adaptable
             crect.Y += (int)(crect.Height - gBounds.Height * scale) / 2;
             float tx = crect.X - gBounds.X * scale;
             float ty = crect.Y - gBounds.Y * scale;
-            m_transformAdapter.SetTransform(scale, scale, tx, ty);            
+            m_transformAdapter.SetTransform(scale, scale, tx, ty);
         }
 
         /// <summary>
@@ -111,12 +111,12 @@ namespace Sce.Atf.Controls.Adaptable
                 // already visible
                 return;
             }
-            Frame(items);            
+            Frame(items);
         }
 
         #endregion
 
-      
+
         private bool IsBounded(IEnumerable<object> items)
         {
             var oneItem = new object[1];
@@ -169,10 +169,10 @@ namespace Sce.Atf.Controls.Adaptable
                 {
                     bounds = bounds.IsEmpty ? adapterBounds : Rectangle.Union(bounds, adapterBounds);
                 }
-            }            
+            }
             return bounds;
         }
 
-        private readonly ITransformAdapter m_transformAdapter;        
+        private readonly ITransformAdapter m_transformAdapter;
     }
 }

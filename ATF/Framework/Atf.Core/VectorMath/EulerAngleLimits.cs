@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 namespace Sce.Atf.VectorMath
 {
@@ -11,7 +11,7 @@ namespace Sce.Atf.VectorMath
         /// Maximum angle allowed, in radians, if no limit is specified on a particular
         /// axis. Is PI radians.</summary>
         public const float MaxAngle = (float)System.Math.PI;
-        
+
         /// <summary>
         /// Constructor</summary>
         /// <param name="angleLimits">Maximum angle values in radians</param>
@@ -58,7 +58,7 @@ namespace Sce.Atf.VectorMath
             {
                 if ((m_channels & EulerAngleChannels.X)!=0)
                     return m_angleLimits.X;
-                
+
                 return MaxAngle;
             }
             set
@@ -66,7 +66,7 @@ namespace Sce.Atf.VectorMath
                 m_angleLimits.X = value;
                 if (m_angleLimits.X>MaxAngle)
                     m_angleLimits.X=MaxAngle;
-                    
+
                 m_channels |= EulerAngleChannels.X;
             }
         }
@@ -81,7 +81,7 @@ namespace Sce.Atf.VectorMath
             {
                 if ((m_channels & EulerAngleChannels.Y)!=0)
                     return m_angleLimits.Y;
-                
+
                 return MaxAngle;
             }
             set
@@ -89,7 +89,7 @@ namespace Sce.Atf.VectorMath
                 m_angleLimits.Y = value;
                 if (m_angleLimits.Y>MaxAngle)
                     m_angleLimits.Y=MaxAngle;
-                    
+
                 m_channels |= EulerAngleChannels.Y;
             }
         }
@@ -104,7 +104,7 @@ namespace Sce.Atf.VectorMath
             {
                 if ((m_channels & EulerAngleChannels.Z)!=0)
                     return m_angleLimits.Z;
-                
+
                 return MaxAngle;
             }
             set
@@ -112,7 +112,7 @@ namespace Sce.Atf.VectorMath
                 m_angleLimits.Z = value;
                 if (m_angleLimits.Z>MaxAngle)
                     m_angleLimits.Z=MaxAngle;
-                    
+
                 m_channels |= EulerAngleChannels.Z;
             }
         }

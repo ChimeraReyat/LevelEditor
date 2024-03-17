@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -152,7 +152,7 @@ namespace Sce.Atf
                         parts.Add(s.Substring(iFirst, s.Length - iFirst));
                         break;
                     }
-                    
+
                     if (iLast > iFirst)
                         parts.Add(s.Substring(iFirst, iLast - iFirst)); //part before the delimiter
                     parts.Add(new string(s[iLast], 1));//the delimiter

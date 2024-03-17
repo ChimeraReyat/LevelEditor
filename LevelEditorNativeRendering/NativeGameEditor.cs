@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -18,33 +18,33 @@ using LevelEditorCore;
 namespace RenderingInterop
 {
     /// <summary>
-    /// Native Game Editor.</summary>    
+    /// Native Game Editor.</summary>
     [Export(typeof(IInitializable))]
-    [Export(typeof(IControlHostClient))]    
+    [Export(typeof(IControlHostClient))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class NativeGameEditor : IInitializable, IControlHostClient
-    {        
+    {
         #region IInitializable Members
         void IInitializable.Initialize()
-        {           
+        {
             m_controlInfo = new ControlInfo("DesignView", "DesignView", StandardControlGroup.CenterPermanent);
             m_controlHostService.RegisterControl(m_designView.HostControl, m_controlInfo, this);
-          
+
             Application.ApplicationExit += delegate
-            {            
+            {
                 Util3D.Shutdown();
-                GameEngine.Shutdown();                
+                GameEngine.Shutdown();
             };
 
             GameEngine.RefreshView += (sender,e)=> m_designView.InvalidateViews();
 
             m_gameDocumentRegistry.DocumentAdded += m_gameDocumentRegistry_DocumentAdded;
             m_gameDocumentRegistry.DocumentRemoved += m_gameDocumentRegistry_DocumentRemoved;
-                
+
             string ns = m_schemaLoader.NameSpace;
 
             // register GridRenderer on grid child.
-            DomNodeType gridType = m_schemaLoader.TypeCollection.GetNodeType(ns, "gridType");            
+            DomNodeType gridType = m_schemaLoader.TypeCollection.GetNodeType(ns, "gridType");
             gridType.Define(new ExtensionInfo<GridRenderer>());
 
             // register NativeGameWorldAdapter on game type.
@@ -57,7 +57,7 @@ namespace RenderingInterop
                 if (annotations == null)
                     continue;
 
-                
+
                 // collect all the properties that only exist in native side.
                 List<NativeAttributeInfo> nativeAttribs = new List<NativeAttributeInfo>();
 
@@ -67,15 +67,15 @@ namespace RenderingInterop
                     if (elm.LocalName == NativeAnnotations.NativeType)
                     {
                         string typeName = elm.GetAttribute(NativeAnnotations.NativeName);
-                        domType.SetTag(NativeAnnotations.NativeType, GameEngine.GetObjectTypeId(typeName));                        
+                        domType.SetTag(NativeAnnotations.NativeType, GameEngine.GetObjectTypeId(typeName));
                         if (domType.IsAbstract == false)
-                            domType.Define(new ExtensionInfo<NativeObjectAdapter>());                        
+                            domType.Define(new ExtensionInfo<NativeObjectAdapter>());
                     }
                     else if (elm.LocalName == NativeAnnotations.NativeProperty)
                     {
                         // find a prop name and added to the attribute.
-                        
-                        
+
+
                         string nativePropName = elm.GetAttribute(NativeAnnotations.NativeName);
                         string attribName = elm.GetAttribute(NativeAnnotations.Name);
                         uint typeId = (uint)domType.GetTag(NativeAnnotations.NativeType);
@@ -83,17 +83,17 @@ namespace RenderingInterop
                         if(!string.IsNullOrEmpty(attribName))
                         {
                             AttributeInfo attribInfo = domType.GetAttributeInfo(elm.GetAttribute(NativeAnnotations.Name));
-                            attribInfo.SetTag(NativeAnnotations.NativeProperty, propId);                            
+                            attribInfo.SetTag(NativeAnnotations.NativeProperty, propId);
                         }
                         else
                         {
                             NativeAttributeInfo attribInfo = new NativeAttributeInfo(domType,nativePropName,typeId,propId);
                             nativeAttribs.Add(attribInfo);
                         }
-                        
+
                     }
                     else if (elm.LocalName == NativeAnnotations.NativeElement)
-                    {                        
+                    {
                         ChildInfo info = domType.GetChildInfo(elm.GetAttribute(NativeAnnotations.Name));
                         uint typeId = (uint)domType.GetTag(NativeAnnotations.NativeType);
                         string name = elm.GetAttribute(NativeAnnotations.NativeName);
@@ -107,19 +107,19 @@ namespace RenderingInterop
                 }
             }
 
-            
+
             // register BoundableObject
             m_schemaLoader.GameObjectType.Define(new ExtensionInfo<BoundableObject>());
             m_schemaLoader.GameObjectFolderType.Define(new ExtensionInfo<BoundableObject>());
-            
+
             #region code to handle gameObjectFolder
 
             {
-                // This code is fragile and need to be updated whenever 
+                // This code is fragile and need to be updated whenever
                 // any relevant part of the schema changes.
                 // purpose:
                 // gameObjectFolderType does not exist in C++
-                // this code will map gameObjectFolderType to gameObjectGroupType.                                    
+                // this code will map gameObjectFolderType to gameObjectGroupType.
                 DomNodeType gobFolderType = m_schemaLoader.GameObjectFolderType;
                 DomNodeType groupType = m_schemaLoader.GameObjectGroupType;
 
@@ -159,7 +159,7 @@ namespace RenderingInterop
                     }
                 }
 
-                m_schemaLoader.GameType.GetChildInfo("gameObjectFolder").SetTag(NativeAnnotations.NativeElement, gobsId);                
+                m_schemaLoader.GameType.GetChildInfo("gameObjectFolder").SetTag(NativeAnnotations.NativeElement, gobsId);
             }
 
             #endregion
@@ -182,7 +182,7 @@ namespace RenderingInterop
         }
 
         bool IControlHostClient.Close(Control control)
-        {            
+        {
             if (m_documentRegistry.ActiveDocument != null)
             {
                 return m_documentService.Close(m_documentRegistry.ActiveDocument);
@@ -192,7 +192,7 @@ namespace RenderingInterop
         }
 
         #endregion
-    
+
         private void m_gameDocumentRegistry_DocumentAdded(object sender, ItemInsertedEventArgs<IGameDocument> e)
         {
             IGameDocument document = e.Item;
@@ -209,25 +209,25 @@ namespace RenderingInterop
                 GridRenderer gridRender = grid.Cast<GridRenderer>();
                 gridRender.CreateVertices();
 
-                m_designView.Context = document.Cast<IGameContext>();                
+                m_designView.Context = document.Cast<IGameContext>();
             }
             DomNode masterNode = m_gameDocumentRegistry.MasterDocument.As<DomNode>();
             DomNode rooFolderNode = game.RootGameObjectFolder.Cast<DomNode>();
 
             NativeGameWorldAdapter gworld = masterNode.Cast<NativeGameWorldAdapter>();
-            gworld.Insert(masterNode, rooFolderNode, masterNode.Type.GetChildInfo("gameObjectFolder"), -1);            
+            gworld.Insert(masterNode, rooFolderNode, masterNode.Type.GetChildInfo("gameObjectFolder"), -1);
         }
 
         private void m_gameDocumentRegistry_DocumentRemoved(object sender, ItemRemovedEventArgs<IGameDocument> e)
         {
-            IGameDocument document = e.Item;            
+            IGameDocument document = e.Item;
             IGame game = document.Cast<IGame>();
             if (document == m_designView.Context.Cast<IGameDocument>())
             {// master document.
                 IGrid grid = document.As<IGame>().Grid;
                 GridRenderer gridRender = grid.Cast<GridRenderer>();
                 gridRender.DeleteVertexBuffer();
-                m_designView.Context = null;                
+                m_designView.Context = null;
                 GameEngine.DestroyObject(game.Cast<NativeObjectAdapter>());
                 GameEngine.Clear();
             }
@@ -239,7 +239,7 @@ namespace RenderingInterop
                 gworld.Remove(masterNode, rooFolderNode, masterNode.Type.GetChildInfo("gameObjectFolder"));
             }
         }
-       
+
 
         [Import(AllowDefault = false)]
         private IDocumentRegistry m_documentRegistry;
@@ -247,7 +247,7 @@ namespace RenderingInterop
         [Import(AllowDefault = false)]
         private IDocumentService m_documentService;
 
-        [Import(AllowDefault = false)] 
+        [Import(AllowDefault = false)]
         private IContextRegistry m_contextRegistry;
 
         [Import(AllowDefault = false)]
@@ -263,6 +263,6 @@ namespace RenderingInterop
         private IGameDocumentRegistry m_gameDocumentRegistry = null;
 
         private ControlInfo m_controlInfo;
-               
+
     }
 }

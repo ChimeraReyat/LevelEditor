@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -60,7 +60,7 @@ namespace Sce.Atf.Controls
 
                     string[] files =
                         Directory.GetFiles(
-                            m_screenshotDirectory.FullName, 
+                            m_screenshotDirectory.FullName,
                             "*" + WindowLayoutServiceCommandsBase.ScreenshotExtension,
                             SearchOption.TopDirectoryOnly);
 
@@ -82,7 +82,7 @@ namespace Sce.Atf.Controls
                 {
                     Outputs.WriteLine(
                         OutputMessageType.Error,
-                        "Manage Layouts: Exception parsing " + 
+                        "Manage Layouts: Exception parsing " +
                         "screenshot directory: {0}", ex.Message);
                 }
             }

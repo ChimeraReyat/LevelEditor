@@ -18,19 +18,19 @@ namespace Sce.Atf.Controls.CurveEditing
         {
             if (curve == null)
                 throw new ArgumentNullException("curve");
-            m_curve = curve;            
+            m_curve = curve;
             Reset();
         }
         #endregion
 
         #region public methods
-        /// <summary>        
+        /// <summary>
         /// Resets the curve. Call this whenever curve changes.</summary>
         public void Reset()
         {
             m_lastP1 = null;
             m_points = m_curve.ControlPoints;
-            
+
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Sce.Atf.Controls.CurveEditing
                 if (loop == CurveLoopTypes.Linear)
                 {
                     return (firstPt.Y - ((firstPt.TangentIn.Y / firstPt.TangentIn.X) * (firstPt.X - x)));
-                }                
+                }
                 float firstX = firstPt.X;
                 float lastX = lastPt.X;
                 float rangeX = lastX - firstX;
@@ -73,13 +73,13 @@ namespace Sce.Atf.Controls.CurveEditing
                 {
                     x = lastX-nx;
                     offset = -((numcycle+1) * (lastPt.Y - firstPt.Y));
-                    
+
                 }
                 else if (loop == CurveLoopTypes.Oscillate)
                 {
                     x = (((int)numcycle & 1) == 0) ? firstX + nx : lastX - nx;
                 }
-               
+
             }
             else if (x > lastPt.X) // post-infinity.
             {
@@ -133,7 +133,7 @@ namespace Sce.Atf.Controls.CurveEditing
                 return p2.Y + offset;
             }
             else
-            {// hermite eval.                
+            {// hermite eval.
                 if (m_lastP1 != p1)
                 {
                     // compute coeff.
@@ -141,18 +141,18 @@ namespace Sce.Atf.Controls.CurveEditing
                     m_lastP1 = p1;
                 }
                 return CubicPolyEval(p1.X, x, m_coeff) + offset;
-            }                       
+            }
         }
         #endregion
 
         #region private helper methods
         /// <summary>
-        /// Finds control points at x coordinate or prior to it</summary>        
+        /// Finds control points at x coordinate or prior to it</summary>
         private int FindIndex(float x, out bool exactMatch)
         {
             exactMatch = false;
             int low = 0;
-            int high = m_points.Count - 1;            
+            int high = m_points.Count - 1;
             do
             {
                 int mid = (low + high) >> 1;
@@ -168,8 +168,8 @@ namespace Sce.Atf.Controls.CurveEditing
                 {
                     exactMatch = true;
                     return mid;
-                }                
-            } while (low <= high);            
+                }
+            } while (low <= high);
             return high;
         }
 
@@ -207,12 +207,12 @@ namespace Sce.Atf.Controls.CurveEditing
             Coeff[2] = m1;
             Coeff[3] = p1.Y;
         }
-             
+
         #endregion
 
         #region private fields
         private readonly ICurve m_curve;
-        private readonly float[] m_coeff = new float[4];       
+        private readonly float[] m_coeff = new float[4];
         private ReadOnlyCollection<IControlPoint> m_points;
         private IControlPoint m_lastP1;
         #endregion

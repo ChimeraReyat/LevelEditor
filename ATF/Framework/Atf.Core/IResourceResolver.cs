@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 
@@ -8,7 +8,7 @@ namespace Sce.Atf
     /// MEF component able to resolve a specified URI into an IResource object</summary>
     /// <remarks>You can register multiple resolvers with MEF. The ResourceService (default implementation)
     /// goes through all registered resolvers until one returns a non-null IResource.
-    /// Don't assume any order in which resolvers are used. If your application requires ordering, you can 
+    /// Don't assume any order in which resolvers are used. If your application requires ordering, you can
     /// create a master resolver and handle dispatch and ordering yourself.</remarks>
     public interface IResourceResolver
     {

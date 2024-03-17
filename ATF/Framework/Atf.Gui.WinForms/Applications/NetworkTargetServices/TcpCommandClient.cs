@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Text;
@@ -60,7 +60,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
             m_maxPayloadSize = maxPayloadSize;
             m_payloadBytes = new byte[m_maxPayloadSize];
             m_numBytesReceivedThisCommand = 0;
-            m_payloadSizeThisCommand = 0;               
+            m_payloadSizeThisCommand = 0;
         }
 
         /// <summary>

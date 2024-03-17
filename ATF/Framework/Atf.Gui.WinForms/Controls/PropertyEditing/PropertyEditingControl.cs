@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections;
@@ -74,7 +74,7 @@ namespace Sce.Atf.Controls.PropertyEditing
 
         /// <summary>
         /// Gets and sets the size of the edit button.
-        /// Note: The edit button is rendered differently depending on 
+        /// Note: The edit button is rendered differently depending on
         /// what this control is being used for, e.g., a drop down button
         /// or a "..." button.</summary>
         public Size EditButtonSize
@@ -177,7 +177,7 @@ namespace Sce.Atf.Controls.PropertyEditing
         #region IFormsOwner
 
         /// <summary>
-        /// If this control uses a top level form as the drop down box, gets that form so 
+        /// If this control uses a top level form as the drop down box, gets that form so
         /// users of this control can consider if as part of the control for focus situations</summary>
         public IEnumerable<Form> Forms
         {
@@ -190,7 +190,7 @@ namespace Sce.Atf.Controls.PropertyEditing
 
         /// <summary>
         /// Gets true iff this control can be used indefinitely, regardless of whether the associated
-        /// PropertyEditorControlContext's SelectedObjects property changes, i.e., the selection changes. 
+        /// PropertyEditorControlContext's SelectedObjects property changes, i.e., the selection changes.
         /// This property must be constant for the life of this control.</summary>
         public virtual bool Cacheable
         {
@@ -458,7 +458,7 @@ namespace Sce.Atf.Controls.PropertyEditing
 
         /// <summary>
         /// Gets the object that is connected with this type descriptor request</summary>
-        /// <returns>The object that invokes the method on the <see cref="T:System.ComponentModel.TypeDescriptor"></see>; 
+        /// <returns>The object that invokes the method on the <see cref="T:System.ComponentModel.TypeDescriptor"></see>;
         /// otherwise, null if there is no object responsible for the call</returns>
         public object Instance
         {
@@ -481,7 +481,7 @@ namespace Sce.Atf.Controls.PropertyEditing
 
         /// <summary>
         /// Gets the <see cref="T:System.ComponentModel.PropertyDescriptor"></see> that is associated with the given context item</summary>
-        /// <returns>The <see cref="T:System.ComponentModel.PropertyDescriptor"></see> that describes the given context item; 
+        /// <returns>The <see cref="T:System.ComponentModel.PropertyDescriptor"></see> that describes the given context item;
         /// otherwise, null if there is no <see cref="T:System.ComponentModel.PropertyDescriptor"></see> responsible for the call</returns>
         public PropertyDescriptor PropertyDescriptor
         {
@@ -528,10 +528,10 @@ namespace Sce.Atf.Controls.PropertyEditing
             if (keyData == Keys.Enter)
             {
                 // process the Enter keys on the base control as well. The default Control Enter key
-                // handler must do something significant. This is the only way I have found for users of the 
+                // handler must do something significant. This is the only way I have found for users of the
                 // ProperyEditingControl, in this case the GridView to get its call to ProcessDialogKey
                 // This needs to be called before we close this text box, otherwise the ProcessDialogKey will not be
-                // consumed and will be fired AGAIN (in this case in the GridView). 
+                // consumed and will be fired AGAIN (in this case in the GridView).
                 base.ProcessDialogKey(keyData);
 
                 Flush();
@@ -544,10 +544,10 @@ namespace Sce.Atf.Controls.PropertyEditing
             else if (keyData == Keys.Escape)
             {
                 // process the Escape keys on the base control as well. The default Control Esc key
-                // handler must do something significant. This is the only way I have found for users of the 
+                // handler must do something significant. This is the only way I have found for users of the
                 // ProperyEditingControl, in this case the GridView to get its call to ProcessDialogKey
                 // This needs to be called before we close this text box, otherwise the ProcessDialogKey will not be
-                // consumed and will be fired AGAIN (in this case in the GridView). 
+                // consumed and will be fired AGAIN (in this case in the GridView).
                 base.ProcessDialogKey(keyData);
 
                 CancelEdit();
@@ -739,19 +739,19 @@ namespace Sce.Atf.Controls.PropertyEditing
 
         private void OpenDropDownEditor()
         {
-            if (m_isEditing) return; 
+            if (m_isEditing) return;
             try
             {
-                m_isEditing = true;                
+                m_isEditing = true;
                 object oldValue, value;
                 var oldContext = m_context;
 
                 // Alan Beckus: save references to all the required objects to perform the transaction.
                 // Because EditValue(...) enters modal loop using Application.DonEvent()
-                // consequently selectedObjects, transaction and event m_context itself can change 
+                // consequently selectedObjects, transaction and event m_context itself can change
                 // before returning from EditValue(...).
                 // note: previous attempt to solve this issue was to cache selected objects inside
-                //       m_context but it failed to solve the issue because the cache was cleared 
+                //       m_context but it failed to solve the issue because the cache was cleared
                 //       by PropertyView before it can be used.
                 List<object> selection = new List<object>(m_context.SelectedObjects);
                 var transactionContext = m_context.TransactionContext;
@@ -771,7 +771,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                         PropertyUtils.SetProperty(selectedObject, descriptor, value);
                 },string.Format("Edit: {0}".Localize(), descriptor.DisplayName));
 
-               
+
                 // notify that we just changed a value
                 NotifyPropertyEdit(oldValue, value);
 
@@ -801,7 +801,7 @@ namespace Sce.Atf.Controls.PropertyEditing
 
                 string newText = m_textBox.Text;
 
-                // for enum list, ensure case correctness 
+                // for enum list, ensure case correctness
                 if (m_textBox.AutoCompleteEnabled)
                 {
                     bool validText = false;
@@ -883,7 +883,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                 m_initialText = propertyText;
                 m_textBox.Text = propertyText;
                 m_textBox.Font = Font;
-                m_textBox.ReadOnly = m_descriptor.IsReadOnly;                
+                m_textBox.ReadOnly = m_descriptor.IsReadOnly;
                 m_textBox.ForeColor = (m_descriptor.IsReadOnly) ? SystemColors.GrayText : ForeColor;
             }
         }

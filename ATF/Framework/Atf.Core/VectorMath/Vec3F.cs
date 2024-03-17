@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Globalization;
@@ -167,7 +167,7 @@ namespace Sce.Atf.VectorMath
         {
             Set(-X, -Y, -Z);
         }
-       
+
         /// <summary>
         /// Calculates the sum of the given vectors</summary>
         /// <param name="v1">Vector 1</param>
@@ -248,7 +248,7 @@ namespace Sce.Atf.VectorMath
         }
 
         /// <summary>
-        /// Clamps vector components to the given minimum and returns new vector. 
+        /// Clamps vector components to the given minimum and returns new vector.
         /// Original vector is unchanged.</summary>
         /// <param name="v">Vector</param>
         /// <param name="min">Component minimum</param>
@@ -262,7 +262,7 @@ namespace Sce.Atf.VectorMath
         }
 
         /// <summary>
-        /// Clamps vector components to the given maximum and returns new vector. 
+        /// Clamps vector components to the given maximum and returns new vector.
         /// Original vector is unchanged.</summary>
         /// <param name="v">Vector</param>
         /// <param name="max">Component maximum</param>
@@ -276,7 +276,7 @@ namespace Sce.Atf.VectorMath
         }
 
         /// <summary>
-        /// Clamps vector components to the given range and returns new vector. 
+        /// Clamps vector components to the given range and returns new vector.
         /// Original vector is unchanged.</summary>
         /// <param name="v">Vector</param>
         /// <param name="min">Component minimum</param>
@@ -291,7 +291,7 @@ namespace Sce.Atf.VectorMath
         }
 
         /// <summary>
-        /// Gets the component-wise absolute value of the given vector and returns new vector. 
+        /// Gets the component-wise absolute value of the given vector and returns new vector.
         /// Original vector is unchanged.</summary>
         /// <param name="v">Vector</param>
         /// <returns>Component-wise absolute value of the given vector</returns>

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -27,10 +27,10 @@ namespace Sce.Atf.Dom
             // Entering text into the toolstrip will trigger a search, changing an option rebuilds the toolstrip GUI
             m_rootNode.ReplaceTextEntered += replaceSubStrip_ReplaceTextEntered;
 
-            // 
-            // Build toolStrip GUI by retrieving toolstrip item list from tree, and adding 
+            //
+            // Build toolStrip GUI by retrieving toolstrip item list from tree, and adding
             // them to ToolStrip.Items
-            // 
+            //
             SuspendLayout();
             List<ToolStripItem> toolStripItems = new List<ToolStripItem>();
             m_rootNode.GetToolStripItems(toolStripItems);
@@ -86,7 +86,7 @@ namespace Sce.Atf.Dom
         /// <summary>
         /// Associated search toolstrip</summary>
         internal DomNodeSearchToolStrip DomNodeSearchToolStrip { get; set; }
-  
+
 
         private readonly DomNodeQueryRoot m_rootNode;
         private readonly QueryTextInput m_replaceTextInput;

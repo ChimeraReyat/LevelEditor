@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.ComponentModel.Composition;
 using System;
@@ -12,7 +12,7 @@ namespace LevelEditorCore
     /// <summary>
     /// DesignView settings
     /// </summary>
-    [Export(typeof(IInitializable))]        
+    [Export(typeof(IInitializable))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class DesignViewSettings : IInitializable
     {
@@ -21,23 +21,23 @@ namespace LevelEditorCore
 
         void IInitializable.Initialize()
         {
-            
+
             var snapAngleEditor = new NumericEditor(typeof(float));
             snapAngleEditor.ScaleFactor = 180.0 / Math.PI;
             string misc = "Misc".Localize();
             var userSettings = new System.ComponentModel.PropertyDescriptor[]
-                {                                       
+                {
                     new BoundPropertyDescriptor(
                         m_designView, () => m_designView.BackColor, "BackgroundColor".Localize(), misc,
                         "Background color".Localize()),
                     new BoundPropertyDescriptor(
                         m_designView, () => m_designView.CameraFarZ, "FarZ".Localize(), misc,
                         "Camera Far Z".Localize()),
-                                     
+
                     new BoundPropertyDescriptor(
                         m_designView, () => m_designView.ControlScheme, "ControlScheme".Localize(), misc,
                         "Control scheme".Localize()),
-                                       
+
                     new BoundPropertyDescriptor(
                         m_designView, () => m_designView.SnapVertex,
                         "SnapVertex".Localize(),
@@ -53,7 +53,7 @@ namespace LevelEditorCore
                         "Snap Angle".Localize(),
                         misc, "Snap to angle when using rotation manipulator." +
                               "Angle is in degrees. Set it to zero to disable snapping.".Localize(), snapAngleEditor,null)
-                     
+
                 };
 
             m_settingsService.RegisterUserSettings( "Editors".Localize() + "/" + "DesignView".Localize(), userSettings);
@@ -69,8 +69,8 @@ namespace LevelEditorCore
         }
 
         #endregion
-               
-        
+
+
         [Import(AllowDefault = false)]
         private DesignView m_designView = null;
 

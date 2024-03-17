@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -8,12 +8,12 @@ namespace Sce.Atf.Controls
 {
     /// <summary>
     /// Dialog that enumerates all controls accessible by the specified IControlHostService.
-    /// 
-    /// A TabbedControlSelectorDialog persists until the Ctrl button is released. Until then, 
-    /// it consumes Ctrl+[Tab|Up|Down|Left|Right] key presses to switch the currently selected 
-    /// control in the enumeration. When Ctrl is released, the control corresponding to the 
+    ///
+    /// A TabbedControlSelectorDialog persists until the Ctrl button is released. Until then,
+    /// it consumes Ctrl+[Tab|Up|Down|Left|Right] key presses to switch the currently selected
+    /// control in the enumeration. When Ctrl is released, the control corresponding to the
     /// selection in the enumeration is given input focus.
-    /// 
+    ///
     /// Enumeration of controls is separated into two lists: one including all controls in the currently
     /// active pane, and another for all other controls (i.e., those NOT in the active pane). Use
     /// Ctrl+Left and Ctrl+Right to jump between the two lists.</summary>
@@ -42,8 +42,8 @@ namespace Sce.Atf.Controls
             m_unfocusedPaneControlList.Reverse();
 
             InitializeComponent();
- 
-            // Populate ListBox with list of controls from focused pane 
+
+            // Populate ListBox with list of controls from focused pane
             focusedPaneListBox.DataSource = m_focusedPaneControlList;
             focusedPaneListBox.DisplayMember = "Name";
             if (m_focusedPaneControlList.Count > 0)
@@ -72,7 +72,7 @@ namespace Sce.Atf.Controls
                     m_activeList = m_focusedPaneControlList;
                     unfocusedPaneListBox.Enabled = false;
                     break;
-                    
+
                 case eListBoxType.UnfocusedPaneListBox:
                     m_activeListBox = unfocusedPaneListBox;
                     m_activeList = m_unfocusedPaneControlList;
@@ -181,7 +181,7 @@ namespace Sce.Atf.Controls
         }
 
         /// <summary>
-        /// Finalizes the selection when the user mouse-clicks on the control list. Equivalent to 
+        /// Finalizes the selection when the user mouse-clicks on the control list. Equivalent to
         /// releasing the Ctrl key</summary>
         private void focusedPaneListBox_SelectionChanged(object sender, EventArgs e)
         {
@@ -191,7 +191,7 @@ namespace Sce.Atf.Controls
         }
 
         /// <summary>
-        /// Finalizes the selection when the user mouse-clicks on the control list. Equivalent to 
+        /// Finalizes the selection when the user mouse-clicks on the control list. Equivalent to
         /// releasing the Ctrl key</summary>
         private void unfocusedPaneListBox_SelectionChanged(object sender, EventArgs e)
         {

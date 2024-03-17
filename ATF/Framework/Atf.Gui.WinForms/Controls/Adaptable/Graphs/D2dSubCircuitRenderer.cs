@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 
 using System;
@@ -37,7 +37,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             m_subGraphPinPen = D2dFactory.CreateSolidBrush(Color.DeepSkyBlue);
             m_pinBrush = D2dFactory.CreateSolidBrush(SystemColors.ControlDarkDark);
             m_visiblePinBrush = D2dFactory.CreateSolidBrush(Color.Black);
-            m_hiddrenPinBrush = D2dFactory.CreateSolidBrush(Color.Gray); 
+            m_hiddrenPinBrush = D2dFactory.CreateSolidBrush(Color.Gray);
 
             var props = new D2dStrokeStyleProperties();
             props.EndCap = D2dCapStyle.Round;
@@ -110,7 +110,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 RectangleF bounds = new RectangleF(p.X, p.Y, CircuitGroupPinInfo.FloatingPinBoxWidth, CircuitGroupPinInfo.FloatingPinBoxHeight);
                 RectangleF alignRect = new RectangleF(
                     bounds.Left, bounds.Bottom + Theme.PinMargin, pinNameSize.Width, Theme.RowSpacing);
-                var textAlignment = Theme.TextFormat.TextAlignment;              
+                var textAlignment = Theme.TextFormat.TextAlignment;
                 Theme.TextFormat.TextAlignment = D2dTextAlignment.Leading;
                 g.DrawText(grpPin.Name, Theme.TextFormat, alignRect.Location, Theme.TextBrush);
                 Theme.TextFormat.TextAlignment = textAlignment;
@@ -125,7 +125,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                                              Theme.PinSize, Theme.PinSize);
                 // draw input pin for output floating pins
                 g.DrawRectangle(pinRect, m_subGraphPinPen);
-                // draw pin icon                   
+                // draw pin icon
                 if (grpPin.Info.Pinned)
                     D2dUtil.DrawPin((int)p.X, (int)p.Y, true, false, m_pinBrush, g);
                 else
@@ -139,7 +139,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 var textAlignment = Theme.TextFormat.TextAlignment;
                 Theme.TextFormat.TextAlignment = D2dTextAlignment.Trailing;
                 g.DrawText(grpPin.Name, Theme.TextFormat, alignRectF, Theme.TextBrush);
-                Theme.TextFormat.TextAlignment = textAlignment;          
+                Theme.TextFormat.TextAlignment = textAlignment;
             }
 
             // draw the fake pin node itself
@@ -157,7 +157,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 RectangleF eyeRect = GetVisibilityCheckRect(grpPin, inputSide);
                 g.DrawEyeIcon(eyeRect, grpPin.Info.Visible ? m_visiblePinBrush : m_hiddrenPinBrush, 1.0f);
             }
-            
+
             // draw fake edge that connects group pin fake node
             DrawGroupPinNodeFakeEdge(grpPin, p, inputSide, style, g);
         }
@@ -210,9 +210,9 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                     var eyePart = new DiagramVisibilityCheck(eyeRect);
                     return new GraphHitRecord<TElement, TWire, TPin>((TPin)grpPin, eyePart);
                 }
-               
 
-                // check whether hit the floating pin label-part        
+
+                // check whether hit the floating pin label-part
                 PointF grpPos = GetGroupPinLocation(grpPin, true);
                 RectangleF bounds = new RectangleF(grpPos.X, grpPos.Y, CircuitGroupPinInfo.FloatingPinBoxWidth, CircuitGroupPinInfo.FloatingPinBoxHeight);
                 SizeF nameSize = g.MeasureText(grpPin.Name, Theme.TextFormat);
@@ -220,10 +220,10 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 //labelBounds = GdiUtil.Transform(g.Transform, labelBounds);
                 var labelPart = new DiagramLabel(
                 new Rectangle((int)labelBounds.Left, (int)labelBounds.Top, (int)labelBounds.Width, (int)labelBounds.Height),
-                TextFormatFlags.SingleLine | TextFormatFlags.Left);    
-    
+                TextFormatFlags.SingleLine | TextFormatFlags.Left);
+
                 if (labelBounds.Contains(p))
-                 return new GraphHitRecord<TElement, TWire, TPin>((TPin)grpPin, labelPart);               
+                 return new GraphHitRecord<TElement, TWire, TPin>((TPin)grpPin, labelPart);
 
                 // check whether hit the floating pin node
                 if (bounds.Contains(p))
@@ -253,7 +253,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                     return new GraphHitRecord<TElement, TWire, TPin>((TPin)grpPin, eyePart);
                 }
 
-                // check whether hit the floating pin label-part     
+                // check whether hit the floating pin label-part
                 PointF grpPos = GetGroupPinLocation(grpPin, false);
                 RectangleF bounds = new RectangleF(grpPos.X, grpPos.Y, CircuitGroupPinInfo.FloatingPinBoxWidth, CircuitGroupPinInfo.FloatingPinBoxHeight);
                  SizeF nameSize = g.MeasureText(grpPin.Name, Theme.TextFormat);
@@ -265,7 +265,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 
                 if (labelBounds.Contains(p))
                     return new GraphHitRecord<TElement, TWire, TPin>((TPin)grpPin, labelPart);
-              
+
                 // check whether hit the floating pin node
                 if (bounds.Contains(p))
                 {
@@ -273,7 +273,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                     result.DefaultPart = labelPart;
                     return result;
                 }
-            }      
+            }
 
             return hitRecord;
         }
@@ -325,7 +325,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         {
             ElementTypeInfo info = GetElementTypeInfo(grpPin.InternalElement, g);
             if (inputSide)
-            {             
+            {
                 PointF op = grpPinPos;
                 float x1 = op.X + CircuitGroupPinInfo.FloatingPinBoxWidth;
                 float y1 = op.Y + CircuitGroupPinInfo.FloatingPinBoxHeight / 2;
@@ -347,12 +347,12 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 float y2 = ip.Y + CircuitGroupPinInfo.FloatingPinBoxHeight / 2;
                 DrawWire(g, m_fakeOutputLinkPen, x1, y1, x2, y2, 1.0f, m_VirtualLinkStrokeStyle);
             }
-          
+
         }
-        
+
 
         private const int MaxNameOverhang = 64;
- 
+
         private D2dBrush m_subGraphPinNodePen;
         private D2dBrush m_subGraphPinPen;
         //private float m_subGraphPinPenWidth = 3.0f;

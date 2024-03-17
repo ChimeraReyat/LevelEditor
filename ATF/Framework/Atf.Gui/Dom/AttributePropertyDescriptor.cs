@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel;
@@ -114,7 +114,7 @@ namespace Sce.Atf.Dom
         {
             object value = GetValue(component);
             if (value == null) return false;
-            return  !value.Equals(m_attributeInfo.DefaultValue);            
+            return  !value.Equals(m_attributeInfo.DefaultValue);
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel.Composition;
@@ -47,14 +47,14 @@ namespace Sce.Atf.Applications
             ReplaceUI.Control.Dock = DockStyle.None;
             m_rootControl.Controls.Add(ReplaceUI.Control);
             ReplaceUI.UIChanged += UIElement_Changed;
-            
+
 
             // Create and add the results output control
             ResultsUI = new DomNodeSearchResultsListView(m_contextRegistry);
             ResultsUI.Control.Dock = DockStyle.None;
             m_rootControl.Controls.Add(ResultsUI.Control);
-            ResultsUI.UIChanged += UIElement_Changed;            
-            
+            ResultsUI.UIChanged += UIElement_Changed;
+
             m_rootControl.Layout += controls_Layout;
             m_rootControl.ResumeLayout();
         }

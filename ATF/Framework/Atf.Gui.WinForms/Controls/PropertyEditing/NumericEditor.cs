@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Windows.Forms;
@@ -50,7 +50,7 @@ namespace Sce.Atf.Controls.PropertyEditing
             }
         }
 
-       
+
         #region IPropertyEditor Members
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Sce.Atf.Controls.PropertyEditing
             NumericTextBox editingControl = new NumericTextBox(m_numericType, context);
             editingControl.ScaleFactor = m_scaleFactor;
             SkinService.ApplyActiveSkin(editingControl);
-            return editingControl;            
+            return editingControl;
         }
 
         #endregion
@@ -77,8 +77,8 @@ namespace Sce.Atf.Controls.PropertyEditing
             {
                 m_context = context;
 
-                BorderStyle = BorderStyle.None;               
-                RefreshValue();               
+                BorderStyle = BorderStyle.None;
+                RefreshValue();
             }
 
             protected override void OnValueEdited(EventArgs e)
@@ -99,7 +99,7 @@ namespace Sce.Atf.Controls.PropertyEditing
 
             /// <summary>
             /// Gets true iff this control can be used indefinitely, regardless of whether the associated
-            /// PropertyEditorControlContext's SelectedObjects property changes, i.e., the selection changes. 
+            /// PropertyEditorControlContext's SelectedObjects property changes, i.e., the selection changes.
             /// This property must be constant for the life of this control.</summary>
             public bool Cacheable
             {

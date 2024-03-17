@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -32,11 +32,11 @@ namespace LevelEditor
             : base(commandService)
         {
             m_controlHostService = controlHostService;
-            m_contextRegistry = contextRegistry;                        
+            m_contextRegistry = contextRegistry;
             m_contextRegistry.ActiveContextChanged += ContextRegistry_ActiveContextChanged;
         }
 
-       
+
 
         /// <summary>
         /// Refreshes project tree.
@@ -48,12 +48,12 @@ namespace LevelEditor
                TreeControlAdapter.Refresh(TreeView.Root);
             }
         }
-        
+
         #region IInitializable Members
 
         public void Initialize()
         {
-            
+
             string addNewSubGame = "Add new SubGame".Localize();
             CommandService.RegisterCommand(
                Command.CreateNewSubGame,
@@ -115,7 +115,7 @@ namespace LevelEditor
                CommandVisibility.ContextMenu,
                this);
 
-                    
+
             // on initialization, register our tree control with the hosting service
             m_controlHostService.RegisterControl(
                 Control,
@@ -170,18 +170,18 @@ namespace LevelEditor
         IEnumerable<object> IContextMenuCommandProvider.GetCommands(object context, object target)
         {
             ICommandClient cmdclient = (ICommandClient)this;
-            
-            if (context == this.TreeView && 
+
+            if (context == this.TreeView &&
                 (Adapters.Is<IGame>(target) || Adapters.Is<GameReference>(target)))
             {
                 foreach (Command command in Enum.GetValues(typeof(Command)))
                 {
                     if (cmdclient.CanDoCommand(command))
-                    {                        
+                    {
                         yield return command;
                     }
                 }
-            }            
+            }
         }
 
         #endregion
@@ -212,21 +212,21 @@ namespace LevelEditor
                     {
                         GameReference gameRef = TreeControlAdapter.LastHit.As<GameReference>();
                         cando = gameRef != null && gameRef.Target == null;
-                    }                    
+                    }
                     break;
 
                 case Command.Unresolve:
                     {
                         GameReference gameRef = TreeControlAdapter.LastHit.As<GameReference>();
                         cando = gameRef != null && gameRef.Target != null;
-                    }                    
-                    break;                    
+                    }
+                    break;
             }
             return cando;
         }
 
         void ICommandClient.DoCommand(object commandTag)
-        {            
+        {
             IGame game = TreeControlAdapter.LastHit.As<IGame>();
             if (game == null)
             {
@@ -269,10 +269,10 @@ namespace LevelEditor
                     break;
                 case Command.AddSubGame:
 
-                    filePath = Util.GetFilePath(m_fileFilter, 
-                        System.IO.Path.GetDirectoryName(gameDocument.Uri.LocalPath), 
+                    filePath = Util.GetFilePath(m_fileFilter,
+                        System.IO.Path.GetDirectoryName(gameDocument.Uri.LocalPath),
                         false);
-                   
+
                     if (!string.IsNullOrEmpty(filePath))
                     {
                         try
@@ -305,7 +305,7 @@ namespace LevelEditor
                         GameReference gameRef = TreeControlAdapter.LastHit.As<GameReference>();
                         gameDocument = gameRef.DomNode.Parent.Cast<IDocument>();
                         GameDocument subDoc = gameRef.Target.Cast<GameDocument>();
-                        
+
                         bool exclue = true;
                         bool save = false;
                         if (subDoc.Dirty)
@@ -318,7 +318,7 @@ namespace LevelEditor
                             save = dlgResult == DialogResult.Yes;
                             exclue = dlgResult != DialogResult.Cancel;
                         }
-                        
+
                         if (save)
                             subDoc.Save(subDoc.Uri, m_schemaLoader);
 
@@ -326,7 +326,7 @@ namespace LevelEditor
                         {
                             gameRef.DomNode.RemoveFromParent();
                             // because we performing this operation outside of TransactionContext
-                            // we must set Document Dirty flag.                        
+                            // we must set Document Dirty flag.
                             gameDocument.Dirty = true;
                             UpdateGameObjectReferences();
                             RefreshLayerContext();
@@ -351,7 +351,7 @@ namespace LevelEditor
                             bool save = false;
                             if (subDoc.Dirty)
                             {
-                                string msg = "Save changes\r\n" + subDoc.Uri.LocalPath;                                
+                                string msg = "Save changes\r\n" + subDoc.Uri.LocalPath;
                                 DialogResult dlgResult =
                                     MessageBox.Show(m_mainWindow.DialogOwner, msg, m_mainWindow.Text
                                     , MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
@@ -360,7 +360,7 @@ namespace LevelEditor
                                 unresolve = dlgResult != DialogResult.Cancel;
                             }
                             //cando = gameRef != null && gameRef.Target != null;
-                            if (save) 
+                            if (save)
                                 subDoc.Save(subDoc.Uri, m_schemaLoader);
                             if (unresolve)
                             {
@@ -374,7 +374,7 @@ namespace LevelEditor
                         catch (Exception ex)
                         {
                             MessageBox.Show(m_mainWindow.DialogOwner, ex.Message);
-                        }                             
+                        }
                     }
                     break;
                 default:
@@ -386,7 +386,7 @@ namespace LevelEditor
 
         void ICommandClient.UpdateCommand(object commandTag, CommandState commandState)
         {
-            
+
         }
 
         #endregion
@@ -403,7 +403,7 @@ namespace LevelEditor
         /// Raises the LastHitChanged event and performs custom processing</summary>
         /// <param name="e">Event args</param>
         protected override void OnLastHitChanged(EventArgs e)
-        {            
+        {
             // forward "last hit" information to the GameContext which needs to know
             //  where to insert objects during copy/paste and drag/drop. The base tracks
             //  the last clicked and last dragged over tree objects.
@@ -456,17 +456,17 @@ namespace LevelEditor
                 layerContext.RefreshRoot();
         }
         /// <summary>
-        /// Unresolve all the GameObjectReferences, 
+        /// Unresolve all the GameObjectReferences,
         /// if the target object is belong to the removed documents</summary>
         private void UpdateGameObjectReferences()
         {
-            
+
             // Refresh LayerListers, after the following subgame operations.
-            // adding 
+            // adding
             // unresolving
-            // excluding  
+            // excluding
             // for all Layer Lister need to be refreshed.
-            
+
             foreach (var subDoc in m_gameDocumentRegistry.Documents)
             {
                 var rootNode = subDoc.Cast<DomNode>();
@@ -485,7 +485,7 @@ namespace LevelEditor
 
         private readonly IControlHostService m_controlHostService;
         private readonly IContextRegistry m_contextRegistry;
-                
+
         [Import(AllowDefault = false)]
         private IDesignView m_designView = null;
 
@@ -510,7 +510,7 @@ namespace LevelEditor
         private enum Command
         {
             CreateNewSubGame,
-            AddSubGame,  
+            AddSubGame,
             Exclude,
             Resolve,
             Unresolve

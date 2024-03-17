@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 namespace Sce.Atf.Controls.Adaptable
 {
@@ -27,7 +27,7 @@ namespace Sce.Atf.Controls.Adaptable
             /// <summary>Lower left corner of border</summary>
             LowerLeftCorner,
             /// <summary>Lower right corner of border</summary>
-            LowerRightCorner  
+            LowerRightCorner
         }
 
         /// <summary>

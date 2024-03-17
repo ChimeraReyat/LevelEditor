@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections.Generic;
 
@@ -22,7 +22,7 @@ namespace LevelEditor.DomNodeAdapters
             base.OnNodeSet();
             if (ControlPoints.Count == 0)
             {
-                IControlPoint p0 = CreateControlPoint();                
+                IControlPoint p0 = CreateControlPoint();
                 p0.Translation = new Vec3F(-1f, 0, 0);
                 ControlPoints.Add(p0);
             }
@@ -31,14 +31,14 @@ namespace LevelEditor.DomNodeAdapters
             {
                 IControlPoint p1 = CreateControlPoint();
                 p1.Translation = new Vec3F(1, 0, 0);
-                ControlPoints.Add(p1);                
+                ControlPoints.Add(p1);
             }
             TransformationType = TransformationTypes.Translation;
 
             DomNode.ChildInserted += DomNode_HierarchyChanged;
-            DomNode.ChildRemoved += DomNode_HierarchyChanged;                       
+            DomNode.ChildRemoved += DomNode_HierarchyChanged;
         }
-        
+
         public IList<IControlPoint> ControlPoints
         {
             get { return GetChildList<IControlPoint>(Schema.curveType.pointChild); }
@@ -60,14 +60,14 @@ namespace LevelEditor.DomNodeAdapters
         }
 
         #endregion
-      
+
         #region ILinear Members
 
         public IControlPoint InsertPoint(uint index, float x, float y, float z)
-        {            
+        {
             IControlPoint cpt = CreateControlPoint();
             int numSteps = GetAttribute<int>(Schema.curveType.stepsAttribute);
-            int interpolationType = GetAttribute<int>(Schema.curveType.interpolationTypeAttribute);            
+            int interpolationType = GetAttribute<int>(Schema.curveType.interpolationTypeAttribute);
             if (interpolationType != 0 && numSteps > 0)
             {
                 index = index / (uint)numSteps;
@@ -84,7 +84,7 @@ namespace LevelEditor.DomNodeAdapters
             ControlPoints.Insert((int)index + 1, cpt);
             return cpt;
         }
-        
+
         #endregion
 
 
@@ -96,13 +96,13 @@ namespace LevelEditor.DomNodeAdapters
             DomNode node = new DomNode(Schema.controlPointType.Type);
             node.InitializeExtensions();
             IControlPoint cpt = node.As<IControlPoint>();
-            cpt.Name = "ControlPoint";            
+            cpt.Name = "ControlPoint";
             return cpt;
         }
 
-        
+
         /// <summary>
-        /// Compute new transform using 
+        /// Compute new transform using
         /// position of all the control points</summary>
         internal void ComputeTranslation()
         {
@@ -113,7 +113,7 @@ namespace LevelEditor.DomNodeAdapters
                 var points = ControlPoints;
                 if (points.Count == 0)
                     return;
-                                
+
                 // center in local space.
                 Vec3F localcenter = points[0].Translation;
 
@@ -121,12 +121,12 @@ namespace LevelEditor.DomNodeAdapters
                 Matrix4F localToParent = xformcurve.Transform;
                 // center in parent space.
                 Vec3F center;
-                localToParent.Transform(localcenter, out center);                
+                localToParent.Transform(localcenter, out center);
                 xformcurve.Translation = center;
                 foreach (var cpt in points)
                 {
                     cpt.Translation  -= localcenter;
-                }                            
+                }
             }
             finally
             {
@@ -148,21 +148,21 @@ namespace LevelEditor.DomNodeAdapters
 
     /// <summary>
     /// Shows how to custimize curve to force CatmullRom type.
-    /// see the schema to show how to hide inherited property.</summary>    
-    /// <remarks> 
+    /// see the schema to show how to hide inherited property.</summary>
+    /// <remarks>
     /// To avoid registering duplicate DomNodeAdapters
-    /// do not derive your DomNodeAdapter from any other DomNodeAdapter that is already 
+    /// do not derive your DomNodeAdapter from any other DomNodeAdapter that is already
     /// registered.
     /// For example should not derive from Curve because it already registered
-    /// Also should not derive from GameObject 
+    /// Also should not derive from GameObject
     /// because curve is registered and curve is a is a gameobject.
-    /// </remarks>    
+    /// </remarks>
     public class CatmullRom : DomNodeAdapter
     {
         protected override void OnNodeSet()
-        {            
+        {
             DomNode node = this.DomNode;
-            SetAttribute(Schema.catmullRomType.interpolationTypeAttribute, 1);            
+            SetAttribute(Schema.catmullRomType.interpolationTypeAttribute, 1);
         }
     }
 
@@ -188,7 +188,7 @@ namespace LevelEditor.DomNodeAdapters
             {
                 bpt.Position = cpt.Translation;
                 spline.Add(bpt);
-            }            
+            }
             return spline;
         }
     }

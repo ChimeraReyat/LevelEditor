@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -36,18 +36,18 @@ namespace Sce.Atf.Controls
             m_value = MathUtil.Clamp(value, m_min, m_max);
             m_lastChange = m_value;
             m_lastEdit = m_value;
-            
+
             m_textBox = new NumericTextBox();
             m_textBox.BorderStyle = BorderStyle.None;
             m_textBox.Name = "m_textBox";
 
             m_spinner = new CompactSpinner();
             m_spinner.GotFocus += (sender, e) => m_textBox.Focus();
-            
-            SuspendLayout();            
-            UpdateTextBox();            
-            Controls.Add(m_textBox);            
-            Controls.Add(m_spinner);            
+
+            SuspendLayout();
+            UpdateTextBox();
+            Controls.Add(m_textBox);
+            Controls.Add(m_spinner);
             ResumeLayout(false);
             PerformLayout();
 
@@ -118,7 +118,7 @@ namespace Sce.Atf.Controls
             get { return m_max; }
             set
             {
-                SetMinMax(m_min, value);                
+                SetMinMax(m_min, value);
             }
         }
 
@@ -135,12 +135,12 @@ namespace Sce.Atf.Controls
             {
                 m_min = min;
                 m_max = max;
-                Value = MathUtil.Clamp(m_value, m_min, m_max);                
+                Value = MathUtil.Clamp(m_value, m_min, m_max);
             }
         }
 
         /// <summary>
-        /// Gets and sets whether to draw a border around the control</summary>        
+        /// Gets and sets whether to draw a border around the control</summary>
         public bool DrawBorder
         {
             get { return m_drawBorder; }
@@ -162,7 +162,7 @@ namespace Sce.Atf.Controls
         /// <remarks>Override this method to change the mapping between position and
         /// value, for example, for a logarithmic slider.</remarks>
         protected virtual float GetValue(float position)
-        {            
+        {
             return Constrain(m_min + position * (m_max - m_min));
         }
 
@@ -179,7 +179,7 @@ namespace Sce.Atf.Controls
             return (value - m_min) / (m_max - m_min);
         }
 
-       
+
         /// <summary>
         /// Raises the <see cref="E:Sce.Atf.Controls.IntInputControl.ValueChanged"/> event</summary>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data</param>
@@ -243,12 +243,12 @@ namespace Sce.Atf.Controls
 
         private void UpdateTextBox()
         {
-            m_textBox.Value = m_value;         
+            m_textBox.Value = m_value;
         }
 
         private float Constrain(float value)
         {
-            return MathUtil.Clamp(value,m_min,m_max);            
+            return MathUtil.Clamp(value,m_min,m_max);
         }
 
 

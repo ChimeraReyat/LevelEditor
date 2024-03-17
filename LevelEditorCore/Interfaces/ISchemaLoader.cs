@@ -1,11 +1,11 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using Sce.Atf.Dom;
 
 namespace LevelEditorCore
 {
     /// <summary>
-    /// Provides basic schema information.    
+    /// Provides basic schema information.
     /// </summary>
     public interface ISchemaLoader
     {
@@ -45,7 +45,7 @@ namespace LevelEditorCore
         /// <summary>
         /// Gets DomNodeType of GameObjectFolder.</summary>
         DomNodeType GameObjectFolderType { get; }
-        
+
         /// <summary>
         /// Gets root element.</summary>
         ChildInfo GameRootElement { get; }

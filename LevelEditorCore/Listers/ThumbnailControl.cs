@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace LevelEditorCore
     /// A thumbnail viewer control</summary>
     internal class ThumbnailControl : Panel
     {
-        
+
         /// <summary>
         /// Constructor</summary>
         public ThumbnailControl()
@@ -146,7 +146,7 @@ namespace LevelEditorCore
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            
+
             Point position = new Point(
                 ThumbnailMargin + AutoScrollPosition.X,
                 ThumbnailMargin + AutoScrollPosition.Y);
@@ -155,7 +155,7 @@ namespace LevelEditorCore
             Pen selPen = new Pen(Color.LimeGreen, 2.0f);
             StringFormat format = new StringFormat();
             var txtBrush = new SolidBrush(ForeColor);
-            try                
+            try
             {
                 format.Alignment = StringAlignment.Center;
 
@@ -282,14 +282,14 @@ namespace LevelEditorCore
         protected override void OnMouseUp(MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
-            {                               
+            {
                 if (m_multiSelecting)
                 {
                     m_multiSelecting = false;
 
                     IEnumerable<ThumbnailControlItem> picked = Pick(GetSelectionRect());
-                    SelectItem(picked);                    
-                }                                
+                    SelectItem(picked);
+                }
             }
 
             base.OnMouseUp(e);
@@ -298,8 +298,8 @@ namespace LevelEditorCore
         }
 
         private void SelectItem(IEnumerable<ThumbnailControlItem> items)
-        {     
-            
+        {
+
             bool extend = ModifierKeys == Keys.Shift;
             bool toggle = ModifierKeys == Keys.Control;
 
@@ -313,20 +313,20 @@ namespace LevelEditorCore
                     else
                         m_selection.Add(item);
 
-                }  
+                }
                 m_selection.EndUpdate();
             }
             else if(extend)
             {
-                m_selection.AddRange(items);                    
+                m_selection.AddRange(items);
             }
             else
             {
                 m_selection.SetRange(items);
-            }            
+            }
         }
 
-      
+
 
         /// <summary>
         /// Raises the MouseLeave event</summary>
@@ -478,7 +478,7 @@ namespace LevelEditorCore
         }
 
         private Point NextThumbnailPosition(Point curPosition)
-        {            
+        {
             // See comment in RecalculateClientSize() about drawing order
 
             Point position = curPosition;
@@ -545,7 +545,7 @@ namespace LevelEditorCore
             get { return m_image; }
             set
             {
-                m_image = value;                
+                m_image = value;
             }
         }
 
@@ -556,7 +556,7 @@ namespace LevelEditorCore
             get { return m_indicator; }
             set
             {
-                m_indicator = value;                
+                m_indicator = value;
             }
         }
 

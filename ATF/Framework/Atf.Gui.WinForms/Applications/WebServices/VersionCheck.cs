@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Reflection;
@@ -36,7 +36,7 @@ namespace Sce.Atf.Applications.WebServices
         /// <summary>
         /// Constructor.
         /// Mapping name and version are obtained from attributes on the assembly:
-        ///   
+        ///
         ///   AssemblyTitleAttribute specifies mapping (or ProjectMappingAttribute, if present).
         ///   AssemblyVersionAttribute specifies version.
         /// The file release in SourceForge should be named:
@@ -116,7 +116,7 @@ namespace Sce.Atf.Applications.WebServices
         }
 
         /// <summary>
-        /// Gets the latest product version from server. Returns download URL 
+        /// Gets the latest product version from server. Returns download URL
         /// if newer version found.</summary>
         private void DoCheck()
         {

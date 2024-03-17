@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -7,9 +7,9 @@ using System.Windows.Forms;
 namespace Sce.Atf.Controls
 {
     /// <summary>
-    /// Abstract base class that can provide a user interface (UI) for representing and editing 
+    /// Abstract base class that can provide a user interface (UI) for representing and editing
     /// the values of objects of the supported data types.
-    /// 
+    ///
     /// To implement a custom data editor, you must at least perform the following tasks:
     ///  • Define a class that derives from DataEditor
     ///  • Override the Measure method to inform the parent control how much screen space it would like to have
@@ -24,7 +24,7 @@ namespace Sce.Atf.Controls
             ByTextBox, // editing through the default text box
             ByClick,   // editing that occurs when the data is left-clicked, such as bool editor
             BySlider,  // editing by moving a value indicator
-            ByExternalControl // editing that uses external, arbitrary control 
+            ByExternalControl // editing that uses external, arbitrary control
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Sce.Atf.Controls
         /// <returns>Whether data editor wants to track mouse movement</returns>
         public virtual bool WantsMouseTracking()
         {
-           return false; 
+           return false;
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace Sce.Atf.Controls
         public virtual void SetEditingMode(Point p)
         {
         }
-     
+
         /// <summary>
         /// Begins an edit operation.</summary>
         public virtual void BeginDataEdit()

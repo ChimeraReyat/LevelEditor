@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using Sce.Atf.VectorMath;
 namespace LevelEditorCore.VectorMath
 {
     /// <summary>
-    ///  Axis aligned bounding box </summary>    
+    ///  Axis aligned bounding box </summary>
     public struct AABB
     {
 
@@ -15,7 +15,7 @@ namespace LevelEditorCore.VectorMath
         //public static AABB CreateFromSphere(BoundingSphere sphere);
         //public static AABB CreateFromPoints(IEnumerable<Vector3> points);
 
-        
+
          /// <summary>
         /// Minima of extents</summary>
         public Vec3F Min;
@@ -61,7 +61,7 @@ namespace LevelEditorCore.VectorMath
         /// <returns>Extended box</returns>
         public void Extend(Vec3F p)
         {
-           
+
             if (m_initialized == false)
             {
                 Min = Max = p;
@@ -76,11 +76,11 @@ namespace LevelEditorCore.VectorMath
                 Max.X = Math.Max(Max.X, p.X);
                 Max.Y = Math.Max(Max.Y, p.Y);
                 Max.Z = Math.Max(Max.Z, p.Z);
-            }           
+            }
         }
 
         /// <summary>
-        /// Extends box to contain given array, interpreted as 3D points. 
+        /// Extends box to contain given array, interpreted as 3D points.
         /// If this box is currently uninitialized, the box is initialized to the first point.</summary>
         /// <param name="v">Floats representing 3D points</param>
         /// <returns>Extended box</returns>
@@ -107,7 +107,7 @@ namespace LevelEditorCore.VectorMath
                     Max.Y = Math.Max(Max.Y, v[i + 1]);
                     Max.Z = Math.Max(Max.Z, v[i + 2]);
                 }
-            }            
+            }
         }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace LevelEditorCore.VectorMath
         {
             float r = sphere.Radius;
             Extend(sphere.Center + new Vec3F(r, r, r));
-            Extend(sphere.Center - new Vec3F(r, r, r));            
+            Extend(sphere.Center - new Vec3F(r, r, r));
         }
 
         /// <summary>
@@ -132,14 +132,14 @@ namespace LevelEditorCore.VectorMath
             {
                 Extend(other.Min);
                 Extend(other.Max);
-            }            
+            }
         }
 
         public Sphere3F ToSphere()
         {
             Vec3F center = Center;
             float r = (Max - center).Length;
-            return new Sphere3F(Center, r);                
+            return new Sphere3F(Center, r);
         }
         /// <summary>
         /// Gets the object's string representation</summary>
@@ -178,7 +178,7 @@ namespace LevelEditorCore.VectorMath
             }
 
             Min = newMin;
-            Max = newMax;      
+            Max = newMax;
             m_initialized = true;
         }
 
@@ -198,7 +198,7 @@ namespace LevelEditorCore.VectorMath
             return temp;
         }
 
-        
+
 
         public bool Intersect(Ray3F r)
         {
@@ -209,10 +209,10 @@ namespace LevelEditorCore.VectorMath
             bool result = Intersect(r, out tmin,out tmax, out pos, out norm);
             return result;
         }
-        public bool Intersect(Ray3F r, 
+        public bool Intersect(Ray3F r,
             out float out_tmin,
             out float out_tmax,
-            out Vec3F out_pos, 
+            out Vec3F out_pos,
             out Vec3F out_nor)
         {
             out_pos = Vec3F.ZeroVector;
@@ -224,7 +224,7 @@ namespace LevelEditorCore.VectorMath
             Vec3F d = r.Direction;
             float tmin = float.MinValue;
             float tmax = float.MaxValue;
-            
+
 
             // check vs. all three 'slabs' of the aabb
             for (int i = 0; i < 3; ++i)
@@ -277,7 +277,7 @@ namespace LevelEditorCore.VectorMath
             }
         }
 
-       
+
 
         private bool m_initialized; //has been set with valid data; the box may still have zero-volume.
     }

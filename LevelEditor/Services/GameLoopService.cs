@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel.Composition;
@@ -17,8 +17,8 @@ namespace LevelEditor
 {
     /// <summary>
     /// Game loop driver.
-    /// It continously call update/render as long as 
-    /// there is no message in the windows message queue</summary>    
+    /// It continously call update/render as long as
+    /// there is no message in the windows message queue</summary>
     [Export(typeof(IInitializable))]
     [Export(typeof(IGameLoop))]
     [PartCreationPolicy(CreationPolicy.Shared)]
@@ -43,11 +43,11 @@ namespace LevelEditor
         #endregion
 
         private void Application_Idle(object sender, EventArgs e)
-        {            
+        {
             while (IsIdle())
-            {                
+            {
                 Update();
-                Render();                
+                Render();
             }
         }
 
@@ -101,7 +101,7 @@ namespace LevelEditor
             }
             else
             {
-                // set upper limit of update calls 
+                // set upper limit of update calls
                 const int MaxUpdates = 3;
                 int updateCount = 0;
 
@@ -146,7 +146,7 @@ namespace LevelEditor
             m_updateTypeComboBox.SelectedIndexChanged += (sender, e) => this.UpdateType = (UpdateType)m_updateTypeComboBox.SelectedItem;
             m_updateTypeComboBox.ToolTipText = "Update type".Localize();
             MenuInfo editMenuInfo = MenuInfo.Edit;
-            editMenuInfo.GetToolStrip().Items.Add(m_updateTypeComboBox);            
+            editMenuInfo.GetToolStrip().Items.Add(m_updateTypeComboBox);
         }
 
 

@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 {
     /// <summary>
     /// Adapter for adding floating group pin location and label editing capabilities to a subgraph control</summary>
-    public class GroupPinEditor: DraggingControlAdapter, IItemDragAdapter, IDisposable    
+    public class GroupPinEditor: DraggingControlAdapter, IItemDragAdapter, IDisposable
     {
         /// <summary>
         /// Callback to compute group pin y offset</summary>
@@ -30,9 +30,9 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 
         [Flags]
         private enum MeasurePinNode
-        {       
+        {
             DesiredLocation = 1,
-            MaximumNameWidth = 2,        
+            MaximumNameWidth = 2,
         }
 
 
@@ -44,18 +44,18 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// <param name="initiator">Control adapter that is initiating the drag</param>
         void IItemDragAdapter.BeginDrag(ControlAdapter initiator)
         {
-           
+
             // drag all selected nodes, and any edges impinging on them
             var draggingNodes = new ActiveCollection<Element>();
-         
+
             foreach (var node in m_selectionContext.GetSelection<Element>())
                 draggingNodes.Add(node);
-                 
+
             m_draggingNodes.AddRange(draggingNodes.GetSnapshot());
 
             var draggingGrpPins= new ActiveCollection<GroupPin>();
             // add the selected floating pins
-            foreach (var grpin in m_selectionContext.GetSelection<GroupPin>())         
+            foreach (var grpin in m_selectionContext.GetSelection<GroupPin>())
                 draggingGrpPins.Add(grpin);
             m_draggingGroupPins.AddRange(draggingGrpPins.GetSnapshot());
 
@@ -114,10 +114,10 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// <param name="control">Adaptable control</param>
         protected override void Unbind(AdaptableControl control)
         {
-        
+
             control.ContextChanged += control_ContextChanged;
             control.ContextChanged -= control_ContextChanged;
-        }      
+        }
 
         /// <summary>
         /// Performs custom actions when performing a mouse dragging operation</summary>
@@ -175,9 +175,9 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             }
         }
 
- 
+
         /// <summary>
-        /// Sets desired location for fake pins</summary>   
+        /// Sets desired location for fake pins</summary>
         private void MeasureFakePins(IEnumerable<GroupPin> pinNodes, MeasurePinNode measureParts, Point offset, bool inputSide)
         {
             //int maximumNameWidth = 0;
@@ -189,7 +189,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                     //g.Transform = m_transformAdapter.Transform;
                     if ( (measureParts & MeasurePinNode.DesiredLocation) !=0)
                     {
-                        // a floating pin node maps to a subnode and its pin index, needed to sort by both                      
+                        // a floating pin node maps to a subnode and its pin index, needed to sort by both
                         var pinList = pinNodes.OrderBy(x => x.InternalElement.Position.Y)
                                                .ThenBy(x => x.InternalElement.PinDisplayOrder(x.InternalPinIndex, inputSide)).ToList();
                         //bool initialOrder = pinList.All(n => n.PinY == int.MinValue);
@@ -211,7 +211,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                                 fakePinNode.DesiredLocation = new Point( offset.X, fakePinNode.InternalElement.Bounds.Location.Y + pinOffset - 8);
                            }
 
-                            // ensure the minimum margin between pin nodes( avoid overlapping among the pin nodes)                                                
+                            // ensure the minimum margin between pin nodes( avoid overlapping among the pin nodes)
                             int lastY = pinList[0].DesiredLocation.Y;
                             for (int i = 1; i < pinList.Count; ++i)
                             {
@@ -226,7 +226,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                                 lastY = pin.DesiredLocation.Y;
                             }
                         }
-                       
+
                     }
 
                     //if (measureParts.HasFlag(MeasurePinNode.MaximumNameWidth))
@@ -282,7 +282,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                     PositioningFloatigPin(againstPins,  floatingPin, minY);
                     minY = floatingPin.Bounds.Location.Y + CircuitGroupPinInfo.FloatingPinNodeHeight +
                            CircuitGroupPinInfo.FloatingPinNodeMargin;
-                    // update desired location for the rest of the free pins 
+                    // update desired location for the rest of the free pins
                     int delta = floatingPin.Bounds.Location.Y - floatingPin.DesiredLocation.Y;
                     for (int j = i + 1; j < floatingPins.Count; ++j)
                         floatingPins[j].DesiredLocation = new Point(floatingPins[j].DesiredLocation.X, Math.Max(floatingPins[j].DesiredLocation.Y + delta, minY));
@@ -299,13 +299,13 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// <param name="minY">Minimum Y value the floating pin is allowed to take</param>
         private void PositioningFloatigPin(IList<GroupPin> againstPinNodes,  GroupPin floatingPin, int minY)
         {
-            // resolve pin node position to avoid colliding with any against-pins 
+            // resolve pin node position to avoid colliding with any against-pins
             bool overlapped = false;
             for (int p = 0; p < againstPinNodes.Count; ++p) // try to locate sufficient empty space between the static nodes
             {
                 var againstpin = againstPinNodes[p];
                 if (againstpin.Bounds.Location.Y + CircuitGroupPinInfo.FloatingPinNodeHeight + CircuitGroupPinInfo.FloatingPinNodeMargin < minY)
-                    continue; 
+                    continue;
                 if (PinOverlap(floatingPin, againstpin))
                 {
                     overlapped = true;
@@ -326,7 +326,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 
             if (overlapped) // no in-between empty space to insert, try at the top region first, then the bottom region
             {
-                // top region 
+                // top region
                 var topStaticPin = againstPinNodes[0];
                 int pinNewY = Constrain(topStaticPin.Bounds.Location.Y - (CircuitGroupPinInfo.FloatingPinNodeHeight + CircuitGroupPinInfo.FloatingPinNodeMargin));
                 pinNewY = Math.Max(pinNewY, minY);
@@ -344,10 +344,10 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                                   (CircuitGroupPinInfo.FloatingPinNodeHeight + CircuitGroupPinInfo.FloatingPinNodeMargin));
                     pinNewY = Math.Max(pinNewY, minY);
                     floatingPin.DesiredLocation = new Point(floatingPin.DesiredLocation.X, pinNewY);
-                    const int increment = 1; 
+                    const int increment = 1;
                     while (PinOverlap(floatingPin, bottomStaticPin))
                     {
-                        pinNewY += increment; 
+                        pinNewY += increment;
                         floatingPin.DesiredLocation = new Point(floatingPin.DesiredLocation.X, pinNewY);
                     }
 
@@ -386,10 +386,10 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 
         private IGraph<Element, Wire, ICircuitPin> m_graph = CircuitUtil.EmptyCircuit;
         private ITransformAdapter m_transformAdapter;
- 
+
         private List<Element> m_draggingNodes= new List<Element>();
         private List<GroupPin> m_draggingGroupPins = new List<GroupPin>();
-        private int [] m_originalPinY;        
+        private int [] m_originalPinY;
 
         private ILayoutContext m_layoutContext;
         private ISelectionContext m_selectionContext;

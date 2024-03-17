@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Windows.Forms;
 
@@ -12,7 +12,7 @@ namespace Sce.Atf
 {
     /// <summary>
     /// Converts drag and drop event arguments between ATF and Windows to support interoperability for events between Windows and ATF.
-    /// These drag and drop event arguments provide data for the System.Windows.Forms.Control.DragDrop, System.Windows.Forms.Control.DragEnter, or 
+    /// These drag and drop event arguments provide data for the System.Windows.Forms.Control.DragDrop, System.Windows.Forms.Control.DragEnter, or
     /// System.Windows.Forms.Control.DragOver events.</summary>
     public static class DragEventArgsInterop
     {

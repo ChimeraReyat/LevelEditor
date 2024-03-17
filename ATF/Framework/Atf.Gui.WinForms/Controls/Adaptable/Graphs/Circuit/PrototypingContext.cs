@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -19,18 +19,18 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         IInstancingContext,
         IPrototypingContext,
         IObservableContext,
-        INamingContext      
+        INamingContext
     {
         // required  child info
         /// <summary>
         /// Gets ChildInfo for prototype folders in prototype folder</summary>
         protected abstract ChildInfo PrototypeFolderChildInfo { get; }
 
-        // required DomNodeType 
+        // required DomNodeType
         /// <summary>
         /// Gets type of prototype</summary>
         protected abstract DomNodeType PrototypeType { get; }
-         
+
         /// <summary>
         /// Performs initialization when the adapter is connected to the prototype's DomNode.
         /// Raises the SelectionContext NodeSet event and performs custom processing.</summary>
@@ -331,7 +331,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         }
 
         #endregion
-  
+
 
         private object m_activeItem;
     }

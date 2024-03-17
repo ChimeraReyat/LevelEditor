@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace Sce.Atf.Controls.Adaptable.Graphs
 {
@@ -14,7 +14,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         where TEdgeRoute : class, IEdgeRoute
     {
         /// <summary>
-        /// Can move the given nodes into the new container</summary>    
+        /// Can move the given nodes into the new container</summary>
         /// <param name="newParent">New container</param>
         /// <param name="movingObjects">Nodes to move</param>
         /// <returns>True iff can move nodes into new container</returns>

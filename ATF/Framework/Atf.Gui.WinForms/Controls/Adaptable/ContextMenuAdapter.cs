@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -25,7 +25,7 @@ namespace Sce.Atf.Controls.Adaptable
             m_providers = providers;
         }
 
-      
+
         /// <summary>
         /// Binds the adapter to the adaptable control. Called in the reverse order that the adapters
         /// were defined on the control.</summary>
@@ -45,7 +45,7 @@ namespace Sce.Atf.Controls.Adaptable
 
         /// <summary>
         /// Gets or sets the coordinates of context menu location</summary>
-        /// <remarks>The value is null if context menu is not opened</remarks> 
+        /// <remarks>The value is null if context menu is not opened</remarks>
         public Point? TriggeringLocation
         {
             get; set;
@@ -92,7 +92,7 @@ namespace Sce.Atf.Controls.Adaptable
                 Point screenP = AdaptedControl.PointToScreen(p);
                 m_commandService.RunContextMenu(commands, screenP);
              }
-             
+
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace Sce.Atf.Controls.Adaptable
         {
         }
 
-        
+
         private readonly ICommandService m_commandService;
         private readonly IEnumerable<Lazy<IContextMenuCommandProvider>> m_providers;
     }

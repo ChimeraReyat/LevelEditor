@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.ComponentModel.Composition;
 using System.Drawing;
@@ -32,7 +32,7 @@ namespace LevelEditorCore
                 );
         }
 
-        
+
         /// <summary>
         /// Handles key-down events</summary>
         /// <param name="sender">Control that raised original event</param>
@@ -40,7 +40,7 @@ namespace LevelEditorCore
         /// <returns>true, if controller handled the event</returns>
         public override bool KeyDown(object sender, KeyEventArgs e)
         {
-            
+
             m_keyMap[e.KeyValue] = true;
 
             // W A S D for forward, strafe left, backward, strafe right, is the default
@@ -49,7 +49,7 @@ namespace LevelEditorCore
                 m_keyMap[(int)InputScheme.ActiveControlScheme.Left2])
                 dir = dir - Camera.Right;
             if (m_keyMap[(int)InputScheme.ActiveControlScheme.Right1] ||
-                m_keyMap[(int)InputScheme.ActiveControlScheme.Right2]) 
+                m_keyMap[(int)InputScheme.ActiveControlScheme.Right2])
                 dir = dir + Camera.Right;
             if (m_keyMap[(int)InputScheme.ActiveControlScheme.Forward1] ||
                 m_keyMap[(int)InputScheme.ActiveControlScheme.Forward2])

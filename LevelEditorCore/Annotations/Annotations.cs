@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ namespace LevelEditorCore
     /// Schema annotations</summary>
     public static class Annotations
     {
-       
+
         /// <summary>
         /// This annotation can be applied to any schema type derived from resourceReferenceType.
         /// To constrain type of resource that this can reference.</summary>
@@ -28,10 +28,10 @@ namespace LevelEditorCore
 
 
         /// <summary>
-        /// Gets all the annotation with given name for 
+        /// Gets all the annotation with given name for
         /// the given type all the way to the root.
         /// <remarks> If name is null or empty then get all the annotations.</remarks>
-        /// </summary>                
+        /// </summary>
         public static IEnumerable<XmlElement> GetAllAnnotation(DomNodeType type, string name)
         {
             if (type == null)
@@ -72,6 +72,6 @@ namespace LevelEditorCore
                 }
             }
             return null;
-        }            
+        }
     }
 }

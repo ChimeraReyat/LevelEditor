@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 
@@ -47,7 +47,7 @@ namespace Sce.Atf
         /// <remarks>In the implementation of 'transaction', throw InvalidTransactionException
         /// to cancel the transaction and log a warning message to the user (unless the
         /// InvalidTransactionException's ReportError is false).</remarks>
-        public static bool DoTransaction(this ITransactionContext context, 
+        public static bool DoTransaction(this ITransactionContext context,
             Action transaction, string transactionName)
         {
             // If we are already in a transaction just perform the action
@@ -57,7 +57,7 @@ namespace Sce.Atf
                 transaction();
                 return true;
             }
-            
+
             try
             {
                 if (context != null)

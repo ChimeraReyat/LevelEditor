@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel;
@@ -22,7 +22,7 @@ namespace Sce.Atf.Controls.CurveEditing
     public class CurveCanvas : Cartesian2dCanvas
     {
         #region Constructor(s)
-        
+
         /// <summary>
         /// Default constructor</summary>
         public CurveCanvas()
@@ -30,13 +30,13 @@ namespace Sce.Atf.Controls.CurveEditing
             m_currentX = new CurrentX(this);
             m_pasteOptions = new PasteOptions(this);
             OnlyEditSelectedCurves = true;
-            
+
             m_renderer = new CurveRenderer();
             m_renderer.SetCartesian2dCanvas(this);
             Dock = DockStyle.Fill;
             m_selection.Changed += m_selection_SelectionChanged;
             m_readonlySelection = new ReadOnlyCollection<IControlPoint>(m_selection);
-                                    
+
             m_cursors.Add(CursorType.Default, Cursors.Default);
             m_cursors.Add(CursorType.AddPoint, Cursors.Cross);
             m_cursors.Add(CursorType.CantDo, Cursors.No);
@@ -52,22 +52,22 @@ namespace Sce.Atf.Controls.CurveEditing
             m_contextMenu = new ContextMenuStrip();
             m_contextMenu.AutoClose = true;
             m_contextMenu.Opening += menustrip_Opening;
-            
+
             List<CommandMenuItem> menuItemList = new List<CommandMenuItem>();
             menuItemList.AddRange(new CommandMenuItem[] {null,null,null,null,null,null });
 
-            menuItemList[UndoMenuItemIndex] = new CommandMenuItem(m_contextMenu, CommandInfo.EditUndo, Undo);            
-            menuItemList[RedoMenuItemIndex] = new CommandMenuItem(m_contextMenu, CommandInfo.EditRedo, Redo);            
+            menuItemList[UndoMenuItemIndex] = new CommandMenuItem(m_contextMenu, CommandInfo.EditUndo, Undo);
+            menuItemList[RedoMenuItemIndex] = new CommandMenuItem(m_contextMenu, CommandInfo.EditRedo, Redo);
             m_contextMenu.Items.Add(new ToolStripSeparator());
-            menuItemList[CutMenuItemIndex] = new CommandMenuItem(m_contextMenu,CommandInfo.EditCut, Cut);            
+            menuItemList[CutMenuItemIndex] = new CommandMenuItem(m_contextMenu,CommandInfo.EditCut, Cut);
             menuItemList[CopyMenuItemIndex] = new CommandMenuItem(m_contextMenu, CommandInfo.EditCopy, Copy);
-            menuItemList[PasteMenuItemIndex] = new CommandMenuItem(m_contextMenu, CommandInfo.EditPaste, Paste, ShowPasteOptionsForm);            
+            menuItemList[PasteMenuItemIndex] = new CommandMenuItem(m_contextMenu, CommandInfo.EditPaste, Paste, ShowPasteOptionsForm);
             menuItemList[DeleteMenuItemIndex] = new CommandMenuItem(m_contextMenu, CommandInfo.EditDelete, Delete);
             m_commandItems = menuItemList.AsReadOnly();
             SkinService.ApplyActiveSkin(m_contextMenu);
-           
+
         }
-       
+
         /// <summary>
         /// Initialize static members</summary>
         static CurveCanvas()
@@ -112,7 +112,7 @@ namespace Sce.Atf.Controls.CurveEditing
                     new BoundPropertyDescriptor(
                         this, () => LockOrigin,
                         "Lock origin".Localize("This is the name of a command. Lock is a verb. Origin is like the origin of a graph."), null, null));
-           
+
             settingsService.RegisterSettings(this,
                    new BoundPropertyDescriptor(
                        this, () => DrawMinorTickEnabled, "Show subdivision lines".Localize(), null, null));
@@ -148,7 +148,7 @@ namespace Sce.Atf.Controls.CurveEditing
                        m_pasteOptions, () => m_pasteOptions.Connect, "Connect", null, null));
         }
         private bool m_isSettingRegistered;
-        
+
         public Color CurrentXColor
         {
             get { return m_currentX.Color; }
@@ -168,7 +168,7 @@ namespace Sce.Atf.Controls.CurveEditing
                 Invalidate();
             }
         }
-            
+
         /// <summary>
         /// Removes all the control points of the curve from the selection</summary>
         /// <param name="curve">Curve whose control points are removed</param>
@@ -198,12 +198,12 @@ namespace Sce.Atf.Controls.CurveEditing
             if (!m_historyContext.CanUndo)
                 return;
             m_historyContext.Undo();
-            UpdateCurveLimits();            
+            UpdateCurveLimits();
             Invalidate();
         }
 
         /// <summary>
-        /// Redoes last operation</summary>        
+        /// Redoes last operation</summary>
         public void Redo()
         {
             if (!m_historyContext.CanRedo)
@@ -216,7 +216,7 @@ namespace Sce.Atf.Controls.CurveEditing
         /// <summary>
         /// Cuts selected points</summary>
         public void Cut()
-        {                       
+        {
             if (m_selection.Count > 0)
             {
                 var clipboard = new IControlPoint[m_selection.Count];
@@ -236,14 +236,14 @@ namespace Sce.Atf.Controls.CurveEditing
                 ClearSelection();
                 UpdateCurveLimits();
                 Invalidate();
-                
+
             }
         }
 
         /// <summary>
         /// Copies selected points to internal clipboard</summary>
         public void Copy()
-        {                       
+        {
             if (m_selection.Count > 0)
             {
                 var clipboard = new IControlPoint[m_selection.Count];
@@ -266,11 +266,11 @@ namespace Sce.Atf.Controls.CurveEditing
         {
             if (!CanPaste) return;
             var curves = GetPasteTargetCurves();
-            
-           
+
+
             // control points in s_clipboard are already sorted along x-axis.
             var sortedPoints = s_clipboard.Select(cp => cp.Clone()).ToArray();
-            
+
 
 
             float origX = sortedPoints[0].X;
@@ -284,7 +284,7 @@ namespace Sce.Atf.Controls.CurveEditing
                     item.X -= origX;
                     item.Y -= origY;
                 });
-                
+
             }
             else
             {
@@ -300,7 +300,7 @@ namespace Sce.Atf.Controls.CurveEditing
                 var lastPt = sortedPoints[sortedPoints.Length - 1];
                 float xoffset = lastPt.X;
                 float yoffset = lastPt.Y;
-                     
+
                 int ncopies = (int)m_pasteOptions.Copies;
                 int length = ncopies * (sortedPoints.Length - 1) + 1;
                 List<IControlPoint> pointlist = new List<IControlPoint>(length);
@@ -324,7 +324,7 @@ namespace Sce.Atf.Controls.CurveEditing
 
             }
 
-            
+
 
             float gx0 = m_pasteOptions.GetPasteAtX();
             float gx1 = gx0 + sortedPoints[sortedPoints.Length - 1].X;
@@ -356,12 +356,12 @@ namespace Sce.Atf.Controls.CurveEditing
                             float xoffset = (gx1 - gx0) + CurveUtils.Epsilone;
                             for (int i = pasteIndex; i < curve.ControlPoints.Count; i++)
                                 curve.ControlPoints[i].X += xoffset;
-                            
+
                         }
                         else if (m_pasteOptions.PasteMethod == PasteOptions.PasteMethods.Replace)
                         {
                             foreach (var cpt in curve.ControlPoints)
-                            {                                
+                            {
                                 if (cpt.X >= gx0 && cpt.X <= gx1)
                                     deleteList.Add(cpt);
                             }
@@ -382,7 +382,7 @@ namespace Sce.Atf.Controls.CurveEditing
                             curve.InsertControlPoint(pasteIndex++, newCpt);
                         }
 
-                        
+
                         // remove any point outside limit.
                         foreach (var cpt in curve.ControlPoints)
                         {
@@ -416,13 +416,13 @@ namespace Sce.Atf.Controls.CurveEditing
                             var todelete = overlapSet.Except(pastePointSet);
                             todelete.ForEach(p => curve.RemoveControlPoint(p));
                         }
-                        
+
                         CurveUtils.ForceMinDistance(curve);
-                        CurveUtils.ComputeTangent(curve);  
+                        CurveUtils.ComputeTangent(curve);
                     }
                 },
-                m_commandItems[PasteMenuItemIndex].MenuItem.Text);                        
-            Invalidate();           
+                m_commandItems[PasteMenuItemIndex].MenuItem.Text);
+            Invalidate();
         }
 
         /// <summary>
@@ -443,12 +443,12 @@ namespace Sce.Atf.Controls.CurveEditing
                 }, m_commandItems[DeleteMenuItemIndex].MenuItem.Text);
                 ClearSelection();
                 UpdateCurveLimits();
-                Invalidate();                               
+                Invalidate();
             }
         }
 
         /// <summary>
-        /// Applies CurveTangentTypes to all selected tangents for all selected control points</summary>   
+        /// Applies CurveTangentTypes to all selected tangents for all selected control points</summary>
         /// <param name="selectedTan">Selected tangents</param>
         /// <param name="tanType">CurveTangentTypes type to apply to selected tangents</param>
         public void SetTangent(TangentSelection selectedTan, CurveTangentTypes tanType)
@@ -523,7 +523,7 @@ namespace Sce.Atf.Controls.CurveEditing
 
                 }, "Edit Tangent".Localize()
                 );
-            }            
+            }
             Invalidate();
         }
 
@@ -583,7 +583,7 @@ namespace Sce.Atf.Controls.CurveEditing
         /// <summary>
         /// Frames selected points so all selected points fit in the window</summary>
         public void FitSelection()
-        {            
+        {
             RectangleF bound = RectangleF.Empty;
             if (m_selection.Count == 0)
                 return;
@@ -618,7 +618,7 @@ namespace Sce.Atf.Controls.CurveEditing
                 Invalidate();
             }
         }
-      
+
         /// <summary>
         /// Frames selected control points or all visible curves if nothing is selected
         /// so that all points or curves fit in the window</summary>
@@ -643,9 +643,9 @@ namespace Sce.Atf.Controls.CurveEditing
             {
                // delay the FitAll action until it is visible.
                 m_fitAllRequest = true;
-                return;                
+                return;
             }
-            
+
             if (m_curves.Count > 0)
             {
                 m_fitAllRequest = false;
@@ -666,7 +666,7 @@ namespace Sce.Atf.Controls.CurveEditing
                     bound.Inflate(bound.Width * padding, bound.Height * padding);
                     Frame(bound);
                     Invalidate();
-                }                
+                }
             }
         }
 
@@ -711,12 +711,12 @@ namespace Sce.Atf.Controls.CurveEditing
 
         #region public and internal properties
 
-       
+
         /// <summary>
         /// Gets or sets the renderer responsible for drawing the curves and handling hit testing</summary>
         public CurveRenderer Renderer
         {
-            get { return m_renderer; }            
+            get { return m_renderer; }
         }
 
 
@@ -727,9 +727,9 @@ namespace Sce.Atf.Controls.CurveEditing
             get;
             private set;
         }
-       
+
         /// <summary>
-        /// Gets or sets whether only selected curves 
+        /// Gets or sets whether only selected curves
         /// can be edited.
         /// Setting it to true will limit the editable curves to ones that are specified
         /// see <see cref="EditableCurves"/> property</summary>
@@ -752,7 +752,7 @@ namespace Sce.Atf.Controls.CurveEditing
                 // if OnlyEditSelectedCurves is false, then
                 // this property has no function.
                 if (!OnlyEditSelectedCurves) return;
-                
+
                 if (value != null)
                     value.ForEach(index => m_editSet.Add(m_curves[index]));
 
@@ -787,7 +787,7 @@ namespace Sce.Atf.Controls.CurveEditing
 
         /// <summary>
         /// Gets or sets enabling restricted control-point translation.
-        /// If enabled, the user can only translate a control point between its 
+        /// If enabled, the user can only translate a control point between its
         /// previous and next control points.</summary>
         public bool RestrictedTranslationEnabled
         {
@@ -866,7 +866,7 @@ namespace Sce.Atf.Controls.CurveEditing
         {
             get { return m_contextMenu; }
         }
-              
+
         /// <summary>
         /// Gets or sets enabling auto snap to major tick along x axis</summary>
         public bool AutoSnapToX
@@ -892,7 +892,7 @@ namespace Sce.Atf.Controls.CurveEditing
 
 
         /// <summary>
-        /// Gets all the selected curves</summary>        
+        /// Gets all the selected curves</summary>
         public ICurve[] SelectedCurves
         {
             get { return m_selectedCurves; }
@@ -913,8 +913,8 @@ namespace Sce.Atf.Controls.CurveEditing
             }
         }
 
-        
-        
+
+
         /// <summary>
         /// Gets or sets input mode</summary>
         public InputModes InputMode
@@ -965,11 +965,11 @@ namespace Sce.Atf.Controls.CurveEditing
         /// <param name="keyData">Key to process</param>
         /// <returns>True iff dialog key processed</returns>
         protected override bool ProcessDialogKey(Keys keyData)
-        {            
+        {
             if (keyData == ( Keys.Menu | Keys.Alt ))
                 return true; // disable menu activvation via alt key.
 
-            return base.ProcessDialogKey(keyData);                            
+            return base.ProcessDialogKey(keyData);
         }
 
         /// <summary>
@@ -984,7 +984,7 @@ namespace Sce.Atf.Controls.CurveEditing
         /// True to consume this key press, so this
         /// event is not passed on to any other methods or controls.</returns>
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {            
+        {
             bool consumed = true;
 
             // extract keycode from Keys
@@ -995,7 +995,7 @@ namespace Sce.Atf.Controls.CurveEditing
             if (cmdItem != null)
             {
                 cmdItem.ClickAction();
-            }           
+            }
             else if (keyData == ShortcutKeys.Fit)
             {
                 Fit();
@@ -1023,12 +1023,12 @@ namespace Sce.Atf.Controls.CurveEditing
             else if (keyData == ShortcutKeys.Deselect)
             {
                 ClearSelection();
-            }            
+            }
             else
             {
-                consumed = false;                    
+                consumed = false;
             }
-           
+
             if (!consumed)
             {
                 consumed = base.ProcessCmdKey(ref msg, keyData);
@@ -1041,10 +1041,10 @@ namespace Sce.Atf.Controls.CurveEditing
         }
 
         /// <summary>
-        /// Performs custom actions on MouseDown events. Handles selection and picking.</summary>        
+        /// Performs custom actions on MouseDown events. Handles selection and picking.</summary>
         /// <param name="e">Mouse event args</param>
         protected override void OnMouseDown(MouseEventArgs e)
-        {            
+        {
             Parent.Focus();
             base.OnMouseDown(e);
             m_mouseDownAction = MouseDownAction.None;
@@ -1058,19 +1058,19 @@ namespace Sce.Atf.Controls.CurveEditing
             m_zoomCenterStart = new PointD(
                   (ClickPoint.X - Pan_d.X) / Zoom_d.X,
                   (ClickPoint.Y - Pan_d.Y) / Zoom_d.Y);
-            m_updateCurveLimits = false;            
+            m_updateCurveLimits = false;
             m_visibleCurveCount = m_curves.Count(c => c.Visible);
 
-            // create list of curves for picking.            
+            // create list of curves for picking.
             //m_pickableCurves = m_curves.Where(c => c.Visible
             //    && (m_visibleCurveCount == 1 || !OnlyEditSelectedCurves || m_editSet.Count == 0 || m_editSet.Contains(c))).Reverse();
-            
+
             m_pickableCurves = m_curves.Where(c => c.Visible
                 && (!OnlyEditSelectedCurves ||  m_editSet.Contains(c))).Reverse();
 
             if (m_autoSnapToX)
                 m_scalePivot.X = CurveUtils.SnapTo(m_scalePivot.X, MajorTickX);
-           
+
             if (m_autoSnapToY)
                 m_scalePivot.Y = CurveUtils.SnapTo(m_scalePivot.Y, MajorTickY);
 
@@ -1088,13 +1088,13 @@ namespace Sce.Atf.Controls.CurveEditing
             {
                 editAction = AdvancedOnMouseDown(e);
             }
-           
+
             PerformAction(editAction);
             Invalidate();
         }
 
         /// <summary>
-        /// Performs custom actions on MouseMove events. Handles moving control points and tangents.</summary>        
+        /// Performs custom actions on MouseMove events. Handles moving control points and tangents.</summary>
         /// <param name="e">Mouse event args</param>
         protected override void OnMouseMove(MouseEventArgs e)
         {
@@ -1130,7 +1130,7 @@ namespace Sce.Atf.Controls.CurveEditing
                 {
                     editAction = AdvancedOnMouseMove(e);
                 }
-               
+
                 // start transaction for move and scale
                 if (!m_transactionContext.InTransaction)
                 {
@@ -1158,7 +1158,7 @@ namespace Sce.Atf.Controls.CurveEditing
             {
                 if (m_currentX.HitTest(CurrentPoint.X))
                 {
-                    this.Cursor = m_cursors[CursorType.MoveHz];                    
+                    this.Cursor = m_cursors[CursorType.MoveHz];
                 }
                 else if (PickCurveLimits(out m_limitSide) != null)
                 {
@@ -1176,7 +1176,7 @@ namespace Sce.Atf.Controls.CurveEditing
         }
 
         /// <summary>
-        /// Performs custom actions on MouseUp events. Handles selection and applying changes.</summary>        
+        /// Performs custom actions on MouseUp events. Handles selection and applying changes.</summary>
         /// <param name="e">Mouse event args</param>
         protected override void OnMouseUp(MouseEventArgs e)
         {
@@ -1184,7 +1184,7 @@ namespace Sce.Atf.Controls.CurveEditing
             if (m_transactionContext.InTransaction)
                 m_transactionContext.End();
 
-            // action selection 
+            // action selection
             MouseEditAction editAction = MouseEditAction.None;
             if (m_inputMode == InputModes.Basic)
             {
@@ -1215,10 +1215,10 @@ namespace Sce.Atf.Controls.CurveEditing
         }
 
         /// <summary>
-        /// Performs custom actions on Paint events. Draws grid and curve.</summary>        
+        /// Performs custom actions on Paint events. Draws grid and curve.</summary>
         /// <param name="e">Paint event args</param>
         protected override void OnPaint(PaintEventArgs e)
-        {        
+        {
             DrawCartesianGrid(e.Graphics);
 
             if (m_curves.Count > 0)
@@ -1227,8 +1227,8 @@ namespace Sce.Atf.Controls.CurveEditing
                 float h = ClientSize.Height;
 
                 e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                
-                // draw axis labels for last selected and visible curve.               
+
+                // draw axis labels for last selected and visible curve.
                 for (int index = m_selection.Count - 1; index >= 0; index--)
                 {
                     ICurve curve = m_selection[index].Parent;
@@ -1240,7 +1240,7 @@ namespace Sce.Atf.Controls.CurveEditing
                 }
 
                 foreach (ICurve curve in m_curves)
-                {                
+                {
                     if (!curve.Visible)
                         continue;
                     float thickness = m_editSet.Contains(curve) ? 2.6f : 1.0f;
@@ -1271,9 +1271,9 @@ namespace Sce.Atf.Controls.CurveEditing
                     float y1 = min.Y;
                     float y2 = max.Y;
 
-                    // to avoind gdi+ overflow and drawing limit where the width or height 
-                    // is less than one pixel. 
-                    // can't use  e.Graphics.DrawRectangle(pen, rect); 
+                    // to avoind gdi+ overflow and drawing limit where the width or height
+                    // is less than one pixel.
+                    // can't use  e.Graphics.DrawRectangle(pen, rect);
 
                     // cull, clip and draw curve limit guide lines.
                     pen.Color = curve.CurveColor;
@@ -1289,7 +1289,7 @@ namespace Sce.Atf.Controls.CurveEditing
                         {
                             e.Graphics.DrawLine(pen, lx1, y2, lx2, y2);
                         }
-                        // draw bottom line 
+                        // draw bottom line
                         if (y1 > 0 && y1 < h)
                         {
                             e.Graphics.DrawLine(pen, lx1, y1, lx2, y1);
@@ -1326,17 +1326,17 @@ namespace Sce.Atf.Controls.CurveEditing
                 {
                     var insertLinePen = new Pen(m_insertLineColor);
                     var insertLineBrush = new SolidBrush(m_insertLineColor);
-                    
+
                     e.Graphics.DrawLine(insertLinePen, CurrentPoint.X, 0, CurrentPoint.X, Height);
                     IEnumerable<ICurve> curves = m_editSet.Count > 0 ? (IEnumerable<ICurve>)m_editSet : m_selectedCurves;
                     foreach (ICurve curve in curves)
                     {
                         ICurveEvaluator cv = CurveUtils.CreateCurveEvaluator(curve);
-                                                
+
                         float y = cv.Evaluate(CurrentGraphPoint.X);
                         Vec2F gpt = new Vec2F(CurrentGraphPoint.X, y);
                         Vec2F pt = GraphToClient(gpt);
-                        RectangleF ptRect = m_mouseRect;                                                    
+                        RectangleF ptRect = m_mouseRect;
                         ptRect.X = pt.X - ptRect.Width / 2;
                         ptRect.Y = pt.Y - ptRect.Height / 2;
 
@@ -1417,7 +1417,7 @@ namespace Sce.Atf.Controls.CurveEditing
 
         private PasteOptionsForm m_pasteOptionsForm;
         private Rectangle m_pasteOptionsFormBounds;
-       
+
         private void ShowPasteOptionsForm()
         {
             if (m_pasteOptionsForm != null && !m_pasteOptionsForm.IsDisposed)
@@ -1439,9 +1439,9 @@ namespace Sce.Atf.Controls.CurveEditing
                 };
 
                 m_pasteOptionsForm.FormClosed += delegate
-                {                    
+                {
                     m_pasteOptionsForm = null;
-                };               
+                };
                 m_pasteOptionsForm.Disposed += delegate
                 {
                     m_pasteOptionsForm = null;
@@ -1456,7 +1456,7 @@ namespace Sce.Atf.Controls.CurveEditing
                     m_pasteOptionsForm.Location = PointToScreen(Point.Empty);
                 }
                 var parentForm = FindForm();
-                
+
                 m_pasteOptionsForm.Show(parentForm);
             }
         }
@@ -1467,7 +1467,7 @@ namespace Sce.Atf.Controls.CurveEditing
 
             if (e.Button == MouseButtons.Left)
             {
-                m_limitHit = PickCurveLimits(out m_limitSide);                     
+                m_limitHit = PickCurveLimits(out m_limitSide);
                 m_mouseDownAction = (m_limitHit == null) ? MouseDownAction.SelectionRectangle
                     : MouseDownAction.CurveLimitResize;
                 if (m_limitSide != CurveLimitSides.None)
@@ -1592,7 +1592,7 @@ namespace Sce.Atf.Controls.CurveEditing
             {
                 if (m_moveAxis == MoveAxis.None)
                 {
-                    // compute dx and dy then choose move axis.                        
+                    // compute dx and dy then choose move axis.
                     float dx = CurrentPoint.X - ClickPoint.X;
                     float dy = CurrentPoint.Y - ClickPoint.Y;
                     m_moveAxis = (Math.Abs(dx) > Math.Abs(dy)) ? MoveAxis.X : MoveAxis.Y;
@@ -1608,7 +1608,7 @@ namespace Sce.Atf.Controls.CurveEditing
         }
         private MouseEditAction AdvancedOnMouseUp(MouseEventArgs e)
         {
-            // action selection 
+            // action selection
             MouseEditAction editAction = MouseEditAction.None;
             if (e.Button == MouseButtons.Left && m_limitHit == null)
             {
@@ -1642,7 +1642,7 @@ namespace Sce.Atf.Controls.CurveEditing
 
         private MouseEditAction BasicOnMouseDown(MouseEventArgs e)
         {
-            // action selection             
+            // action selection
             MouseEditAction editAction = MouseEditAction.None;
             bool saveSelection = false;
 
@@ -1650,7 +1650,7 @@ namespace Sce.Atf.Controls.CurveEditing
             {
                 if (Control.ModifierKeys == Keys.None && e.Button == MouseButtons.Left)
                 {
-                    m_limitHit = PickCurveLimits(out m_limitSide);                    
+                    m_limitHit = PickCurveLimits(out m_limitSide);
                     if (m_limitHit != null)
                     {
                         m_mouseDownAction = MouseDownAction.CurveLimitResize;
@@ -1679,7 +1679,7 @@ namespace Sce.Atf.Controls.CurveEditing
                             else if (pickedpt.EditorData.SelectedRegion != pickedRegion)
                             {
                                 SetSelection(points, regions);
-                            }                            
+                            }
                             m_mouseDownAction = MouseDownAction.FreeMove;
                             saveSelection = true;
                         }
@@ -1725,7 +1725,7 @@ namespace Sce.Atf.Controls.CurveEditing
         }
         private MouseEditAction BasicOnMouseMove(MouseEventArgs e)
         {
-            // action selection 
+            // action selection
             MouseEditAction editAction = MouseEditAction.None;
             if (m_mouseDownAction == MouseDownAction.SelectionRectangle)
             {
@@ -1736,7 +1736,7 @@ namespace Sce.Atf.Controls.CurveEditing
         }
         private MouseEditAction BasicOnMouseUp(MouseEventArgs e)
         {
-            // action selection 
+            // action selection
             MouseEditAction editAction = MouseEditAction.None;
             if (e.Button == MouseButtons.Left && m_limitHit == null)
             {
@@ -1775,11 +1775,11 @@ namespace Sce.Atf.Controls.CurveEditing
         private void menustrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
             bool hasSelection = m_selection.Count > 0;
-            
+
             foreach (var cmdMenu in m_commandItems)
             {
                 cmdMenu.UpdateMenuItems();
-                cmdMenu.MenuItem.Enabled = hasSelection;                
+                cmdMenu.MenuItem.Enabled = hasSelection;
             }
 
             m_commandItems[UndoMenuItemIndex].MenuItem.Enabled = m_historyContext.CanUndo;
@@ -1813,11 +1813,11 @@ namespace Sce.Atf.Controls.CurveEditing
 
         /// <summary>
         /// Performs given action.
-        /// The source of action could be mouse, keyboard, or GUI button.</summary>        
+        /// The source of action could be mouse, keyboard, or GUI button.</summary>
         private void PerformAction(MouseEditAction action)
         {
             float dx = CurrentPoint.X - ClickPoint.X;
-            float dy = CurrentPoint.Y - ClickPoint.Y;            
+            float dy = CurrentPoint.Y - ClickPoint.Y;
             List<IControlPoint> points = new List<IControlPoint>();
             List<PointSelectionRegions> regions = new List<PointSelectionRegions>();
             RectangleF pickRect = RectangleF.Empty;
@@ -1847,7 +1847,7 @@ namespace Sce.Atf.Controls.CurveEditing
                     }
                     break;
                 case MouseEditAction.Zooming:
-                    {                        
+                    {
                         float xScale = 1 + 4.0f * Math.Abs(dx / Width);
                         if (dx < 0) xScale = 1.0f / xScale;
 
@@ -1856,7 +1856,7 @@ namespace Sce.Atf.Controls.CurveEditing
 
                         Zoom_d = new PointD(ClickZoom_d.X * xScale, ClickZoom_d.Y * yScale);
                         Pan_d = new PointD((ClickPoint.X - m_zoomCenterStart.X * Zoom_d.X),
-                            (ClickPoint.Y - m_zoomCenterStart.Y * Zoom_d.Y));                       
+                            (ClickPoint.Y - m_zoomCenterStart.Y * Zoom_d.Y));
                     }
                     break;
                 case MouseEditAction.Select:
@@ -1904,7 +1904,7 @@ namespace Sce.Atf.Controls.CurveEditing
                             gdx = CurrentGraphPoint.X - ClickGraphPoint.X;
                             gdy = CurrentGraphPoint.Y - ClickGraphPoint.Y;
                         }
-                        Translate(gdx, gdy);                       
+                        Translate(gdx, gdy);
                     }
                     break;
 
@@ -1937,8 +1937,8 @@ namespace Sce.Atf.Controls.CurveEditing
                 case MouseEditAction.AddControlPoint:
                     {
                         m_updateCurveLimits = true;
-                        
-                        // collect curves 
+
+                        // collect curves
                         IEnumerable<ICurve> curves = null;
                         if (m_visibleCurveCount == 1)
                         {
@@ -1956,7 +1956,7 @@ namespace Sce.Atf.Controls.CurveEditing
                         m_transactionContext.DoTransaction(delegate
                         {
                             curves.ForEach(curve => CurveUtils.AddControlPoint(curve, pt, insert));
-                        }, transName);                                                   
+                        }, transName);
                     }
                     break;
 
@@ -1976,7 +1976,7 @@ namespace Sce.Atf.Controls.CurveEditing
                             }
                             if (emptyCurve != null)
                             {
-                                // create control point and add it the emptyCurve curve.                        
+                                // create control point and add it the emptyCurve curve.
                                 m_transactionContext.DoTransaction(delegate
                                 {
                                     CurveUtils.AddControlPoint(emptyCurve, ClickGraphPoint, false);
@@ -1985,7 +1985,7 @@ namespace Sce.Atf.Controls.CurveEditing
                                     AddToSelection(points, regions);
                                 }, "Add Control Point".Localize());
 
-                                
+
                             }
                         }
                     }
@@ -2019,7 +2019,7 @@ namespace Sce.Atf.Controls.CurveEditing
                         }
                         finally
                         {
-                            Editing = false;                            
+                            Editing = false;
                         }
                     }
                     break;
@@ -2028,7 +2028,7 @@ namespace Sce.Atf.Controls.CurveEditing
             }
         }
 
-        
+
         /// <summary>
         /// Updates limits for all curves</summary>
         public void UpdateCurveLimits()
@@ -2038,7 +2038,7 @@ namespace Sce.Atf.Controls.CurveEditing
             bool oldval = Editing;
             try
             {
-               
+
                 Editing = true;
                 foreach (ICurve curve in m_curves)
                 {
@@ -2104,7 +2104,7 @@ namespace Sce.Atf.Controls.CurveEditing
 
 
         private void ValidateCurveLimits(ICurve curve, CurveLimitSides side)
-        {            
+        {
             switch (side)
             {
                 case CurveLimitSides.Left:
@@ -2146,7 +2146,7 @@ namespace Sce.Atf.Controls.CurveEditing
         }
 
         /// <summary>
-        /// Snaps p1 to v2</summary>                
+        /// Snaps p1 to v2</summary>
         private void SnapPoint(IControlPoint p1, Vec2F v2, float threshold)
         {
             Vec2F v1 = new Vec2F(p1.X, p1.Y);
@@ -2193,7 +2193,7 @@ namespace Sce.Atf.Controls.CurveEditing
         }
 
         /// <summary>
-        /// Snaps control point along y axis to snapValue</summary>        
+        /// Snaps control point along y axis to snapValue</summary>
         private void SnapToY(IControlPoint cpt, float snapValue)
         {
             float s = CurveUtils.SnapTo(cpt.Y, snapValue);
@@ -2201,7 +2201,7 @@ namespace Sce.Atf.Controls.CurveEditing
         }
 
         /// <summary>
-        /// Snaps control point along x axis to snapvalue</summary>        
+        /// Snaps control point along x axis to snapvalue</summary>
         private void SnapToX(IControlPoint cpt, float snapValue)
         {
             ICurve curve = cpt.Parent;
@@ -2267,11 +2267,11 @@ namespace Sce.Atf.Controls.CurveEditing
                         float x = m_originalValues[i].X;
                         // xform x to pivot space.
                         x -= m_scalePivot.X;
-                        // scale x 
+                        // scale x
                         x *= xScale;
                         // xform x back to graph space.
                         x += ClickGraphPoint.X;
-                        cp.X = x;                       
+                        cp.X = x;
                     }
                 }
 
@@ -2291,7 +2291,7 @@ namespace Sce.Atf.Controls.CurveEditing
                             var cp = m_selection[i];
                             var orgCp = m_originalValues[i];
                             cp.X = orgCp.X;
-                            cp.Y = orgCp.Y;                            
+                            cp.Y = orgCp.Y;
                         }
                     }
                 }
@@ -2310,7 +2310,7 @@ namespace Sce.Atf.Controls.CurveEditing
                     CurveUtils.ForceMinDistance(curve, CurveUtils.Epsilone);
                     CurveUtils.ComputeTangent(curve);
                 }
-                
+
             }
             catch (InvalidTransactionException ex)
             {
@@ -2332,7 +2332,7 @@ namespace Sce.Atf.Controls.CurveEditing
             try
             {
                 Predicate<float> RangeFailed = (angle) => angle < MinAngle || angle > MaxAngle;
-                m_curveSet.Clear();                
+                m_curveSet.Clear();
                 // move drag points by delta
                 for (int i = 0; i < m_selection.Count; i++)
                 {
@@ -2354,7 +2354,7 @@ namespace Sce.Atf.Controls.CurveEditing
                             float prevAngle = (float)Math.Atan2(PreviousGraphPoint.Y - cp.Y, cp.X - PreviousGraphPoint.X);
                             float curAngle = (float)Math.Atan2(CurrentGraphPoint.Y - cp.Y, cp.X - CurrentGraphPoint.X);
                             float deltaAngle = prevAngle - curAngle;
-                            
+
                             newTanInAngle = curTanInAngle + deltaAngle;
                             newTanOutAngle = curTanOutAngle + (newTanInAngle - curTanInAngle);
 
@@ -2375,7 +2375,7 @@ namespace Sce.Atf.Controls.CurveEditing
                             float prevAngle = (float)Math.Atan2(PreviousGraphPoint.Y - cp.Y, PreviousGraphPoint.X - cp.X);
                             float curAngle = (float)Math.Atan2(CurrentGraphPoint.Y - cp.Y, CurrentGraphPoint.X - cp.X);
                             float deltaAngle = curAngle - prevAngle;
-                            
+
                             newTanOutAngle = curTanOutAngle + deltaAngle;
                             newTanInAngle =  curTanInAngle + (newTanOutAngle - curTanOutAngle);
                             if (RangeFailed(newTanInAngle) || RangeFailed(newTanOutAngle)) continue;
@@ -2395,7 +2395,7 @@ namespace Sce.Atf.Controls.CurveEditing
                     {
                         PointF dragPos = m_originalValues[i];
                         cp.X = dragPos.X + dx;
-                        cp.Y = dragPos.Y + dy;                        
+                        cp.Y = dragPos.Y + dy;
                     }
 
                 }
@@ -2428,7 +2428,7 @@ namespace Sce.Atf.Controls.CurveEditing
                         CurveUtils.Sort(curve);
                     }
 
-                    // snap.                    
+                    // snap.
                     foreach (IControlPoint cpt in m_selection)
                     {
                         float xval = cpt.X;
@@ -2469,11 +2469,11 @@ namespace Sce.Atf.Controls.CurveEditing
 
                     foreach (ICurve curve in m_selectedCurves)
                     {
-                        CurveUtils.ForceMinDistance(curve, CurveUtils.Epsilone);                     
+                        CurveUtils.ForceMinDistance(curve, CurveUtils.Epsilone);
                     }
                 }
                 foreach (ICurve curve in m_selectedCurves)
-                {                 
+                {
                     CurveUtils.ComputeTangent(curve);
                 }
             }
@@ -2565,7 +2565,7 @@ namespace Sce.Atf.Controls.CurveEditing
                 curves[cpt.Parent] = null;
             }
 
-            m_selectedCurves = curves.Keys.ToArray();           
+            m_selectedCurves = curves.Keys.ToArray();
             SelectionChanged(this, EventArgs.Empty);
         }
 
@@ -2575,7 +2575,7 @@ namespace Sce.Atf.Controls.CurveEditing
                 cpt.EditorData.SelectedRegion = PointSelectionRegions.None;
             m_selection.Clear();
         }
-        
+
         private void ReComputeTangents()
         {
             foreach (ICurve curve in m_selectedCurves)
@@ -2609,7 +2609,7 @@ namespace Sce.Atf.Controls.CurveEditing
         }
 
         #endregion
-      
+
         #region private fields
 
         private HashSet<ICurve> m_editSet = new HashSet<ICurve>();
@@ -2618,7 +2618,7 @@ namespace Sce.Atf.Controls.CurveEditing
         private ICurve m_limitHit;
         private CurveLimitSides m_limitSide;
         private const float SnapThreshold = 16.0f; // in pixel
-       
+
         // context strip items.
         private object m_context;
         private ITransactionContext m_transactionContext = new DefaultTransactionContext();
@@ -2631,12 +2631,12 @@ namespace Sce.Atf.Controls.CurveEditing
         private readonly int CopyMenuItemIndex = 3;
         private readonly int PasteMenuItemIndex = 4;
         private readonly int DeleteMenuItemIndex = 5;
-        private readonly ReadOnlyCollection<CommandMenuItem> m_commandItems;        
+        private readonly ReadOnlyCollection<CommandMenuItem> m_commandItems;
         private static IControlPoint[] s_clipboard = new IControlPoint[0];
-        
+
         private int m_visibleCurveCount; // number of visible curves. Cmputed on mouse down.
         private IEnumerable<ICurve> m_pickableCurves; // List of curves that can be picked. Computed on mouse down.
-            
+
         private Vec2F m_scalePivot;
         private bool m_updateCurveLimits;
         private bool m_autoPointSnap;
@@ -2665,8 +2665,8 @@ namespace Sce.Atf.Controls.CurveEditing
         private readonly CurrentX m_currentX;
         private readonly PasteOptions m_pasteOptions;
         private const float MaxAngle = 1.5706217938697f; // = 89.99 degree
-        private const float MinAngle = -1.5706217938697f; // =-89.99 degree        
-        
+        private const float MinAngle = -1.5706217938697f; // =-89.99 degree
+
         private static readonly Bitmap s_noAction;
         private static readonly Pen s_marqueePen;
         private static readonly SolidBrush s_genBrush;
@@ -2687,7 +2687,7 @@ namespace Sce.Atf.Controls.CurveEditing
 
             public Color Color { get; set; }
             public Color HoverColor { get; set; }
-          
+
             public bool IsPicked
             {
                 get;
@@ -2709,13 +2709,13 @@ namespace Sce.Atf.Controls.CurveEditing
                 get;
                 private set;
             }
-           
+
             public void Draw(Graphics g)
-            {                
+            {
                 var curves = m_canvas.GetPasteTargetCurves();
                 Visible = curves.Any();
                 if (!Visible) return;
-              
+
                 if (m_setInitialPosition)
                 {// one time, set initial position.
                     m_setInitialPosition = false;
@@ -2737,12 +2737,12 @@ namespace Sce.Atf.Controls.CurveEditing
                 s_pen.Color = IsPicked ? HoverColor : Color;
                 s_brush.Color = IsPicked ? HoverColor : Color;
                 g.DrawLine(s_pen, cPos, crect.Y, cPos, crect.Bottom);
-                            
+
                 float strValY = m_canvas.Bottom - 2f * m_canvas.ScaleTextFont.Height - GridTextMargin - 8.0f;
                 string strVal = Math.Round(Position, 4).ToString();
                 g.DrawString(strVal, m_canvas.ScaleTextFont, s_brush, new PointF(cPos + 4, strValY));
             }
-          
+
             static CurrentX()
             {
                 s_pen = new Pen(Color.Yellow);
@@ -2850,14 +2850,14 @@ namespace Sce.Atf.Controls.CurveEditing
                     var handler = ButtonClick;
                     handler(this, EventArgs.Empty);
                     return;
-                }                
+                }
                 base.OnClick(e);
             }
 
             private const int ButtonMargin = 2;
             private Rectangle GetButtonRect()
             {
-                
+
                 var buttonRect = ContentRectangle;
                 buttonRect.Height -= (2 * ButtonMargin + 1);
                 buttonRect.Width = buttonRect.Height;
@@ -2873,12 +2873,12 @@ namespace Sce.Atf.Controls.CurveEditing
                 if (BackColor != Owner.BackColor) return BackColor;
                 var proRenderer = Owner.Renderer as ToolStripProfessionalRenderer;
                 if (proRenderer != null)
-                    return proRenderer.ColorTable.ToolStripDropDownBackground;              
-                return (!ToolStripManager.VisualStylesEnabled) ? BackColor : SystemColors.Menu; 
+                    return proRenderer.ColorTable.ToolStripDropDownBackground;
+                return (!ToolStripManager.VisualStylesEnabled) ? BackColor : SystemColors.Menu;
             }
 
             protected override void OnPaint(PaintEventArgs e)
-            {                
+            {
                 if (Owner == null)
                 {
                     base.OnPaint(e);
@@ -2886,11 +2886,11 @@ namespace Sce.Atf.Controls.CurveEditing
                 }
                 base.OnPaint(e);
                 Color bkgColor = GetBkgColor();
-                m_buttonRect = GetButtonRect();                               
+                m_buttonRect = GetButtonRect();
                 Color borderColor = Enabled ? ForeColor : Color.Gray;
-               
+
                 if (!m_mouseIsOnButton && Enabled && Selected)
-                {                    
+                {
                     using (Brush b = new SolidBrush(bkgColor))
                     {
                         var fillRect = ContentRectangle;
@@ -2899,7 +2899,7 @@ namespace Sce.Atf.Controls.CurveEditing
                         fillRect.Y -= 1;
                         fillRect.Height += 2;
 
-                        e.Graphics.FillRectangle(b, fillRect);                       
+                        e.Graphics.FillRectangle(b, fillRect);
                     }
                 }
 
@@ -2918,17 +2918,17 @@ namespace Sce.Atf.Controls.CurveEditing
                     dotRect.X += 2;
                     e.Graphics.FillRectangle(b, dotRect);
                 }
-               
+
             }
 
             private bool m_mouseIsOnButton;
             protected override void OnMouseMove(MouseEventArgs mea)
             {
-                base.OnMouseMove(mea);                
+                base.OnMouseMove(mea);
                 m_mouseIsOnButton = Enabled && mea.X > m_buttonRect.X;
                 Invalidate();
             }
-            
+
             protected override void OnMouseLeave(EventArgs e)
             {
                 m_mouseIsOnButton = false;
@@ -2936,7 +2936,7 @@ namespace Sce.Atf.Controls.CurveEditing
             }
 
             protected override void OnMouseDown(MouseEventArgs e)
-            {                
+            {
                 Invalidate();
                 base.OnMouseDown(e);
             }
@@ -2957,10 +2957,10 @@ namespace Sce.Atf.Controls.CurveEditing
                     MenuItem = customItem;
                 }
                 else
-                {                                       
+                {
                     MenuItem = new ToolStripMenuItem(cmd.MenuText);
                 }
-                                
+
                 MenuItem.Click += (s, e) => ClickAction();
                 contextMenu.Items.Add(MenuItem);
             }
@@ -2979,28 +2979,28 @@ namespace Sce.Atf.Controls.CurveEditing
         /// Default shortcut keys</summary>
         internal static class ShortcutKeys
         {
-            /// <summary>Undo</summary>            
+            /// <summary>Undo</summary>
             public static Keys Undo = Keys.Control | Keys.Z;
 
-            /// <summary>Redo</summary>            
+            /// <summary>Redo</summary>
             public static Keys Redo = Keys.Control | Keys.Y;
 
-            /// <summary>Delete</summary>            
+            /// <summary>Delete</summary>
             public static Keys Delete = Keys.Delete;
 
             /// <summary>Activate move tool</summary>
             public static Keys Move = Keys.W;
 
-            /// <summary>Activate scale tool</summary>            
+            /// <summary>Activate scale tool</summary>
             public static Keys Scale = Keys.R;
 
-            /// <summary>Fit selected points</summary>            
+            /// <summary>Fit selected points</summary>
             public static Keys Fit = Keys.F;
 
-            /// <summary>Fit all the visible curves</summary>            
+            /// <summary>Fit all the visible curves</summary>
             public static Keys FitAll = Keys.A;
 
-            /// <summary>Pan to origin</summary>            
+            /// <summary>Pan to origin</summary>
             public static Keys PanToOrigin = Keys.C;
 
             /// <summary>Clear selection</summary>
@@ -3034,11 +3034,11 @@ namespace Sce.Atf.Controls.CurveEditing
                 else if (LocationMode == XLocationMode.Clipboard)
                     posX += CurveCanvas.s_clipboard.Length > 0 ? CurveCanvas.s_clipboard[0].X : 0;
 
-                return posX;                
+                return posX;
             }
 
             /// <summary>
-            /// Gets or sets whether to paste keys at target Y 
+            /// Gets or sets whether to paste keys at target Y
             /// or at the Y of the first point of the pasted curve
             /// segment.
             /// if true it will paste at the Y coordinate of the first
@@ -3062,7 +3062,7 @@ namespace Sce.Atf.Controls.CurveEditing
                 set;
             }
 
-            
+
 
             /// <summary>
             /// Gets or sets X offset</summary>
@@ -3084,7 +3084,7 @@ namespace Sce.Atf.Controls.CurveEditing
             private uint m_numCopies;
             /// <summary>
             /// Gets and sets number of time the paste operation is
-            /// performed.             
+            /// performed.
             /// </summary>
             public uint Copies
             {
@@ -3115,7 +3115,7 @@ namespace Sce.Atf.Controls.CurveEditing
             {
                 /// <summary>
                 /// Insert, shift all the keys to right
-                /// and insert the new keys starting at the specified location.                
+                /// and insert the new keys starting at the specified location.
                 /// </summary>
                 Insert,
 
@@ -3126,7 +3126,7 @@ namespace Sce.Atf.Controls.CurveEditing
 
                 /// <summary>
                 /// Paste at the specified location with out removing or modifying existing keys.
-                /// But if the new and existing keys have same value then new exiting key will be 
+                /// But if the new and existing keys have same value then new exiting key will be
                 /// replace with the new key.
                 /// </summary>
                 Merge,
@@ -3137,7 +3137,7 @@ namespace Sce.Atf.Controls.CurveEditing
             public enum XLocationMode
             {
                 /// <summary>
-                /// Paste starting at the current location indicated 
+                /// Paste starting at the current location indicated
                 /// by current x line</summary>
                 Current,
 
@@ -3152,9 +3152,9 @@ namespace Sce.Atf.Controls.CurveEditing
         }
         private class PasteOptionsForm : Form
         {
-            // paste at controls.                        
+            // paste at controls.
             private GroupBox m_pasteAtgrp;
-            private Label m_xlocLbl;            
+            private Label m_xlocLbl;
             private RadioButton m_startRdo;
             private RadioButton m_currentRdo;
             private RadioButton m_clipboardRdo;
@@ -3179,39 +3179,39 @@ namespace Sce.Atf.Controls.CurveEditing
 
 
             private CurveCanvas m_canvas;
-            
+
             public PasteOptionsForm(CurveCanvas canvas)
             {
                 m_canvas = canvas;
-                
+
                 // paste at group.
                 m_pasteAtgrp = new GroupBox();
-                
+
                 m_xlocLbl = new Label();
                 m_xlocLbl.AutoSize = true;
                 m_xlocLbl.Text = "X Location".Localize();
-                
+
                 // radio buttons.
                 m_startRdo = new RadioButton();
                 m_startRdo.AutoSize = true;
                 m_startRdo.Text = "Start".Localize();
                 m_startRdo.Checked = true;
-               
-                
+
+
                 m_currentRdo = new RadioButton();
                 m_currentRdo.AutoSize = true;
                 m_currentRdo.Text = "Current".Localize();
-                
+
                 m_clipboardRdo = new RadioButton();
                 m_clipboardRdo.Text = "Clipboard".Localize();
                 m_clipboardRdo.AutoSize = true;
-                                
+
                 // input fields.
-                m_startField = new InputField<float>("Start".Localize(), 150);                
-                m_xOffsetField = new InputField<float>("X Offset".Localize(), 150);                
-                m_yOffsetField = new InputField<float>("Y Offset".Localize(), 150);                
+                m_startField = new InputField<float>("Start".Localize(), 150);
+                m_xOffsetField = new InputField<float>("X Offset".Localize(), 150);
+                m_yOffsetField = new InputField<float>("Y Offset".Localize(), 150);
                 m_copiesField = new InputField<uint>("Copies".Localize(), 100);
-                
+
                 m_pasteAtgrp.Controls.AddRange(new Control[] {
                     m_xlocLbl,
                     m_startRdo,
@@ -3223,14 +3223,14 @@ namespace Sce.Atf.Controls.CurveEditing
                     m_copiesField,
                 });
 
-                
+
                 // paste method group.
                 m_pasteMethodGrp = new GroupBox();
-                
+
                 m_pasteMethodLbl = new Label();
                 m_pasteMethodLbl.Text = "Paste Method".Localize();
                 m_pasteMethodLbl.AutoSize = true;
-                
+
                 m_insertRdo = new RadioButton();
                 m_insertRdo.Text = "Insert".Localize();
                 m_insertRdo.AutoSize = true;
@@ -3239,17 +3239,17 @@ namespace Sce.Atf.Controls.CurveEditing
                 m_replaceRdo = new RadioButton();
                 m_replaceRdo.Text = "Replace".Localize();
                 m_replaceRdo.AutoSize = true;
-                
+
 
                 m_mergeRdo = new RadioButton();
                 m_mergeRdo.Text = "Merge".Localize();
                 m_mergeRdo.AutoSize = true;
-                
+
 
                 m_connectChk = new CheckBox();
                 m_connectChk.Text = "Connect".Localize();
                 m_connectChk.AutoSize = true;
-                
+
                 m_pasteMethodGrp.Controls.AddRange(new Control[]
                 {
                     m_pasteMethodLbl,
@@ -3262,52 +3262,52 @@ namespace Sce.Atf.Controls.CurveEditing
 
                 // buttons panel.
                 m_buttonsPanel = new Panel();
-                
+
                 m_okBtn = new Button
                 {
-                    Text = "Ok".Localize(),                                        
+                    Text = "Ok".Localize(),
                 };
                 m_okBtn.Click += (s, e) => ApplyAndClose();
-              
-                
+
+
                 m_applyBtn = new Button
                 {
                     Text = "Apply".Localize(),
-                    
+
                 };
                 m_applyBtn.Click += (s, e) => Apply();
 
 
                 m_closeBtn = new Button
                 {
-                    Text = "Close".Localize(),                    
+                    Text = "Close".Localize(),
                 };
                 m_closeBtn.Click += (s, e) => Close();
 
                 m_buttonsPanel.Controls.AddRange(new[]
                     {
-                        m_okBtn,                        
+                        m_okBtn,
                         m_applyBtn,
                         m_closeBtn,
                     });
-                                
+
                 SuspendLayout();
 
                 Controls.AddRange(new[]
                 {
                     m_buttonsPanel,
                     m_pasteMethodGrp,
-                    m_pasteAtgrp,                                       
+                    m_pasteAtgrp,
                 });
-                                
-                AutoScaleMode = AutoScaleMode.None;                                              
-                FormBorderStyle = FormBorderStyle.SizableToolWindow;                
+
+                AutoScaleMode = AutoScaleMode.None;
+                FormBorderStyle = FormBorderStyle.SizableToolWindow;
                 Name = "PasteOptionsForm";
                 ShowIcon = false;
                 ShowInTaskbar = false;
                 StartPosition = FormStartPosition.Manual;
                 Text = "Curve Editor - Paste options".Localize();
-                
+
                 SizeChanged += (s, e) => DoLayout();
                 m_startField.SizeChanged += (s, e) => DoLayout();
                 ClientSize = new Size(530, 410);
@@ -3320,7 +3320,7 @@ namespace Sce.Atf.Controls.CurveEditing
 
                 m_startRdo.TabStop = true;
                 m_startRdo.TabIndex = 0;
-                
+
 
                 m_currentRdo.TabStop = true;
                 m_currentRdo.TabIndex = 1;
@@ -3342,7 +3342,7 @@ namespace Sce.Atf.Controls.CurveEditing
 
                 m_replaceRdo.TabStop = true;
                 m_replaceRdo.TabIndex = 1;
-                    
+
                 m_mergeRdo.TabStop = true;
                 m_mergeRdo.TabIndex = 2;
 
@@ -3360,11 +3360,11 @@ namespace Sce.Atf.Controls.CurveEditing
                         DoLayout();
                         ModelToView();
                     };
-                    
-                
+
+
                 Deactivate += (s, e) => ViewToModel();
-                
-                
+
+
                 m_startRdo.CheckedChanged += RdoCheckedChanged;
                 m_currentRdo.CheckedChanged += RdoCheckedChanged;
                 m_clipboardRdo.CheckedChanged += RdoCheckedChanged;
@@ -3379,8 +3379,8 @@ namespace Sce.Atf.Controls.CurveEditing
                 m_connectChk.CheckedChanged += (s, e) => ViewToModel();
             }
 
-            
-                       
+
+
             private void ApplyAndClose()
             {
                 Apply();
@@ -3389,7 +3389,7 @@ namespace Sce.Atf.Controls.CurveEditing
             private void Apply()
             {
                 ViewToModel();
-                m_canvas.Paste();                
+                m_canvas.Paste();
             }
 
             private bool m_updatingView;
@@ -3427,9 +3427,9 @@ namespace Sce.Atf.Controls.CurveEditing
                 var rdo = sender as RadioButton;
                 rdo.TabStop = true;
 
-                if (m_updatingView) return;                
+                if (m_updatingView) return;
                 if(rdo == m_startRdo) m_startField.Enabled = m_startRdo.Checked;
-                if (rdo.Checked) ViewToModel();                    
+                if (rdo.Checked) ViewToModel();
             }
 
             private void ViewToModel()
@@ -3438,7 +3438,7 @@ namespace Sce.Atf.Controls.CurveEditing
 
                 var po = m_canvas.m_pasteOptions;
                 if (m_startRdo.Checked) po.LocationMode = PasteOptions.XLocationMode.Start;
-                else if (m_currentRdo.Checked) po.LocationMode = PasteOptions.XLocationMode.Current;                
+                else if (m_currentRdo.Checked) po.LocationMode = PasteOptions.XLocationMode.Current;
                 else if (m_clipboardRdo.Checked) po.LocationMode = PasteOptions.XLocationMode.Clipboard;
 
                 po.Start = m_startField.Value;
@@ -3459,7 +3459,7 @@ namespace Sce.Atf.Controls.CurveEditing
             }
 
             private void DoLayout()
-            {                
+            {
                 int outerMargin = 4;
                 int grpLeftRightMargin = 16;
                 int leftPadding = 30;
@@ -3478,7 +3478,7 @@ namespace Sce.Atf.Controls.CurveEditing
                 m_xlocLbl.Location = new Point(leftPadding, pad + (m_startRdo.Height - m_xlocLbl.Height) / 2);
 
                 m_startRdo.Location = new Point(rdoX, pad);
-                
+
                 rdoX += (m_startRdo.Width + hSpacing);
                 m_currentRdo.Location = new Point(rdoX, pad);
 
@@ -3486,7 +3486,7 @@ namespace Sce.Atf.Controls.CurveEditing
                 m_clipboardRdo.Location = new Point(rdoX, pad);
 
                 int fieldY = m_clipboardRdo.Bottom + vSpacingGrp;
-                
+
 
                 m_startField.Location = new Point(leftPadding + (txtLeft - m_startField.TextBoxLocation.X), fieldY);
                 fieldY += (m_startField.Height + vSpacingGrp);
@@ -3496,7 +3496,7 @@ namespace Sce.Atf.Controls.CurveEditing
 
                 m_yOffsetField.Location = new Point(leftPadding + (txtLeft - m_yOffsetField.TextBoxLocation.X), fieldY);
                 fieldY += (m_startField.Height + vSpacingGrp);
-                
+
                 m_copiesField.Location = new Point(leftPadding + (txtLeft - m_copiesField.TextBoxLocation.X), fieldY);
 
                 m_pasteAtgrp.Width = Math.Max(m_clipboardRdo.Right, cw); ;
@@ -3513,7 +3513,7 @@ namespace Sce.Atf.Controls.CurveEditing
 
 
                 m_buttonsPanel.Height = m_applyBtn.Height + vSpacing + 1;
-                m_buttonsPanel.Width = cw;               
+                m_buttonsPanel.Width = cw;
                 m_buttonsPanel.Location = new Point(grpLeftRightMargin, ClientSize.Height - m_buttonsPanel.Height);
 
                 int closeBtnW = TextRenderer.MeasureText(m_closeBtn.Text, m_closeBtn.Font).Width;
@@ -3521,11 +3521,11 @@ namespace Sce.Atf.Controls.CurveEditing
                 int okBtnW = TextRenderer.MeasureText(m_okBtn.Text, m_okBtn.Font).Width;
                 int btnW = Math.Max(closeBtnW, applyBtnW);
                 btnW = Math.Max(btnW, okBtnW) * 2;
-                
+
                 m_closeBtn.Width = btnW;
                 m_applyBtn.Width = btnW;
                 m_okBtn.Width = btnW;
-                              
+
                 m_closeBtn.Location = new Point(m_buttonsPanel.ClientSize.Width - m_closeBtn.Width , 1);
                 m_applyBtn.Location = new Point(m_closeBtn.Left - m_closeBtn.Width - hSpacing, 1);
                 m_okBtn.Location = new Point(m_applyBtn.Left - m_okBtn.Width - hSpacing, 1);
@@ -3540,17 +3540,17 @@ namespace Sce.Atf.Controls.CurveEditing
                 private readonly NumberTextBox<T> m_txtBox;
                 private readonly Label m_label;
                 private int m_txtWidth;
-                
+
                 public InputField(string label, int length)
                 {
                     m_txtWidth = length;
                     if (m_txtWidth < 20) m_txtWidth = 20;
 
-                    
+
                     m_label = new Label();
                     m_label.AutoSize = true;
                     m_label.Location = new Point(1, 1);
-                    m_label.Name = "m_label";                  
+                    m_label.Name = "m_label";
                     m_label.Text = label;
 
 
@@ -3571,7 +3571,7 @@ namespace Sce.Atf.Controls.CurveEditing
                         }
                     };
 
-                                        
+
                     Controls.Add(m_label);
                     Controls.Add(m_txtBox);
 
@@ -3592,14 +3592,14 @@ namespace Sce.Atf.Controls.CurveEditing
                         h(this, EventArgs.Empty);
                     }
                 }
-            
+
                 //private PropertyInfo m_boundProperty;
                 //private object m_source;
                 //public void SetBinding(object source, Expression<Func<T>> expr)
                 //{
                 //    m_boundProperty = null;
-                //    m_source = source;                    
-                //    if (source == null) return;                                     
+                //    m_source = source;
+                //    if (source == null) return;
                 //    var memexpr = expr.Body as MemberExpression;
                 //    PropertyInfo propInfo = memexpr != null ? memexpr.Member as PropertyInfo : null;
                 //    if (propInfo == null) throw new ArgumentException("property not found");
@@ -3617,17 +3617,17 @@ namespace Sce.Atf.Controls.CurveEditing
                     get { return m_txtBox.Value; }
                     set { m_txtBox.Value = value; }
                 }
-               
+
                 private void DoLayout()
                 {
                     Height = Math.Max(m_label.Height, m_txtBox.Height);
-                    Width = m_label.Width + m_txtBox.Width + 3;                                                               
+                    Width = m_label.Width + m_txtBox.Width + 3;
                     m_label.Location = new Point(1, (Height - m_label.Height) / 2);
                     m_txtBox.Location = new Point(m_label.Bounds.Right, (Height - m_txtBox.Height) / 2);
                 }
             }
             /// <summary>
-            /// Numeric text box</summary>    
+            /// Numeric text box</summary>
             class NumberTextBox<T> : TextBox where T : struct, IComparable, IFormattable, IConvertible, IComparable<T>, IEquatable<T>
             {
                 /// <summary>
@@ -3738,7 +3738,7 @@ namespace Sce.Atf.Controls.CurveEditing
 
                 #region mouse handling
                 private bool m_selectAll;
-                
+
                 protected override void OnEnter(EventArgs e)
                 {
                     base.OnEnter(e);
@@ -3748,13 +3748,13 @@ namespace Sce.Atf.Controls.CurveEditing
                         SelectAll();
                     }
                 }
-                
+
                 protected override void OnLeave(EventArgs e)
                 {
                     base.OnLeave(e);
                     m_selectAll = false;
                 }
-                
+
                 protected override void OnMouseUp(MouseEventArgs mevent)
                 {
                     base.OnMouseUp(mevent);
@@ -3765,7 +3765,7 @@ namespace Sce.Atf.Controls.CurveEditing
                         Focus();
                     }
 
-                }                
+                }
                 protected override void OnMouseDown(MouseEventArgs e)
                 {
                     if (e.Button == MouseButtons.Left &&
@@ -3872,7 +3872,7 @@ namespace Sce.Atf.Controls.CurveEditing
         #endregion
 
         #region  private enums
-        
+
         /// <summary>Mouse editing action enums</summary>
         private enum MouseEditAction
         {
@@ -3894,16 +3894,16 @@ namespace Sce.Atf.Controls.CurveEditing
             /// <summary>Remove picked control points from selection</summary>
             RemoveFromSelection,
 
-            /// <summary>Toggle picked control point from/to selection</summary>            
+            /// <summary>Toggle picked control point from/to selection</summary>
             ToggleSelection,
 
-            /// <summary>Drag selected control control points and/or tangents along x axis</summary>           
+            /// <summary>Drag selected control control points and/or tangents along x axis</summary>
             MoveSelectionAlongX,
 
-            /// <summary>Drag selected control control points and/or tangents along y axis</summary>           
+            /// <summary>Drag selected control control points and/or tangents along y axis</summary>
             MoveSelectionAlongY,
 
-            /// <summary>Drag selected control control points and/or tangents</summary>           
+            /// <summary>Drag selected control control points and/or tangents</summary>
             MoveSelection,
 
             /// <summary>Add control point to the selected curves</summary>
@@ -3919,13 +3919,13 @@ namespace Sce.Atf.Controls.CurveEditing
             /// <summary>Insert control point into the selected curves</summary>
             InsertPoint,
 
-            /// <summary>Scale selected points around pivot</summary>            
+            /// <summary>Scale selected points around pivot</summary>
             PivotScale,
 
             /// <summary>Scale selected points along x axis</summary>
             PivotScaleAlongX,
 
-            /// <summary>Scale selected point along y axis</summary>            
+            /// <summary>Scale selected point along y axis</summary>
             PivotScaleAlongY,
 
             /// <summary>Resize curve limit</summary>
@@ -3967,7 +3967,7 @@ namespace Sce.Atf.Controls.CurveEditing
             ConstrainedMove,
             FreeScale,
             ConstrainedScale,
-            CurveLimitResize,            
+            CurveLimitResize,
             PasteAtMove
         }
 
@@ -3987,7 +3987,7 @@ namespace Sce.Atf.Controls.CurveEditing
         #endregion
     }
 
-    
+
     /// <summary>
     /// Edit modes</summary>
     public enum EditModes
@@ -4009,7 +4009,7 @@ namespace Sce.Atf.Controls.CurveEditing
     }
 
     /// <summary>
-    /// Select tangent. This enum is used by the SetTangent() method.</summary>    
+    /// Select tangent. This enum is used by the SetTangent() method.</summary>
     public enum TangentSelection
     {
         /// <summary>None</summary>
@@ -4038,5 +4038,5 @@ namespace Sce.Atf.Controls.CurveEditing
         /// <summary>
         /// Advanced mode, similar to Maya graph editor</summary>
         Advanced,
-    }    
+    }
 }

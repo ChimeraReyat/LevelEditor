@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -23,16 +23,16 @@ namespace LevelEditorCore
         IEnumerable<IGameDocument> Documents { get; }
 
         /// <summary>
-        /// Finds document by uri</summary>        
+        /// Finds document by uri</summary>
         IGameDocument FindDocument(Uri ur);
-        
+
 
         /// <summary>
         /// Finds object of the of type T in all documents.</summary>
         /// <typeparam name="T">The type to search for</typeparam>
         /// <returns>Enumerable of objects of type T</returns>
         IEnumerable<T> FindAll<T>() where T : class;
-        
+
         /// <summary>
         /// Checks if any document is dirty.</summary>
         bool AnyDocumentDirty { get; }

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel.Composition;
@@ -29,9 +29,9 @@ namespace LevelEditorCore
                    "Maya style camera".Localize(),
                    Sce.Atf.Input.Keys.None,
                    Resources.MayaImage,
-                   CommandVisibility.Menu);            
+                   CommandVisibility.Menu);
         }
-        
+
         /// <summary>
         /// Handles mouse-down events</summary>
         /// <param name="sender">Control that raised original event</param>
@@ -50,7 +50,7 @@ namespace LevelEditorCore
             return base.MouseDown(sender, e);
         }
 
-     
+
         /// <summary>
         /// Handles mouse-move events</summary>
         /// <param name="sender">Control that raised original event</param>
@@ -149,13 +149,13 @@ namespace LevelEditorCore
                 return true;
 
 
-            
+
             // disable accelerated vertical scrolling.
             int eDelta = e.Delta > 0 ? 120 : -120;
 
             // on a Logitech mouse, scrolling back by one "notch" made e.Delta be -120.
             float delta = -eDelta * CalculateZoomScale() * 0.002f;
-            
+
             // account for the fact that zooming in starts with a larger look-at distance
             if (eDelta > 0)
             {
@@ -221,7 +221,7 @@ namespace LevelEditorCore
 
             if (camera.ViewType == ViewTypes.Perspective)
             {
-                
+
                 // override the camera's frame of reference
                 float sinPhi = (float)Math.Sin(m_elevation);
                 float cosPhi = (float)Math.Cos(m_elevation);
@@ -245,7 +245,7 @@ namespace LevelEditorCore
 
             base.ControllerToCamera(camera);
         }
-       
+
 
         /// <summary>
         /// Calculates an appropriate zoom scale factor based on distance from the look-at point.
@@ -267,5 +267,5 @@ namespace LevelEditorCore
         private Point m_lastMousePoint;
         private bool m_dragging;
     }
-    
+
 }

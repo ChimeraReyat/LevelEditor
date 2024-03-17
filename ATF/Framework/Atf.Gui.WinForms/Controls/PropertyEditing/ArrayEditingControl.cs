@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -56,8 +56,8 @@ namespace Sce.Atf.Controls.PropertyEditing
 
             base.Dispose(disposing);
         }
-        
-       
+
+
         /// <summary>
         /// Processes a dialog key</summary>
         /// <param name="keyData">One of the System.Windows.Forms.Keys values that represents the key to process</param>
@@ -80,17 +80,17 @@ namespace Sce.Atf.Controls.PropertyEditing
                 if (index < Controls.Count - 1)
                 {
                     Controls[index + 1].Select();
-                    return true;                   
+                    return true;
                 }
-            }            
+            }
             else if (keyData == (Keys.Tab | Keys.Shift))
             {
                 if (index > 1)
                 {
-                    Controls[index - 1].Select();                    
+                    Controls[index - 1].Select();
                     return true;
                 }
-            }           
+            }
             return base.ProcessDialogKey(keyData);
         }
 
@@ -101,18 +101,18 @@ namespace Sce.Atf.Controls.PropertyEditing
         void InitToolStrip()
         {
             m_toolStrip.TabStop = false;
-            
+
             // add button
             m_addButton = new ToolStripButton
             {
                 Text = "Add".Localize(),
                 Image = s_addImage,
                 ToolTipText = "Add array element".Localize()
-                
-            };            
+
+            };
             m_addButton.Click += addButton_Click;
             m_toolStrip.Items.Add(m_addButton);
-            
+
             // delete button
             m_deleteButton = new ToolStripButton
             {
@@ -131,7 +131,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                 Image = s_moveUpImage,
                 ToolTipText = "Move array element up"
             };
-            
+
             m_moveDownButton = new ToolStripButton
             {
                 Text = "Down".Localize("this is the name of a button that causes the selected item to be moved down in a list"),
@@ -343,7 +343,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                     m_deleteButton.ToolTipText = "Delete selected array element".Localize();
             }
         }
-        
+
         private void DeleteSelectedItems()
         {
             // Delete selected items
@@ -412,16 +412,16 @@ namespace Sce.Atf.Controls.PropertyEditing
         void DomNode_AttributeChanged(object sender, AttributeEventArgs e)
         {
             var adapter = m_context.LastSelectedObject.As<DomNodeAdapter>();
-            if (adapter != null && 
-                e.DomNode == adapter.DomNode && 
+            if (adapter != null &&
+                e.DomNode == adapter.DomNode &&
                 m_context.Descriptor.Is<AttributePropertyDescriptor>() &&
                 e.AttributeInfo == m_context.Descriptor.As<AttributePropertyDescriptor>().AttributeInfo)
                     OnItemChanged(e.DomNode, e.NewValue);
         }
         #endregion
-        
+
         #region ItemControl Events and Selection
-        
+
 
         /// <summary>
         /// Performs custom actions on ItemControl ValueChanged events</summary>
@@ -450,14 +450,14 @@ namespace Sce.Atf.Controls.PropertyEditing
         }
 
         private void SubscribeItemEvents(ItemControl itemControl)
-        {        
+        {
             itemControl.ValueChanged += itemControl_ValueChanged;
         }
 
         private void UnsubscribeItemEvents(ItemControl itemControl)
         {
-           
-            itemControl.ValueChanged -= itemControl_ValueChanged;            
+
+            itemControl.ValueChanged -= itemControl_ValueChanged;
         }
 
         /// <summary>
@@ -472,9 +472,9 @@ namespace Sce.Atf.Controls.PropertyEditing
 
             if (Height != desiredHieght)
             {
-                Height = desiredHieght;                
+                Height = desiredHieght;
             }
-            
+
             int top = 0;
             foreach (Control c in Controls)
             {
@@ -483,11 +483,11 @@ namespace Sce.Atf.Controls.PropertyEditing
                 top += c.Height;
 
             }
-            
+
             base.OnSizeChanged(e);
 
         }
-        
+
         private void SelectItemControl(ItemControl selectedControl, bool useModifierKeys = false)
         {
             bool shiftKeyDown = useModifierKeys && (ModifierKeys & Keys.Shift) != 0;
@@ -541,7 +541,7 @@ namespace Sce.Atf.Controls.PropertyEditing
             {
                 m_firstSelectedIndex = index;
                 foreach (ItemControl c in m_itemControls.Values)
-                {                    
+                {
                     c.Selected = (c.Index == index);
                 }
             }
@@ -595,8 +595,8 @@ namespace Sce.Atf.Controls.PropertyEditing
 
 
                 // Add controls for added items
-                // Currently only adding at the end is supported. If we ever want to support 
-                // inserting in the middle, then we'd probably want to have this step before 
+                // Currently only adding at the end is supported. If we ever want to support
+                // inserting in the middle, then we'd probably want to have this step before
                 // the index-reordering one.
                 int top = m_toolStrip.Height;
                 var controlsToAdd = new List<ItemControl>();
@@ -619,14 +619,14 @@ namespace Sce.Atf.Controls.PropertyEditing
                         Font = defaultFont
                     };
 
-                    top += itemControl.Height;                    
+                    top += itemControl.Height;
                     m_itemControls.Add(id, itemControl);
                     controlsToAdd.Add(itemControl);
                     SubscribeItemEvents(itemControl);
                     id++;
                 }
                 Controls.AddRange(controlsToAdd.ToArray());
-                              
+
                 Height = top; // update height of main collection control
 
                 UpdateAddButton();
@@ -677,9 +677,9 @@ namespace Sce.Atf.Controls.PropertyEditing
         {
             public ItemControl(int index, object item, int indexColumnWidth)
             {
-                               
+
                 m_index = index;
-                              
+
                 m_editControl = new NumericTextBox(item.GetType())
                 {
                     Dock = DockStyle.Fill,
@@ -687,8 +687,8 @@ namespace Sce.Atf.Controls.PropertyEditing
                 };
 
                 m_editControl.Width = Width - indexColumnWidth;
-              
-                
+
+
                 m_editControl.Value = item;
                 m_editControl.Invalidated += editControl_Invalidated;
                 m_editControl.ValueEdited += m_editControl_ValueChanged;
@@ -719,12 +719,12 @@ namespace Sce.Atf.Controls.PropertyEditing
                 GotFocus += (sender, e) => m_editControl.Focus();
                 m_editControl.GotFocus += (sender, e) => UpdateSelection();
             }
-            
+
             private bool m_useModifierKeys;
             private void UpdateSelection()
             {
                 ArrayEditingControl p = (ArrayEditingControl)Parent;
-                p.SelectItemControl(this, m_useModifierKeys);             
+                p.SelectItemControl(this, m_useModifierKeys);
             }
             void m_editControl_ValueChanged(object sender, EventArgs e)
             {
@@ -738,7 +738,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                 Height = m_editControl.Height;
             }
 
-           
+
             // Forward the refresh call to the contained edit control
             public override void Refresh()
             {
@@ -766,7 +766,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                     }
                 }
             }
-           
+
             public event EventHandler ValueChanged;
 
             void selectButton_MouseDown(object sender, EventArgs e)
@@ -783,7 +783,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                 {
                     m_useModifierKeys = false;
                 }
-                
+
             }
 
             public object Value
@@ -799,7 +799,7 @@ namespace Sce.Atf.Controls.PropertyEditing
             {
                 get { return m_selected; }
                 set
-                {                  
+                {
                     m_selected = value;
                     m_selectButton.ForeColor = value ? SystemColors.HighlightText : ForeColor;
                     m_selectButton.BackColor = value ? SystemColors.Highlight : UnselectedColor;
@@ -819,7 +819,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                     return Index % 2 == 0 ? BackColor : alternate;
                 }
             }
-                       
+
             private int m_index;
             private bool m_selected;
             private Label m_selectButton;

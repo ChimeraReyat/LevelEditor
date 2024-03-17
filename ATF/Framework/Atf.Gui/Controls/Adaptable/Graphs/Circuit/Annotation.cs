@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -33,7 +33,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// <summary>
         /// Gets annotation foreground color attribute</summary>
         protected abstract AttributeInfo ForeColorAttribute { get; }
- 
+
         /// <summary>
         /// Gets or sets the comment text</summary>
         public string Text
@@ -93,11 +93,11 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 
         /// <summary>
         /// Gets and sets the background color of the annotation</summary>
-        public Color BackColor 
+        public Color BackColor
         {
             get
             {
-                 return BackColorAttribute == null ? SystemColors.Info : 
+                 return BackColorAttribute == null ? SystemColors.Info :
                     Color.FromArgb((int)DomNode.GetAttribute(BackColorAttribute));
             }
             set { DomNode.SetAttribute(BackColorAttribute, value.ToArgb()); }
@@ -116,7 +116,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         }
 
         /// <summary>
-        /// Sets the size (as a rectangle) of the annotation's text, 
+        /// Sets the size (as a rectangle) of the annotation's text,
         /// as measured in the current graphics context</summary>
         /// <param name="size">Text size</param>
         public void SetTextSize(Size size)

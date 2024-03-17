@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -6,11 +6,11 @@ using System.Collections.Generic;
 namespace RenderingInterop
 {
     /// <summary>
-    /// Names of the annotation elements and attributes used 
-    /// for LevelEditor and GameEngine integration.    
+    /// Names of the annotation elements and attributes used
+    /// for LevelEditor and GameEngine integration.
     /// </summary>
     public static class NativeAnnotations
-    {                
+    {
         public const string NativeType = "LeGe.NativeType";
         public const string NativeName = "nativeName";
         public const string Name = "name";
@@ -22,13 +22,13 @@ namespace RenderingInterop
 
 
     /// <summary>
-    /// Generate CRC32 for input string.    
+    /// Generate CRC32 for input string.
     /// </summary>
     public class Crc32
     {
         /// <summary>
         /// converts input string to lower case then generate crc32.
-        /// </summary>        
+        /// </summary>
         public static uint GetHash(string s)
         {
             if (string.IsNullOrEmpty(s))
@@ -43,7 +43,7 @@ namespace RenderingInterop
                 hash = (hash << 8) ^ g_fgCrcTable32[((hash >> 24) ^ b) & 0xff];
             }
             if (s_hashes.Add(hash) == false)
-                throw new Exception(string.Format("Hash collision detected for '{0}' please use different name", s));            
+                throw new Exception(string.Format("Hash collision detected for '{0}' please use different name", s));
 
             return hash;
         }

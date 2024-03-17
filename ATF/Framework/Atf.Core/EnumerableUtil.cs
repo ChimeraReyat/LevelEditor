@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace Sce.Atf
     public static class EnumerableUtil
     {
         /// <summary>
-        /// Execute an action for each item and a sequence, passing in the 
+        /// Execute an action for each item and a sequence, passing in the
         /// index of that item to the action procedure</summary>
         /// <typeparam name="T">The type of the sequence</typeparam>
         /// <param name="that">The sequence</param>

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -43,7 +43,7 @@ namespace Sce.Atf.Applications
 
             TreeControl.ShowRoot = false;
             TreeControl.AllowDrop = true;
-            TreeControl.SelectionMode = SelectionMode.One;            
+            TreeControl.SelectionMode = SelectionMode.One;
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace Sce.Atf.Applications
         private void contextRegistry_ActiveContextChanged(object sender, EventArgs e)
         {
             PrototypeContext = m_contextRegistry.GetMostRecentContext<IPrototypingContext>();
-            TreeControl.Text = (PrototypeContext != null) ? 
+            TreeControl.Text = (PrototypeContext != null) ?
                 "Copy items from the document and paste them here to create prototypes that can be dragged and dropped onto a canvas.".Localize()
                 : null;
         }

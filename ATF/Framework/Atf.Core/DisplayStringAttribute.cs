@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 
@@ -15,7 +15,7 @@ namespace Sce.Atf
         public DisplayStringAttribute()
         {
         }
-        
+
         /// <summary>
         /// Constructs a DisplayStringAttribute and initializes it to the input string</summary>
         /// <param name="v">The display string</param>
@@ -23,7 +23,7 @@ namespace Sce.Atf
         {
             m_value = v;
         }
-        
+
         /// <summary>
         /// Gets the display string</summary>
         public string Value

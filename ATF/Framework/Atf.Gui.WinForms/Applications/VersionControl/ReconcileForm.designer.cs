@@ -1,4 +1,4 @@
-﻿namespace Sce.Atf.Applications
+namespace Sce.Atf.Applications
 {
     /// <summary>
     /// Source control reconcile form</summary>
@@ -35,48 +35,48 @@
             this.reconcileBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            // 
+            //
             // localModifiedListBox
-            // 
+            //
             resources.ApplyResources(this.localModifiedListBox, "localModifiedListBox");
             this.localModifiedListBox.CheckOnClick = true;
             this.localModifiedListBox.FormattingEnabled = true;
             this.localModifiedListBox.Name = "localModifiedListBox";
-            // 
+            //
             // label2
-            // 
+            //
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            // 
+            //
             // localfilesNotInDepotListBox
-            // 
+            //
             resources.ApplyResources(this.localfilesNotInDepotListBox, "localfilesNotInDepotListBox");
             this.localfilesNotInDepotListBox.FormattingEnabled = true;
             this.localfilesNotInDepotListBox.Name = "localfilesNotInDepotListBox";
-            // 
+            //
             // reconcileBtn
-            // 
+            //
             this.reconcileBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
             resources.ApplyResources(this.reconcileBtn, "reconcileBtn");
             this.reconcileBtn.Name = "reconcileBtn";
             this.reconcileBtn.UseVisualStyleBackColor = true;
             this.reconcileBtn.Click += new System.EventHandler(this.reconcileBtn_Click);
-            // 
+            //
             // cancelBtn
-            // 
+            //
             this.cancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.cancelBtn, "cancelBtn");
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
-            // 
+            //
             // ReconcileForm
-            // 
+            //
             this.AcceptButton = this.reconcileBtn;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

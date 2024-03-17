@@ -1,4 +1,4 @@
-﻿//Sony Computer Entertainment Confidential
+//Sony Computer Entertainment Confidential
 
 using System;
 using System.Collections.Generic;
@@ -145,13 +145,13 @@ namespace DomGen
                 WriteLine(sb, "    assert((data && size > 0) || (!data && size == 0));");
                 WriteLine(sb, "    {0}* instance = reinterpret_cast<{0}*>(instanceId);", classInfo.NativeName);
                 switch (info.NativeType)
-                {                    
+                {
                     case "Matrix":
                     case "AABB":
-                    case "float2":                          
-                    case "float3":                        
-                    case "float4":                    
-                    case "bool":                        
+                    case "float2":
+                    case "float3":
+                    case "float4":
+                    case "bool":
                     case "float":
                     case "int":
                     case "int8_t":

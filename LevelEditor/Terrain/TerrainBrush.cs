@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -15,15 +15,15 @@ using RenderingInterop;
 
 namespace LevelEditor.Terrain
 {
-   
+
     /// <summary>
     /// Base class for all Terrain brushes.</summary>
-    public abstract class TerrainBrush : IPropertyEditingContext 
+    public abstract class TerrainBrush : IPropertyEditingContext
     {
         /// <summary>
         /// Consruct brush with the given name.</summary>
         public TerrainBrush(string name)
-        {            
+        {
             m_radius = 3;
             m_falloff = 0.5f;
             CreateKernel();
@@ -57,21 +57,21 @@ namespace LevelEditor.Terrain
         }
 
         /// <summary>
-        /// Gets whether this brush can be applied to target. </summary>        
+        /// Gets whether this brush can be applied to target. </summary>
         public abstract bool CanApplyTo(ITerrainSurface target);
 
         /// <summary>
         /// Apply this brush to target at the given coordinate
         /// output TerrainOp for undo/redo
-        /// </summary>        
-        public abstract void Apply(ITerrainSurface target, int x, int y, out TerrainOp op);       
+        /// </summary>
+        public abstract void Apply(ITerrainSurface target, int x, int y, out TerrainOp op);
 
 
         /// <summary>
-        /// Computes brush bound in imgdata space.</summary>        
+        /// Computes brush bound in imgdata space.</summary>
         protected void ComputeBound(ImageData imgData,
                     int x,
-                    int y,                    
+                    int y,
                     out Bound2di outRect)
         {
             outRect.x1 = 0;
@@ -97,23 +97,23 @@ namespace LevelEditor.Terrain
             destRect.x2 = imgData.Width;
             destRect.y2 = imgData.Height;
             Bound2di.Intersect(kernelRect, destRect, out outRect);
-        }         
+        }
 
-                
+
         /// <summary>
         /// Gets/Sets brush size.
         /// </summary>
         public int Radius
         {
             get  { return m_radius; }
-            set  
+            set
             {
                 m_radius = value;
                 if (m_radius < 1) m_radius = 1;
-                CreateKernel();                
+                CreateKernel();
             }
         }
-        
+
         /// <summary>
         /// Gets/Sets brush falloff.</summary>
         public float Falloff
@@ -122,11 +122,11 @@ namespace LevelEditor.Terrain
             set
             {
                m_falloff = Sce.Atf.MathUtil.Clamp<float>(value,0.0f,1.0f);
-               CreateKernel();               
+               CreateKernel();
             }
         }
 
-      
+
         /// <summary>
         /// Event that is raised when brush kernel is changed</summary>
         protected event EventHandler KernelMaskChanged = delegate { };
@@ -134,7 +134,7 @@ namespace LevelEditor.Terrain
         /// <summary>
         /// Creates brush kernel</summary>
         private void CreateKernel()
-        {            
+        {
             float falloff = Falloff;
             float rad2 = (float)Radius;
             float rad1 = rad2 * (1 - falloff);
@@ -165,11 +165,11 @@ namespace LevelEditor.Terrain
                     }
                     else
                     {
-                        val = (rad2 - dist) / range; 
+                        val = (rad2 - dist) / range;
                         System.Diagnostics.Debug.Assert( val >= 0.0f && val <= 1.0f);
-                        val = Sce.Atf.MathUtil.Clamp<float>(val,0.0f,1.0f);                                                    
+                        val = Sce.Atf.MathUtil.Clamp<float>(val,0.0f,1.0f);
                     }
-                    Kernel[k++] = val;                    
+                    Kernel[k++] = val;
                 }
             }
             KernelMaskChanged(this, EventArgs.Empty);
@@ -179,7 +179,7 @@ namespace LevelEditor.Terrain
         protected virtual PropertyDescriptor[] PropertyDescriptors
         {
             get
-            {                
+            {
                 if (m_propertyDescriptor == null)
                 {
                     string category = "General";
@@ -188,7 +188,7 @@ namespace LevelEditor.Terrain
                     editor.Min = 0.0f;
                     editor.Max = 1.0f;
                     m_propertyDescriptor = new PropertyDescriptor[]
-                    {                        
+                    {
                        new UnboundPropertyDescriptor(this.GetType(),"Radius","Brush radius",category,"Brush radius"),
                        new UnboundPropertyDescriptor(this.GetType(),"Falloff","Brush Softness",category,"Brush Softness",editor, null)
                     };
@@ -196,7 +196,7 @@ namespace LevelEditor.Terrain
                 return m_propertyDescriptor;
             }
         }
-        
+
         private PropertyDescriptor[] m_propertyDescriptor;
         private float m_falloff;
         private int m_radius;
@@ -221,12 +221,12 @@ namespace LevelEditor.Terrain
         {
             get { return m_strength; }
             set { m_strength = MathUtil.Clamp(value, 0.0f, 1.0f); }
-            
+
         }
         public override bool CanApplyTo(ITerrainSurface target)
         {
             TerrainMap map = target.As<TerrainMap>();
-            return map != null && map.GetSurfaceInstanceId() != 0;            
+            return map != null && map.GetSurfaceInstanceId() != 0;
         }
 
         public BrushOps GetBrushOp()
@@ -265,7 +265,7 @@ namespace LevelEditor.Terrain
             if (brushOp == BrushOps.Paint)
             {
                 ops = (px, py) =>
-                    {                       
+                    {
                         if (px >= pixelstrength)
                             return (byte)px;
                         else
@@ -281,8 +281,8 @@ namespace LevelEditor.Terrain
             // start point in kernel space.
             int bx0 = x - Radius;
             int by0 = y - Radius;
-            
-            float run = 2.0f * tmap.Parent.CellSize;                
+
+            float run = 2.0f * tmap.Parent.CellSize;
             int size = 2 * Radius + 1;
             for (int cy = outRect.y1; cy < outRect.y2; cy++)
             {
@@ -293,7 +293,7 @@ namespace LevelEditor.Terrain
                     int bx = cx - bx0;
 
                     // test for height and slope.
-                    // xform px and py to heightmap space hx, hy.                        
+                    // xform px and py to heightmap space hx, hy.
                     if (brushOp == BrushOps.Paint)
                     {
                         int hx = (int)Math.Round(cx * dx);
@@ -333,10 +333,10 @@ namespace LevelEditor.Terrain
                 if (m_propertyDescriptor == null)
                 {
                     string category = "General";
-                    BoundedFloatEditor editor = new BoundedFloatEditor();                    
+                    BoundedFloatEditor editor = new BoundedFloatEditor();
                     editor.Min = 0.0f;
                     editor.Max = 1.0f;
-                    
+
                     var propList = new List<PropertyDescriptor>(base.PropertyDescriptors);
                     propList.Add(new UnboundPropertyDescriptor(this.GetType(), "Strength", "Strength", category, "Brush Strength", editor));
                     m_propertyDescriptor = propList.ToArray();
@@ -358,7 +358,7 @@ namespace LevelEditor.Terrain
         public override bool CanApplyTo(ITerrainSurface target)
         {
             return target.Is<TerrainGob>();
-                
+
         }
 
         private List<float> m_templist = new List<float>();
@@ -376,14 +376,14 @@ namespace LevelEditor.Terrain
             if (!outRect.isValid || hmImg.Format != ImageDataFORMAT.R32_FLOAT)
                 return;
             op = new TerrainOp(target, outRect);
-            
+
 
             Func<int,int,float> getPixel = (px, py) =>
             {
                 px = MathUtil.Clamp(px, 0, hmImg.Width - 1);
                 py = MathUtil.Clamp(py, 0, hmImg.Height - 1);
                 float pixel = *(float*)hmImg.GetPixel(px, py);
-                return pixel;                
+                return pixel;
             };
 
             Func<int, int, float> getSmoothPixel = (px, py) =>
@@ -400,7 +400,7 @@ namespace LevelEditor.Terrain
             {
                 for (int cx = outRect.x1; cx < outRect.x2; cx++)
                 {
-                    m_templist.Add(getSmoothPixel(cx, cy));                    
+                    m_templist.Add(getSmoothPixel(cx, cy));
                 }
             }
 
@@ -424,7 +424,7 @@ namespace LevelEditor.Terrain
                 }
             }
             terrain.ApplyDirtyRegion(outRect);
-        }        
+        }
     }
 
     unsafe public class FlattenBrush : TerrainBrush
@@ -433,7 +433,7 @@ namespace LevelEditor.Terrain
             : base(name)
         {
             Falloff = 0.2f;
-            
+
         }
 
         /// <summary>
@@ -456,7 +456,7 @@ namespace LevelEditor.Terrain
             TerrainGob terrain = target.As<TerrainGob>();
             ImageData hmImg = terrain.GetSurface();
             Bound2di outRect;
-            ComputeBound(hmImg, x, y, out outRect);            
+            ComputeBound(hmImg, x, y, out outRect);
             if (!outRect.isValid || hmImg.Format != ImageDataFORMAT.R32_FLOAT)
                 return;
 
@@ -465,7 +465,7 @@ namespace LevelEditor.Terrain
             int bx0 = x - Radius;
             int by0 = y - Radius;
 
-            int size = 2 * Radius + 1;            
+            int size = 2 * Radius + 1;
             for (int cy = outRect.y1; cy < outRect.y2; cy++)
             {
                 int by = cy - by0;
@@ -480,9 +480,9 @@ namespace LevelEditor.Terrain
 
             terrain.ApplyDirtyRegion(outRect);
         }
-        
+
     }
-       
+
     unsafe public class RaiseLowerBrush : TerrainBrush
     {
         /// <summary>
@@ -490,7 +490,7 @@ namespace LevelEditor.Terrain
         public RaiseLowerBrush(string name)
             : base(name)
         {
-            m_height = 0.5f;            
+            m_height = 0.5f;
         }
 
         public override bool CanApplyTo(ITerrainSurface target)
@@ -505,7 +505,7 @@ namespace LevelEditor.Terrain
             Bound2di outRect;
             TerrainGob terrain = target.As<TerrainGob>();
             ImageData hmImg = terrain.GetSurface();
-            ComputeBound(hmImg, x, y, out outRect);            
+            ComputeBound(hmImg, x, y, out outRect);
             if (!outRect.isValid || hmImg.Format != ImageDataFORMAT.R32_FLOAT)
                 return;
 
@@ -537,10 +537,10 @@ namespace LevelEditor.Terrain
                     float* destPixel = (float*)hmImg.GetPixel(cx, cy);
                     *destPixel = ops(*destPixel, scrPixel);
                 }
-            }            
+            }
             terrain.ApplyDirtyRegion(outRect);
         }
-        
+
         /// <summary>
         /// Gets and sets value used to scale the brush.</summary>
         public float Height
@@ -551,7 +551,7 @@ namespace LevelEditor.Terrain
 
         public BrushOps GetBrushOp()
         {
-            return (Control.ModifierKeys == Keys.Control) ? BrushOps.Sub : BrushOps.Add;            
+            return (Control.ModifierKeys == Keys.Control) ? BrushOps.Sub : BrushOps.Add;
         }
 
         private PropertyDescriptor[] m_propertyDescriptor;
@@ -561,17 +561,17 @@ namespace LevelEditor.Terrain
             {
                 if (m_propertyDescriptor == null)
                 {
-                    var propList = new List<PropertyDescriptor>(base.PropertyDescriptors);                    
+                    var propList = new List<PropertyDescriptor>(base.PropertyDescriptors);
                     propList.Add(new UnboundPropertyDescriptor(this.GetType(), "Height", "Height", "General", "Brush Height"));
-                    m_propertyDescriptor = propList.ToArray();   
-                                                  
+                    m_propertyDescriptor = propList.ToArray();
+
                 }
                 return m_propertyDescriptor;
             }
         }
-        
-        private float m_height;        
-        
+
+        private float m_height;
+
     }
 
     unsafe public class NoiseBrush : TerrainBrush
@@ -584,14 +584,14 @@ namespace LevelEditor.Terrain
             m_scale = 1.5f;
             m_noiseGen = new NoiseGenerator(753);
             m_noiseGen.NumFeatures = 4;
-            
+
             GenerateNoise();
 
             KernelMaskChanged += (sender, e) =>
                 {
                     GenerateNoise();
                 };
-            
+
         }
 
         public override bool CanApplyTo(ITerrainSurface target)
@@ -623,8 +623,8 @@ namespace LevelEditor.Terrain
 
                 for (int cx = outRect.x1; cx < outRect.x2; cx++)
                 {
-                    int bx = cx - bx0;                    
-                    float k = Kernel[size * by + bx] * m_noise[bx, by] * m_scale;                    
+                    int bx = cx - bx0;
+                    float k = Kernel[size * by + bx] * m_noise[bx, by] * m_scale;
                     float* destPixel = (float*)hmImg.GetPixel(cx, cy);
                     *destPixel = *destPixel + k;
                 }
@@ -641,7 +641,7 @@ namespace LevelEditor.Terrain
             {
                 if (m_propertyDescriptor == null)
                 {
-                    string category = "General";                    
+                    string category = "General";
                     BoundedIntEditor octaveEditor = new BoundedIntEditor();
                     octaveEditor.Min = 1;
                     octaveEditor.Max = 10;
@@ -649,13 +649,13 @@ namespace LevelEditor.Terrain
                     BoundedFloatEditor Persiteditor = new BoundedFloatEditor();
                     Persiteditor.Min = 0.1f;
                     Persiteditor.Max = 1.0f;
-                                        
+
                     var propList = new List<PropertyDescriptor>(base.PropertyDescriptors);
                     propList.Add(new UnboundPropertyDescriptor(this.GetType(), "NumberOfOctaves", "Octaves", category, "NumberOfOctaves", octaveEditor));
                     propList.Add(new UnboundPropertyDescriptor(this.GetType(), "Persistence", "Persistence", category, "Persistence", Persiteditor));
                     propList.Add(new UnboundPropertyDescriptor(this.GetType(), "NumFeatures", "Features", category, "Number of features"));
                     propList.Add(new UnboundPropertyDescriptor(this.GetType(), "FeatureScale", "FeatureScale", category, "Feature Scale"));
-                    
+
                     m_propertyDescriptor = propList.ToArray();
 
                 }
@@ -670,8 +670,8 @@ namespace LevelEditor.Terrain
         public int NumberOfOctaves
         {
             get { return m_noiseGen.NumberOfOctaves; }
-            set 
-            { 
+            set
+            {
                 m_noiseGen.NumberOfOctaves = value;
                 GenerateNoise();
             }
@@ -685,8 +685,8 @@ namespace LevelEditor.Terrain
         public float Persistence
         {
             get { return m_noiseGen.Persistence; }
-            set 
-            { 
+            set
+            {
                 m_noiseGen.Persistence = value;
                 GenerateNoise();
             }
@@ -694,12 +694,12 @@ namespace LevelEditor.Terrain
 
 
         /// <summary>
-        /// Gets and sets number of features</summary>        
+        /// Gets and sets number of features</summary>
         public int NumFeatures
         {
             get { return (int)m_noiseGen.NumFeatures;}
-            set 
-            { 
+            set
+            {
                 m_noiseGen.NumFeatures = value;
                 GenerateNoise();
             }
@@ -713,9 +713,9 @@ namespace LevelEditor.Terrain
             set
             {
                 m_scale = value;
-                if (m_scale < float.Epsilon) m_scale = float.Epsilon;                                
+                if (m_scale < float.Epsilon) m_scale = float.Epsilon;
             }
-            
+
         }
 
         private void GenerateNoise()
@@ -750,9 +750,9 @@ namespace LevelEditor.Terrain
     /// <summary>
     /// Terrain operation used for undo/redo</summary>
     public class TerrainOp : Sce.Atf.Dom.TransactionContext.Operation
-    {        
+    {
         /// <summary>
-        /// Construct TerrainOp with the give target and bound</summary>        
+        /// Construct TerrainOp with the give target and bound</summary>
         public TerrainOp(ITerrainSurface target, Bound2di bound)
         {
             m_target = target;
@@ -771,30 +771,30 @@ namespace LevelEditor.Terrain
         /// Does the transaction operation</summary>
         public override void Do()
         {
-            Perform();            
+            Perform();
         }
 
         /// <summary>
         /// Rolls back the transaction operation</summary>
         public override void Undo()
         {
-            Perform();            
+            Perform();
         }
 
         private void Perform()
         {
             if (m_dataFreed) return;
-            ImageData img = m_target.GetSurface();            
-            // toggle between data stored in img and m_data.                
-            var data = new byte[m_bound.Width * m_bound.Height * img.BytesPerPixel];            
-            
-            img.CopyRegion(m_bound, data);            
+            ImageData img = m_target.GetSurface();
+            // toggle between data stored in img and m_data.
+            var data = new byte[m_bound.Width * m_bound.Height * img.BytesPerPixel];
+
+            img.CopyRegion(m_bound, data);
             if (m_data != null)
-            {                
-                img.ApplyRegion(m_bound, m_data);                             
-                m_target.ApplyDirtyRegion(m_bound);                
+            {
+                img.ApplyRegion(m_bound, m_data);
+                m_target.ApplyDirtyRegion(m_bound);
             }
-            m_data = data;            
+            m_data = data;
         }
 
         /// <summary>

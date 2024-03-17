@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.ComponentModel.Composition;
 using System.Windows.Forms;
@@ -6,7 +6,7 @@ using System.Windows.Forms;
 namespace Sce.Atf.Applications
 {
     /// <summary>
-    /// Provides static methods to abstract the display of parented dialogs. 
+    /// Provides static methods to abstract the display of parented dialogs.
     /// These methods can be used in place of calling form.ShowDialog(parentForm)
     /// by components that need to operate in both WinForms and WPF applications.</summary>
     [Export(typeof(Dialogs))]

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections.Generic;
 using Sce.Atf.Adaptation;
@@ -33,7 +33,7 @@ namespace Sce.Atf.Applications
         /// <param name="item">Part of path, not last part</param>
         /// <returns>Selection path containing given item</returns>
         AdaptablePath<object> IncludedPath(object item);
- 
+
         /// <summary>
         /// Get the SelectionPathProviderInfo object</summary>
         SelectionPathProviderInfo Info
@@ -63,7 +63,7 @@ namespace Sce.Atf.Applications
         }
 
         /// <summary>
-        /// Gets the ancestry of the item in selection path, 
+        /// Gets the ancestry of the item in selection path,
         /// starting with the item's parent and ending with the top level</summary>
         /// <param name="selectionPathProvider">Selection path provider</param>
         /// <param name="item">Item whose ancestry is obtained</param>
@@ -77,7 +77,7 @@ namespace Sce.Atf.Applications
                 {
                     for(int i= selectionPath.Count - 2; i>=0; --i)
                      yield return selectionPath[i];
-                }                 
+                }
             }
         }
     }

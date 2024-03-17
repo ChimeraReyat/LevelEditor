@@ -40,23 +40,23 @@ namespace Sce.Atf.Applications
             this.Author = new System.Windows.Forms.ColumnHeader();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
+            //
             // m_okButton
-            // 
+            //
             resources.ApplyResources(this.m_okButton, "m_okButton");
             this.m_okButton.Name = "m_okButton";
             this.m_okButton.UseVisualStyleBackColor = true;
             this.m_okButton.Click += new System.EventHandler(this.m_okButton_Click);
-            // 
+            //
             // m_cancelButton
-            // 
+            //
             resources.ApplyResources(this.m_cancelButton, "m_cancelButton");
             this.m_cancelButton.Name = "m_cancelButton";
             this.m_cancelButton.UseVisualStyleBackColor = true;
             this.m_cancelButton.Click += new System.EventHandler(this.m_cancelButton_Click);
-            // 
+            //
             // m_listView
-            // 
+            //
             this.m_listView.CheckBoxes = true;
             this.m_listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Plugin,
@@ -67,30 +67,30 @@ namespace Sce.Atf.Applications
             this.m_listView.Name = "m_listView";
             this.m_listView.UseCompatibleStateImageBehavior = false;
             this.m_listView.View = System.Windows.Forms.View.Details;
-            // 
+            //
             // Plugin
-            // 
+            //
             resources.ApplyResources(this.Plugin, "Plugin");
-            // 
+            //
             // Description
-            // 
+            //
             resources.ApplyResources(this.Description, "Description");
-            // 
+            //
             // Version
-            // 
+            //
             resources.ApplyResources(this.Version, "Version");
-            // 
+            //
             // Author
-            // 
+            //
             resources.ApplyResources(this.Author, "Author");
-            // 
+            //
             // label1
-            // 
+            //
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            // 
+            //
             // PluginManagerForm
-            // 
+            //
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label1);

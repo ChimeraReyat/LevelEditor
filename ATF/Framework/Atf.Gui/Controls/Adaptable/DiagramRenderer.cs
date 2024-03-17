@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 
@@ -31,7 +31,7 @@ namespace Sce.Atf.Controls.Adaptable
         /// <summary>
         /// Function to compute rendering style for an item</summary>
         public Func<object, DiagramDrawingStyle> GetStyle;
-  
+
 
         #region IDisposable Members
 
@@ -57,7 +57,7 @@ namespace Sce.Atf.Controls.Adaptable
         {
             Dispose(false);
         }
-        private bool m_disposed;                  
+        private bool m_disposed;
         #endregion
     }
 }

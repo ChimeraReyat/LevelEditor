@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 namespace Sce.Atf.Controls.Timelines
 {
@@ -23,11 +23,11 @@ namespace Sce.Atf.Controls.Timelines
         /// <remarks>
         /// SetTrack DOES NOT by itself set the interval's Track property!
         /// This happens indirectly and only if ITrack is implemented correctly.
-        /// 
+        ///
         /// If the interval and new track are DomNodes AND Intervals are DOM-children of their track,
         /// you can implement the Track property like this:
         /// public ITrack Track { get { return GetParentAs&lt;ITrack>(); } }
-        /// 
+        ///
         /// Otherwise, use an ObservableCollection for your Intervals list,
         /// monitor changes and update the interval's Track property when
         /// intervals are being added to or removed from a Track.

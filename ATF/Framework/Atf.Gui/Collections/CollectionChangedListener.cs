@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections;
@@ -135,7 +135,7 @@ namespace Sce.Atf.Collections
 
             m_value.CollectionChanged -= ValueCollectionChanged;
         }
-        
+
         #endregion
     }
 
@@ -338,7 +338,7 @@ namespace Sce.Atf.Collections
                 }
             }
         }
-        
+
         #endregion
 
         #region Event Handlers
@@ -362,7 +362,7 @@ namespace Sce.Atf.Collections
         {
             base.RaisePropertyChanged(sender, string.Format("{0}{1}{2}", PropertyName, PropertyName != null ? "." : null, propertyName));
         }
-        
+
         #endregion
 
         #region Overrides
@@ -382,7 +382,7 @@ namespace Sce.Atf.Collections
 
             m_childListeners.Clear();
         }
-        
+
         #endregion
     }
 }

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Text.RegularExpressions;
@@ -44,8 +44,8 @@ namespace Sce.Atf.Applications
             m_patternTextBox.TextBox.PreviewKeyDown += textBox_PreviewKeyDown;
             m_patternTextBox.MaximumWidth = 1080;
 
-            Items.AddRange(new ToolStripItem[] { 
-                    dropDownButton, 
+            Items.AddRange(new ToolStripItem[] {
+                    dropDownButton,
                     m_patternTextBox,
                     clearSearchButton
                     });

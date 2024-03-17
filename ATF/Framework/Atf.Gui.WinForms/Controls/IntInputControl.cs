@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -34,7 +34,7 @@ namespace Sce.Atf.Controls
             m_value = MathUtil.Clamp(value, m_min, m_max);
             m_lastChange = m_value;
             m_lastEdit = m_value;
-            
+
             m_textBox = new NumericTextBox(typeof(int));
             m_textBox.BorderStyle = BorderStyle.None;
             m_textBox.Name = "m_textBox";
@@ -42,13 +42,13 @@ namespace Sce.Atf.Controls
             m_spinner = new CompactSpinner();
             m_spinner.GotFocus += (sender, e) => m_textBox.Focus();
 
-            SuspendLayout();            
-            UpdateTextBox();                        
-            Controls.Add(m_textBox);            
-            Controls.Add(m_spinner);                        
+            SuspendLayout();
+            UpdateTextBox();
+            Controls.Add(m_textBox);
+            Controls.Add(m_spinner);
             ResumeLayout(false);
             PerformLayout();
-            
+
             m_textBox.ValueEdited += (sender, e) =>
                 {
                     int val = (int)m_textBox.Value;
@@ -57,12 +57,12 @@ namespace Sce.Atf.Controls
                 };
 
             m_spinner.Changed += (sender, e) =>
-                {                   
+                {
                     int newValue = Value + e.Value;
                     SetValue(newValue, false);
                 };
 
-            m_textBox.SizeChanged += (sender, e) => this.Height = m_textBox.Height + 3;                
+            m_textBox.SizeChanged += (sender, e) => this.Height = m_textBox.Height + 3;
             SizeChanged += (sender, e) =>
                 {
                     m_spinner.Bounds = new Rectangle(0, 0, Height, Height);
@@ -168,7 +168,7 @@ namespace Sce.Atf.Controls
         }
 
         /// <summary>
-        /// Performs custom actions on Paint events. Draws grid and curve.</summary>        
+        /// Performs custom actions on Paint events. Draws grid and curve.</summary>
         /// <param name="e">Paint event args</param>
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -180,7 +180,7 @@ namespace Sce.Atf.Controls
             if (m_drawBorder)
                 ControlPaint.DrawBorder3D(e.Graphics, ClientRectangle, Border3DStyle.Flat);
         }
-       
+
         private void EndEdit(bool forceNewValue)
         {
             if (forceNewValue ||
@@ -193,7 +193,7 @@ namespace Sce.Atf.Controls
 
         private void SetValue(int value, bool forceNewValue)
         {
-            value = Sce.Atf.MathUtil.Clamp(value, m_min, m_max);        
+            value = Sce.Atf.MathUtil.Clamp(value, m_min, m_max);
             if (forceNewValue ||
                 value != m_value)
             {
@@ -210,7 +210,7 @@ namespace Sce.Atf.Controls
             this.Invalidate();
         }
 
-       
+
 
         private void UpdateTextBox()
         {
@@ -219,7 +219,7 @@ namespace Sce.Atf.Controls
             //m_textBox.Text = m_value.ToString(CultureInfo.CurrentCulture);
         }
 
-       
+
         private int m_value;
         private int m_lastChange;
         private int m_lastEdit;
@@ -230,7 +230,7 @@ namespace Sce.Atf.Controls
 
         private CompactSpinner m_spinner;
         private NumericTextBox m_textBox;
-        
+
     }
 
 

@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections.Generic;
 
@@ -22,7 +22,7 @@ namespace Sce.Atf.Controls.Timelines
         IInterval CreateInterval();
 
         /// <summary>
-        /// Gets the list of all intervals in the track. Adding or removing intervals in the IList 
+        /// Gets the list of all intervals in the track. Adding or removing intervals in the IList
         /// modifies the underlying data store. For example, if the DOM is being used, the DOM is
         /// modified when the IList is modified.</summary>
         IList<IInterval> Intervals { get; }

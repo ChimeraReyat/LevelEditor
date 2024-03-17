@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using Sce.Atf.Dom;
 namespace Sce.Atf.Controls.Adaptable.Graphs
 {
     /// <summary>
-    /// Adapter for a reference instance of a group template. 
+    /// Adapter for a reference instance of a group template.
     /// Since a group template can be shared by multiple group references,
     /// it duplicates group pins from target group, and has its own Info and Expanded properties.</summary>
     abstract public class GroupReference : Group, IReference<Group>, IReference<DomNode>
@@ -25,10 +25,10 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// Raises the DomNodeAdapter NodeSet event and performs custom processing:
         /// creates a DomNodeListAdapter for various circuit elements.</summary>
         protected override void OnNodeSet()
-        {         
+        {
             m_info = new CircuitGroupInfo();
             m_inputs = new List<GroupPin>();
-            m_outputs = new List<GroupPin>();    
+            m_outputs = new List<GroupPin>();
             Refresh();
         }
 
@@ -38,7 +38,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             get
             {
                 return GetReference<Template>(GuidRefAttribute);
-               
+
             }
             set
             {
@@ -95,7 +95,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// <returns>True iff group contains the given input pin</returns>
         public override bool HasInputPin(ICircuitPin pin)
         {
-            if (m_targetGroup == null) 
+            if (m_targetGroup == null)
                 return false; // disallow connecting to a missing type
             if (InputGroupPins.Contains(pin)) // check group pins in the proxy
                 return true;
@@ -172,11 +172,11 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         }
 
         /// <summary>
-        /// Finds the element and pin that fully matched the pin target for this circuit container, 
+        /// Finds the element and pin that fully matched the pin target for this circuit container,
         /// including the template instance node</summary>
         /// <param name="pinTarget">Contains pin's element and pin index</param>
         /// <param name="inputSide">True for input pin, false for output pin</param>
-        /// <returns>Return a pair of element and pin. As an element instance method, if there is a match, the element is self, 
+        /// <returns>Return a pair of element and pin. As an element instance method, if there is a match, the element is self,
         /// and pin is one of its pins defined in Type. If there is no match, both are null.</returns>
         public override Pair<Element, ICircuitPin> FullyMatchPinTarget(PinTarget pinTarget, bool inputSide)
         {
@@ -187,7 +187,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// Finds the element and pin that matched the pin target for this circuit container</summary>
         /// <param name="pinTarget">Contains pin's element and pin index</param>
         /// <param name="inputSide">True for input pin, false for output pin</param>
-        /// <returns>Return a pair of element and pin. As an element instance method, if there is a match, the element is self, 
+        /// <returns>Return a pair of element and pin. As an element instance method, if there is a match, the element is self,
         /// and pin is one of its pins defined in Type. If there is no match, both are null.</returns>
         public override Pair<Element, ICircuitPin> MatchPinTarget(PinTarget pinTarget, bool inputSide)
         {
@@ -210,7 +210,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         Group IReference<Group>.Target
         {
             get { return Template.Target.As<Group>(); }
-            set { throw new InvalidOperationException("The group template determines the target"); }          
+            set { throw new InvalidOperationException("The group template determines the target"); }
         }
 
         #endregion
@@ -243,7 +243,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// <summary>
         /// Refresh group</summary>
         public void Refresh()
-        {        
+        {
             m_inputs.Clear();
             m_outputs.Clear();
 

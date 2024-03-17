@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections.Generic;
 using Sce.Atf.Dom;
@@ -6,7 +6,7 @@ using Sce.Atf.Dom;
 namespace Sce.Atf.Controls.Adaptable.Graphs
 {
     /// <summary>
-    /// Adapts DomNode to a layer folder. A layer folder allows a hierarchy of layers to be defined. 
+    /// Adapts DomNode to a layer folder. A layer folder allows a hierarchy of layers to be defined.
     /// Folders can be hidden by the user to allow layering.</summary>
     public abstract class LayerFolder : DomNodeAdapter
     {
@@ -23,7 +23,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// Gets ChildInfo for references to layers in layer folder</summary>
         protected abstract ChildInfo ElementRefChildInfo { get; }
 
-  
+
         /// <summary>
         /// Gets or sets layer folder name</summary>
         public string Name
@@ -67,6 +67,6 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             return false;
         }
 
-     
+
     }
 }

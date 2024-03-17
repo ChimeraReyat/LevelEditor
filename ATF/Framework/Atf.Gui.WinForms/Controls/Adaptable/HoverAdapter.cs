@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -78,7 +78,7 @@ namespace Sce.Atf.Controls.Adaptable
         {
             m_hoverItem = null;
             m_hoverPart = null;
-            StopHover();            
+            StopHover();
         }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace Sce.Atf.Controls.Adaptable
         protected override void Unbind(AdaptableControl control)
         {
             StopHover();
-            m_pickingAdapters = null;           
+            m_pickingAdapters = null;
             control.MouseDown -= control_MouseDown;
             control.MouseMove -= control_MouseMove;
             control.MouseLeave -= control_MouseLeave;
@@ -106,16 +106,16 @@ namespace Sce.Atf.Controls.Adaptable
         }
 
         private void control_MouseMove(object sender, MouseEventArgs e)
-        {           
+        {
             if (e.Button == MouseButtons.None && AdaptedControl.Focused)
-            {                
+            {
                 DiagramHitRecord hitRecord = null;
                 foreach (var pickingAdapter in m_pickingAdapters)
                 {
                     hitRecord = pickingAdapter.Pick(e.Location);
-                    if (hitRecord.Item != null) break;                    
+                    if (hitRecord.Item != null) break;
                 }
-               
+
                 if (hitRecord != null &&
                     (hitRecord.Item != m_hoverItem || hitRecord.Part != m_hoverPart ||
                     hitRecord.SubItem != m_hoverSubItem || hitRecord.SubPart != m_hoverSubPart))
@@ -132,7 +132,7 @@ namespace Sce.Atf.Controls.Adaptable
         {
             StopHover();
         }
-        
+
         private void hoverTimer_Tick(object sender, EventArgs e)
         {
             StopHover();
@@ -156,7 +156,7 @@ namespace Sce.Atf.Controls.Adaptable
         }
 
         private void StopHover()
-        {            
+        {
             if (m_hovering)
             {
                 m_hovering = false;

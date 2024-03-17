@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -20,12 +20,12 @@ using GdiPixelFormat = System.Drawing.Imaging.PixelFormat;
 
 namespace Sce.Atf.Direct2D
 {
-    /// <summary>    
+    /// <summary>
     /// Represents an object that can receive drawing commands.</summary>
     /// <remarks>
     /// Use D2dFactory to create an instance of D2dGraphics, or use ATF's derived classes.
     /// New abstract methods may be added to this class in the future.
-    /// 
+    ///
     /// Your application should create a D2dGraphics object once per control and hold
     /// onto it for the life of the control.</remarks>
     public abstract class D2dGraphics : D2dResource
@@ -152,8 +152,8 @@ namespace Sce.Atf.Direct2D
         /// Initiates drawing on this D2dGraphics</summary>
         public void BeginDraw()
         {
-            D2dFactory.CheckForRecreateTarget();            
-            m_renderTarget.BeginDraw();            
+            D2dFactory.CheckForRecreateTarget();
+            m_renderTarget.BeginDraw();
         }
 
         /// <summary>
@@ -164,8 +164,8 @@ namespace Sce.Atf.Direct2D
         public D2dResult EndDraw()
         {
             try
-            {                
-                m_renderTarget.EndDraw();             
+            {
+                m_renderTarget.EndDraw();
             }
             catch (SharpDXException ex)
             {
@@ -177,12 +177,12 @@ namespace Sce.Atf.Direct2D
                     D2dFactory.CheckForRecreateTarget();
                     RecreateTargetAndResources();
                 }
-                else 
+                else
                 {
                     while (m_clipStack.Count > 0) PopAxisAlignedClip();
                     try { m_renderTarget.Flush(); } catch { }
-                    throw;                    
-                }                
+                    throw;
+                }
             }
             return D2dResult.Ok;
         }
@@ -191,11 +191,11 @@ namespace Sce.Atf.Direct2D
         /// Draws an arc representing a portion of an ellipse specified by a D2dEllipse</summary>
         /// <param name="ellipse">Ellipse to draw</param>
         /// <param name="brush">The brush used to paint the arc's outline</param>
-        /// <param name="startAngle">Starting angle in degrees measured clockwise from the x-axis 
+        /// <param name="startAngle">Starting angle in degrees measured clockwise from the x-axis
         /// to the starting point of the arc</param>
-        /// <param name="sweepAngle">Sweep angle in degrees measured clockwise from the startAngle 
+        /// <param name="sweepAngle">Sweep angle in degrees measured clockwise from the startAngle
         /// parameter to ending point of the arc</param>
-        /// <param name="strokeWidth">The thickness of the ellipse's stroke. The stroke is centered 
+        /// <param name="strokeWidth">The thickness of the ellipse's stroke. The stroke is centered
         /// on the ellipse's outline.</param>
         /// <param name="strokeStyle">The style of stroke to apply to the arc's outline or null to draw a solid line</param>
         public void DrawArc(D2dEllipse ellipse, D2dBrush brush, float startAngle, float sweepAngle, float strokeWidth = 1.0f, D2dStrokeStyle strokeStyle = null)
@@ -241,11 +241,11 @@ namespace Sce.Atf.Direct2D
         /// Draws an arc representing a portion of an ellipse specified by a D2dEllipse</summary>
         /// <param name="ellipse">Ellipse to draw</param>
         /// <param name="color">The color used to paint the arc's outline</param>
-        /// <param name="startAngle">Starting angle in degrees measured clockwise from the x-axis 
+        /// <param name="startAngle">Starting angle in degrees measured clockwise from the x-axis
         /// to the starting point of the arc</param>
-        /// <param name="sweepAngle">Sweep angle in degrees measured clockwise from the startAngle 
+        /// <param name="sweepAngle">Sweep angle in degrees measured clockwise from the startAngle
         /// parameter to ending point of the arc</param>
-        /// <param name="strokeWidth">The thickness of the ellipse's stroke. The stroke is centered 
+        /// <param name="strokeWidth">The thickness of the ellipse's stroke. The stroke is centered
         /// on the ellipse's outline.</param>
         /// <param name="strokeStyle">The style of stroke to apply to the arc's outline or null to draw a solid line</param>
         public void DrawArc(D2dEllipse ellipse, Color color, float startAngle, float sweepAngle, float strokeWidth = 1.0f, D2dStrokeStyle strokeStyle = null)
@@ -322,10 +322,10 @@ namespace Sce.Atf.Direct2D
         /// <param name="destRect">The size and position, in pixels, in the D2dGraphics's coordinate
         /// space, of the area in which the bitmap is drawn. If the rectangle is not well-ordered,
         /// nothing is drawn, but the D2dGraphics does not enter an error state.</param>
-        /// <param name="opacity">A value between 0.0f and 1.0f, inclusive, that specifies an opacity value        
+        /// <param name="opacity">A value between 0.0f and 1.0f, inclusive, that specifies an opacity value
         /// to apply to the bitmap. This value is multiplied against the alpha values
         /// of the bitmap's contents.</param>
-        /// <param name="interpolationMode">The interpolation mode to use if the bitmap is scaled or rotated 
+        /// <param name="interpolationMode">The interpolation mode to use if the bitmap is scaled or rotated
         /// by the drawing operation</param>
         public void DrawBitmap(D2dBitmap bmp, RectangleF destRect, float opacity = 1.0f, D2dBitmapInterpolationMode interpolationMode = D2dBitmapInterpolationMode.Linear)
         {
@@ -338,10 +338,10 @@ namespace Sce.Atf.Direct2D
         /// <param name="destRect">The size and position, in pixels, in the D2dGraphics's coordinate
         /// space, of the area in which the bitmap is drawn. If the rectangle is not well-ordered,
         /// nothing is drawn, but the D2dGraphics does not enter an error state.</param>
-        /// <param name="opacity">A value between 0.0f and 1.0f, inclusive, that specifies an opacity value        
+        /// <param name="opacity">A value between 0.0f and 1.0f, inclusive, that specifies an opacity value
         /// to apply to the bitmap. This value is multiplied against the alpha values
         /// of the bitmap's contents.</param>
-        /// <param name="interpolationMode">The interpolation mode to use if the bitmap is scaled or rotated 
+        /// <param name="interpolationMode">The interpolation mode to use if the bitmap is scaled or rotated
         /// by the drawing operation</param>
         /// <param name="sourceRect">The size and position, in pixels in the bitmap's coordinate space, of the area
         /// within the bitmap to draw</param>
@@ -532,7 +532,7 @@ namespace Sce.Atf.Direct2D
 
         /// <summary>
         /// Draws a polygon defined by an array of PointF structures</summary>
-        /// <param name="points">Array of System.Drawing.PointF structures 
+        /// <param name="points">Array of System.Drawing.PointF structures
         /// that represent the vertices of the polygon</param>
         /// <param name="brush">The brush used to paint the polygon's stroke</param>
         /// <param name="strokeWidth">A value greater than or equal to 0.0f that specifies the width of the stroke</param>
@@ -562,7 +562,7 @@ namespace Sce.Atf.Direct2D
 
         /// <summary>
         /// Draws a polygon defined by an array of PointF structures</summary>
-        /// <param name="points">Array of System.Drawing.PointF structures 
+        /// <param name="points">Array of System.Drawing.PointF structures
         /// that represent the vertices of the polygon</param>
         /// <param name="color">The color used to paint the line's stroke</param>
         /// <param name="strokeWidth">A value greater than or equal to 0.0f that specifies the width of the stroke</param>
@@ -577,7 +577,7 @@ namespace Sce.Atf.Direct2D
         /// Draws the outline of a rectangle that has the specified dimensions and stroke style</summary>
         /// <param name="rect">The dimensions of the rectangle to draw, in pixels</param>
         /// <param name="brush">The brush used to paint the rectangle's stroke</param>
-        /// <param name="strokeWidth">A value greater than or equal to 0.0f that specifies the width 
+        /// <param name="strokeWidth">A value greater than or equal to 0.0f that specifies the width
         /// of the rectangle's stroke. The stroke is centered on the rectangle's outline.</param>
         /// <param name="strokeStyle">The style of stroke to paint or null to draw a solid line</param>
         public void DrawRectangle(RectangleF rect, D2dBrush brush, float strokeWidth = 1.0f, D2dStrokeStyle strokeStyle = null)
@@ -590,7 +590,7 @@ namespace Sce.Atf.Direct2D
         /// Draws the outline of a rectangle that has the specified dimensions and stroke style</summary>
         /// <param name="rect">The dimensions of the rectangle to draw, in pixels</param>
         /// <param name="color">The color used to paint the rectangle's stroke</param>
-        /// <param name="strokeWidth">A value greater than or equal to 0.0f that specifies the width 
+        /// <param name="strokeWidth">A value greater than or equal to 0.0f that specifies the width
         /// of the rectangle's stroke. The stroke is centered on the rectangle's outline.</param>
         /// <param name="strokeStyle">The style of stroke to paint or null to draw a solid line</param>
         public void DrawRectangle(RectangleF rect, Color color, float strokeWidth = 1.0f, D2dStrokeStyle strokeStyle = null)
@@ -703,7 +703,7 @@ namespace Sce.Atf.Direct2D
         /// <param name="origin">The point, described in pixels, at which the upper-left
         /// corner of the text described by textLayout is drawn</param>
         /// <param name="textLayout">The formatted text to draw</param>
-        /// <param name="brush">The brush used to paint any text in textLayout 
+        /// <param name="brush">The brush used to paint any text in textLayout
         /// that does not already have a brush associated with it as a drawing effect</param>
         public void DrawTextLayout(PointF origin, D2dTextLayout textLayout, D2dBrush brush)
         {
@@ -719,7 +719,7 @@ namespace Sce.Atf.Direct2D
         /// <param name="origin">The point, described in pixels, at which the upper-left
         /// corner of the text described by textLayout is drawn</param>
         /// <param name="textLayout">The formatted text to draw</param>
-        /// <param name="color">The color used to paint any text in textLayout 
+        /// <param name="color">The color used to paint any text in textLayout
         /// that does not already have a brush associated with it as a drawing effect</param>
         public void DrawTextLayout(PointF origin, D2dTextLayout textLayout, Color color)
         {
@@ -732,7 +732,7 @@ namespace Sce.Atf.Direct2D
         /// <param name="text">String to measure</param>
         /// <param name="format">D2dTextFormat that defines the font and format of the string</param>
         /// <returns>This method returns a System.Drawing.SizeF structure that represents the
-        /// size, in DIP (Device Independent Pixels) units of the string specified by the text parameter as drawn 
+        /// size, in DIP (Device Independent Pixels) units of the string specified by the text parameter as drawn
         /// with the format parameter</returns>
         public SizeF MeasureText(string text, D2dTextFormat format)
         {
@@ -745,7 +745,7 @@ namespace Sce.Atf.Direct2D
         /// <param name="format">D2dTextFormat that defines the font and format of the string</param>
         /// <param name="maxSize">The maximum x and y dimensions</param>
         /// <returns>This method returns a System.Drawing.SizeF structure that represents the
-        /// size, in DIP (Device Independent Pixels) units of the string specified by the text parameter as drawn 
+        /// size, in DIP (Device Independent Pixels) units of the string specified by the text parameter as drawn
         /// with the format parameter</returns>
         public SizeF MeasureText(string text, D2dTextFormat format, SizeF maxSize)
         {
@@ -763,9 +763,9 @@ namespace Sce.Atf.Direct2D
         /// <param name="brush">The brush used to paint the interior of the ellipse</param>
         public void FillEllipse(RectangleF rect, D2dBrush brush)
         {
-            var tmpEllipse = new Ellipse 
+            var tmpEllipse = new Ellipse
             {
-                RadiusX = rect.Width * 0.5f, 
+                RadiusX = rect.Width * 0.5f,
                 RadiusY = rect.Height * 0.5f
             };
             tmpEllipse.Point = new Vector2(rect.X + tmpEllipse.RadiusX, rect.Y + tmpEllipse.RadiusY);
@@ -1125,40 +1125,40 @@ namespace Sce.Atf.Direct2D
             FillGeometry(geometry, m_solidColorBrush);
         }
 
-        /// <summary>    
+        /// <summary>
         /// Specifies a rectangle to which all subsequent drawing operations are clipped.
-        /// Use current antialiasing mode to draw the edges of clip rects.</summary>    
+        /// Use current antialiasing mode to draw the edges of clip rects.</summary>
         /// <remarks>The clipRect is transformed by the current world transform set on the render target.
-        /// After the transform is applied to the clipRect that is passed in, the axis-aligned 
-        /// bounding box for the clipRect is computed. For efficiency, the contents are clipped 
-        /// to this axis-aligned bounding box and not to the original clipRect that is passed in.</remarks>    
+        /// After the transform is applied to the clipRect that is passed in, the axis-aligned
+        /// bounding box for the clipRect is computed. For efficiency, the contents are clipped
+        /// to this axis-aligned bounding box and not to the original clipRect that is passed in.</remarks>
         /// <param name="clipRect">The size and position of the clipping area, in pixels</param>
         public void PushAxisAlignedClip(RectangleF clipRect)
         {
             PushAxisAlignedClip(clipRect, AntialiasMode);
         }
 
-        /// <summary>    
+        /// <summary>
         /// Specifies a rectangle to which all subsequent drawing operations are clipped</summary>
         /// <remarks>The clipRect is transformed by the current world transform set on the render target.
-        /// After the transform is applied to the clipRect that is passed in, the axis-aligned 
-        /// bounding box for the clipRect is computed. For efficiency, the contents are clipped 
-        /// to this axis-aligned bounding box and not to the original clipRect that is passed in.</remarks>    
+        /// After the transform is applied to the clipRect that is passed in, the axis-aligned
+        /// bounding box for the clipRect is computed. For efficiency, the contents are clipped
+        /// to this axis-aligned bounding box and not to the original clipRect that is passed in.</remarks>
         /// <param name="clipRect">The size and position of the clipping area, in pixels</param>
-        /// <param name="antialiasMode">The antialiasing mode that is used to draw the edges of clip rects that have subpixel 
-        /// boundaries, and to blend the clip with the scene contents. The blending is performed 
-        /// once when the PopAxisAlignedClip method is called, and does not apply to each 
-        /// primitive within the layer.</param>        
+        /// <param name="antialiasMode">The antialiasing mode that is used to draw the edges of clip rects that have subpixel
+        /// boundaries, and to blend the clip with the scene contents. The blending is performed
+        /// once when the PopAxisAlignedClip method is called, and does not apply to each
+        /// primitive within the layer.</param>
         public void PushAxisAlignedClip(RectangleF clipRect, D2dAntialiasMode antialiasMode)
         {
             m_clipStack.Push(clipRect);
             m_renderTarget.PushAxisAlignedClip(clipRect.ToSharpDX(), (AntialiasMode)antialiasMode);
         }
 
-        /// <summary>    
-        /// Removes the last axis-aligned clip from the render target. 
-        /// After this method is called, the clip is no longer applied to subsequent 
-        /// drawing operations.</summary>        
+        /// <summary>
+        /// Removes the last axis-aligned clip from the render target.
+        /// After this method is called, the clip is no longer applied to subsequent
+        /// drawing operations.</summary>
         public void PopAxisAlignedClip()
         {
             m_clipStack.Pop();
@@ -1177,8 +1177,8 @@ namespace Sce.Atf.Direct2D
         }
 
         /// <summary>
-        /// Creates a D2dLinearGradientBrush with the specified points and colors</summary>        
-        /// <param name="gradientStops">An array of D2dGradientStop structures that describe the colors in the brush's gradient 
+        /// Creates a D2dLinearGradientBrush with the specified points and colors</summary>
+        /// <param name="gradientStops">An array of D2dGradientStop structures that describe the colors in the brush's gradient
         /// and their locations along the gradient line</param>
         /// <returns>A new instance of D2dLinearGradientBrush</returns>
         public D2dLinearGradientBrush CreateLinearGradientBrush(params D2dGradientStop[] gradientStops)
@@ -1197,7 +1197,7 @@ namespace Sce.Atf.Direct2D
         /// <param name="pt1">A System.Drawing.PointF structure that represents the starting point of the
         /// linear gradient</param>
         /// <param name="pt2">A System.Drawing.PointF structure that represents the endpoint of the linear gradient</param>
-        /// <param name="gradientStops">An array of D2dGradientStop structures that describe the colors in the brush's gradient 
+        /// <param name="gradientStops">An array of D2dGradientStop structures that describe the colors in the brush's gradient
         /// and their locations along the gradient line</param>
         /// <param name="extendMode">The behavior of the gradient outside the [0,1] normalized range</param>
         /// <param name="gamma">The space in which color interpolation between the gradient stops is performed</param>
@@ -1329,7 +1329,7 @@ namespace Sce.Atf.Direct2D
 
         /// <summary>
         /// Creates an empty Direct2D Bitmap from specified width and height
-        /// Pixel format is set to 32 bit ARGB with premultiplied alpha</summary>      
+        /// Pixel format is set to 32 bit ARGB with premultiplied alpha</summary>
         /// <param name="width">Width of the bitmap in pixels</param>
         /// <param name="height">Height of the bitmap in pixels</param>
         /// <param name="createBackupBitmap">If true a GDI bitmap is created and used
@@ -1353,7 +1353,7 @@ namespace Sce.Atf.Direct2D
         }
 
         /// <summary>
-        /// Creates a new D2dBitmapGraphics for use during intermediate offscreen drawing 
+        /// Creates a new D2dBitmapGraphics for use during intermediate offscreen drawing
         /// that is compatible with the current D2dGraphics and has the same size, DPI, and pixel format
         /// as the current D2dGraphics</summary>
         /// <returns>D2dBitmapGraphics for use during intermediate offscreen drawing</returns>
@@ -1364,10 +1364,10 @@ namespace Sce.Atf.Direct2D
         }
 
         /// <summary>
-        /// Creates a new D2dBitmapGraphics for use during intermediate offscreen drawing 
+        /// Creates a new D2dBitmapGraphics for use during intermediate offscreen drawing
         /// that is compatible with the current D2dGraphics and has the same size, DPI, and pixel format
-        /// as the current D2dGraphics and with the specified options</summary>        
-        /// <param name="options">Whether the new D2dBitmapGraphics must be compatible with GDI</param>    
+        /// as the current D2dGraphics and with the specified options</summary>
+        /// <param name="options">Whether the new D2dBitmapGraphics must be compatible with GDI</param>
         /// <returns>D2dBitmapGraphics for use during intermediate offscreen drawing</returns>
         public D2dBitmapGraphics CreateCompatibleGraphics(D2dCompatibleGraphicsOptions options)
         {
@@ -1379,9 +1379,9 @@ namespace Sce.Atf.Direct2D
         /// <summary>
         /// Creates a new D2dBitmapGraphics with specified pixel size for use during intermediate offscreen drawing
         /// that is compatible with the current D2dGraphics and has the same DPI, and pixel format
-        /// as the current D2dGraphics and with the specified options</summary>        
+        /// as the current D2dGraphics and with the specified options</summary>
         /// <param name="pixelSize">The desired size of the new D2dGraphics in pixels</param>
-        /// <param name="options">Whether the new D2dBitmapGraphics must be compatible with GDI</param>   
+        /// <param name="options">Whether the new D2dBitmapGraphics must be compatible with GDI</param>
         /// <returns>D2dBitmapGraphics with specified pixel size for use during intermediate offscreen drawing</returns>
         public D2dBitmapGraphics CreateCompatibleGraphics(Size pixelSize, D2dCompatibleGraphicsOptions options)
         {
@@ -1393,9 +1393,9 @@ namespace Sce.Atf.Direct2D
         /// <summary>
         /// Creates a new D2dBitmapGraphics with specified DIP size for use during intermediate offscreen drawing
         /// that is compatible with the current D2dGraphics and has the same DPI, and pixel format
-        /// as the current D2dGraphics and with the specified options</summary>        
+        /// as the current D2dGraphics and with the specified options</summary>
         /// <param name="size">The desired size of the new D2dGraphics in pixels</param>
-        /// <param name="options">Whether the new D2dBitmapGraphics must be compatible with GDI</param> 
+        /// <param name="options">Whether the new D2dBitmapGraphics must be compatible with GDI</param>
         /// <returns>D2dBitmapGraphics with specified DIP size for use during intermediate offscreen drawing</returns>
         public D2dBitmapGraphics CreateCompatibleGraphics(SizeF size, D2dCompatibleGraphicsOptions options)
         {
@@ -1467,16 +1467,16 @@ namespace Sce.Atf.Direct2D
 
         /// <summary>
         /// Event that is raised after render target is recreated.
-        /// All the resources are automatically recreated except resources 
-        /// of type D2dBitmapGraphics. User must recreate all the 
-        /// resources of type D2dBitmapGraphics that are been created 
+        /// All the resources are automatically recreated except resources
+        /// of type D2dBitmapGraphics. User must recreate all the
+        /// resources of type D2dBitmapGraphics that are been created
         /// from this D2dGraphics</summary>
         public event EventHandler RecreateResources;
 
         /// <summary>
         /// Gets the serial number for the underlining render target.
         /// Each time the render target is recreated the number will be incremented.
-        /// Cient code can compare this number with previous one to determine if the render target has 
+        /// Cient code can compare this number with previous one to determine if the render target has
         /// been recreated since last time a call made to EndDraw().</summary>
         public uint RenderTargetNumber
         {
@@ -1556,7 +1556,7 @@ namespace Sce.Atf.Direct2D
             }
 
             // Dispose of unmanaged resources.
-            // Render target and LinearGradientBrush do not implement a finalizer, so it is considered an unmanaged resource.            
+            // Render target and LinearGradientBrush do not implement a finalizer, so it is considered an unmanaged resource.
             if (m_renderTarget != null)
             {
                 m_renderTarget.Dispose();
@@ -1615,7 +1615,7 @@ namespace Sce.Atf.Direct2D
         private static readonly Result D2DERR_RECREATE_TARGET = new Result(0x8899000C);
         private static readonly Result D2DERR_DISPLAY_STATE_INVALID = new Result(0x88990006);
         private static readonly Result E_HANDLE = new Result(0x80070006);
-        
+
 
         //private static readonly Result D2DERR_PUSH_POP_UNBALANCED = new Result(0x88990016);
         private const double DPI = 3.1415926535897931;

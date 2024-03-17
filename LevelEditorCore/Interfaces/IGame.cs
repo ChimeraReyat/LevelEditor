@@ -1,13 +1,13 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections.Generic;
 
 using Sce.Atf;
 
 namespace LevelEditorCore
-{    
+{
     /// <summary>
-    /// Represents game (Level).    
+    /// Represents game (Level).
     /// </summary>
     public interface IGame : IListable, IHierarchical, INameable
     {
@@ -32,18 +32,18 @@ namespace LevelEditorCore
         /// Gets root game object folder.
         /// </summary>
         IGameObjectFolder RootGameObjectFolder { get; }
-       
+
         /// <summary>
-        /// Creates new ResourceReference instance.</summary>        
+        /// Creates new ResourceReference instance.</summary>
         IReference<IResource> CreateResourceReference(IResource resource);
 
         /// <summary>
-        /// Creates new GameObjectGroup instance</summary>        
+        /// Creates new GameObjectGroup instance</summary>
         IGameObjectGroup CreateGameObjectGroup();
 
         /// <summary>
-        /// Creates new GameObjectFolder instance.</summary>        
+        /// Creates new GameObjectFolder instance.</summary>
         IGameObjectFolder CreateGameObjectFolder();
     }
-    
+
 }

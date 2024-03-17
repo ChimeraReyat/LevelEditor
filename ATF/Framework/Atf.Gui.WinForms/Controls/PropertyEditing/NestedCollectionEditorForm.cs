@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +19,7 @@ namespace Sce.Atf.Controls.PropertyEditing
         /// <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"></see> that can be used to gain additional context information</param>
         /// <param name="selectionContext">Selection context</param>
         /// <param name="value">An instance of the value being edited</param>
-        /// <param name="getCollectionItemCreators">Callback for getting available types and constructor arguments (object []) 
+        /// <param name="getCollectionItemCreators">Callback for getting available types and constructor arguments (object [])
         /// to create and add to this collection and its sub-collections</param>
         /// <param name="getItemInfo">Callback for getting item's display information</param>
         public NestedCollectionEditorForm(ITypeDescriptorContext context, ISelectionContext selectionContext, object value, Func<Path<object>, IEnumerable<Pair<Type, NestedCollectionEditor.CreateCollectionObject>>> getCollectionItemCreators, Func<object, ItemInfo, bool> getItemInfo)

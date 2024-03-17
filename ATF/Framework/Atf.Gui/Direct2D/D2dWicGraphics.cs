@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using SharpDX.Direct2D1;
 
@@ -21,7 +21,7 @@ namespace Sce.Atf.Direct2D
         protected override void RecreateRenderTarget()
         {
             // Do not recreate D2dWicGraphics. Let the user do that
-            // by handling the RecreateResources event from the D2dGraphics 
+            // by handling the RecreateResources event from the D2dGraphics
             // that created this D2dWicGraphics.
         }
 

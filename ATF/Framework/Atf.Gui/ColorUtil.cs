@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -48,7 +48,7 @@ namespace Sce.Atf
         /// <remarks>Algorithm from http://blogs.msdn.com/cjacks/archive/2006/04/12/575476.aspx </remarks>
         public static Color FromAhsb(int a, float h, float s, float b)
         {
-            if (Math.Abs(s) < float.Epsilon) 
+            if (Math.Abs(s) < float.Epsilon)
             {
                 int level = Convert.ToInt32(b*255);
                 return Color.FromArgb(a, level, level, level);
@@ -56,29 +56,29 @@ namespace Sce.Atf
 
             float fMax, fMid, fMin;
 
-            if (0.5 < b) 
+            if (0.5 < b)
             {
                 fMax = b - (b * s) + s;
                 fMin = b + (b * s) - s;
-            } 
-            else 
+            }
+            else
             {
                 fMax = b + (b * s);
                 fMin = b - (b * s);
             }
 
             var iSextant = (int)Math.Floor(h / 60f);
-            if (300f <= h) 
+            if (300f <= h)
             {
                 h -= 360f;
             }
             h /= 60f;
             h -= 2f * (float)Math.Floor(((iSextant + 1f) % 6f) / 2f);
-            if (0 == iSextant % 2) 
+            if (0 == iSextant % 2)
             {
                 fMid = h * (fMax - fMin) + fMin;
-            } 
-            else 
+            }
+            else
             {
                 fMid = fMin - h * (fMax - fMin);
             }
@@ -87,7 +87,7 @@ namespace Sce.Atf
             var iMid = Convert.ToInt32(fMid * 255);
             var iMin = Convert.ToInt32(fMin * 255);
 
-            switch (iSextant) 
+            switch (iSextant)
             {
                 case 1:
                     return Color.FromArgb(a, iMid, iMax, iMin);

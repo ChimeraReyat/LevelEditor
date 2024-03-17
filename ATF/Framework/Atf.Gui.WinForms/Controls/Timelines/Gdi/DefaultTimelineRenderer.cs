@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel;
@@ -158,7 +158,7 @@ namespace Sce.Atf.Controls.Timelines
                         GdiUtil.TransformVector(c.Transform, interval.Length),
                         bounds.Height);
                     bool hasTail = realPart.Width < MinimumDrawnIntervalLength;
-                    
+
                     float h = color.GetHue();
                     float s = color.GetSaturation();
                     float b = color.GetBrightness();
@@ -327,7 +327,7 @@ namespace Sce.Atf.Controls.Timelines
                 float minimumTimelineUnits = c.PixelSize.Width * MinimumDrawnIntervalLength;
                 visibleWidth = Math.Max(visibleWidth, minimumTimelineUnits);
             }
-            
+
             return new RectangleF(
                 interval.Start,
                 trackTop,

@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections.Generic;
 
@@ -6,7 +6,7 @@ namespace Sce.Atf.Dom
 {
     /// <summary>
     /// Adapter that ensures that every DOM node in the subtree has a unique id local to a category</summary>
-    /// <remarks>Each DomNode in a Dom-Tree can be assigned a category key for unique id; 
+    /// <remarks>Each DomNode in a Dom-Tree can be assigned a category key for unique id;
     /// a DomNode has no category key associated by default falls to default category</remarks>
     public class CategoryUniqueIdValidator : IdValidator
     {
@@ -26,7 +26,7 @@ namespace Sce.Atf.Dom
         /// <returns>Id category</returns>
         protected virtual object GetIdCategory(DomNode node)
         {
-            return null; 
+            return null;
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Sce.Atf.Dom
                     var uniqueNamer = GetUniqueNamer(GetIdCategory(node));
                     string uniqueId = uniqueNamer.Name(id);
                     if (id != uniqueId)
-                        OnIdCollision(node, uniqueId);                  
+                        OnIdCollision(node, uniqueId);
                 }
             }
         }
@@ -112,7 +112,7 @@ namespace Sce.Atf.Dom
         {
             // if the name isn't unique, make it so
             string id = node.GetId();
-            
+
             if (node.Type.IdAttribute != null)
             {
                 var uniqueNamer = GetUniqueNamer(GetIdCategory(node));

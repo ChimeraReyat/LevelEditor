@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -438,7 +438,7 @@ namespace Sce.Atf.Controls.Timelines
                     // Draw group name.
                     g.DrawString(group.Name, c.Font, SystemBrushes.WindowText, groupLabelBounds, s_groupLabelFormat);
                 }
-                if (m_printing) 
+                if (m_printing)
                     c.Graphics.TranslateTransform(-m_marginBounds.Left, 0);
             }
 

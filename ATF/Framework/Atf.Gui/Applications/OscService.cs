@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel.Composition;
@@ -402,7 +402,7 @@ namespace Sce.Atf.Applications
         }
 
         #region IOscService implementation
-        
+
         /// <summary>
         /// Sends the OSC addresses and data objects to each destination endpoint, asynchronously</summary>
         /// <param name="addressesAndData">Each pair is an OSC address string and the non-null data payload
@@ -606,7 +606,7 @@ namespace Sce.Atf.Applications
                     messages[i] = null;
                 }
             }
-            
+
             // Avoid expensive work if possible.
             if (messagesHandled == messages.Count)
                 return;

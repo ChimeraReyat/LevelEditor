@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -741,7 +741,7 @@ namespace Sce.Atf.Controls.Timelines.Direct2D
         /// Creates a new IGroup that is the same object type as 'original'. Use this
         /// instead of calling ITimeline.CreateGroup().</summary>
         /// <param name="original">The original object. If null, this method
-        /// attempts to create an object of the same type as 'original', 
+        /// attempts to create an object of the same type as 'original',
         /// but this can fail in some client implementations.</param>
         /// <returns>New IGroup object. Does not return null.</returns>
         public IGroup Create(IGroup original)
@@ -757,7 +757,7 @@ namespace Sce.Atf.Controls.Timelines.Direct2D
         /// Creates a new IMarker that is the same object type as 'original'. Use this
         /// instead of calling ITimeline.CreateMarker().</summary>
         /// <param name="original">The original object. If null, this method
-        /// attempts to create an object of the same type as 'original', 
+        /// attempts to create an object of the same type as 'original',
         /// but this can fail in some client implementations.</param>
         /// <returns>New IMarker object. Does not return null.</returns>
         public IMarker Create(IMarker original)
@@ -773,7 +773,7 @@ namespace Sce.Atf.Controls.Timelines.Direct2D
         /// Creates a new ITrack that is the same object type as 'original'. Use this
         /// instead of calling IGroup.CreateTrack().</summary>
         /// <param name="original">The original object. If null, this method
-        /// attempts to create an object of the same type as 'original', 
+        /// attempts to create an object of the same type as 'original',
         /// but this can fail in some client implementations.</param>
         /// <returns>New ITrack object. Does not return null.</returns>
         public ITrack Create(ITrack original)
@@ -789,7 +789,7 @@ namespace Sce.Atf.Controls.Timelines.Direct2D
         /// Creates a new IInterval that is the same object type as 'original'. Use this
         /// instead of calling ITrack.CreateInterval().</summary>
         /// <param name="original">The original object. If null, this method
-        /// attempts to create an object of the same type as 'original', 
+        /// attempts to create an object of the same type as 'original',
         /// but this can fail in some client implementations.</param>
         /// <returns>New IInterval object. Does not return null.</returns>
         public IInterval Create(IInterval original)
@@ -805,7 +805,7 @@ namespace Sce.Atf.Controls.Timelines.Direct2D
         /// Creates a new IKey that is the same object type as 'original'. Use this
         /// instead of calling ITrack.CreateKey().</summary>
         /// <param name="original">The original object. If null, this method
-        /// attempts to create an object of the same type as 'original', 
+        /// attempts to create an object of the same type as 'original',
         /// but this can fail in some client implementations.</param>
         /// <returns>New IKey object. Does not return null.</returns>
         public IKey Create(IKey original)

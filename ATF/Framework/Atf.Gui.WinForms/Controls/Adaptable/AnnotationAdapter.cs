@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -104,7 +104,7 @@ namespace Sce.Atf.Controls.Adaptable
                         DiagramLabel label = null;
                         if (bounds.Contains(p))
                             label = new DiagramLabel(bounds, TextFormatFlags.Default);
-                        
+
                         return new AnnotationHitEventArgs(annotation, label);
                     }
                 }

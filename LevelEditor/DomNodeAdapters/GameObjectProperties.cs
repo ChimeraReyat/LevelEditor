@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ namespace LevelEditor.DomNodeAdapters
 {
     /// <summary>
     /// Additional properties for GameObjects</summary>
-    /// <remarks>The property grid lists these properties in addition to the ones 
+    /// <remarks>The property grid lists these properties in addition to the ones
     /// defined in the schema annotation</remarks>
     public class GameObjectProperties : CustomTypeDescriptorNodeAdapter
     {
@@ -34,7 +34,7 @@ namespace LevelEditor.DomNodeAdapters
 
             // Add ITransformable properties:
             // Translation, Rotation, Scale, RotatePivot, ScalePivot (if supported by this object)
-            
+
             ITransformable node = this.Cast<ITransformable>();
             TransformationTypes transformType = node.TransformationType;
 
@@ -43,7 +43,7 @@ namespace LevelEditor.DomNodeAdapters
             NumericTupleEditor rotationTupleEditor =
                 new NumericTupleEditor(typeof(float), new string[] { "x", "y", "z" });
             rotationTupleEditor.ScaleFactor = 360 / (2 * Math.PI); // Radians to Degrees
-          
+
             string category = "Transform".Localize();
             // Check for transform types
             if ((transformType & TransformationTypes.Translation) != 0)
@@ -54,7 +54,7 @@ namespace LevelEditor.DomNodeAdapters
 
             if ((transformType & TransformationTypes.Rotation) != 0)
                 descriptors.Add(new AttributePropertyDescriptor(
-                        "Rotation".Localize(), Schema.gameObjectType.rotateAttribute, category, 
+                        "Rotation".Localize(), Schema.gameObjectType.rotateAttribute, category,
                         "Origin of Rotation transform relative to Game Object Translation".Localize(),
                         false, rotationTupleEditor));
 
@@ -63,14 +63,14 @@ namespace LevelEditor.DomNodeAdapters
                 if ((transformType & TransformationTypes.UniformScale) == 0)
                     descriptors.Add(
                         new AttributePropertyDescriptor(
-                            "Scale".Localize(), 
-                            Schema.gameObjectType.scaleAttribute, category, 
+                            "Scale".Localize(),
+                            Schema.gameObjectType.scaleAttribute, category,
                             "Scale of Game Object along X, Y, and Z axes".Localize(),
                             false, tupleEditor));
                 else
                     descriptors.Add(
                         new AttributePropertyDescriptor(
-                            "Uniform Scale".Localize(), Schema.gameObjectType.scaleAttribute, 
+                            "Uniform Scale".Localize(), Schema.gameObjectType.scaleAttribute,
                             category,
                             "Scale of Game Object uniformly along X, Y, and Z axes".Localize(),
                             false, new UniformArrayEditor<Single>()));
@@ -81,8 +81,8 @@ namespace LevelEditor.DomNodeAdapters
                     new AttributePropertyDescriptor(
                         "Pivot".Localize(), Schema.gameObjectType.pivotAttribute, category,
                         "Origin of Rotation and scale transform relative to Game Object Translation".Localize(),
-                        false, tupleEditor));  
-           
+                        false, tupleEditor));
+
 
             // remove hidden properties
             HashSet<string> hiddenProps = (HashSet<string>)this.DomNode.Type.GetTag(SchemaLoader.HiddenProperties);

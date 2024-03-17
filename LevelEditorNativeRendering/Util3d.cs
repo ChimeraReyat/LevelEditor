@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -25,14 +25,14 @@ namespace RenderingInterop
 
         public static void DrawSphere(Sphere3F sphere, Color c)
         {
-            // create matrix from AABB            
+            // create matrix from AABB
             T1.Set(sphere.Center);
             float scale = 2*sphere.Radius;
             T1.M11 = scale;
             T1.M22 = scale;
             T1.M33 = scale;
             DrawSphere(T1, c);
-            
+
         }
 
         public static ulong CaptionFont
@@ -47,13 +47,13 @@ namespace RenderingInterop
               0,
               s_pivotVertexCount,
               c,
-              xform);            
+              xform);
         }
         public static void DrawAABB(AABB bound)
         {
             // create matrix from AABB
             Vec3F trans = bound.Center;
-            Vec3F diag = bound.Max - bound.Min;            
+            Vec3F diag = bound.Max - bound.Min;
             T1.Set(trans);
             T1.M11 = diag.X;
             T1.M22 = diag.Y;
@@ -70,7 +70,7 @@ namespace RenderingInterop
         }
 
         public static void DrawCircle(Matrix4F xform, Color color)
-        {            
+        {
             GameEngine.DrawPrimitive(PrimitiveType.LineStrip,
                s_circleVerts,
                0,
@@ -96,9 +96,9 @@ namespace RenderingInterop
                 s_rectVertexCount,
                 color,
                 xform);
-            
+
         }
-        
+
         public static void DrawAxis(Matrix4F xform, Color color)
         {
             GameEngine.DrawPrimitive(PrimitiveType.LineList,
@@ -145,7 +145,7 @@ namespace RenderingInterop
         }
 
         public static void DrawSphere(Matrix4F xform, System.Drawing.Color color)
-        {            
+        {
             GameEngine.DrawIndexedPrimitive(PrimitiveType.TriangleList,
                 s_sphereVertId,
                 s_sphereIndexId,
@@ -165,7 +165,7 @@ namespace RenderingInterop
         public const float RingCenterRadias = 0.5f * (RingInnerRadias + RingOuterRadias);
 
         public static void DrawRing(Matrix4F xform, Color color)
-        {            
+        {
             GameEngine.DrawIndexedPrimitive(PrimitiveType.TriangleList,
                s_torusVertId,
                s_torusIndexId,
@@ -188,7 +188,7 @@ namespace RenderingInterop
         }
 
         public static void DrawCone(Matrix4F xform, Color color)
-        {                                   
+        {
             GameEngine.DrawIndexedPrimitive(PrimitiveType.TriangleList,
                s_coneVertId,
                s_coneIndexId,
@@ -198,7 +198,7 @@ namespace RenderingInterop
                color,
                xform);
         }
-      
+
         public static void DrawCube(Matrix4F xform, Color color)
         {
             GameEngine.DrawIndexedPrimitive(PrimitiveType.TriangleList,
@@ -222,7 +222,7 @@ namespace RenderingInterop
 
             List<Vector3> spherePositions = new List<Vec3F>();
             List<Vector3> sphereNormals = new List<Vec3F>();
-            List<uint> sphereIndices = new List<uint>();                        
+            List<uint> sphereIndices = new List<uint>();
             GeometryHelper.CreateSphere(0.5f,FastSphereSlices,FastSphereStacks, spherePositions
                 ,  sphereNormals, null, sphereIndices);
 
@@ -232,7 +232,7 @@ namespace RenderingInterop
             s_sphereVertId = GameEngine.CreateVertexBuffer(vertList.ToArray());
             s_sphereIndexId = GameEngine.CreateIndexBuffer(sphereIndices.ToArray());
             s_sphereIndexCount = (uint) sphereIndices.Count;
-            
+
             List<Vec3F> conePos = new List<Vec3F>();
             List<uint> coneIndices = new List<uint>();
             List<Vec3F> coneNorms = new List<Vec3F>();
@@ -255,7 +255,7 @@ namespace RenderingInterop
             s_cylinderIndexCount =(uint)cyIndices.Count;
 
             // create slim unit torus.
-            List<Vec3F> torPos = new List<Vec3F>();            
+            List<Vec3F> torPos = new List<Vec3F>();
             List<Vec3F> torNorms = new List<Vec3F>();
             List<uint> torIndices = new List<uint>();
             GeometryHelper.CreateTorus(RingInnerRadias, RingOuterRadias, 40, 6, torPos, torNorms, null, torIndices);
@@ -268,7 +268,7 @@ namespace RenderingInterop
 
             List<Vector3> cubePos = new List<Vector3>();
             List<Vector3> cubeNormals = new List<Vector3>();
-            
+
             List<uint> cubeIndices = new List<uint>();
 
             GeometryHelper.CreateUnitCube(cubePos,cubeNormals,null,cubeIndices);
@@ -318,7 +318,7 @@ namespace RenderingInterop
             s_rectVertexCount = 8;
             s_rectStartVertex = (uint)linePos.Count - s_rectVertexCount;
 
-            // unit square 
+            // unit square
             linePos.Add(new Vector3(0.5f, 0.5f, 0));
             linePos.Add(new Vector3(-0.5f, 0.5f, 0));
 
@@ -340,7 +340,7 @@ namespace RenderingInterop
             GeometryHelper.CreateCircle(1.0f,32,circlePos);
             s_circleVertexCount = (uint) circlePos.Count;
             s_circleVerts = GameEngine.CreateVertexBuffer(circlePos.ToArray());
-            
+
             List<Vec3F>  boxVerts = new List<Vec3F>();
             List<uint> boxIndices = new List<uint>();
             GeometryHelper.CreateUnitBox(boxVerts,boxIndices);
@@ -365,7 +365,7 @@ namespace RenderingInterop
         }
 
         public static void Shutdown()
-        {         
+        {
             GameEngine.DeleteBuffer(s_torusVertId);
             GameEngine.DeleteBuffer(s_torusIndexId);
             GameEngine.DeleteBuffer(s_cylinderVertId );
@@ -374,14 +374,14 @@ namespace RenderingInterop
             GameEngine.DeleteBuffer(s_sphereVertId);
             GameEngine.DeleteBuffer(s_sphereIndexId);
             GameEngine.DeleteBuffer(s_coneVertId);
-            GameEngine.DeleteBuffer(s_coneIndexId);                        
+            GameEngine.DeleteBuffer(s_coneIndexId);
             GameEngine.DeleteBuffer(s_cubeVertId);
-            GameEngine.DeleteBuffer(s_cubeIndexId);            
+            GameEngine.DeleteBuffer(s_cubeIndexId);
             GameEngine.DeleteBuffer(s_linesVertId);
             GameEngine.DeleteBuffer(s_boxVertsId);
             GameEngine.DeleteBuffer(s_boxIndicesId);
-            GameEngine.DeleteBuffer(s_pivotVerts);            
-            GameEngine.DeleteFont(s_captionFont);            
+            GameEngine.DeleteBuffer(s_pivotVerts);
+            GameEngine.DeleteFont(s_captionFont);
         }
         private static bool s_inited;
 
@@ -400,7 +400,7 @@ namespace RenderingInterop
         private static ulong s_torusIndexId;
         private static uint s_torusIndexCount;
 
-       
+
         private static ulong s_coneVertId;
         private static ulong s_coneIndexId;
         private static uint s_coneIndexCount;
@@ -434,13 +434,13 @@ namespace RenderingInterop
         private static ulong s_captionFont;
 
         // few temp matrices.
-        // this no longer be needed if/when 
+        // this no longer be needed if/when
         // Matrix4F converted to struct.
         private static Matrix4F T1 = new Matrix4F();
        // private static Matrix4F T2 = new Matrix4F();
        // private static Matrix4F T3 = new Matrix4F();
        // private static Matrix4F T4 = new Matrix4F();
-        
+
     }
 
     public static class GeometryHelper
@@ -461,7 +461,7 @@ namespace RenderingInterop
             }
         }
         /// <summary>
-        /// Create circle from linestrip.</summary>        
+        /// Create circle from linestrip.</summary>
         public static void CreateCircle(float radius, uint segs, List<Vector3> pos)
         {
             float step = MathHelper.TwoPi/(float)segs;
@@ -492,7 +492,7 @@ namespace RenderingInterop
                 throw new ArgumentOutOfRangeException("radius");
             if (slices < 2 || stacks < 2)
                 throw new ArgumentException("invalid number slices or stacks");
-            
+
             // caches sin cos.
             float[] cosPhi = new float[stacks];
             float[] sinPhi = new float[stacks];
@@ -517,11 +517,11 @@ namespace RenderingInterop
             }
 
             uint numVerts = 2 + (stacks - 1) * slices;
-            
+
             Vector3 northPole = new Vector3(0, radius, 0);
-            pos.Add(northPole); // north pole.            
+            pos.Add(northPole); // north pole.
             normal.Add(Vector3.Normalize(northPole)); // north pole.
-            
+
             for (int s = 1; s < stacks; s++)
             {
                 float y = radius * cosPhi[s];
@@ -532,9 +532,9 @@ namespace RenderingInterop
                     p.Y = y;
                     p.Z = r * cosTheta[l];
                     p.X = r * sinTheta[l];
-                    pos.Add(p);                    
+                    pos.Add(p);
                     if(normal != null)
-                        normal.Add(Vector3.Normalize(p));                    
+                        normal.Add(Vector3.Normalize(p));
                 }
             }
             Vector3 southPole = new Vector3(0, -radius, 0);
@@ -547,7 +547,7 @@ namespace RenderingInterop
             // 2l * ( s- 1)
             //
             uint numTris = 2 * slices * (stacks - 1);
-            
+
 
             // create index of north pole cap.
             for (uint l = 1; l < slices; l++)
@@ -598,7 +598,7 @@ namespace RenderingInterop
             }
             indices.Add(baseIndex + slices);
             indices.Add(lastIndex);
-            indices.Add(baseIndex + 1);            
+            indices.Add(baseIndex + 1);
         }
 
         public static void CreateCone(float rad,float height, uint slices, uint stacks,
@@ -642,7 +642,7 @@ namespace RenderingInterop
                     // Partial derivative in theta direction to get tangent vector (this is a unit vector).
                     Vector3 T = new Vector3(-s, 0.0f, c);
 
-                    // Compute tangent vector down the slope of the cone (if the top/bottom 
+                    // Compute tangent vector down the slope of the cone (if the top/bottom
                     // radii differ then we get a cone and not a true cylinder).
                     Vector3 P = new Vector3(r*c, y, r*s);
                     Vector3 P_next = new Vector3(r_next*c, y_next, r_next*s);
@@ -669,11 +669,11 @@ namespace RenderingInterop
             {
                 for (uint j = 0; j < slices; ++j)
                 {
-                    indices.Add(i*numRingVertices + j);                    
+                    indices.Add(i*numRingVertices + j);
                     indices.Add((i + 1)*numRingVertices + j + 1);
                     indices.Add((i + 1) * numRingVertices + j);
 
-                    indices.Add(i*numRingVertices + j);                    
+                    indices.Add(i*numRingVertices + j);
                     indices.Add(i*numRingVertices + j + 1);
                     indices.Add((i + 1) * numRingVertices + j + 1);
                 }
@@ -720,7 +720,7 @@ namespace RenderingInterop
                     indices.Add(centerIndex);
                     indices.Add(baseIndex + i + 1);
                     indices.Add(baseIndex + i);
-                    
+
                 }
             }
 
@@ -744,7 +744,7 @@ namespace RenderingInterop
                     //float v = -0.5f * z / mTopRadius + 0.5f;
                     pos.Add(new Vec3F(x, y, -z));
                     if(normal != null)
-                        normal.Add( new Vec3F(0.0f, 1.0f, 0.0f) );                    
+                        normal.Add( new Vec3F(0.0f, 1.0f, 0.0f) );
                 }
 
                 // pos, norm, tex1 for cap center vertex
@@ -752,13 +752,13 @@ namespace RenderingInterop
                 if(normal != null)
                     normal.Add(new Vec3F(0.0f, 1.0f, 0.0f));
                 // tex coord 0.5f, 0.5f
-                     
-               
+
+
                 // index of center vertex
                 uint centerIndex = (uint)pos.Count - 1;
                 for (uint i = 0; i < slices; ++i)
                 {
-                    indices.Add(centerIndex);                    
+                    indices.Add(centerIndex);
                     indices.Add(baseIndex + i);
                     indices.Add(baseIndex + i + 1);
                 }
@@ -824,7 +824,7 @@ namespace RenderingInterop
 
                     pos.Add(p);
                     nor.Add(n);
-                    
+
 
                     // And create indices for two triangles.
                     uint nextI = (i + 1) % ringStride;
@@ -844,7 +844,7 @@ namespace RenderingInterop
 
         public static void CreateUnitBox(List<Vector3> pos, List<uint> indices)
         {
-           
+
             // corner vertices
             // top verts
 
@@ -975,22 +975,22 @@ namespace RenderingInterop
             }
 
         }
-        
+
     }
 
     public static class MathHelper
     {
         /// <summary>
-        /// Represents the mathematical constant e. </summary>        
+        /// Represents the mathematical constant e. </summary>
         public const float E = 2.71828f;
 
         /// <summary>
-        /// Represents the log base ten of e.</summary>        
+        /// Represents the log base ten of e.</summary>
         public const float Log10E = 0.434294f;
 
 
         /// <summary>
-        /// Represents the log base two of e.</summary>        
+        /// Represents the log base two of e.</summary>
         public const float Log2E = 1.4427f;
         //
         // Summary:

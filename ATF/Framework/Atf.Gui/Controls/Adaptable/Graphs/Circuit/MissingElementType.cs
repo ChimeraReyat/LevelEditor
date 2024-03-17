@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections;
 using System.Collections.Generic;
@@ -42,12 +42,12 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 
         /// <summary>
         /// Get missing element output pins</summary>
-        public IList<ICircuitPin> Outputs 
+        public IList<ICircuitPin> Outputs
         {
             get
             {
-                return m_outputs;                 
-            } 
+                return m_outputs;
+            }
         }
 
         private MissingPinList m_inputs = new MissingPinList("In");
@@ -124,7 +124,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 {
 					// dynamically update count
                     if (index + 1 > m_count)
-                        m_count = index + 1; 
+                        m_count = index + 1;
                     return m_missingPin;
                 }
                 set { throw new System.NotImplementedException(); }

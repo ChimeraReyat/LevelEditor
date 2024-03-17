@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 namespace Sce.Atf.Applications.NetworkTargetServices
 {
@@ -43,9 +43,9 @@ namespace Sce.Atf.Applications.NetworkTargetServices
             this.cmbProtocol = new System.Windows.Forms.ComboBox();
             this.grpTarget.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // grpTarget
-            // 
+            //
             this.grpTarget.Controls.Add(this.cmbProtocol);
             this.grpTarget.Controls.Add(this.lblProtocol);
             this.grpTarget.Controls.Add(this.lblPort);
@@ -57,66 +57,66 @@ namespace Sce.Atf.Applications.NetworkTargetServices
             resources.ApplyResources(this.grpTarget, "grpTarget");
             this.grpTarget.Name = "grpTarget";
             this.grpTarget.TabStop = false;
-            // 
+            //
             // lblPort
-            // 
+            //
             resources.ApplyResources(this.lblPort, "lblPort");
             this.lblPort.Name = "lblPort";
-            // 
+            //
             // lblHost
-            // 
+            //
             resources.ApplyResources(this.lblHost, "lblHost");
             this.lblHost.Name = "lblHost";
-            // 
+            //
             // lblName
-            // 
+            //
             resources.ApplyResources(this.lblName, "lblName");
             this.lblName.Name = "lblName";
-            // 
+            //
             // txtPort
-            // 
+            //
             resources.ApplyResources(this.txtPort, "txtPort");
             this.txtPort.Name = "txtPort";
-            // 
+            //
             // txtHost
-            // 
+            //
             resources.ApplyResources(this.txtHost, "txtHost");
             this.txtHost.Name = "txtHost";
-            // 
+            //
             // txtName
-            // 
+            //
             resources.ApplyResources(this.txtName, "txtName");
             this.txtName.Name = "txtName";
-            // 
+            //
             // m_btnOK
-            // 
+            //
             resources.ApplyResources(this.m_btnOK, "m_btnOK");
             this.m_btnOK.Name = "m_btnOK";
             this.m_btnOK.UseVisualStyleBackColor = true;
             this.m_btnOK.Click += new System.EventHandler(this.m_btnOK_Click);
-            // 
+            //
             // m_btnCancel
-            // 
+            //
             this.m_btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.m_btnCancel, "m_btnCancel");
             this.m_btnCancel.Name = "m_btnCancel";
             this.m_btnCancel.UseVisualStyleBackColor = true;
             this.m_btnCancel.Click += new System.EventHandler(this.m_btnCancel_Click);
-            // 
+            //
             // lblProtocol
-            // 
+            //
             resources.ApplyResources(this.lblProtocol, "lblProtocol");
             this.lblProtocol.Name = "lblProtocol";
-            // 
+            //
             // cmbProtocol
-            // 
+            //
             this.cmbProtocol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProtocol.FormattingEnabled = true;
             resources.ApplyResources(this.cmbProtocol, "cmbProtocol");
             this.cmbProtocol.Name = "cmbProtocol";
-            // 
+            //
             // TargetEditDialog
-            // 
+            //
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.m_btnCancel);

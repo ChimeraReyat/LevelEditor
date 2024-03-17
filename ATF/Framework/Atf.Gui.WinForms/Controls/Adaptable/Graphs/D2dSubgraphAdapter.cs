@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -17,14 +17,14 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
     /// <typeparam name="TEdge">Edge type, must implement IGraphEdge</typeparam>
     /// <typeparam name="TEdgeRoute">Edge route type, must implement IEdgeRoute</typeparam>
     /// <remark>ControlAdapter accesses AdaptableControl, which is a Form's control, hence any class derived from ControlAdapter
-    /// belongs to Atf.Gui.WinForms project</remark>    
+    /// belongs to Atf.Gui.WinForms project</remark>
     public class D2dSubgraphAdapter<TNode, TEdge, TEdgeRoute> : D2dGraphAdapter<TNode, TEdge, TEdgeRoute>
         where TNode : class, ICircuitElement
         where TEdge : class, IGraphEdge<TNode, TEdgeRoute>
         where TEdgeRoute : class, ICircuitPin
     {
         /// <summary>
-        /// Constructor</summary>        
+        /// Constructor</summary>
         /// <param name="renderer">Graph renderer to draw and hit-test graph</param>
         /// <param name="transformAdapter">Transform adapter</param>
         public D2dSubgraphAdapter(D2dSubCircuitRenderer<TNode, TEdge, TEdgeRoute> renderer,
@@ -36,7 +36,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 
         }
 
- 
+
         /// <summary>
         /// Binds the adapter to the adaptable control; called in the order that the adapters
         /// were defined on the control</summary>
@@ -70,10 +70,10 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// <summary>
         /// Gets or sets whether to disable setting VisibleWorldBounds on the renderer.
         /// Since m_renderer is shared by multiple instances.
-        /// There are case where it is needed to keep the last setting of 
+        /// There are case where it is needed to keep the last setting of
         ///  m_renderer.VisibleWorldBounds (CircuitMagnifier uses this feature).
         /// </summary>
-        public bool SettingVisibleWorldBoundsDisabled 
+        public bool SettingVisibleWorldBoundsDisabled
         {
             get;
             set;
@@ -115,15 +115,15 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             Matrix3x2F invXform = Matrix3x2F.Invert(m_d2dGraphics.Transform);
             RectangleF rect = D2dUtil.Transform(invXform, pickRect);
             IEnumerable<object> pickedGraphNodes = base.Pick(pickRect);
-            foreach (var pickedGraphNode in pickedGraphNodes) 
+            foreach (var pickedGraphNode in pickedGraphNodes)
                 yield return pickedGraphNode;
-           
+
             var pickedFloatingPins = new List<object>();
             var circuiElement = m_graph.Cast<ICircuitElementType>();
             foreach (var pin in circuiElement.Inputs)
             {
                 var grpPIn = pin.Cast<ICircuitGroupPin<TNode>>();
-                RectangleF nodeBounds = m_renderer.GetBounds(grpPIn, true, m_d2dGraphics); 
+                RectangleF nodeBounds = m_renderer.GetBounds(grpPIn, true, m_d2dGraphics);
                 if (nodeBounds.IntersectsWith(rect))
                     pickedFloatingPins.Add(pin);
             }
@@ -131,14 +131,14 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             foreach (var pin in circuiElement.Outputs)
             {
                 var grpPIn = pin.Cast<ICircuitGroupPin<TNode>>();
-                RectangleF nodeBounds = m_renderer.GetBounds(grpPIn, false, m_d2dGraphics); 
+                RectangleF nodeBounds = m_renderer.GetBounds(grpPIn, false, m_d2dGraphics);
                 if (nodeBounds.IntersectsWith(rect))
                     pickedFloatingPins.Add(pin);
             }
 
             foreach (var floatingPin in pickedFloatingPins)
                 yield return floatingPin;
-          
+
         }
 
         private void control_ContextChanged(object sender, EventArgs e)

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -95,10 +95,10 @@ namespace Sce.Atf.Applications
 
         /// <summary>
         /// Whether to refresh the status after saving a  document</summary>
-        /// <remarks>Subversion usually does not require check-out to edit a checked-in doc, 
+        /// <remarks>Subversion usually does not require check-out to edit a checked-in doc,
         /// need to refresh doc status after saving </remarks>
         public bool RefreshStatusOnSave { get; set; }
-  
+
 
         #region IInitializable Members
 
@@ -435,7 +435,7 @@ namespace Sce.Atf.Applications
             if (e.Kind != DocumentEventType.SavedAs)
                 return;
 
-          
+
             if (SourceControlService.GetStatus(e.Document.Uri) == SourceControlStatus.NotControlled)
             {
                 string message = string.Format("Add document {0} to version control?".Localize(), e.Document.Uri.AbsolutePath);

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections;
@@ -339,7 +339,7 @@ namespace Sce.Atf.Controls
             //        }
             //    }
             //}
-            
+
             private void ListTreeViewMouseMove(object sender, MouseEventArgs e)
             {
                 // Taken from MSDN for an issue with the ListView control
@@ -940,11 +940,11 @@ namespace Sce.Atf.Controls
                 new List<ListViewItem>();
 
             private const int ExtraneousItemWidth = 16;
-            
+
             private const int SB_HORZ = 0;
             private const int SB_VERT = 1;
         }
-        
+
         private class ListViewItemSorter : IComparer
         {
             public int Compare(object x, object y)

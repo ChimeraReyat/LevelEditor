@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -267,7 +267,7 @@ namespace Sce.Atf.Dom
 
         // The recording of final events to be raised after the transaction finishes.
         private readonly List<Pair<EventType, EventArgs>> m_events = new List<Pair<EventType, EventArgs>>();
-    
+
         // Map the DomNode and its AttributeInfo to the index of 'm_events' that contains the attribute changed event.
         private readonly Dictionary<Pair<DomNode, AttributeInfo>, int> m_attributeChanges =
             new Dictionary<Pair<DomNode, AttributeInfo>, int>(s_comparer);

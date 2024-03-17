@@ -14,7 +14,7 @@ namespace Sce.Atf
 		bool Matches(IQueryMatch itemToMatch);
 
 		/// <summary>
-		/// Using this search pattern, replaces the search data of the specified candidate 
+		/// Using this search pattern, replaces the search data of the specified candidate
         /// with the data from the specified object</summary>
 		void Replace(IQueryMatch itemToReplace, object replaceWith);
 	}

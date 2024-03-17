@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -289,7 +289,7 @@ namespace Sce.Atf
         /// <summary>
         /// Adds an item to the <see cref="T:System.Collections.Generic.ICollection`1"></see></summary>
         /// <param name="item">The object to add to the <see cref="T:System.Collections.Generic.ICollection`1"></see></param>
-        /// <exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.ICollection`1"></see> 
+        /// <exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.ICollection`1"></see>
         /// is read-only</exception>
         public void Add(T item)
         {
@@ -298,7 +298,7 @@ namespace Sce.Atf
 
         /// <summary>
         /// Removes all items from the <see cref="T:System.Collections.Generic.ICollection`1"></see></summary>
-        /// <exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.ICollection`1"></see> 
+        /// <exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.ICollection`1"></see>
         /// is read-only</exception>
         public void Clear()
         {
@@ -321,17 +321,17 @@ namespace Sce.Atf
         }
 
         /// <summary>
-        /// Copies the elements of the <see cref="T:System.Collections.Generic.ICollection`1"></see> to an <see cref="T:System.Array"></see>, 
+        /// Copies the elements of the <see cref="T:System.Collections.Generic.ICollection`1"></see> to an <see cref="T:System.Array"></see>,
         /// starting at a particular <see cref="T:System.Array"></see> index</summary>
-        /// <param name="array">The one-dimensional <see cref="T:System.Array"></see> that is the destination of the elements 
-        /// copied from <see cref="T:System.Collections.Generic.ICollection`1"></see>. 
+        /// <param name="array">The one-dimensional <see cref="T:System.Array"></see> that is the destination of the elements
+        /// copied from <see cref="T:System.Collections.Generic.ICollection`1"></see>.
         /// The <see cref="T:System.Array"></see> must have zero-based indexing.</param>
         /// <param name="arrayIndex">The zero-based index in array at which copying begins</param>
         /// <exception cref="T:System.ArgumentOutOfRangeException">ArrayIndex is less than 0</exception>
         /// <exception cref="T:System.ArgumentNullException">Array is null</exception>
         /// <exception cref="T:System.ArgumentException">Array is multidimensional.-or-
         /// arrayIndex is equal to or greater than the length of array.-or-
-        /// The number of elements in the source <see cref="T:System.Collections.Generic.ICollection`1"></see> is greater than 
+        /// The number of elements in the source <see cref="T:System.Collections.Generic.ICollection`1"></see> is greater than
         /// the available space from arrayIndex to the end of the destination array.-or-
         /// Type T cannot be cast automatically to the type of the destination array.</exception>
         public void CopyTo(T[] array, int arrayIndex)
@@ -357,7 +357,7 @@ namespace Sce.Atf
         /// Removes the first occurrence of a specific object from the <see cref="T:System.Collections.Generic.ICollection`1"></see></summary>
         /// <param name="item">The object to remove from the <see cref="T:System.Collections.Generic.ICollection`1"></see></param>
         /// <returns>
-        /// True iff item was successfully removed from the <see cref="T:System.Collections.Generic.ICollection`1"></see>. 
+        /// True iff item was successfully removed from the <see cref="T:System.Collections.Generic.ICollection`1"></see>.
         /// This method also returns false if item is not found in the original <see cref="T:System.Collections.Generic.ICollection`1"></see>.
         /// </returns>
         /// <exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.ICollection`1"></see> is read-only</exception>

@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -24,43 +24,43 @@ namespace LevelEditor
     [Export(typeof(GameEditor))]
     [Export(typeof(IInitializable))]
     [Export(typeof(IDocumentClient))]
-    [Export(typeof(IPaletteClient))]        
+    [Export(typeof(IPaletteClient))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class GameEditor :
         IDocumentClient,
         IInitializable,
-        IPaletteClient,        
+        IPaletteClient,
         IWindowLayoutClient
     {
         [ImportingConstructor]
         public GameEditor(
             IContextRegistry contextRegistry,
-            IDocumentRegistry documentRegistry,            
+            IDocumentRegistry documentRegistry,
             IControlHostService controlHostService,
             ICommandService commandService,
             IDocumentService documentService,
             IPaletteService paletteService,
-            ISettingsService settingsService,            
+            ISettingsService settingsService,
             IResourceService resourceService,
-            LevelEditorCore.ResourceLister resourceLister,            
+            LevelEditorCore.ResourceLister resourceLister,
             BookmarkLister bookmarkLister
             )
         {
             m_contextRegistry = contextRegistry;
             m_documentRegistry = documentRegistry;
             m_paletteService = paletteService;
-            m_settingsService = settingsService;            
-            m_documentService = documentService;            
+            m_settingsService = settingsService;
+            m_documentService = documentService;
             m_resourceService = resourceService;
-            m_resourceLister = resourceLister;            
+            m_resourceLister = resourceLister;
             m_bookmarkLister = bookmarkLister;
-            
+
             //to-do wire it to to command service
             InputScheme.ActiveControlScheme = new MayaControlScheme();
             ResolveOnLoad = true;
         }
 
-        
+
 
         #region IInitializable Members
 
@@ -78,7 +78,7 @@ namespace LevelEditor
                     m_paletteService.AddItem(nodeType, item.Category, this);
                 }
             }
-            
+
             m_mainWindow.Loaded += delegate
             {
                 if (ResourceRoot == null)
@@ -87,8 +87,8 @@ namespace LevelEditor
 
 
             if (m_scriptingService != null)
-            {                
-                
+            {
+
                 // load this assembly into script domain.
                 m_scriptingService.LoadAssembly(GetType().Assembly);
                 m_scriptingService.LoadAssembly(Assembly.GetAssembly(typeof(LevelEditorCore.IDesignView)));
@@ -129,13 +129,13 @@ namespace LevelEditor
         }
 
         public IDocument Open(Uri uri)
-        {            
+        {
             IGameDocument activeDoc = m_documentRegistry.GetActiveDocument<IGameDocument>();
 
             if (activeDoc != null)
             {
                 if (!m_documentService.Close(activeDoc))
-                    return null;              
+                    return null;
             }
 
             List<IResource> resources = new List<IResource>(m_resourceService.Resources);
@@ -143,18 +143,18 @@ namespace LevelEditor
             {
                 m_resourceService.Unload(res.Uri);
             }
-            
-            GameDocument document = GameDocument.OpenOrCreate(uri, m_schemaLoader);            
+
+            GameDocument document = GameDocument.OpenOrCreate(uri, m_schemaLoader);
             m_contextRegistry.ActiveContext = document.As<GameContext>();
-            return document;                          
+            return document;
         }
 
         public void Show(IDocument document)
-        {           
+        {
         }
 
         public void Save(IDocument document, Uri uri)
-        {            
+        {
             GameDocument gameDocument = document as GameDocument;
             gameDocument.Save(uri, m_schemaLoader);
 
@@ -162,7 +162,7 @@ namespace LevelEditor
             foreach (var obj in m_gameDocumentRegistry.FindAll<IEditableResourceOwner>())
             {
                 if (obj.Dirty)
-                    obj.Save();                
+                    obj.Save();
             }
 
             m_projLister.Refresh();
@@ -170,10 +170,10 @@ namespace LevelEditor
 
         public void Close(IDocument document)
         {
-            GameDocument gameDocument = document as GameDocument;                        
+            GameDocument gameDocument = document as GameDocument;
             if (gameDocument != null)
-            {                
-                m_gameDocumentRegistry.Remove((IGameDocument)document);                
+            {
+                m_gameDocumentRegistry.Remove((IGameDocument)document);
                 List<object> removeList = new List<object>(m_contextRegistry.Contexts);
                 foreach (object cnt in removeList)
                     m_contextRegistry.RemoveContext(cnt);
@@ -182,7 +182,7 @@ namespace LevelEditor
         }
 
         #endregion
-     
+
         #region IPaletteClient Members
 
         void IPaletteClient.GetInfo(object item, ItemInfo info)
@@ -215,11 +215,11 @@ namespace LevelEditor
             {
                 node.SetAttribute(idAttribute, paletteItem.Name);
             }
-            return node;            
+            return node;
         }
 
         #endregion
-            
+
         #region IWindowLayoutClient Members
 
         public object LayoutData
@@ -335,7 +335,7 @@ namespace LevelEditor
         #endregion
 
         /// <summary>
-        /// Gets or sets the root resource directory for finding assets</summary>        
+        /// Gets or sets the root resource directory for finding assets</summary>
         public string ResourceRoot
         {
             get
@@ -358,12 +358,12 @@ namespace LevelEditor
 
                 Globals.ResourceRoot = uri;
 
-                IResourceFolder rootResourceFolder = new CustomFileSystemResourceFolder(Globals.ResourceRoot.LocalPath);                
+                IResourceFolder rootResourceFolder = new CustomFileSystemResourceFolder(Globals.ResourceRoot.LocalPath);
                 if (m_resourceLister != null)
                     m_resourceLister.SetRootFolder(rootResourceFolder);
             }
         }
-      
+
         private void RegisterSettings()
         {
             string descr = "Root path for all resources".Localize();
@@ -373,7 +373,7 @@ namespace LevelEditor
                     null,
                     descr,
                     new FolderBrowserDialogUITypeEditor(descr), null);
-            
+
 
             m_settingsService.RegisterSettings(this, resourceRoot);
             m_settingsService.RegisterUserSettings("Resources".Localize(), resourceRoot);
@@ -383,33 +383,33 @@ namespace LevelEditor
                     "Resolve on load".Localize("A user preference and the name of the preference in the settings file"),
                     null,
                     "Resolve sub-documents on load".Localize());
-                    
+
             string docs = "Documents".Localize();
             m_settingsService.RegisterSettings(docs, resolveOnLoad);
             m_settingsService.RegisterUserSettings(docs, resolveOnLoad);
 
         }
 
-        
+
         public bool ResolveOnLoad
         {
             get { return GameDocument.ResolveOnLoad; }
             set { GameDocument.ResolveOnLoad = value; }
         }
 
-        
+
 
         // MEF Plugins/Services
         private readonly IContextRegistry m_contextRegistry;
         private readonly IDocumentRegistry m_documentRegistry;
         private readonly IPaletteService m_paletteService;
-        private readonly ISettingsService m_settingsService;        
-        private readonly IDocumentService m_documentService;        
+        private readonly ISettingsService m_settingsService;
+        private readonly IDocumentService m_documentService;
         private readonly IResourceService m_resourceService = null;
-        private readonly LevelEditorCore.ResourceLister m_resourceLister = null;        
+        private readonly LevelEditorCore.ResourceLister m_resourceLister = null;
         private readonly BookmarkLister m_bookmarkLister = null;
         private const string SettingsWlcDocumentElementName = "GameEditorSettings";
-        
+
 
         // scripting related members
         [Import(AllowDefault = true)]

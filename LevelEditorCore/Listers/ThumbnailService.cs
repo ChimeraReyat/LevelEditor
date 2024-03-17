@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ namespace LevelEditorCore
 {
     /// <summary>
     /// Service that manages the transformation of Resources into thumbnail images and file paths</summary>
-    [Export(typeof(ThumbnailService))]    
+    [Export(typeof(ThumbnailService))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class ThumbnailService
     {
@@ -42,7 +42,7 @@ namespace LevelEditorCore
             {
                 m_resourcesToResolve.Enqueue(resourceUri);
                 m_autoResetEvent.Set();
-            }            
+            }
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace LevelEditorCore
             m_workThread.Start();
         }
 
-            
+
         private bool m_exit = false;
         private Uri GetNext()
         {
@@ -80,12 +80,12 @@ namespace LevelEditorCore
 
             return resourceUri;
         }
-        
+
         private void ResolverThread()
         {
             while (m_exit == false)
-            {                
-                m_autoResetEvent.WaitOne();                
+            {
+                m_autoResetEvent.WaitOne();
                 Uri resourceUri = GetNext();
                 while (resourceUri != null)
                 {
@@ -100,7 +100,7 @@ namespace LevelEditorCore
                                     OnThumbnailReady(new ThumbnailReadyEventArgs(resourceUri, thumbnailImage));
                                 },
                                 null);
-                            
+
                         }
                         catch (Exception ex)
                         {
@@ -109,10 +109,10 @@ namespace LevelEditorCore
                     }
 
                     resourceUri = GetNext();
-                }//while (resourceUri != null)                                
+                }//while (resourceUri != null)
             }
         }
-       
+
         /// <summary>
         /// MEF import of available thumbnail resolvers</summary>
         [ImportMany]
@@ -120,7 +120,7 @@ namespace LevelEditorCore
 
         private Thread m_workThread;
         private readonly SynchronizationContext m_syncContext;
-        private readonly Queue<Uri> m_resourcesToResolve = new Queue<Uri>();        
+        private readonly Queue<Uri> m_resourcesToResolve = new Queue<Uri>();
         private readonly AutoResetEvent m_autoResetEvent = new AutoResetEvent(false);
     }
 }

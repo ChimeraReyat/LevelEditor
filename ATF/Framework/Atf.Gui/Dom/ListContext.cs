@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel;
@@ -133,7 +133,7 @@ namespace Sce.Atf.Dom
         {
             CheckPropertyName(propertyName);
             OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
-        } 
+        }
 
         /// <summary>
         /// Raise the PropertyChanged event</summary>
@@ -150,7 +150,7 @@ namespace Sce.Atf.Dom
         /// <remarks>
         /// The default behavior is to return the child list index for the dom node
         /// However there are many situations where this is incorrect e.g.
-        /// If this ListContext combines DomNodes from a variety of child lists on the 
+        /// If this ListContext combines DomNodes from a variety of child lists on the
         /// parent node.  In this case we need to recalculate the child index taking into
         /// account these mutliple lists</remarks>
         /// <param name="e">ChildEventArgs of inserted/removed child</param>

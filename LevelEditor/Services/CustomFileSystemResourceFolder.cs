@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ namespace LevelEditor
         , IComparable<CustomFileSystemResourceFolder>
     {
         /// <summary>
-        /// Compares this to other.</summary>        
+        /// Compares this to other.</summary>
         public int CompareTo(CustomFileSystemResourceFolder other)
         {
             return FullPath.CompareTo(other.FullPath);
@@ -78,7 +78,7 @@ namespace LevelEditor
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            return FullPath.GetHashCode();            
+            return FullPath.GetHashCode();
         }
 
 
@@ -110,9 +110,9 @@ namespace LevelEditor
         {
             get
             {
-                var folders = new List<IResourceFolder>();               
-                try 
-                { 
+                var folders = new List<IResourceFolder>();
+                try
+                {
                     var directories = Directory.GetDirectories(m_path);
                     const FileAttributes systemOrHidden = FileAttributes.System | FileAttributes.Hidden;
                     foreach (string directory in directories)
@@ -134,27 +134,27 @@ namespace LevelEditor
         public IList<Uri> ResourceUris
         {
             get
-            {                
+            {
                 var uris = new List<Uri>();
-                try 
+                try
                 {
-                    var systemOrHidden = FileAttributes.System | FileAttributes.Hidden;                    
+                    var systemOrHidden = FileAttributes.System | FileAttributes.Hidden;
                     var gameEngine = Globals.MEFContainer.GetExportedValue<IGameEngineProxy>();
-                    var resInfos = gameEngine != null ? gameEngine.Info.ResourceInfos : null; 
+                    var resInfos = gameEngine != null ? gameEngine.Info.ResourceInfos : null;
 
                     var files = Directory.GetFiles(m_path);
                     foreach (string file in files)
-                    {                        
-                        FileInfo finfo = new FileInfo(file);                        
+                    {
+                        FileInfo finfo = new FileInfo(file);
                         if ( (finfo.Attributes & systemOrHidden) != 0
                             || finfo.Name.StartsWith("~"))
                             continue;
                         string ext = finfo.Extension.ToLower();
                         if (resInfos == null || resInfos.IsSupported(ext))
-                            uris.Add(new Uri(file));                        
+                            uris.Add(new Uri(file));
                     }
                 }
-                catch { }                           
+                catch { }
                 return new ReadOnlyCollection<Uri>(uris);
             }
         }
@@ -202,6 +202,6 @@ namespace LevelEditor
 
         private string m_name;
         private readonly string m_path;
-        private readonly IResourceFolder m_parent;        
+        private readonly IResourceFolder m_parent;
     }
 }

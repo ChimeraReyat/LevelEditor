@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 {
     /// <summary>
     /// Adapter that tracks changes to transitions and updates their routing during validation.
-    /// Update transitions on Ending event are part of the transactions themselves, 
+    /// Update transitions on Ending event are part of the transactions themselves,
     /// then validate all sub-graphs in the current document on Ended event. Requires
     /// Sce.Atf.Dom.ReferenceValidator to be available on the adapted DomNode.</summary>
     public abstract class CircuitValidator : Validator
@@ -59,7 +59,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 
             base.OnNodeSet();
 
-            // Since templates may be externally referenced & edited, better to validate and fix the dangling wires 
+            // Since templates may be externally referenced & edited, better to validate and fix the dangling wires
             // that were connected to already deleted sub-nodes of a template
             if (m_templateInstances.Keys.Any())
             {
@@ -86,11 +86,11 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             foreach (HistoryContext historyContext in node.AsAll<HistoryContext>())
             {
                 //Alan: re-enabled historyContext's merge feature.
-                //      It was disabled with the below with comment. 
+                //      It was disabled with the below with comment.
                 //      But from the commit comment it seems that the feature was
                 //      disabled because of some functional test failure in a particular ATF base tool (creature editor).
-                //      
-                // Disable automatically combining attribute setting operations, as operations such as grouping pin index changes better run its course   
+                //
+                // Disable automatically combining attribute setting operations, as operations such as grouping pin index changes better run its course
                 //historyContext.PendingSetOperationLifetime = TimeSpan.Zero;
                 m_historyContexts.Add(historyContext);
             }
@@ -105,7 +105,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         {
             foreach (HistoryContext historyContext in node.AsAll<HistoryContext>())
                 m_historyContexts.Remove(historyContext);
-            base.RemoveNode(node);        
+            base.RemoveNode(node);
         }
 
 
@@ -122,7 +122,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             if (referenceValidator != null)
                 referenceValidator.Suspended = m_undoingOrRedoing;
 
-            MovingCrossContainer = false;        
+            MovingCrossContainer = false;
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         {
             AddSubtree(e.Child);
             if (!m_undoingOrRedoing && e.Child.Is<Wire>())
-                UpdateGroupPinConnectivity(e.Child.Cast<Wire>());        
+                UpdateGroupPinConnectivity(e.Child.Cast<Wire>());
         }
 
         /// <summary>
@@ -144,10 +144,10 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         {
             RemoveSubtree(e.Child);
             if (!m_undoingOrRedoing && e.Child.Is<Wire>())
-                UpdateGroupPinConnectivity(e.Child.Cast<Wire>());      
+                UpdateGroupPinConnectivity(e.Child.Cast<Wire>());
         }
 
-       
+
 
         /// <summary>
         /// Performs custom actions after an attribute in the DOM node subtree changed</summary>
@@ -174,7 +174,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                         // ensure group pin names are unique at local level
                         UniqueNamer uniqueName = new UniqueNamer();
                         GroupPin childGrpPin = e.DomNode.Cast<GroupPin>();
-  
+
                         foreach (var grpPin in subGraph.InputGroupPins)
                         {
                             if (grpPin != childGrpPin)
@@ -268,12 +268,12 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                         wire.InputPinTarget = null;
                         wire.OutputPinTarget = null;
                     }
-                   
-                
-                    subgraph.UpdateGroupPinInfo();    
+
+
+                    subgraph.UpdateGroupPinInfo();
                     subgraph.OnChanged(EventArgs.Empty); // but notify the change
                 }
-                    
+
                 foreach (var circuit in m_circuits)
                 {
                     foreach (var wire in circuit.Wires)
@@ -284,7 +284,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                     }
                     circuit.Dirty = false;
                 }
-                    
+
                 return;
             }
 
@@ -319,7 +319,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             {
                 group.UpdateGroupPinInfo();
             }
-   
+
             foreach (var subgraph in m_nodesInserted.Keys)
             {
                 IEnumerable<Element> nodes = m_nodesInserted[subgraph];
@@ -333,7 +333,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                             subGraphPinAdapter.AdjustLayout(nodes, EmptyEnumerable<GroupPin>.Instance, new Point(0, 0));
                     }
                 }
-            } 
+            }
         }
 
         // update edge routes
@@ -351,13 +351,13 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                     {
                         if (wire.InputElement.Type is MissingElementType || wire.OutputElement.Type is MissingElementType)
                             continue; // skip wires connected to missing types
-                        
+
                         var matchedInput = new Pair<Element, ICircuitPin>();
                         foreach (var module in container.Elements)
                         {
-                            matchedInput = module.FullyMatchPinTarget(wire.InputPinTarget, true);                          
+                            matchedInput = module.FullyMatchPinTarget(wire.InputPinTarget, true);
                             if (matchedInput.First != null)
-                                break;                                                     
+                                break;
                         }
 
                         var matchedOutput = new Pair<Element, ICircuitPin>();
@@ -392,7 +392,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                         var matchedInput = newParentContainer.FullyMatchPinTarget(wire.InputPinTarget, true);
                         Debug.Assert(matchedInput.First != null);
                         var matchedOutput = newParentContainer.FullyMatchPinTarget(wire.OutputPinTarget, false);
-                        Debug.Assert(matchedOutput.First != null); 
+                        Debug.Assert(matchedOutput.First != null);
 
                         if (newParentContainer.Is<Group>()) // the edge should connect to child nodes of the parent container
                         {
@@ -429,9 +429,9 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                         // the edge has invalid route, must be caused by nodes deletion down the container hierarchy
                         container.Wires.Remove(wire);
                     }
-                                       
+
                 }
-            }       
+            }
         }
 
         /// <summary>
@@ -454,7 +454,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 #endif
             m_undoingOrRedoing = false;
         }
-         
+
 
         /// <summary>
         /// Validate edges of the graph</summary>
@@ -480,8 +480,8 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                         nestedSubGraph = reference.Target;
                     }
                     else
-                        nestedSubGraph = edge.InputElement.Cast<Group>();         
-                  
+                        nestedSubGraph = edge.InputElement.Cast<Group>();
+
                     var grpPin = nestedSubGraph.InputGroupPins.First(x => x.Index == edge.InputPin.Index);
                     bool sameLeafNode = grpPin.PinTarget == edge.InputPinTarget;
                     if (!sameLeafNode) // could this be a valid case for (deep)copy group nodes
@@ -520,8 +520,8 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                         nestedSubGraph = reference.Target;
                     }
                     else
-                        nestedSubGraph = edge.OutputElement.Cast<Group>();                  
-                   
+                        nestedSubGraph = edge.OutputElement.Cast<Group>();
+
                     var grpPin = nestedSubGraph.OutputGroupPins.First(x => x.Index == edge.OutputPin.Index);
                     bool sameLeafNode = grpPin.PinTarget == edge.OutputPinTarget;
                     if (!sameLeafNode) // could this be a valid case for (deep)copy group nodes
@@ -531,7 +531,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                         sameLeafNode = name1 == name2;
                     }
                     Debug.Assert(sameLeafNode, "Group pin and edge pin reference the same output pin target");
-                    
+
                 }
                 else
                 {
@@ -581,7 +581,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 {
                     var template = CircuitUtil.GetGroupTemplate(node);
                     if (template != null)// if the template is not missing
-                        m_templateInstances.Remove(template.DomNode, node);                 
+                        m_templateInstances.Remove(template.DomNode, node);
                 }
                 else if (node.Is<Group>())
                     m_subGraphs.Remove(node.Cast<Group>());
@@ -599,7 +599,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             if (template == null)
                 return;
 
-            // for template editing, the  group pin connectivity should be updated 
+            // for template editing, the  group pin connectivity should be updated
             // by scanning  all wires of all graph containers that share it by referencing
             var containersToCheck = new List<ICircuitContainer>();
             foreach (var templateInstance in m_templateInstances[template.DomNode])
@@ -626,8 +626,8 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                         }
                     }
                 }
-                
-              
+
+
             }
 
             foreach (var grpPin in template.OutputGroupPins)
@@ -660,7 +660,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 return;
 
             var updatedNodes = new List<DomNode>();
-            // need to update the pin external connectivity of the connecting group       
+            // need to update the pin external connectivity of the connecting group
             if (CircuitUtil.IsGroupTemplateInstance(wire.InputElement.DomNode))
             {
                 var template = CircuitUtil.GetGroupTemplate(wire.InputElement.DomNode);
@@ -668,7 +668,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 {
                     updatedNodes.Add(template.DomNode);
                     UpdateTemplateInfo(template);
-                }              
+                }
             }
             else if (wire.InputElement.DomNode.Is<Group>())
             {
@@ -683,7 +683,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 {
                     updatedNodes.Add(template.DomNode);
                     UpdateTemplateInfo(template);
-                }              
+                }
             }
             else if (wire.OutputElement.DomNode.Is<Group>())
             {
@@ -707,6 +707,6 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         private Multimap<Group, Element> m_nodesInserted = new Multimap<Group, Element>();
         // key is template DomNode, values are the instances of the template
         private Multimap<DomNode, DomNode> m_templateInstances = new Multimap<DomNode, DomNode>();
-  
+
     }
 }

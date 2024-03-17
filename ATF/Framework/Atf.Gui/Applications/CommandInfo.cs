@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -40,7 +40,7 @@ namespace Sce.Atf.Applications
         /// <param name="groupTag">Unique group identifier</param>
         /// <param name="menuText">Menu text</param>
         /// <param name="description">Command description</param>
-        /// <param name="shortcut">Default keyboard shortcut. Use bitwise OR for key combos 
+        /// <param name="shortcut">Default keyboard shortcut. Use bitwise OR for key combos
         /// (eg, "Keys.Ctrl | Keys.W"), or "Keys.None" for no shortcut.</param>
         /// <remarks>Added by RJG</remarks>
         public CommandInfo(
@@ -61,7 +61,7 @@ namespace Sce.Atf.Applications
         /// <param name="groupTag">Unique group identifier</param>
         /// <param name="menuText">Menu text</param>
         /// <param name="description">Command description</param>
-        /// <param name="shortcut">Default keyboard shortcut. Use bitwise OR for key combos 
+        /// <param name="shortcut">Default keyboard shortcut. Use bitwise OR for key combos
         /// (eg, "Keys.Ctrl | Keys.W"), or "Keys.None" for no shortcut.</param>
         /// <param name="imageName">Name of image resource, or null</param>
         public CommandInfo(
@@ -83,7 +83,7 @@ namespace Sce.Atf.Applications
         /// <param name="groupTag">Unique group identifier</param>
         /// <param name="menuText">Menu text</param>
         /// <param name="description">Command description</param>
-        /// <param name="shortcuts">Default keyboard shortcuts - any collection implementing IEnumerable&lt;Keys&gt;. 
+        /// <param name="shortcuts">Default keyboard shortcuts - any collection implementing IEnumerable&lt;Keys&gt;.
         /// Use bitwise OR for key-combos (eg, "Key.Control | Key.W"), or "Keys.None" for no shortcuts.</param>
         /// <param name="imageName">Name of image resource, or null</param>
         public CommandInfo(
@@ -105,7 +105,7 @@ namespace Sce.Atf.Applications
         /// <param name="groupTag">Unique group identifier</param>
         /// <param name="menuText">Menu text</param>
         /// <param name="description">Command description</param>
-        /// <param name="shortcut">Default keyboard shortcut. Use bitwise OR for key combos 
+        /// <param name="shortcut">Default keyboard shortcut. Use bitwise OR for key combos
         /// (eg, "Keys.Ctrl | Keys.W"), or "Keys.None" for no shortcut.</param>
         /// <param name="imageName">Name of image resource, or null</param>
         /// <param name="visibility">Command visibility in menus and toolbars. CommandVisibility.Default is
@@ -133,7 +133,7 @@ namespace Sce.Atf.Applications
             ImageName = imageName;
             Visibility = visibility;
             HelpUrl = helpUrl;
-            
+
             ShortcutsEditable = true;
             ShortcutsChanged += (e, s) => RebuildShortcutKeyDisplayString();
             ShortcutsChanged.Raise(this, EventArgs.Empty);
@@ -173,7 +173,7 @@ namespace Sce.Atf.Applications
             ImageName = imageName;
             Visibility = visibility;
             HelpUrl = helpUrl;
-            
+
             ShortcutsEditable = true;
             ShortcutsChanged += (e, s) => RebuildShortcutKeyDisplayString();
             ShortcutsChanged.Raise(this, EventArgs.Empty);
@@ -186,7 +186,7 @@ namespace Sce.Atf.Applications
         /// <param name="groupTag">Unique group identifier</param>
         /// <param name="menuText">Menu text</param>
         /// <param name="description">Command description</param>
-        /// <param name="shortcut">Default keyboard shortcut. Use bitwise OR for key combos 
+        /// <param name="shortcut">Default keyboard shortcut. Use bitwise OR for key combos
         /// (eg, "Keys.Ctrl | Keys.W"), or "Keys.None" for no shortcut.</param>
         /// <param name="imageKey">Key to identify image resource, or null</param>
         public CommandInfo(
@@ -208,7 +208,7 @@ namespace Sce.Atf.Applications
         /// <param name="groupTag">Unique group identifier</param>
         /// <param name="menuText">Menu text</param>
         /// <param name="description">Command description</param>
-        /// <param name="shortcut">Default keyboard shortcut. Use bitwise OR for key combos 
+        /// <param name="shortcut">Default keyboard shortcut. Use bitwise OR for key combos
         /// (eg, "Keys.Ctrl | Keys.W"), or "Keys.None" for no shortcut.</param>
         /// <param name="imageKey">Key to identify image resource, or null</param>
         /// <param name="visibility">Command visibility in menus and toolbars</param>
@@ -300,7 +300,7 @@ namespace Sce.Atf.Applications
         }
 
         /// <summary>
-        /// Check if the given key is a shortcut key</summary>        
+        /// Check if the given key is a shortcut key</summary>
         public bool IsShortcut(Keys key)
         {
             return m_shortcutSet.Contains(key);
@@ -335,7 +335,7 @@ namespace Sce.Atf.Applications
 
         /// <summary>
         /// Gets or sets the collection of keyboard shortcuts that can activate this command.
-        /// For key-combos, use bitwise OR (e.g. "Keys.Control | Keys.S" for Ctrl-S). 
+        /// For key-combos, use bitwise OR (e.g. "Keys.Control | Keys.S" for Ctrl-S).
         /// For no shortcuts, pass an enumeration containing only Keys.None.
         /// When setting, a copy is made of the enumeration.</summary>
         public IEnumerable<Keys> Shortcuts
@@ -371,7 +371,7 @@ namespace Sce.Atf.Applications
         }
 
         /// <summary>
-        /// Clear out the keyboard shortcuts used to activate this command.  
+        /// Clear out the keyboard shortcuts used to activate this command.
         /// Subsequently updates the display string.</summary>
         public void ClearShortcuts()
         {
@@ -381,7 +381,7 @@ namespace Sce.Atf.Applications
         }
 
         /// <summary>
-        /// Add a keyboard shortcut to the list of keyboard shortcuts for activating this command.  
+        /// Add a keyboard shortcut to the list of keyboard shortcuts for activating this command.
         /// Subsequently updates the display string.</summary>
         /// <param name="shortcut">Keys for shortcut</param>
         public void AddShortcut(Keys shortcut)
@@ -402,7 +402,7 @@ namespace Sce.Atf.Applications
         }
 
         /// <summary>
-        /// Remove a keyboard shortcut from the list of keyboard shortcuts for activating this command.  
+        /// Remove a keyboard shortcut from the list of keyboard shortcuts for activating this command.
         /// Subsequently updates the display string.</summary>
         /// <param name="shortcut">Keys for shortcut</param>
         public void RemoveShortcut(Keys shortcut)
@@ -415,7 +415,7 @@ namespace Sce.Atf.Applications
                 m_shortcutSet.Remove(shortcut);
                 ShortcutsChanged.Raise(this, EventArgs.Empty);
             }
-                
+
         }
 
         /// <summary>
@@ -468,14 +468,14 @@ namespace Sce.Atf.Applications
         public string HelpUrl;
 
         /// <summary>
-        /// Gets or sets a value indicating whether the item should automatically appear checked and unchecked when clicked</summary>    
+        /// Gets or sets a value indicating whether the item should automatically appear checked and unchecked when clicked</summary>
         public bool CheckOnClick { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the defined shortcuts are editable</summary>
         /// <remarks>A false value will make the command not listed in CustomizeKeyboardDialog</remarks>
         public bool ShortcutsEditable { get; set; }
-    
+
 
         /// <summary>
         /// A globally unique ID for this command. Is useful for a stable sort.</summary>

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using SharpDX.DirectWrite;
@@ -6,7 +6,7 @@ using SharpDX.DirectWrite;
 namespace Sce.Atf.Direct2D
 {
     /// <summary>
-    /// The D2dTextFormat describes the font and paragraph properties used to format text, 
+    /// The D2dTextFormat describes the font and paragraph properties used to format text,
     /// and it describes locale information</summary>
     public class D2dTextFormat : D2dResource
     {
@@ -140,11 +140,11 @@ namespace Sce.Atf.Direct2D
         /// <summary>
         /// Returns the line spacing adjustment set for a multiline text paragraph</summary>
         /// <param name="lineSpacingMethod">A value that indicates how line height is determined</param>
-        /// <param name="lineSpacing">When this method returns, contains the line height, 
+        /// <param name="lineSpacing">When this method returns, contains the line height,
         /// or distance between one baseline to another</param>
         /// <param name="baseline">When this method returns, contains the distance from top of line to baseline.
         /// A reasonable ratio to lineSpacing is 80 percent.</param>
-        /// <returns>If the method succeeds, it returns D2dResult.Ok. 
+        /// <returns>If the method succeeds, it returns D2dResult.Ok.
         /// Otherwise, it throws an exception.</returns>
         public D2dResult GetLineSpacing(
             out D2dLineSpacingMethod lineSpacingMethod,
@@ -179,7 +179,7 @@ namespace Sce.Atf.Direct2D
         }
 
         /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or 
+        /// Performs application-defined tasks associated with freeing, releasing, or
         /// resetting unmanaged resources</summary>
         /// <param name="disposing">If true, then Dispose() called this method and managed resources should
         /// be released in addition to unmanaged resources. If false, then the finalizer called this method
@@ -280,7 +280,7 @@ namespace Sce.Atf.Direct2D
     public enum D2dWordWrapping
     {
         /// <summary>
-        /// Indicates that words are broken across lines to avoid text 
+        /// Indicates that words are broken across lines to avoid text
         /// overflowing the layout box</summary>
         Wrap = 0,
 
@@ -296,7 +296,7 @@ namespace Sce.Atf.Direct2D
     /// The line spacing method is set by using the SetLineSpacing method of
     /// the D2dTextFormat or D2dTextLayout.
     /// To get the current line spacing method of a text format or textlayout, use
-    /// the GetLineSpacing method.</remarks>    
+    /// the GetLineSpacing method.</remarks>
     public enum D2dLineSpacingMethod
     {
         /// <summary>
@@ -451,15 +451,15 @@ namespace Sce.Atf.Direct2D
     /// Enum that represents the style of a font face as normal, italic, or oblique</summary>
     /// <remarks>
     /// Three terms categorize the slant of a font:
-    /// Normal: The characters in a normal, or roman, font are upright.  
+    /// Normal: The characters in a normal, or roman, font are upright.
     /// Italic: The characters in an italic font are truly slanted and appear as they were designed.
-    /// Oblique: The characters in an oblique font are artificially slanted. 
-    /// For Oblique, the slant is achieved by performing a shear transformation on the characters 
-    /// from a normal font. When a true italic font is not available on a computer or printer, 
+    /// Oblique: The characters in an oblique font are artificially slanted.
+    /// For Oblique, the slant is achieved by performing a shear transformation on the characters
+    /// from a normal font. When a true italic font is not available on a computer or printer,
     /// an oblique style can be generated from the normal font and used to simulate an italic font.
-    /// The following illustration shows the normal, italic, and oblique font styles for the Palatino 
-    /// Linotype font. Notice how the italic font style has a more flowing and visually appealing 
-    /// appearance than the oblique font style, which is simply created by skewing the normal font 
+    /// The following illustration shows the normal, italic, and oblique font styles for the Palatino
+    /// Linotype font. Notice how the italic font style has a more flowing and visually appealing
+    /// appearance than the oblique font style, which is simply created by skewing the normal font
     /// style version of the text.</remarks>
     public enum D2dFontStyle
     {

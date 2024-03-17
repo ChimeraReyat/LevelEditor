@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 namespace Sce.Atf.Applications
 {
@@ -37,45 +37,45 @@ namespace Sce.Atf.Applications
             this.m_cancelButton = new System.Windows.Forms.Button();
             this.m_textBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
+            //
             // m_checkBox
-            // 
+            //
             resources.ApplyResources(this.m_checkBox, "m_checkBox");
             this.m_checkBox.FormattingEnabled = true;
             this.m_checkBox.Name = "m_checkBox";
-            // 
+            //
             // label1
-            // 
+            //
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            // 
+            //
             // label2
-            // 
+            //
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            // 
+            //
             // m_submitButton
-            // 
+            //
             resources.ApplyResources(this.m_submitButton, "m_submitButton");
             this.m_submitButton.Name = "m_submitButton";
             this.m_submitButton.UseVisualStyleBackColor = true;
             this.m_submitButton.Click += new System.EventHandler(this.submit_Click);
-            // 
+            //
             // m_cancelButton
-            // 
+            //
             resources.ApplyResources(this.m_cancelButton, "m_cancelButton");
             this.m_cancelButton.Name = "m_cancelButton";
             this.m_cancelButton.UseVisualStyleBackColor = true;
             this.m_cancelButton.Click += new System.EventHandler(this.cancel_Click);
-            // 
+            //
             // m_textBox
-            // 
+            //
             resources.ApplyResources(this.m_textBox, "m_textBox");
             this.m_textBox.Name = "m_textBox";
             this.m_textBox.TextChanged += new System.EventHandler(this.m_textBox_TextChanged);
-            // 
+            //
             // CheckInForm
-            // 
+            //
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.m_textBox);

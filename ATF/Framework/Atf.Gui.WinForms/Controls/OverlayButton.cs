@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 using System.Drawing;
 
@@ -6,7 +6,7 @@ namespace Sce.Atf.Controls
 {
     /// <summary>
     /// Lightweight button that is drawn on the client
-    /// area of the parent control.    
+    /// area of the parent control.
     /// </summary>
     public class OverlayButton : IDisposable
     {
@@ -15,7 +15,7 @@ namespace Sce.Atf.Controls
         /// <param name="parent">Parent Control</param>
         public OverlayButton(Control parent)
         {
-            Parent = parent;           
+            Parent = parent;
             m_bound = new Rectangle(0,0,16,16);
             Visible = true;
         }
@@ -26,7 +26,7 @@ namespace Sce.Atf.Controls
 
 
         #region IDisposable implementation
-        /// <summary>        
+        /// <summary>
         /// Gets whether the object has been disposed of</summary>
         public bool IsDisposed
         {
@@ -41,7 +41,7 @@ namespace Sce.Atf.Controls
         {
             if (m_disposed) return;
             Dispose(true);
-            GC.SuppressFinalize(this);            
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Sce.Atf.Controls
             finally
             {
                 m_disposed = true;
-            }                        
+            }
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Sce.Atf.Controls
         ~OverlayButton()
         {
             Dispose(false);
-        }        
+        }
 
         #endregion
 
@@ -120,7 +120,7 @@ namespace Sce.Atf.Controls
             }
         }
         private bool m_visible;
-        
+
         /// <summary>
         /// Gets and sets Text property of the button</summary>
         public string Text
@@ -161,14 +161,14 @@ namespace Sce.Atf.Controls
         }
 
         /// <summary>
-        /// Gets and sets image that is showen 
+        /// Gets and sets image that is showen
         /// when the button is pressed</summary>
         public Image PressedImage
         {
             get { return m_pressedImage; }
             set
             {
-                SetImage(value, ref m_pressedImage);              
+                SetImage(value, ref m_pressedImage);
             }
         }
 
@@ -180,7 +180,7 @@ namespace Sce.Atf.Controls
             get { return m_hoverImage; }
             set
             {
-                SetImage(value, ref m_hoverImage);              
+                SetImage(value, ref m_hoverImage);
             }
         }
 
@@ -191,18 +191,18 @@ namespace Sce.Atf.Controls
             get { return m_backgroundImage; }
             set
             {
-                SetImage(value, ref m_backgroundImage);              
+                SetImage(value, ref m_backgroundImage);
             }
         }
 
         #endregion
 
         #region mouse handling and drawing  methods.
-        
+
         /// <summary>
         /// When the left mouse button is pressed, show pressed image if it is not null</summary>
         /// <param name="e">MouseEventArgs describing event</param>
-        /// <returns>True iff the mouse event is handled</returns>        
+        /// <returns>True iff the mouse event is handled</returns>
         public bool MouseDown(MouseEventArgs e)
         {
             if (!Visible) return false;
@@ -220,7 +220,7 @@ namespace Sce.Atf.Controls
         /// <summary>
         /// When mouse enters show hover image unless it is pressed</summary>
         /// <param name="e">MouseEventArgs describing event</param>
-        /// <returns>True iff the mouse event is handled</returns>        
+        /// <returns>True iff the mouse event is handled</returns>
         public bool MouseMove(MouseEventArgs e)
         {
             if (!Visible) return false;
@@ -233,24 +233,24 @@ namespace Sce.Atf.Controls
 
             if (m_mouseIn)
             {
-                ShowToolTip(e.X, e.Y + m_bound.Height);                
+                ShowToolTip(e.X, e.Y + m_bound.Height);
             }
             else
             {
-                HideToolTip();                
-            }               
+                HideToolTip();
+            }
             return m_mouseIn;
         }
 
         /// <summary>
-        /// When mouse button is released, show hover image</summary>     
+        /// When mouse button is released, show hover image</summary>
         /// <param name="e">MouseEventArgs describing event</param>
-        /// <returns>True iff the mouse event is handled</returns>        
+        /// <returns>True iff the mouse event is handled</returns>
         public bool MouseUp(MouseEventArgs e)
         {
             m_pressed = false;
-            if (!Visible) return false;            
-            return m_bound.Contains(e.Location);            
+            if (!Visible) return false;
+            return m_bound.Contains(e.Location);
         }
 
         /// <summary>
@@ -304,7 +304,7 @@ namespace Sce.Atf.Controls
                        m_bound.Left + (m_bound.Width - size.Width) / 2.0f,
                        m_bound.Top + (m_bound.Height - size.Height) / 2.0f);
                 }
-            }            
+            }
         }
 
         #endregion
@@ -320,7 +320,7 @@ namespace Sce.Atf.Controls
                     ToolTip.Show(ToolTipText, Parent, x, y);
                 }
             }
-                
+
         }
         private void HideToolTip()
         {
@@ -346,7 +346,7 @@ namespace Sce.Atf.Controls
 
         /// <summary>
         /// Create new bitmap with the new adjusted Saturation and
-        /// Brightness</summary>        
+        /// Brightness</summary>
         private Bitmap CreateNewBitmap(Bitmap src, float saturation, float brightness)
         {
             Bitmap result = (Bitmap)src.Clone();
@@ -370,7 +370,7 @@ namespace Sce.Atf.Controls
         private Bitmap m_backgroundImage;
         private Bitmap m_pressedImage;
         private Bitmap m_hoverImage;
-        private Rectangle m_bound; // button bounds in parent space.        
-        #endregion        
+        private Rectangle m_bound; // button bounds in parent space.
+        #endregion
     }
 }

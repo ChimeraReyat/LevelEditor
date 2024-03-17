@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -27,7 +27,7 @@ namespace Sce.Atf.Dom
             Configure(out m_controlInfo);
         }
 
-       
+
         /// <summary>
         /// Configures the TemplateLister</summary>
         /// <param name="controlInfo">Information about the control for the hosting service</param>
@@ -42,7 +42,7 @@ namespace Sce.Atf.Dom
 
             TreeControl.ShowRoot = false;
             TreeControl.AllowDrop = true;
-            TreeControl.SelectionMode = SelectionMode.One;            
+            TreeControl.SelectionMode = SelectionMode.One;
         }
 
         /// <summary>

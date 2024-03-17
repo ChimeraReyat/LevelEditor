@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.ComponentModel;
 
@@ -28,7 +28,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// Gets/sets a value that indicates whether the element should be drawn as valid.
         /// If 'false', the D2dCircuitRenderer will use D2dDiagramTheme's ErrorBrush to
         /// draw this circuit element.</summary>
-        public bool IsValid 
+        public bool IsValid
         {
             get { return m_valid; }
             set
@@ -38,7 +38,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                     m_valid = value;
                     OnPropertyChanged("IsValid");
                 }
-            }       
+            }
         }
 
 

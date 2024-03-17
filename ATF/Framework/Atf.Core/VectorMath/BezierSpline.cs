@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -43,11 +43,11 @@ namespace Sce.Atf.VectorMath
             return ToString(null, null);
         }
 
-        /// <summary> Returns the string representation of this Scea.VectorMath.BezierPoint structure 
+        /// <summary> Returns the string representation of this Scea.VectorMath.BezierPoint structure
         /// with the specified formatting information</summary>
         /// <param name="format">Standard numeric format string characters valid for a floating point</param>
         /// <param name="formatProvider">The culture specific formatting provider</param>
-        /// <returns>A <see cref="T:System.String"></see> representing the 3D Bezier point</returns> 
+        /// <returns>A <see cref="T:System.String"></see> representing the 3D Bezier point</returns>
         public string ToString(string format, IFormatProvider formatProvider)
         {
             string listSeparator = StringUtil.GetNumberListSeparator(formatProvider);
@@ -319,7 +319,7 @@ namespace Sce.Atf.VectorMath
             for (int i = 0; i < Count; ++i)
             {
                 sb.Append(listSeparator);
-                sb.Append(this[i].ToString(format, formatProvider));//Convert each BezierPoint 
+                sb.Append(this[i].ToString(format, formatProvider));//Convert each BezierPoint
             }
 
             return sb.ToString();

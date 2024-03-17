@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Windows.Forms;
 
@@ -26,8 +26,8 @@ namespace Sce.Atf.Controls.PropertyEditing
             var control = new ArrayEditingControl(context);
             Sce.Atf.Applications.SkinService.ApplyActiveSkin(control);
             return control;
-                 
-            
+
+
         }
 
         #endregion

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -22,7 +22,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         //  public virtual methods, using the derived class's DOM-backed data. If a derived class
         //  stores the data differently or doesn't even use the DOM, it can have these methods
         //  return null and override the corresponding public properties to get/set the data.
-        
+
         /// <summary>
         /// Gets the AttributeInfo for the Id property (and nothing else)</summary>
         protected abstract AttributeInfo NameAttribute { get; }
@@ -44,7 +44,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         protected abstract AttributeInfo VisibleAttribute { get; }
 
         /// <summary>
-        /// Gets the optional AttributeInfo for the original GUID of template 
+        /// Gets the optional AttributeInfo for the original GUID of template
         /// if this module is a copy-instance of a template(and nothing else) </summary>
         protected virtual AttributeInfo SourceGuidAttribute
         {
@@ -105,12 +105,12 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                     if (circuitElement != this) // the check is needed to prevent from self-loop
                         result = DomNode.Cast<ICircuitElement>().Type;
                 }
-                  
+
                 if (result == null) // now try domNode type tag
                 {
                     if (m_elementType == null)
                         m_elementType = DomNode.Type.GetTag<ICircuitElementType>();
-                    result = m_elementType; 
+                    result = m_elementType;
                 }
                 Debug.Assert(result != null);
                 return result;
@@ -139,7 +139,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         {
             if (this.Is<Group>())
                 return this.Cast<Group>().HasInputPin(pin);
-            return Type.Inputs.Contains(pin);       
+            return Type.Inputs.Contains(pin);
         }
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// <returns>Input pin for pin index</returns>
         public virtual ICircuitPin InputPin(int pinIndex)
         {
-            return Type.GetInputPin(pinIndex);            
+            return Type.GetInputPin(pinIndex);
         }
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// <returns>Output pin for pin index</returns>
         public virtual ICircuitPin OutputPin(int pinIndex)
         {
-            return Type.GetOutputPin(pinIndex);            
+            return Type.GetOutputPin(pinIndex);
         }
 
 
@@ -193,13 +193,13 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// Finds the element and pin that matched the pin target for this circuit container</summary>
         /// <param name="pinTarget">Contains pin's element and pin index</param>
         /// <param name="inputSide">True for input pin, false for output pin</param>
-        /// <returns>Return a pair of element and pin. As an element instance method, if there is a match, the element is self, 
+        /// <returns>Return a pair of element and pin. As an element instance method, if there is a match, the element is self,
         /// and pin is one of its pins defined in Type. If there is no match, both are null.</returns>
         public virtual Pair<Element, ICircuitPin> MatchPinTarget(PinTarget pinTarget, bool inputSide)
         {
             var result = new Pair<Element, ICircuitPin>();
             if (pinTarget != null &&  pinTarget.LeafDomNode == DomNode) // an element must be a leaf node in a circuit hierarchy
-            {                
+            {
                 var  pin = inputSide ? Type.GetInputPin(pinTarget.LeafPinIndex)
                                         : Type.GetOutputPin(pinTarget.LeafPinIndex);
                 if (pin != null)
@@ -207,16 +207,16 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                     result.First = this;
                     result.Second = pin;
                 }
-            } 
+            }
             return result;
         }
 
         /// <summary>
-        /// Finds the element and pin that fully matched the pin target for this circuit container, 
+        /// Finds the element and pin that fully matched the pin target for this circuit container,
         /// including the template instance node</summary>
         /// <param name="pinTarget">Contains pin's element and pin index</param>
         /// <param name="inputSide">True for input pin, false for output pin</param>
-        /// <returns>Return a pair of element and pin. As an element instance method, if there is a match, the element is self, 
+        /// <returns>Return a pair of element and pin. As an element instance method, if there is a match, the element is self,
         /// and pin is one of its pins defined in Type. If there is no match, both are null.</returns>
         public virtual Pair<Element, ICircuitPin> FullyMatchPinTarget(PinTarget pinTarget, bool inputSide)
         {
@@ -280,7 +280,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// <param name="pinIndex">Pin index to convert</param>
         /// <param name="inputSide">Whether input side or not</param>
         /// <returns>Integer representing display order</returns>
-        /// <remarks>Usually ICircuitPin.Index also indicates the display order. 
+        /// <remarks>Usually ICircuitPin.Index also indicates the display order.
         /// Override this method if pin's index does not correspond to display order.</remarks>
         public virtual int PinDisplayOrder(int pinIndex, bool inputSide)
         {

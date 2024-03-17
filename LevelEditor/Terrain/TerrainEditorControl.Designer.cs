@@ -1,13 +1,13 @@
-﻿namespace LevelEditor.Terrain
+namespace LevelEditor.Terrain
 {
     partial class TerrainEditorControl
     {
-        /// <summary> 
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -22,8 +22,8 @@
 
         #region Component Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -60,9 +60,9 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // m_cmboxTerrain
-            // 
+            //
             this.m_cmboxTerrain.DisplayMember = "Name";
             this.m_cmboxTerrain.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.m_cmboxTerrain.Enabled = false;
@@ -74,10 +74,10 @@
             this.m_cmboxTerrain.TabIndex = 0;
             this.m_toolTip.SetToolTip(this.m_cmboxTerrain, "Selected terrain");
             this.m_cmboxTerrain.SelectedIndexChanged += new System.EventHandler(this.CmboxTerrain_SelectedIndexChanged);
-            // 
+            //
             // m_layersTabControl
-            // 
-            this.m_layersTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            //
+            this.m_layersTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.m_layersTabControl.Controls.Add(this.m_layersPage);
             this.m_layersTabControl.Controls.Add(this.m_decoPage);
@@ -89,9 +89,9 @@
             this.m_layersTabControl.Size = new System.Drawing.Size(346, 282);
             this.m_layersTabControl.TabIndex = 1;
             this.m_layersTabControl.Selected += new System.Windows.Forms.TabControlEventHandler(this.TabPageSelected);
-            // 
+            //
             // m_layersPage
-            // 
+            //
             this.m_layersPage.Controls.Add(this.m_layerList);
             this.m_layersPage.Location = new System.Drawing.Point(4, 24);
             this.m_layersPage.Name = "m_layersPage";
@@ -100,9 +100,9 @@
             this.m_layersPage.TabIndex = 0;
             this.m_layersPage.Text = "Layers";
             this.m_layersPage.UseVisualStyleBackColor = true;
-            // 
+            //
             // m_layerList
-            // 
+            //
             this.m_layerList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.m_layerList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.m_layerList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
@@ -116,9 +116,9 @@
             this.m_layerList.Size = new System.Drawing.Size(332, 248);
             this.m_layerList.TabIndex = 0;
             this.m_layerList.SelectedIndexChanged += new System.EventHandler(this.ListBoxSelectedIndexChanged);
-            // 
+            //
             // m_decoPage
-            // 
+            //
             this.m_decoPage.Controls.Add(this.m_decoList);
             this.m_decoPage.Location = new System.Drawing.Point(4, 24);
             this.m_decoPage.Name = "m_decoPage";
@@ -127,9 +127,9 @@
             this.m_decoPage.TabIndex = 1;
             this.m_decoPage.Text = "Decorations";
             this.m_decoPage.UseVisualStyleBackColor = true;
-            // 
+            //
             // m_decoList
-            // 
+            //
             this.m_decoList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.m_decoList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.m_decoList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
@@ -143,11 +143,11 @@
             this.m_decoList.Size = new System.Drawing.Size(332, 248);
             this.m_decoList.TabIndex = 0;
             this.m_decoList.SelectedIndexChanged += new System.EventHandler(this.ListBoxSelectedIndexChanged);
-            // 
+            //
             // m_propertyGrid
-            // 
-            this.m_propertyGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.m_propertyGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.m_propertyGrid.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.m_propertyGrid.Location = new System.Drawing.Point(350, 25);
@@ -160,9 +160,9 @@
             this.m_propertyGrid.Size = new System.Drawing.Size(302, 256);
             this.m_propertyGrid.TabIndex = 2;
             this.m_propertyGrid.Text = "propertyGrid1";
-            // 
+            //
             // m_toolStrip
-            // 
+            //
             this.m_toolStrip.AllowMerge = false;
             this.m_toolStrip.AutoSize = false;
             this.m_toolStrip.CanOverflow = false;
@@ -179,45 +179,45 @@
             this.m_toolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.m_toolStrip.Size = new System.Drawing.Size(149, 24);
             this.m_toolStrip.TabIndex = 3;
-            // 
+            //
             // m_addBtn
-            // 
+            //
             this.m_addBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.m_addBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_addBtn.Name = "m_addBtn";
             this.m_addBtn.Size = new System.Drawing.Size(23, 21);
             this.m_addBtn.ToolTipText = "Add";
             this.m_addBtn.Click += new System.EventHandler(this.AddBtnClick);
-            // 
+            //
             // m_deleteBtn
-            // 
+            //
             this.m_deleteBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.m_deleteBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_deleteBtn.Name = "m_deleteBtn";
             this.m_deleteBtn.Size = new System.Drawing.Size(23, 21);
             this.m_deleteBtn.ToolTipText = "delete selected item";
             this.m_deleteBtn.Click += new System.EventHandler(this.DeleteBtnClick);
-            // 
+            //
             // m_moveUpBtn
-            // 
+            //
             this.m_moveUpBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.m_moveUpBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_moveUpBtn.Name = "m_moveUpBtn";
             this.m_moveUpBtn.Size = new System.Drawing.Size(23, 21);
             this.m_moveUpBtn.ToolTipText = "Move up";
             this.m_moveUpBtn.Click += new System.EventHandler(this.MoveBtnClick);
-            // 
+            //
             // m_moveDownBtn
-            // 
+            //
             this.m_moveDownBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.m_moveDownBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_moveDownBtn.Name = "m_moveDownBtn";
             this.m_moveDownBtn.Size = new System.Drawing.Size(23, 21);
             this.m_moveDownBtn.ToolTipText = "Move down";
             this.m_moveDownBtn.Click += new System.EventHandler(this.MoveBtnClick);
-            // 
+            //
             // m_createTerrainBtn
-            // 
+            //
             this.m_createTerrainBtn.AutoSize = true;
             this.m_createTerrainBtn.Location = new System.Drawing.Point(188, 3);
             this.m_createTerrainBtn.Name = "m_createTerrainBtn";
@@ -228,22 +228,22 @@
             this.m_toolTip.SetToolTip(this.m_createTerrainBtn, "...");
             this.m_createTerrainBtn.UseVisualStyleBackColor = true;
             this.m_createTerrainBtn.Click += new System.EventHandler(this.CreateTerrainBtnClick);
-            // 
+            //
             // m_toolTip
-            // 
+            //
             this.m_toolTip.ShowAlways = true;
-            // 
+            //
             // splitContainer1
-            // 
+            //
             this.splitContainer1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Margin = new System.Windows.Forms.Padding(0);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
+            //
             // splitContainer1.Panel1
-            // 
+            //
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer1.Panel1.Controls.Add(this.m_noiseRdo);
             this.splitContainer1.Panel1.Controls.Add(this.m_brushProps);
@@ -254,9 +254,9 @@
             this.splitContainer1.Panel1.Controls.Add(this.m_brushRiseLowRdo);
             this.splitContainer1.Panel1.Controls.Add(this.m_brushSmoothRdo);
             this.splitContainer1.Panel1.Controls.Add(this.m_createTerrainBtn);
-            // 
+            //
             // splitContainer1.Panel2
-            // 
+            //
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer1.Panel2.Controls.Add(this.m_toolStrip);
             this.splitContainer1.Panel2.Controls.Add(this.m_layersTabControl);
@@ -265,9 +265,9 @@
             this.splitContainer1.SplitterDistance = 245;
             this.splitContainer1.TabIndex = 5;
             this.splitContainer1.TabStop = false;
-            // 
+            //
             // m_noiseRdo
-            // 
+            //
             this.m_noiseRdo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             this.m_noiseRdo.Appearance = System.Windows.Forms.Appearance.Button;
             this.m_noiseRdo.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveBorder;
@@ -279,19 +279,19 @@
             this.m_noiseRdo.Size = new System.Drawing.Size(104, 30);
             this.m_noiseRdo.TabIndex = 13;
             this.m_noiseRdo.TabStop = true;
-            
+
             this.m_noiseRdo.UseVisualStyleBackColor = true;
             this.m_noiseRdo.CheckedChanged += new System.EventHandler(this.BrushRdoCheckedChanged);
-            // 
+            //
             // m_brushProps
-            // 
-            this.m_brushProps.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.m_brushProps.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.m_brushProps.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.m_brushProps.Location = new System.Drawing.Point(444, 3);
             this.m_brushProps.Name = "m_brushProps";
-            this.m_brushProps.PropertySorting = ((Sce.Atf.Controls.PropertyEditing.PropertySorting)(((Sce.Atf.Controls.PropertyEditing.PropertySorting.Categorized | Sce.Atf.Controls.PropertyEditing.PropertySorting.Alphabetical) 
+            this.m_brushProps.PropertySorting = ((Sce.Atf.Controls.PropertyEditing.PropertySorting)(((Sce.Atf.Controls.PropertyEditing.PropertySorting.Categorized | Sce.Atf.Controls.PropertyEditing.PropertySorting.Alphabetical)
             | Sce.Atf.Controls.PropertyEditing.PropertySorting.CategoryAlphabetical)));
             this.m_brushProps.SelectedPropertyDescriptor = null;
             this.m_brushProps.Settings = "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?><PropertyView PropertySort" +
@@ -299,10 +299,10 @@
             this.m_brushProps.Size = new System.Drawing.Size(206, 242);
             this.m_brushProps.TabIndex = 12;
             this.m_brushProps.Text = "propertyGrid1";
-            // 
+            //
             // m_terrainPropGrid
-            // 
-            this.m_terrainPropGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.m_terrainPropGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.m_terrainPropGrid.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.m_terrainPropGrid.Location = new System.Drawing.Point(8, 33);
@@ -315,9 +315,9 @@
             this.m_terrainPropGrid.Size = new System.Drawing.Size(312, 212);
             this.m_terrainPropGrid.TabIndex = 11;
             this.m_terrainPropGrid.Text = "propertyGrid2";
-            // 
+            //
             // m_paintEraseRdo
-            // 
+            //
             this.m_paintEraseRdo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             this.m_paintEraseRdo.Appearance = System.Windows.Forms.Appearance.Button;
             this.m_paintEraseRdo.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveBorder;
@@ -329,12 +329,12 @@
             this.m_paintEraseRdo.Size = new System.Drawing.Size(104, 30);
             this.m_paintEraseRdo.TabIndex = 10;
             this.m_paintEraseRdo.TabStop = true;
-            
+
             this.m_paintEraseRdo.UseVisualStyleBackColor = true;
             this.m_paintEraseRdo.CheckedChanged += new System.EventHandler(this.BrushRdoCheckedChanged);
-            // 
+            //
             // m_flattenRdo
-            // 
+            //
             this.m_flattenRdo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             this.m_flattenRdo.Appearance = System.Windows.Forms.Appearance.Button;
             this.m_flattenRdo.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveBorder;
@@ -345,12 +345,12 @@
             this.m_flattenRdo.Name = "m_flattenRdo";
             this.m_flattenRdo.Size = new System.Drawing.Size(104, 30);
             this.m_flattenRdo.TabIndex = 9;
-            this.m_flattenRdo.TabStop = true;            
+            this.m_flattenRdo.TabStop = true;
             this.m_flattenRdo.UseVisualStyleBackColor = true;
             this.m_flattenRdo.CheckedChanged += new System.EventHandler(this.BrushRdoCheckedChanged);
-            // 
+            //
             // m_brushRiseLowRdo
-            // 
+            //
             this.m_brushRiseLowRdo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             this.m_brushRiseLowRdo.Appearance = System.Windows.Forms.Appearance.Button;
             this.m_brushRiseLowRdo.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveBorder;
@@ -362,12 +362,12 @@
             this.m_brushRiseLowRdo.Size = new System.Drawing.Size(104, 30);
             this.m_brushRiseLowRdo.TabIndex = 8;
             this.m_brushRiseLowRdo.TabStop = true;
-            
+
             this.m_brushRiseLowRdo.UseVisualStyleBackColor = true;
             this.m_brushRiseLowRdo.CheckedChanged += new System.EventHandler(this.BrushRdoCheckedChanged);
-            // 
+            //
             // m_brushSmoothRdo
-            // 
+            //
             this.m_brushSmoothRdo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             this.m_brushSmoothRdo.Appearance = System.Windows.Forms.Appearance.Button;
             this.m_brushSmoothRdo.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveBorder;
@@ -379,12 +379,12 @@
             this.m_brushSmoothRdo.Size = new System.Drawing.Size(104, 30);
             this.m_brushSmoothRdo.TabIndex = 7;
             this.m_brushSmoothRdo.TabStop = true;
-            
+
             this.m_brushSmoothRdo.UseVisualStyleBackColor = true;
             this.m_brushSmoothRdo.Click += new System.EventHandler(this.BrushRdoCheckedChanged);
-            // 
+            //
             // TerrainEditorControl
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer1);

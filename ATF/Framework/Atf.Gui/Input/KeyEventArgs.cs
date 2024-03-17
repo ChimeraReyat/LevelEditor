@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 
@@ -14,7 +14,7 @@ namespace Sce.Atf.Input
         ///  with any modifier flags that indicate which Shift, Ctrl, and Alt keys were
         ///  pressed at the same time. Possible values are obtained be applying the bitwise
         ///  OR (|) operator to constants from the System.Windows.Forms.Keys enumeration.</param>
-        public KeyEventArgs(Keys keyData) 
+        public KeyEventArgs(Keys keyData)
         {
             KeyData = keyData;
         }

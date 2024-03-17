@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -44,7 +44,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         {
             get
             {
-                int pinIndex = GetAttribute<int>(OutputPinAttribute);             
+                int pinIndex = GetAttribute<int>(OutputPinAttribute);
                 return OutputElement.OutputPin(pinIndex);
             }
             set
@@ -68,7 +68,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             get
             {
                 int pinIndex = GetAttribute<int>(InputPinAttribute);
-                return InputElement.InputPin(pinIndex);              
+                return InputElement.InputPin(pinIndex);
             }
             set
             {
@@ -213,7 +213,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             {
                 if (m_inputPinTarget == null)
                     SetPinTarget();
-                
+
                 return m_inputPinTarget;
             }
             set { m_inputPinTarget = value; }
@@ -234,14 +234,14 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 
         /// <summary>
         /// For input pin, gets enumeration of group pins down the chain before the leaf level</summary>
-        public IEnumerable<GroupPin> InputPinSinkChain 
+        public IEnumerable<GroupPin> InputPinSinkChain
         {
             get
             {
                 if (InputPin.Is<GroupPin>())
                     return InputPin.Cast<GroupPin>().SinkChain(true);
                 return EmptyEnumerable<GroupPin>.Instance;
-            } 
+            }
         }
 
         /// <summary>

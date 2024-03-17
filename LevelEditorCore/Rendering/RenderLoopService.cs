@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel.Composition;
@@ -13,14 +13,14 @@ namespace LevelEditorCore
 
     /// <summary>
     /// Render loop driver.
-    /// It continously call update/render as long as 
-    /// there is no message in the windows message queue.    
+    /// It continously call update/render as long as
+    /// there is no message in the windows message queue.
     /// </summary>
     [Export(typeof(RenderLoopService))]
     [Export(typeof(IInitializable))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class RenderLoopService : IInitializable
-    {        
+    {
         #region IInitializable Members
 
         void IInitializable.Initialize()
@@ -48,7 +48,7 @@ namespace LevelEditorCore
             //    }
             //}
         }
-        
+
 
         /// <summary>Windows Message</summary>
         [StructLayout(LayoutKind.Sequential)]
@@ -64,7 +64,7 @@ namespace LevelEditorCore
 
         [System.Security.SuppressUnmanagedCodeSecurity]
         [DllImport("User32.dll", CharSet = CharSet.Auto)]
-        private static extern bool PeekMessage(out Message msg, IntPtr hWnd, uint messageFilterMin, uint messageFilterMax, uint flags);        
-        //private Message m_msg;        
+        private static extern bool PeekMessage(out Message msg, IntPtr hWnd, uint messageFilterMin, uint messageFilterMax, uint flags);
+        //private Message m_msg;
     }
 }

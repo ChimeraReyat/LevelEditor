@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Globalization;
@@ -14,7 +14,7 @@ namespace Sce.Atf.Rendering
     {
         /// <summary>
         /// Constructs a camera near the origin with default perspective projection</summary>
-        public Camera() 
+        public Camera()
         {
             Set(
                 new Vec3F(1, 1, 1),    // eye point
@@ -282,7 +282,7 @@ namespace Sce.Atf.Rendering
 
                         SetOrthographic(d);
                     }
-                }                
+                }
             }
         }
 
@@ -575,7 +575,7 @@ namespace Sce.Atf.Rendering
         {
             get { return m_yFov; }
         }
-       
+
         /// <summary>
         /// Gets or sets the aspect ratio, the ratio of width to height of the viewport</summary>
         public float Aspect
@@ -694,7 +694,7 @@ namespace Sce.Atf.Rendering
             float d = sphere.Radius;
             if (d == 0)
                 d = 1;
-            
+
             // avoid getting too far away or too close
             if (d > FarZ)
                 d = FarZ;
@@ -713,7 +713,7 @@ namespace Sce.Atf.Rendering
             AxisSystem.Transform(sphere.Center, out lookAtPoint);
 
             Vec3F eye = lookAtPoint - lookAt * d;
-            
+
             Set(eye, lookAtPoint, up);
 
             // Adjust near plane if we're in perspective mode. Otherwise, we should leave it alone

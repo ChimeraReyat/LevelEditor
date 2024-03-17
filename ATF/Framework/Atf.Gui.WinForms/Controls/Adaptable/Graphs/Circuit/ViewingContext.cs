@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -92,7 +92,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 Rectangle adapterBounds = pickingAdapter.GetBounds(items);
                 if (!adapterBounds.IsEmpty)
                 {
-                    bounds = bounds.IsEmpty ? adapterBounds : Rectangle.Union(bounds, adapterBounds);                   
+                    bounds = bounds.IsEmpty ? adapterBounds : Rectangle.Union(bounds, adapterBounds);
                 }
             }
 
@@ -108,11 +108,11 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             if (m_graph == null) return Rectangle.Empty;
             IEnumerable<object> items = m_graph.Nodes;
             var annoDiagram = m_graph.As<IAnnotatedDiagram>();
-            if (annoDiagram != null) items = items.Concat(annoDiagram.Annotations);                        
+            if (annoDiagram != null) items = items.Concat(annoDiagram.Annotations);
             Rectangle bounds = GetBounds(items);
 
 
-            if (DomNode.Is<Group>()) 
+            if (DomNode.Is<Group>())
             {
                 // include group pins y range
                 var group = DomNode.Cast<Group>();
@@ -128,7 +128,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                     if (grpPin.Bounds.Y > yMax)
                         yMax = grpPin.Bounds.Y;
                 }
-              
+
                 // transform y range to client space
                 if (yMin != int.MaxValue && yMax != int.MinValue)
                 {
@@ -236,7 +236,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// <returns>Value indicating which parts of the item's bounds can be set</returns>
         BoundsSpecified ILayoutContext.CanSetBounds(object item)
         {
-            //if (item.Is<DomNode>())// debug disallowing dragging 
+            //if (item.Is<DomNode>())// debug disallowing dragging
             //{
             //    var parent = item.Cast<DomNode>().Parent;
             //    if (parent.Is<Group>())
@@ -244,7 +244,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             //}
 
             // by default a group can be moved and resized
-            if (item.Is<Group>()) 
+            if (item.Is<Group>())
                 return BoundsSpecified.All;
 
             if (item.Is<Element>())
@@ -265,11 +265,11 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         {
             var element = item.As<Element>();
 
-            // Currently we have CanvasAdapter and D2dGridAdapter attached to the circuit adaptable control for layout constraints.  
-            // When setting a dragging module’s bounds and the module belongs to a group, we are either moving around the module 
-            // inside its owner, or moving out of its current owner. In either case, it seems more desirable to skip these 2 
-            // layout constrains: the CanvasAdapter by default have (0,0) for Location which will clip away negative bounds, 
-            // but negative location will be generated if we drag a sub-element to the left or above the group that owns it;  
+            // Currently we have CanvasAdapter and D2dGridAdapter attached to the circuit adaptable control for layout constraints.
+            // When setting a dragging module’s bounds and the module belongs to a group, we are either moving around the module
+            // inside its owner, or moving out of its current owner. In either case, it seems more desirable to skip these 2
+            // layout constrains: the CanvasAdapter by default have (0,0) for Location which will clip away negative bounds,
+            // but negative location will be generated if we drag a sub-element to the left or above the group that owns it;
             // D2dGridAdapter seems not needed to layout sub-elements inside its owner as the layout occurs at a lower level.
             bool applyConstraints = !IsDraggingSubNode(element);
             if (applyConstraints)

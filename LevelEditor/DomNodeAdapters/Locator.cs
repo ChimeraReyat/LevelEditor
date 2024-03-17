@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.IO;
 
@@ -14,7 +14,7 @@ namespace LevelEditor.DomNodeAdapters
     /// <summary>
     /// DomNodeAdapter for locators, to place resource in a game</summary>
     public class Locator : GameObject, IHierarchical
-    {        
+    {
 
         /// <summary>
         /// Gets or sets the resource reference</summary>
@@ -23,8 +23,8 @@ namespace LevelEditor.DomNodeAdapters
             get { return GetChild<IReference<IResource>>(Schema.locatorType.resourceChild); }
             set { SetChild(Schema.locatorType.resourceChild, value.As<DomNode>()); }
         }
-      
-       
+
+
         #region IHierarchical Members
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace LevelEditor.DomNodeAdapters
         public bool CanAddChild(object child)
         {
             Slot slot = new Slot(this.DomNode, Schema.locatorType.resourceChild);
-            return slot.CanAddChild(child);            
+            return slot.CanAddChild(child);
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace LevelEditor.DomNodeAdapters
         /// Provides info for the ProjectLister tree view and other controls</summary>
         /// <param name="info">Item info passed in and modified by the method</param>
         public override void GetInfo(ItemInfo info)
-        {            
+        {
             info.ImageIndex = Util.GetTypeImageIndex(DomNode.Type, info.GetImageList());
             if (Reference != null && Reference.Target != null && Reference.Target.Uri != null)
                 info.Label = string.Format("{0}: {1}", Name, Path.GetFileName(Reference.Target.Uri.LocalPath));
@@ -69,7 +69,7 @@ namespace LevelEditor.DomNodeAdapters
         }
 
         #endregion
-       
+
         public static Locator Create()
         {
             Locator locator = new DomNode(Schema.locatorType.Type).As<Locator>();

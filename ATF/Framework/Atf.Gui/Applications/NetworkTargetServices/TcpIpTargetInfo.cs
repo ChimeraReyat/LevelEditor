@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.IO;
@@ -30,7 +30,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
 
         /// <summary>
         /// Gets or sets the fixed port value for the  TCP/IP target</summary>
-        /// <remarks>If this value is set to a positive integer, then IPEndPoint will be constructed 
+        /// <remarks>If this value is set to a positive integer, then IPEndPoint will be constructed
         /// using the IPAddress from  endpoint value(in string format) , combined with this fixed port number.
         /// The port number in the endpoint string value will be ignored even it includes one.</remarks>
         public int FixedPort { get; set; }
@@ -56,12 +56,12 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                 if (value == null) return;
                 if (FixedPort > 0 && FixedPort != value.Port)
                     throw new InvalidDataException("The port number does not match expected fixed value " + FixedPort);
-                    
+
                 Endpoint = value.Address.ToString() + ":"+ value.Port;
             }
         }
 
-        
+
 
         /// <summary>
         /// Convenience method to parse a string as a network endpoint; try to handle IPv4, IPv6, and host name notation</summary>
@@ -74,11 +74,11 @@ namespace Sce.Atf.Applications.NetworkTargetServices
         public static IPEndPoint TryParseIPEndPoint(string endPoint)
         {
             string[] ep = endPoint.Split(':');
-              
+
             int port;
             if (!int.TryParse(ep[ep.Length - 1], out port))
                 return null;
-           
+
             if (port < IPEndPoint.MinPort || port > IPEndPoint.MaxPort)
                 return null;
 

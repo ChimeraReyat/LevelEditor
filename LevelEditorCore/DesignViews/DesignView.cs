@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel.Composition;
@@ -28,7 +28,7 @@ namespace LevelEditorCore
     public abstract class DesignView : IDesignView, ISnapSettings
     {
         public DesignView()
-        {            
+        {
             QuadView = new QuadPanelControl();
             CameraController.LockOrthographic = true;
         }
@@ -54,8 +54,8 @@ namespace LevelEditorCore
                 foreach (Control ctrl in QuadView.Controls)
                 {
                     DesignViewControl view = ctrl as DesignViewControl;
-                    if (view != null) yield return view;                    
-                }                                    
+                    if (view != null) yield return view;
+                }
             }
         }
 
@@ -76,12 +76,12 @@ namespace LevelEditorCore
                 m_viewMode = value;
                 switch (m_viewMode)
                 {
-                    case ViewModes.Single:                        
+                    case ViewModes.Single:
                         QuadView.EnableX = false;
                         QuadView.EnableY = false;
                         QuadView.SplitterThickness = 0;
                         QuadView.SplitX = 1.0f;
-                        QuadView.SplitY = 1.0f;                        
+                        QuadView.SplitY = 1.0f;
                         break;
                     case ViewModes.DualHorizontal:
                         if (QuadView.ActiveControl == QuadView.TopLeft
@@ -93,10 +93,10 @@ namespace LevelEditorCore
                         QuadView.EnableX = false;
                         QuadView.EnableY = true;
                         QuadView.SplitterThickness = DefaultSplitterThickness;
-                        
+
                         break;
                     case ViewModes.DualVertical:
-                        
+
                         if (QuadView.ActiveControl == QuadView.TopLeft
                             || QuadView.ActiveControl == QuadView.BottomLeft)
                             QuadView.SplitY = 1.0f;
@@ -107,7 +107,7 @@ namespace LevelEditorCore
                         QuadView.EnableX = true;
                         QuadView.EnableY = false;
                         QuadView.SplitX = 0.5f;
-                        
+
                         break;
                     case ViewModes.Quad:
                         QuadView.EnableX = true;
@@ -119,7 +119,7 @@ namespace LevelEditorCore
                 }
 
                 QuadView.Refresh();
-                
+
             }
         }
         public object Context
@@ -135,7 +135,7 @@ namespace LevelEditorCore
                     m_validationContext.Ended -= validationContext_Refresh;
                 }
 
-                m_context = value; 
+                m_context = value;
                 m_validationContext = m_context.As<IValidationContext>();
 
                 if (m_validationContext != null)
@@ -143,7 +143,7 @@ namespace LevelEditorCore
                     m_validationContext.Cancelled += validationContext_Refresh;
                     m_validationContext.Ended += validationContext_Refresh;
                 }
-                
+
                 ContextChanged(this, EventArgs.Empty);
             }
         }
@@ -156,20 +156,20 @@ namespace LevelEditorCore
             InvalidateViews();
         }
 
-      
+
         private object m_context = null;
         public IManipulator Manipulator
         {
             get { return m_manipulator; }
             set
-            {                
+            {
                 m_manipulator = value;
-                                
+
                 if (m_manipulator != null)
-                {                    
-                    Point pt = ActiveView.PointToClient(Control.MousePosition);                    
+                {
+                    Point pt = ActiveView.PointToClient(Control.MousePosition);
                     bool picked = m_manipulator.Pick(ActiveView, pt);
-                    ActiveView.Cursor = picked ? Cursors.SizeAll : Cursors.Default;                    
+                    ActiveView.Cursor = picked ? Cursors.SizeAll : Cursors.Default;
                 }
                 else
                 {
@@ -177,7 +177,7 @@ namespace LevelEditorCore
                 }
                 InvalidateViews();
             }
-            
+
 
         }
 
@@ -236,7 +236,7 @@ namespace LevelEditorCore
         #endregion
 
         /// <summary>
-        /// Distance to the camera's far clipping plane.</summary>        
+        /// Distance to the camera's far clipping plane.</summary>
         [DefaultValue(2048.0f)]
         public float CameraFarZ
         {
@@ -275,7 +275,7 @@ namespace LevelEditorCore
                 m_controlScheme = value;
             }
         }
-                   
+
         protected const int DefaultSplitterThickness = 8;
         protected readonly QuadPanelControl QuadView;
 
@@ -289,7 +289,7 @@ namespace LevelEditorCore
         private float m_SnapAngle = (float)(5.0 * (Math.PI / 180.0f));
         private IManipulator m_manipulator;
         private IValidationContext m_validationContext;
-                
-        #endregion                 
+
+        #endregion
     }
 }

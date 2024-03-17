@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -11,9 +11,9 @@ using Sce.Atf.Applications;
 
 namespace LevelEditorCore.Commands
 {
-    [Export(typeof(IInitializable))]    
-    [Export(typeof(IContextMenuCommandProvider))]    
-    [Export(typeof(ShowCommands))]    
+    [Export(typeof(IInitializable))]
+    [Export(typeof(IContextMenuCommandProvider))]
+    [Export(typeof(ShowCommands))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class ShowCommands : IInitializable, ICommandClient, IContextMenuCommandProvider
     {
@@ -24,7 +24,7 @@ namespace LevelEditorCore.Commands
         /// <param name="contextRegistry">Context registry</param>
         [ImportingConstructor]
         public ShowCommands(
-            ICommandService commandService, 
+            ICommandService commandService,
             IContextRegistry contextRegistry)
         {
             m_commandService = commandService;
@@ -59,7 +59,7 @@ namespace LevelEditorCore.Commands
             {
                 ISelectionContext selectionContext = m_contextRegistry.GetActiveContext<ISelectionContext>();
                 IEnumerableContext enumerableContext = m_contextRegistry.GetActiveContext<IEnumerableContext>();
-                
+
                 switch ((StandardCommand)commandTag)
                 {
                     case StandardCommand.ViewHide:
@@ -92,7 +92,7 @@ namespace LevelEditorCore.Commands
                 IEnumerable<object> selection = null;
                 if (selectionContext != null)
                     selection = selectionContext.Selection;
-                
+
                 switch ((StandardCommand)commandTag)
                 {
                     case StandardCommand.ViewHide:
@@ -139,7 +139,7 @@ namespace LevelEditorCore.Commands
 
                 Refresh();
             }
-           
+
         }
 
         private void ShowSelection(IEnumerable<object> selection, IVisibilityContext visibilityContext)
@@ -195,13 +195,13 @@ namespace LevelEditorCore.Commands
                 {
                     foreach (object item in path)
                     {
-                        visibilityContext.SetVisible(item, true);                        
+                        visibilityContext.SetVisible(item, true);
                     }
 
                     DomNode lastNode = path.Last.As<DomNode>();
                     SetVisibility(lastNode, true, visibilityContext);
                 }
-                    
+
                 Refresh();
             }
         }
@@ -212,9 +212,9 @@ namespace LevelEditorCore.Commands
             {
                 visibilityContext.SetVisible(node, visibility);
                 foreach (DomNode child in node.Children)
-                {                    
+                {
                     SetVisibility(child, visibility, visibilityContext);
-                }                
+                }
             }
         }
 
@@ -231,18 +231,18 @@ namespace LevelEditorCore.Commands
         /// <param name="target">Target</param>
         /// <returns></returns>
         public virtual IEnumerable<object> GetCommands(object context, object target)
-        {            
-            bool contextTest = (context is IGameContext)  || (context is FilteredTreeView);            
+        {
+            bool contextTest = (context is IGameContext)  || (context is FilteredTreeView);
             bool targetTest = (target is DesignViewControl) || (Adapters.Is<IGameObject>(target));
 
             if (contextTest && targetTest)
-            {                
+            {
                 yield return StandardCommand.ViewHide;
                 yield return StandardCommand.ViewShow;
                 yield return StandardCommand.ViewShowLast;
                 yield return StandardCommand.ViewShowAll;
                 yield return StandardCommand.ViewIsolate;
-            }            
+            }
         }
 
         #endregion

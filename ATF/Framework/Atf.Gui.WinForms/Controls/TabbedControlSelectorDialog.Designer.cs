@@ -1,13 +1,13 @@
-﻿namespace Sce.Atf.Controls
+namespace Sce.Atf.Controls
 {
     /// <summary>
     /// Dialog that enumerates all controls accessible by the specified IControlHostService.
-    /// 
-    /// A TabbedControlSelectorDialog persists until the Ctrl button is released. Until then, 
-    /// it consumes Ctrl+[Tab|Up|Down|Left|Right] key presses to switch the currently selected 
-    /// control in the enumeration. When Ctrl is released, the control corresponding to the 
+    ///
+    /// A TabbedControlSelectorDialog persists until the Ctrl button is released. Until then,
+    /// it consumes Ctrl+[Tab|Up|Down|Left|Right] key presses to switch the currently selected
+    /// control in the enumeration. When Ctrl is released, the control corresponding to the
     /// selection in the enumeration is given input focus.
-    /// 
+    ///
     /// Enumeration of controls is separated into two lists: one including all controls in the currently
     /// active pane, and another for all other controls (i.e., those NOT in the active pane). Use
     /// Ctrl+Left and Ctrl+Right to jump between the two lists.</summary>
@@ -47,32 +47,32 @@
             label2 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             resources.ApplyResources(label1, "label1");
             label1.Name = "label1";
-            // 
+            //
             // label2
-            // 
+            //
             resources.ApplyResources(label2, "label2");
             label2.Name = "label2";
-            // 
+            //
             // statusStrip1
-            // 
+            //
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
             resources.ApplyResources(this.statusStrip1, "statusStrip1");
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.SizingGrip = false;
-            // 
+            //
             // toolStripStatusLabel
-            // 
+            //
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             resources.ApplyResources(this.toolStripStatusLabel, "toolStripStatusLabel");
-            // 
+            //
             // unfocusedPaneListBox
-            // 
+            //
             this.unfocusedPaneListBox.BackColor = System.Drawing.SystemColors.Window;
             this.unfocusedPaneListBox.FormattingEnabled = true;
             resources.ApplyResources(this.unfocusedPaneListBox, "unfocusedPaneListBox");
@@ -81,9 +81,9 @@
             this.unfocusedPaneListBox.UseTabStops = false;
             this.unfocusedPaneListBox.SelectedIndexChanged += new System.EventHandler(this.unfocusedPaneListBox_SelectionChanged);
             this.unfocusedPaneListBox.SelectedValueChanged += new System.EventHandler(this.unfocusedPaneListBox_SelectionChanged);
-            // 
+            //
             // focusedPaneListBox
-            // 
+            //
             this.focusedPaneListBox.BackColor = System.Drawing.SystemColors.Window;
             this.focusedPaneListBox.FormattingEnabled = true;
             resources.ApplyResources(this.focusedPaneListBox, "focusedPaneListBox");
@@ -92,9 +92,9 @@
             this.focusedPaneListBox.UseTabStops = false;
             this.focusedPaneListBox.SelectedIndexChanged += new System.EventHandler(this.focusedPaneListBox_SelectionChanged);
             this.focusedPaneListBox.SelectedValueChanged += new System.EventHandler(this.focusedPaneListBox_SelectionChanged);
-            // 
+            //
             // TabbedControlSelectorDialog
-            // 
+            //
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;

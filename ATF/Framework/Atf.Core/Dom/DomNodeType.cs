@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -820,7 +820,7 @@ namespace Sce.Atf.Dom
                 }
                 return -1;
             }
-            
+
             public static readonly StringIndex Empty = new StringIndex(EmptyArray<FieldMetadata>.Instance);
 
             private struct StringInfo : IComparable<StringInfo>

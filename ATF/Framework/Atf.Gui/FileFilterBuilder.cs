@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections.Generic;
 using System.Text;
@@ -112,7 +112,7 @@ namespace Sce.Atf
 
         private void AppendExtension(string extension)
         {
-            m_sb.Append("*");            
+            m_sb.Append("*");
             m_sb.Append(extension);
         }
 

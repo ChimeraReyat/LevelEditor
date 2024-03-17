@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -34,7 +34,7 @@ namespace Sce.Atf.Rendering.Dom
         }
 
         /// <summary>
-        /// Sorts the provided list by camera space z distance.  
+        /// Sorts the provided list by camera space z distance.
         /// Assumes a right-handed coordinate system, so the farthest nodes have the most negative values.</summary>
         /// <param name="list">List of alpha TraverseNodes to sort</param>
         /// <param name="viewMatrix">Current view matrix to transform bounding box centroids by</param>

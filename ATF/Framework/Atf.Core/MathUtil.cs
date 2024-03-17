@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -87,7 +87,7 @@ namespace Sce.Atf
         {
             if (v1.Length != v2.Length)
                 throw new ArgumentException("Incompatible arrays");
-            
+
             for (int i = 0; i < v1.Length; i++)
                 if (!AreApproxEqual(v1[i], v2[i], error))
                     return false;
@@ -237,9 +237,9 @@ namespace Sce.Atf
         {
             return (value - min) / (max - min);
         }
-       
+
         /// <summary>
-        /// Computes a Catmull-Rom interpolation 
+        /// Computes a Catmull-Rom interpolation
         /// using the specified points.</summary>
         /// <param name="p1">The first  interpolation point</param>
         /// <param name="p2">The second interpolation point</param>
@@ -251,8 +251,8 @@ namespace Sce.Atf
         {
             float t2 = t * t;
             float t3 = t * t2;
-            float n = (2f * p2) + 
-                      (p3-p1) * t + 
+            float n = (2f * p2) +
+                      (p3-p1) * t +
                       (2f * p1 - 5f * p2 + 4f * p3 - p4) * t2 +
                       (3f * p2 - p1 + p4 - 3f * p3)  * t3;
             return (n * 0.5f);
@@ -267,7 +267,7 @@ namespace Sce.Atf
         /// <param name="t">Interpolation amount on the interval [0,1]. t=0 returns p1 and t=1 returns p2.</param>
         /// <returns>The interpolated point</returns>
         public static float HermiteInterp(float p1, float tan1, float p2, float tan2, float t)
-        {           
+        {
             float tSquared = t * t;
             float tCubed = tSquared * t;
             return
@@ -277,9 +277,9 @@ namespace Sce.Atf
                 (tCubed - tSquared) * tan2;
         }
 
-        
+
         /// <summary>
-        /// Computes cubic interpolation 
+        /// Computes cubic interpolation
         /// using the specified points.</summary>
         /// <param name="p1">The first  interpolation point</param>
         /// <param name="p2">The second interpolation point</param>
@@ -288,7 +288,7 @@ namespace Sce.Atf
         public static float CubicSplineInterp(float p1, float p2, float t)
         {
             float e = (t * t) * (3f - 2f * t);
-            return (p1 + e * (p2 - p1));            
+            return (p1 + e * (p2 - p1));
         }
 
 

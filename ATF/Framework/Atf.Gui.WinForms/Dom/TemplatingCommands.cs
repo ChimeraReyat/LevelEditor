@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -67,7 +67,7 @@ namespace Sce.Atf.Dom
 
 
         // required  DomNodeType info
- 
+
         /// <summary>
         /// Gets type of template folder</summary>
         protected abstract DomNodeType TemplateFolderType { get; }
@@ -110,7 +110,7 @@ namespace Sce.Atf.Dom
         {
             // Do nothing here; derived class is expected to override the method for
             // customized loading of the DOM-tree from the uri
-            return new ImportedContent(null, uri); 
+            return new ImportedContent(null, uri);
         }
 
         /// <summary>
@@ -273,14 +273,14 @@ namespace Sce.Atf.Dom
                 templateFolder.Url = importedLibaray.Uri;
                 templateFolder.Name = Path.GetFileNameWithoutExtension(importedLibaray.Uri.LocalPath);
 
-                // try make file uri relative to the current document uri, which is nornally 
+                // try make file uri relative to the current document uri, which is nornally
                 // well, keep simple to use absolute uri for now, so we don't need to update relative uris when the SaveAs document to a different directory
                 //if (TemplatingContext.RootFolder.DomNode.GetRoot().Is<IDocument>())
                 //{
                 //    var doc = TemplatingContext.RootFolder.DomNode.GetRoot().Cast<IDocument>();
                 //    templateFolder.Url = importedLibaray.Uri.MakeRelativeUri(doc.Uri);
                 //}
-           
+
             }
         }
 
@@ -291,7 +291,7 @@ namespace Sce.Atf.Dom
             // client code to override
         }
 
-        
+
 
         /// <summary>
         /// Does a command</summary>
@@ -309,7 +309,7 @@ namespace Sce.Atf.Dom
             {
                 transactionContext.DoTransaction(
                   AddExternalTemplateFolder, "Add External Template Folder".Localize());
-             
+
             }
             else if (CommandTag.ReloadExternalTemplates.Equals(commandTag))
             {
@@ -319,7 +319,7 @@ namespace Sce.Atf.Dom
             }
             else if (CommandTag.PromoteToTemplateLibrary.Equals(commandTag))
             {
-               
+
                 transactionContext.DoTransaction(
                     () => PromoteToTemplateLibrary(context.Selection),
                     "Promote To Template Library".Localize());
@@ -368,7 +368,7 @@ namespace Sce.Atf.Dom
         // scripting related members
         [Import(AllowDefault = true)]
         private ScriptingService m_scriptingService = null;
-  
+
         private TemplateLister m_templateLister;
         private ICommandService m_commandService;
         private IContextRegistry m_contextRegistry;

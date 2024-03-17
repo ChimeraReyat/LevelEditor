@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Diagnostics;
@@ -35,7 +35,7 @@ namespace Sce.Atf.Applications.WebServices
         private TextBox m_txtEmail;
         private Label m_lblPriority;
         private ComboBox m_cmbPriority;
-        /// <summary> 
+        /// <summary>
         /// Required designer variable</summary>
         private readonly System.ComponentModel.Container components = null;
 
@@ -75,7 +75,7 @@ namespace Sce.Atf.Applications.WebServices
             }
         }
 
-        
+
 
         /// <summary>
         /// Gets or sets the exception that caused this bug report. The stack trace is appended
@@ -107,7 +107,7 @@ namespace Sce.Atf.Applications.WebServices
                 MessageBox.Show(this, "Assembly mapping attribute not found.\nCannot proceed", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            
+
             if (m_titleTextBox.Text.Trim().Length == 0)
             {
                 MessageBox.Show(this, "Please fill in title", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -152,8 +152,8 @@ namespace Sce.Atf.Applications.WebServices
 
         private void DoSubmit()
         {
-            
-            try 
+
+            try
             {
 
                 using (new WaitCursor())
@@ -188,7 +188,7 @@ namespace Sce.Atf.Applications.WebServices
                         if (fileVersionInfo.FileVersion == "")
                             continue;
 
-                        desc += String.Format("{0} {1}\n", 
+                        desc += String.Format("{0} {1}\n",
                                 module.ModuleName, fileVersionInfo.FileVersion);
                     }
                     if (m_anonymous)
@@ -202,7 +202,7 @@ namespace Sce.Atf.Applications.WebServices
                     }
                     Close();
                 }
-            } 
+            }
             catch(Exception ex)
             {
                 m_statusBar.Text = "Bug not submitted.";
@@ -232,7 +232,7 @@ namespace Sce.Atf.Applications.WebServices
         private Exception m_exception; // exception that triggered this bug report
         private readonly com.scea.ship.submitBug.BugReportingService m_bugService = new com.scea.ship.submitBug.BugReportingService();
         private readonly bool m_anonymous;
-      
+
 
         #endregion
 
@@ -260,86 +260,86 @@ namespace Sce.Atf.Applications.WebServices
             this.m_lblPriority = new System.Windows.Forms.Label();
             this.m_cmbPriority = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
+            //
             // m_userTextBox
-            // 
+            //
             resources.ApplyResources(this.m_userTextBox, "m_userTextBox");
             this.m_userTextBox.Name = "m_userTextBox";
-            // 
+            //
             // m_descLabel
-            // 
+            //
             resources.ApplyResources(this.m_descLabel, "m_descLabel");
             this.m_descLabel.Name = "m_descLabel";
-            // 
+            //
             // m_descTextBox
-            // 
+            //
             resources.ApplyResources(this.m_descTextBox, "m_descTextBox");
             this.m_descTextBox.Name = "m_descTextBox";
-            // 
+            //
             // m_titleTextBox
-            // 
+            //
             resources.ApplyResources(this.m_titleTextBox, "m_titleTextBox");
             this.m_titleTextBox.Name = "m_titleTextBox";
-            // 
+            //
             // m_titleLabel
-            // 
+            //
             resources.ApplyResources(this.m_titleLabel, "m_titleLabel");
             this.m_titleLabel.Name = "m_titleLabel";
-            // 
+            //
             // m_passwordLabel
-            // 
+            //
             resources.ApplyResources(this.m_passwordLabel, "m_passwordLabel");
             this.m_passwordLabel.Name = "m_passwordLabel";
-            // 
+            //
             // m_userLabel
-            // 
+            //
             resources.ApplyResources(this.m_userLabel, "m_userLabel");
             this.m_userLabel.Name = "m_userLabel";
-            // 
+            //
             // m_passwordTextBox
-            // 
+            //
             resources.ApplyResources(this.m_passwordTextBox, "m_passwordTextBox");
             this.m_passwordTextBox.Name = "m_passwordTextBox";
-            // 
+            //
             // m_submitBtn
-            // 
+            //
             resources.ApplyResources(this.m_submitBtn, "m_submitBtn");
             this.m_submitBtn.BackColor = System.Drawing.SystemColors.Control;
             this.m_submitBtn.Name = "m_submitBtn";
             this.m_submitBtn.UseVisualStyleBackColor = false;
             this.m_submitBtn.Click += new System.EventHandler(this.m_submitBtn_Click);
-            // 
+            //
             // m_cancelBtn
-            // 
+            //
             resources.ApplyResources(this.m_cancelBtn, "m_cancelBtn");
             this.m_cancelBtn.BackColor = System.Drawing.SystemColors.Control;
             this.m_cancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.m_cancelBtn.Name = "m_cancelBtn";
             this.m_cancelBtn.UseVisualStyleBackColor = false;
             this.m_cancelBtn.Click += new System.EventHandler(this.m_cancelBtn_Click);
-            // 
+            //
             // m_statusBar
-            // 
+            //
             resources.ApplyResources(this.m_statusBar, "m_statusBar");
             this.m_statusBar.Name = "m_statusBar";
-            // 
+            //
             // m_lblEmail
-            // 
+            //
             resources.ApplyResources(this.m_lblEmail, "m_lblEmail");
             this.m_lblEmail.Name = "m_lblEmail";
-            // 
+            //
             // m_txtEmail
-            // 
+            //
             resources.ApplyResources(this.m_txtEmail, "m_txtEmail");
             this.m_txtEmail.Name = "m_txtEmail";
-            // 
+            //
             // m_lblPriority
-            // 
+            //
             resources.ApplyResources(this.m_lblPriority, "m_lblPriority");
             this.m_lblPriority.Name = "m_lblPriority";
-            // 
+            //
             // m_cmbPriority
-            // 
+            //
             resources.ApplyResources(this.m_cmbPriority, "m_cmbPriority");
             this.m_cmbPriority.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.m_cmbPriority.Items.AddRange(new object[] {
@@ -350,9 +350,9 @@ namespace Sce.Atf.Applications.WebServices
             resources.GetString("m_cmbPriority.Items4"),
             resources.GetString("m_cmbPriority.Items5")});
             this.m_cmbPriority.Name = "m_cmbPriority";
-            // 
+            //
             // FeedbackForm
-            // 
+            //
             this.AcceptButton = this.m_submitBtn;
             resources.ApplyResources(this, "$this");
             this.BackColor = System.Drawing.SystemColors.Control;
@@ -394,6 +394,6 @@ namespace Sce.Atf.Applications.WebServices
             DoSubmit();
         }
 
-        
+
     }
 }

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.ObjectModel;
@@ -8,9 +8,9 @@ using System.ComponentModel;
 namespace Sce.Atf.Models
 {
     /// <summary>
-    /// Re-usable view model for a tree node with a tri-state check box. The check state is updated 
-    /// to reflect child checked states. If all children are checked, then parent is checked. If all 
-    /// children are unchecked, then parent is unchecked. If children are a mixture of checked and 
+    /// Re-usable view model for a tree node with a tri-state check box. The check state is updated
+    /// to reflect child checked states. If all children are checked, then parent is checked. If all
+    /// children are unchecked, then parent is unchecked. If children are a mixture of checked and
     /// unchecked, then parent is indeterminate.</summary>
     public class CheckedTreeNode : INotifyPropertyChanged
     {

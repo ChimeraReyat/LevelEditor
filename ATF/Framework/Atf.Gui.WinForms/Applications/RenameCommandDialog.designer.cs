@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 namespace Sce.Atf.Applications
 {
@@ -50,41 +50,41 @@ namespace Sce.Atf.Applications
             this.cancelButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.firstNumericUpDown)).BeginInit();
             this.SuspendLayout();
-            // 
+            //
             // baseNameTextBox
-            // 
+            //
             resources.ApplyResources(this.baseNameTextBox, "baseNameTextBox");
             this.baseNameTextBox.Name = "baseNameTextBox";
             this.baseNameTextBox.TextChanged += new System.EventHandler(this.baseNameTextBox_TextChanged);
-            // 
+            //
             // prefixTextBox
-            // 
+            //
             resources.ApplyResources(this.prefixTextBox, "prefixTextBox");
             this.prefixTextBox.Name = "prefixTextBox";
             this.prefixTextBox.TextChanged += new System.EventHandler(this.prefixTextBox_TextChanged);
-            // 
+            //
             // suffixTextBox
-            // 
+            //
             resources.ApplyResources(this.suffixTextBox, "suffixTextBox");
             this.suffixTextBox.Name = "suffixTextBox";
             this.suffixTextBox.TextChanged += new System.EventHandler(this.suffixTextBox_TextChanged);
-            // 
+            //
             // numberCheckBox
-            // 
+            //
             resources.ApplyResources(this.numberCheckBox, "numberCheckBox");
             this.numberCheckBox.Checked = true;
             this.numberCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.numberCheckBox.Name = "numberCheckBox";
             this.numberCheckBox.UseVisualStyleBackColor = true;
             this.numberCheckBox.CheckedChanged += new System.EventHandler(this.numberCheckBox_CheckedChanged);
-            // 
+            //
             // firstLabel
-            // 
+            //
             resources.ApplyResources(this.firstLabel, "firstLabel");
             this.firstLabel.Name = "firstLabel";
-            // 
+            //
             // firstNumericUpDown
-            // 
+            //
             resources.ApplyResources(this.firstNumericUpDown, "firstNumericUpDown");
             this.firstNumericUpDown.Maximum = new decimal(new int[] {
             -1,
@@ -98,81 +98,81 @@ namespace Sce.Atf.Applications
             0,
             0});
             this.firstNumericUpDown.ValueChanged += new System.EventHandler(this.firstNumericUpDown_ValueChanged);
-            // 
+            //
             // renameButton
-            // 
+            //
             resources.ApplyResources(this.renameButton, "renameButton");
             this.renameButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.renameButton.Name = "renameButton";
             this.renameButton.UseVisualStyleBackColor = true;
-            // 
+            //
             // exampleLabel
-            // 
+            //
             resources.ApplyResources(this.exampleLabel, "exampleLabel");
             this.exampleLabel.Name = "exampleLabel";
-            // 
+            //
             // previewLabel
-            // 
+            //
             resources.ApplyResources(this.previewLabel, "previewLabel");
             this.previewLabel.Name = "previewLabel";
-            // 
+            //
             // previewTextBox
-            // 
+            //
             resources.ApplyResources(this.previewTextBox, "previewTextBox");
             this.previewTextBox.Name = "previewTextBox";
             this.previewTextBox.ReadOnly = true;
             this.previewTextBox.TabStop = false;
-            // 
+            //
             // setBaseBtn
-            // 
+            //
             resources.ApplyResources(this.setBaseBtn, "setBaseBtn");
             this.setBaseBtn.Name = "setBaseBtn";
             this.setBaseBtn.UseVisualStyleBackColor = true;
             this.setBaseBtn.CheckedChanged += new System.EventHandler(this.setBaseBtn_CheckedChanged);
-            // 
+            //
             // keepBaseBtn
-            // 
+            //
             resources.ApplyResources(this.keepBaseBtn, "keepBaseBtn");
             this.keepBaseBtn.Checked = true;
             this.keepBaseBtn.Name = "keepBaseBtn";
             this.keepBaseBtn.TabStop = true;
             this.keepBaseBtn.UseVisualStyleBackColor = true;
             this.keepBaseBtn.CheckedChanged += new System.EventHandler(this.keepBaseBtn_CheckedChanged);
-            // 
+            //
             // label2
-            // 
+            //
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            // 
+            //
             // label4
-            // 
+            //
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
-            // 
+            //
             // plusNumberLabel
-            // 
+            //
             resources.ApplyResources(this.plusNumberLabel, "plusNumberLabel");
             this.plusNumberLabel.Name = "plusNumberLabel";
-            // 
+            //
             // label1
-            // 
+            //
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            // 
+            //
             // label3
-            // 
+            //
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            // 
+            //
             // cancelButton
-            // 
+            //
             resources.ApplyResources(this.cancelButton, "cancelButton");
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.UseVisualStyleBackColor = true;
-            // 
+            //
             // RenameCommandDialog
-            // 
+            //
             this.AcceptButton = this.renameButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

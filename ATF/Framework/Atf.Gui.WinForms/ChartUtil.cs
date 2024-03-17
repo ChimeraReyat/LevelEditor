@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -61,13 +61,13 @@ namespace Sce.Atf
             double screenStep = Math.Abs(yScale * step);
 
             int a  = ComputeOpacity(screenStep);
-            color = Color.FromArgb(a, color);                            
+            color = Color.FromArgb(a, color);
             double start = graphRect.Top - MathUtil.Remainder(graphRect.Top, step) + step;
             for (double y = start; y < graphRect.Bottom; y += step)
             {
                 double cy = (y - graphRect.Top) * yScale + clientRect.Top;
                 g.DrawLine(clientRect.Left, (float)cy, clientRect.Right, (float)cy, color);
-            }            
+            }
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace Sce.Atf
             {
                 double cx = (x - graphRect.Left) * xScale + clientRect.Left;
                 g.DrawLine((float)cx, clientRect.Top, (float)cx, clientRect.Bottom, color);
-            }            
+            }
         }
 
         /// <summary>
@@ -314,7 +314,7 @@ namespace Sce.Atf
                     }
                     cmx += cMinorStep;
                 }
-                
+
                 for (double x = tickAnchor - offset; x < max; x += majorGraphStep)
                 {
                     double cx = (x - min) * xScale + clientRect.Left;

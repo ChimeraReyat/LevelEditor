@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -157,7 +157,7 @@ namespace Sce.Atf.Rendering.Dom
                     return -1; //'a' is closer to the camera eye
                 if (eyeToA > eyeToB)
                     return 1; //'b' is closer to the camera eye
-                
+
                 return 0; //they're exactly the same distance from the camera eye
             }
 

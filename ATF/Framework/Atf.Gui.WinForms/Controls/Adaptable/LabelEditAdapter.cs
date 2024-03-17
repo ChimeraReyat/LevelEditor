@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -135,7 +135,7 @@ namespace Sce.Atf.Controls.Adaptable
             control.Controls.Add(m_textBox);
         }
 
-     
+
 
         /// <summary>
         /// Unbinds the adapter from the adaptable control</summary>
@@ -235,17 +235,17 @@ namespace Sce.Atf.Controls.Adaptable
             if (e.KeyData == Keys.Escape)
             {
                 if (m_namingContext != null && m_item != null)
-                {                    
+                {
                     m_textBox.Text = m_namingContext.GetName(m_item);
                     EndEdit();
                     AdaptedControl.Invalidate();
-                }                              
+                }
             }
             else
             {
                 if (e.KeyData == Keys.Enter)
                     EndEdit();
-            }        
+            }
         }
 
         private void SizeTextBox()
@@ -269,11 +269,11 @@ namespace Sce.Atf.Controls.Adaptable
                 textBoxX = m_labelBounds.Right - actualSize.Width;
             else if (m_textBox.TextAlign == HorizontalAlignment.Center)
                 textBoxX = m_labelBounds.X + m_labelBounds.Width / 2 - actualSize.Width / 2;
-            
+
             m_textBox.Location = new Point(textBoxX, textBoxY);
-            
-            // Pasting a long string of text into a left-aligned textbox can cause only the end of 
-            // the text to be visible in the textbox. Scroll to index 0, then back to current 
+
+            // Pasting a long string of text into a left-aligned textbox can cause only the end of
+            // the text to be visible in the textbox. Scroll to index 0, then back to current
             // location to ensure everything is visible. This also preserves any existing selection.
             var selectionStart = m_textBox.SelectionStart;
             m_textBox.SelectionStart = 0;
@@ -298,7 +298,7 @@ namespace Sce.Atf.Controls.Adaptable
                 return base.ProcessCmdKey(ref msg, keyData);
             }
         }
-        
+
         private ITransformAdapter m_transformAdapter;
         private ISelectionAdapter m_selectionAdapter;
 
@@ -307,7 +307,7 @@ namespace Sce.Atf.Controls.Adaptable
         private readonly Timer m_labelEditTimer;
         private DiagramHitRecord m_itemHitRecord;
         private DiagramLabel m_hitLabel;
- 
+
         private object m_item;
         private DiagramLabel m_label;
         private Rectangle m_labelBounds;

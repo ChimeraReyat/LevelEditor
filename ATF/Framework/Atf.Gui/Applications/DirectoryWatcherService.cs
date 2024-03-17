@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -68,7 +68,7 @@ namespace Sce.Atf.Applications
                 watchers = new List<FileSystemWatcher>();
                 m_watchers.Add(directory, watchers);
             }
-            
+
             foreach (var ext in extensions)
             {
                 FileSystemWatcher watcher = new FileSystemWatcher(directory, ext);
@@ -82,7 +82,7 @@ namespace Sce.Atf.Applications
                 watcher.Changed += watcher_Changed;
                 watcher.Renamed += watcher_Changed;
                 watcher.Deleted += watcher_Changed;
-                
+
                 //Note: Disabled created since this will be fired before a file has finished copying which can create
                 //bad side effects. The changed event should fire when the file has closed.
                 //watcher.Created += new FileSystemEventHandler(watcher_Changed);
@@ -105,13 +105,13 @@ namespace Sce.Atf.Applications
                     watcher.EnableRaisingEvents = false;
                     watcher.Dispose();
                 }
-                
+
                 m_watchers.Remove(directory);
             }
         }
 
         /// <summary>
-        /// Event that is raised when a file is changed, renamed, or deleted. This event is raised synchronously, 
+        /// Event that is raised when a file is changed, renamed, or deleted. This event is raised synchronously,
         /// allowing one file changed event to complete before the same event is raised again.</summary>
         public event FileSystemEventHandler FileChanged;
 

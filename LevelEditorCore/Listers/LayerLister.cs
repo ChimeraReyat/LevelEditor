@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -57,7 +57,7 @@ namespace LevelEditorCore
             get { return m_controlInfo; }
         }
 
-       
+
         /// <summary>
         /// Called when the underlying tree control raises the MouseUp event</summary>
         /// <param name="e">Event args from the tree control's MouseUp event</param>
@@ -66,8 +66,8 @@ namespace LevelEditorCore
             // disable base method.
             // Let laying command process mouse-up event.
             // It is not possible to identify LayringCommands
-            // LayerLister must only operate on LayringCommands, not other 
-            // IContextMenuCommandProviders           
+            // LayerLister must only operate on LayringCommands, not other
+            // IContextMenuCommandProviders
         }
 
         [Import]
@@ -103,8 +103,8 @@ namespace LevelEditorCore
             var treeView = context.As<ITreeView>();
 
             // The TreeView property guards again setting same value
-            // but it still reloads the context.            
-            // so this check is required to prevent the tree to unnecessarily reload 
+            // but it still reloads the context.
+            // so this check is required to prevent the tree to unnecessarily reload
             // the context.
             if (TreeView != treeView)
                 TreeView = treeView;
@@ -125,7 +125,7 @@ namespace LevelEditorCore
             },
             "Show/Hide Layer".Localize());
         }
-        
+
         private readonly ControlInfo m_controlInfo;
         private static readonly Image s_layerImage = ResourceUtil.GetImage16(Sce.Atf.Resources.LayerImage);
     }

@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections.Generic;
 
@@ -39,7 +39,7 @@ namespace Sce.Atf.Rendering
         {
             if (m_contents.Count == 0)
                 return null;
-            
+
             RenderState topOfStack = m_contents[m_contents.Count - 1];
             return topOfStack.Clone() as RenderState;
         }
@@ -70,7 +70,7 @@ namespace Sce.Atf.Rendering
             {
                 if (m_composedRenderState == null)
                     return null;
-                
+
                 return m_composedRenderState.Clone() as RenderState;
             }
         }

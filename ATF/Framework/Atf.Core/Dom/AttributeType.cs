@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -821,8 +821,8 @@ namespace Sce.Atf.Dom
         }
         private static readonly AttributeType s_intType = new AttributeType("int", typeof(int), 1);
 
-        
-        
+
+
         /// <summary>
         /// Gets a generic AttributeType that specifies a CLR uint</summary>
         public static readonly AttributeType UIntType = new AttributeType("uint", typeof(uint));
@@ -908,7 +908,7 @@ namespace Sce.Atf.Dom
             for(int i = 0; i < array.Length; i++)
             {
                 string s = array[i];
-                
+
                 if (string.IsNullOrEmpty(s))
                     s = "\"\"";
                 else
@@ -947,7 +947,7 @@ namespace Sce.Atf.Dom
                     char unescaped;
                     while (GetUnescapedChar(concatenation, ref index, '"', out unescaped))
                         element.Append(unescaped);
-                    
+
                     index++; // advance past the '"'
                 }
                 // Look for non-quoted element, terminated by a space

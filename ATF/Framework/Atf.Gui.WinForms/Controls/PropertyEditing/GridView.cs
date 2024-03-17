@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections;
@@ -87,7 +87,7 @@ namespace Sce.Atf.Controls.PropertyEditing
         /// <summary>
         /// Event that is raised after the value in a row changes</summary>
         public event EventHandler<RowChangedEventArgs> RowValueChanged;
-        
+
         /// <summary>
         /// Raises the RowValueChanged event</summary>
         /// <param name="e">Event args</param>
@@ -98,7 +98,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                 RowValueChanged(this, e);
             }
         }
-    
+
         /// <summary>
         /// Gets the currently selected row indices</summary>
         public IEnumerable<int> SelectedIndices
@@ -389,7 +389,7 @@ namespace Sce.Atf.Controls.PropertyEditing
 
             return ApplyColumnWidths();
         }
-        
+
         /// <summary>
         /// Enters edit mode on the last selected row on the given property</summary>
         /// <param name="propertyName">The property to select for editing</param>
@@ -428,7 +428,7 @@ namespace Sce.Atf.Controls.PropertyEditing
             get;
             set;
         }
-      
+
         /// <summary>
         /// Gets or sets flag for enabling or disabling arrow keys wrapping for selection. Enabled by default.</summary>
         public bool UpDownKeySelectionWrapEnabled
@@ -1046,18 +1046,18 @@ namespace Sce.Atf.Controls.PropertyEditing
 
         /// <summary>
         /// Gets or sets the brush used to render the background of even rows</summary>
-        protected Brush EvenRowBrush 
-        { 
-            get { return m_evenRowBrush; } 
-            set { m_evenRowBrush = value; } 
+        protected Brush EvenRowBrush
+        {
+            get { return m_evenRowBrush; }
+            set { m_evenRowBrush = value; }
         }
 
         /// <summary>
         /// Gets or sets the brush used to render the background of odd rows</summary>
-        protected Brush OddRowBrush 
-        { 
-            get { return m_oddRowBrush; } 
-            set { m_oddRowBrush = value; } 
+        protected Brush OddRowBrush
+        {
+            get { return m_oddRowBrush; }
+            set { m_oddRowBrush = value; }
         }
 
         /// <summary>
@@ -1246,7 +1246,7 @@ namespace Sce.Atf.Controls.PropertyEditing
             object obj = SelectedObjects[row];
             bool isOverride = p.Descriptor.CanResetValue(obj);
             Font font = isOverride ? BoldFont : Font;
-            
+
             string value = PropertyUtils.GetPropertyText(obj, p.Descriptor);
 
             g.DrawString(value, font, defaultBrush, valueRect, LeftStringFormat);
@@ -1290,7 +1290,7 @@ namespace Sce.Atf.Controls.PropertyEditing
         {
             Focus();
 
-            // selection in the grid can be disabled for read only grids that are just used for 
+            // selection in the grid can be disabled for read only grids that are just used for
             // display purposes like progress bars
             if (!SelectionEnabed)
                 return;
@@ -2246,7 +2246,7 @@ namespace Sce.Atf.Controls.PropertyEditing
 
                     case HitType.CategoryExpander:
                         hit.Category.Expanded = !hit.Category.Expanded;
-                        m_gridView.Invalidate(); 
+                        m_gridView.Invalidate();
                         break;
                 }
 
@@ -2303,7 +2303,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                     {
                         if (m_gridView.GetVisible(p))
                         {
-                            // walk the m_dropColumnIndex past columns that are not draggable. 
+                            // walk the m_dropColumnIndex past columns that are not draggable.
                             // we dont want to drop a column that would cause not draggable columns to move around
                             if (p.DisableDragging &&
                                 (index == m_dropColumnIndex))
@@ -2373,7 +2373,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                             {
                                 m_dropColumnIndex--;
                             }
-                            
+
                             // insert the property back in the new location
                             sortOrder.Insert(m_dropColumnIndex, s_columnHeaderMouseDownProperty.Descriptor.Name);
                         }
@@ -2478,13 +2478,13 @@ namespace Sce.Atf.Controls.PropertyEditing
         private readonly Dictionary<PropertyDescriptor, ColumnInfo> m_columnInfo =
             new Dictionary<PropertyDescriptor, ColumnInfo>(); // cache widths for descriptors
         private readonly Dictionary<string , int> m_savedColumnWidths=
-             new Dictionary<string, int>(); // last saved column widths 
+             new Dictionary<string, int>(); // last saved column widths
 
         private bool m_editingRowVisible; //used to be equivalent to (m_selectedRows.Count > 0)
         private bool m_mouseUpEnablesEditingRow;
         //When changing m_selectedRows, consider if m_editingRowVisible should be changed, too.
         private readonly Selection<int> m_selectedRows;
- 
+
         private readonly Pen m_gridLinePen = new Pen(Color.Transparent);
         private readonly Pen m_selectedCellPen = new Pen(Color.Transparent);
         private Brush m_evenRowBrush;

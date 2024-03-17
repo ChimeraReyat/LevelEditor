@@ -1,4 +1,4 @@
-﻿namespace Sce.Atf.Applications
+namespace Sce.Atf.Applications
 {
     /// <summary>
     /// Class for unhandled exception dialogs</summary>
@@ -34,40 +34,40 @@
             this.ContinueBtn = new System.Windows.Forms.Button();
             this.QuitBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // ExceptionTextBox
-            // 
+            //
             resources.ApplyResources(this.ExceptionTextBox, "ExceptionTextBox");
             this.ExceptionTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ExceptionTextBox.Name = "ExceptionTextBox";
             this.ExceptionTextBox.ReadOnly = true;
-            // 
+            //
             // label1
-            // 
+            //
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            // 
+            //
             // label2
-            // 
+            //
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            // 
+            //
             // ContinueBtn
-            // 
+            //
             resources.ApplyResources(this.ContinueBtn, "ContinueBtn");
             this.ContinueBtn.DialogResult = System.Windows.Forms.DialogResult.Yes;
             this.ContinueBtn.Name = "ContinueBtn";
             this.ContinueBtn.UseVisualStyleBackColor = true;
-            // 
+            //
             // QuitBtn
-            // 
+            //
             resources.ApplyResources(this.QuitBtn, "QuitBtn");
             this.QuitBtn.DialogResult = System.Windows.Forms.DialogResult.No;
             this.QuitBtn.Name = "QuitBtn";
             this.QuitBtn.UseVisualStyleBackColor = true;
-            // 
+            //
             // UnhandledExceptionDialog
-            // 
+            //
             this.AcceptButton = this.ContinueBtn;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

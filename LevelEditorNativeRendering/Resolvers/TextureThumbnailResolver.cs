@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel.Composition;
@@ -14,10 +14,10 @@ namespace RenderingInterop
     /// <summary>
     /// Generates thumbnail for dds and tga textures.
     /// </summary>
-    [Export(typeof(IThumbnailResolver))]    
+    [Export(typeof(IThumbnailResolver))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class TextureThumbnailResolver : IThumbnailResolver
-    {        
+    {
         #region IThumbnailResolver Members
         Image IThumbnailResolver.Resolve(Uri resourceUri)
         {
@@ -32,8 +32,8 @@ namespace RenderingInterop
             if(res.IsSupported(extension))
             {
                 ImageData imgdata = new ImageData();
-                imgdata.LoadFromFile(resourceUri);                
-                imgdata.Convert(ImageDataFORMAT.B8G8R8A8_UNORM);                
+                imgdata.LoadFromFile(resourceUri);
+                imgdata.Convert(ImageDataFORMAT.B8G8R8A8_UNORM);
                 if (imgdata.IsValid)
                 {
                     Bitmap tempImage = new Bitmap((int)imgdata.Width, (int)imgdata.Height, PixelFormat.Format32bppArgb);
@@ -61,7 +61,7 @@ namespace RenderingInterop
                                 for (int x = 0; x < tempImage.Width; x++)
                                 {
                                     *destRow++ = *srcRow++;
-                                    
+
                                 }
                             }
 
@@ -90,10 +90,10 @@ namespace RenderingInterop
 
                 }
 
-            }           
+            }
             return img;
         }
-      
+
         private const float ThumbnailSize = 96;
         #endregion
 

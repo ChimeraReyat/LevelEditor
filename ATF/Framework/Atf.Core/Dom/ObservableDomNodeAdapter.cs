@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -99,7 +99,7 @@ namespace Sce.Atf.Dom
                         var attributeName = ((ObservableDomPropertyAttribute)attribute).AttributeName;
                         var currentType = nodeType;
                         var attributeInfo = currentType.GetAttributeInfo(attributeName);
-                       
+
                         Requires.NotNull(attributeInfo, "Unrecognized attribute name in ObservableDomPropertyAttribute");
 
                         // Each base type may have duplicate attributeInfo if it is an inherited attribute
@@ -113,7 +113,7 @@ namespace Sce.Atf.Dom
                                 args = new PropertyChangedEventArgsCollection();
                                 attributeInfo.SetTag(args);
                             }
-                            
+
                             args.Add(eventArgs);
 
                             currentType = currentType.BaseType;
@@ -158,7 +158,7 @@ namespace Sce.Atf.Dom
                                 args = new PropertyChangedEventArgsCollection();
                                 childInfo.SetTag(args);
                             }
-                            
+
                             args.Add(eventArgs);
 
                             currentType = currentType.BaseType;
@@ -170,7 +170,7 @@ namespace Sce.Atf.Dom
         }
 
         /// <summary>
-        /// On attribute changed attempt to get PropertyChangedEventArgs tags from 
+        /// On attribute changed attempt to get PropertyChangedEventArgs tags from
         /// AttributeInfo and raise events</summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Attribute event arguments</param>
@@ -178,7 +178,7 @@ namespace Sce.Atf.Dom
         {
             if (e.DomNode != DomNode)
                 return;
-            
+
             var args = e.AttributeInfo.GetTagLocal<PropertyChangedEventArgsCollection>();
             if (args != null)
             {
@@ -191,7 +191,7 @@ namespace Sce.Atf.Dom
         {
             if (e.Parent != DomNode)
                 return;
-            
+
             var args = e.ChildInfo.GetTagLocal<PropertyChangedEventArgsCollection>();
             if (args != null)
             {
@@ -204,7 +204,7 @@ namespace Sce.Atf.Dom
         {
             if (e.Parent != DomNode)
                 return;
-            
+
             var args = e.ChildInfo.GetTagLocal<PropertyChangedEventArgsCollection>();
             if (args != null)
             {

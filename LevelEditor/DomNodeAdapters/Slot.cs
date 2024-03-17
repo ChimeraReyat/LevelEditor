@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using LevelEditorCore;
@@ -61,12 +61,12 @@ namespace LevelEditor
         /// <param name="child">Child to be inserted</param>
         /// <returns>True iff the specified child can be inserted into this slot</returns>
         public bool CanAddChild(object child)
-        {            
+        {
             DomNode childNode = child.As<DomNode>();
             bool isGobRef = child.Is<IGameObject>() && childNode.GetRoot().Is<IGame>() && m_childInfo.Type == Schema.gameObjectReferenceType.Type;
             bool isResRef = ResourceReference.CanReference(m_childInfo.Type, child.As<IResource>());
 
-            return isGobRef || isResRef;            
+            return isGobRef || isResRef;
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace LevelEditor
             DomNode childNode = child.As<DomNode>();
             bool isGobRef = child.Is<IGameObject>() && childNode.GetRoot().Is<IGame>() && m_childInfo.Type == Schema.gameObjectReferenceType.Type;
             bool isResRef = ResourceReference.CanReference(m_childInfo.Type, child.As<IResource>());
-            
+
             DomNode refNode = null;
             if (isGobRef)
             {
@@ -91,12 +91,12 @@ namespace LevelEditor
                     ResourceReference.Create(m_childInfo.Type, child.As<IResource>());
                 refNode = resReference.As<DomNode>();
             }
-          
+
             if (m_childInfo.IsList)
                 m_owner.GetChildList(m_childInfo).Add(refNode);
             else
                 m_owner.SetChild(m_childInfo, refNode);
-            return true;                   
+            return true;
         }
 
         #endregion

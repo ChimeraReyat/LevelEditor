@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.IO;
@@ -134,7 +134,7 @@ namespace Sce.Atf.Applications
         /// <summary>
         /// Gets and sets the default new file extension that the editor can handle. If not null,
         /// then it should be a string that is in the Extensions property.</summary>
-        /// <remarks>If the editor supports multiple extensions, setting the default extension 
+        /// <remarks>If the editor supports multiple extensions, setting the default extension
         /// will stop ATF from prompting the user to choose the extension, when creating a new file</remarks>
         public string DefaultExtension { get; set; }
 
@@ -195,7 +195,7 @@ namespace Sce.Atf.Applications
         /// the document client</returns>
         public bool IsCompatiblePath(string filePath)
         {
-            string uriExtension = Path.GetExtension(filePath);            
+            string uriExtension = Path.GetExtension(filePath);
             foreach (string extension in Extensions)
                 if (string.Compare(extension, uriExtension, true) == 0)
                     return true;

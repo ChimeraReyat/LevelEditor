@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel.Composition;
@@ -26,7 +26,7 @@ namespace RenderingInterop
 {
 
     /// <summary>
-    /// Thumbnail resolver for image resources</summary>        
+    /// Thumbnail resolver for image resources</summary>
     [Export(typeof(IInitializable))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class ResourcePreview : IInitializable
@@ -59,7 +59,7 @@ namespace RenderingInterop
         {
            // if (m_game == null) Init();
 
-            m_game.RootGameObjectFolder.GameObjects.Clear();                        
+            m_game.RootGameObjectFolder.GameObjects.Clear();
             m_renderSurface.Invalidate();
 
             Uri resourceUri = m_resourceLister.LastSelected;
@@ -73,7 +73,7 @@ namespace RenderingInterop
                 m_game.RootGameObjectFolder.GameObjects.Add(gob);
                 m_renderSurface.ResetCamera = true;
                 m_renderSurface.Render();
-                m_controlInfo.Name = "Resource Preview: ".Localize() + Path.GetFileName(resourceUri.LocalPath);                
+                m_controlInfo.Name = "Resource Preview: ".Localize() + Path.GetFileName(resourceUri.LocalPath);
             }
             else
             {
@@ -83,13 +83,13 @@ namespace RenderingInterop
 
         private void Init()
         {
-            if (m_game != null) 
+            if (m_game != null)
                 return;
 
             NativeObjectAdapter curLevel = GameEngine.GetGameLevel();
             try
             {
-                // create new document by creating a Dom node of the root type defined by the schema                 
+                // create new document by creating a Dom node of the root type defined by the schema
                 DomNode rootNode = new DomNode(m_schemaLoader.GameType, m_schemaLoader.GameRootElement);
                 INameable nameable = rootNode.As<INameable>();
                 nameable.Name = "Game";
@@ -139,8 +139,8 @@ namespace RenderingInterop
         private IGameEngineProxy m_gameEngine;
 
         private NativeViewControl m_renderSurface;
-        private IGame m_game;        
-        
+        private IGame m_game;
+
         private readonly ControlInfo m_controlInfo;
 
         private class NativeViewControl : ViewControl
@@ -168,11 +168,11 @@ namespace RenderingInterop
 
 
                 #region Context menu
-                GlobalRenderFlags[] flags = new GlobalRenderFlags[] 
+                GlobalRenderFlags[] flags = new GlobalRenderFlags[]
                 {
                     GlobalRenderFlags.Solid,
                     GlobalRenderFlags.WireFrame,
-                    GlobalRenderFlags.Textured, 
+                    GlobalRenderFlags.Textured,
                     GlobalRenderFlags.RenderBackFace,
                     GlobalRenderFlags.Lit
                 };
@@ -314,10 +314,10 @@ namespace RenderingInterop
                     || Game == null)
                     return;
 
-                
+
                 NativeObjectAdapter gameLevel = GameEngine.GetGameLevel();
                 try
-                {                    
+                {
                     NativeObjectAdapter game = Game.As<NativeObjectAdapter>();
                     GameEngine.SetGameLevel(game);
                     GameEngine.SetRenderState(m_renderState);
@@ -350,10 +350,10 @@ namespace RenderingInterop
                         ViewType = viewtype;
                         ResetCamera = false;
                     }
-                                       
+
                     GameEngine.Begin(SurfaceId, Camera.ViewMatrix, Camera.ProjectionMatrix);
                     if(Game.RootGameObjectFolder.GameObjects.Count > 0)
-                        GameEngine.RenderGame();                        
+                        GameEngine.RenderGame();
                     string str = "View Type: " + ViewType.ToString();
                     GameEngine.DrawText2D(str, Util3D.CaptionFont, 1, 1, Color.White);
                     GameEngine.End();

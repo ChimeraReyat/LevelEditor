@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Diagnostics;
 
@@ -60,7 +60,7 @@ namespace LevelEditorCore
         //}
 
         /// <summary>
-        /// Returns time in seconds since 
+        /// Returns time in seconds since
         /// the application started.</summary>
         /// <returns></returns>
         public static double GetHiResCurrentTime()

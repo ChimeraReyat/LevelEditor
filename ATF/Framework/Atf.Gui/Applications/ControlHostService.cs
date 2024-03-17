@@ -185,7 +185,7 @@ namespace Sce.Atf.Applications
             m_controls.ActiveItem = info;
 
             info.HostControl = dockContent;
-            
+
             // Any property we set on this Control needs to be restored in UnregisterControl.
             //  For example, QuadPanelControl was broken by setting Dock property but not restoring it.
             info.OriginalDock = control.Dock;
@@ -241,7 +241,7 @@ namespace Sce.Atf.Applications
             ActivateClient(client, true);
             Show(control);
         }
-        
+
         /// <summary>
         /// Unregisters control</summary>
         /// <param name="control">Control to unregister</param>
@@ -258,13 +258,13 @@ namespace Sce.Atf.Applications
                 dockContent.FormClosing -= new FormClosingEventHandler(dockContent_FormClosing);
 
                 dockContent.Controls.Remove(control);
-                
+
                 // Restore any properties we set on Control.
                 control.Dock = info.OriginalDock;
 
                 m_dockContent.Remove(info);
                 m_controls.Remove(info);
-                
+
                 info.Changed -= new EventHandler(info_Changed);
 
                 m_uniqueNamer.Retire(dockContent.Text);
@@ -657,7 +657,7 @@ namespace Sce.Atf.Applications
                 info.Image == null
                     ? null
                     : GdiUtil.CreateIcon(info.Image, 16, true);
-            
+
             // To update the icon, we need to invalidate this Pane.
             if (dockContent.DockState == DockState.Document)
                 dockContent.Pane.Invalidate(true);
@@ -886,7 +886,7 @@ namespace Sce.Atf.Applications
 
         [ImportMany]
         private IEnumerable<Lazy<IContextMenuCommandProvider>> m_contextMenuCommandProviders = null;
-                
+
         private Dictionary<ControlInfo, DockContent> m_dockContent = new Dictionary<ControlInfo, DockContent>();
         private ActiveCollection<ControlInfo> m_controls;
 

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -45,13 +45,13 @@ namespace RenderingInterop
             float rad = s * Util3D.RingCenterRadias;
             float lrad = rad * LookRingScale;
             float tolerance = s * Util3D.RingThickness;
-            
+
             Matrix4F billboard
                 = Util.CreateBillboard(HitMatrix.Translation, vc.Camera.WorldEye, vc.Camera.Up, vc.Camera.LookAt);
             m_lookAxisHitMtrx = billboard;
             // compute ray in object space  space.
             Matrix4F vp = camera.ViewMatrix * camera.ProjectionMatrix;
-            Matrix4F wvp = HitMatrix * vp;            
+            Matrix4F wvp = HitMatrix * vp;
             Ray3F rayL = vc.GetRay(scrPt, wvp);
 
             Matrix4F wvp2 = billboard * vp;
@@ -60,21 +60,21 @@ namespace RenderingInterop
             Plane3F xplane = new Plane3F(Vec3F.XAxis, Vec3F.ZeroVector);
             Plane3F yplane = new Plane3F(Vec3F.YAxis,Vec3F.ZeroVector);
             Plane3F zplane = new Plane3F(Vec3F.ZAxis, Vec3F.ZeroVector);
-            
+
 
             Vec3F pt;
-            float xdelta    = float.MaxValue;            
+            float xdelta    = float.MaxValue;
             float ydelta    = float.MaxValue;
             float zdelta    = float.MaxValue;
             float lookdelta = float.MaxValue;
             if(rayL.IntersectPlane(xplane,out pt))
             {
-                xdelta = Math.Abs(pt.Length - rad); 
+                xdelta = Math.Abs(pt.Length - rad);
             }
 
             if (rayL.IntersectPlane(yplane, out pt))
             {
-                ydelta = Math.Abs(pt.Length - rad);              
+                ydelta = Math.Abs(pt.Length - rad);
             }
 
             if (rayL.IntersectPlane(zplane, out pt))
@@ -90,7 +90,7 @@ namespace RenderingInterop
             if(xdelta < tolerance && xdelta < ydelta && xdelta < zdelta
                 && xdelta < lookdelta)
             {
-                m_hitRegion = HitRegion.XAxis;                
+                m_hitRegion = HitRegion.XAxis;
             }
             else if(ydelta < tolerance && ydelta < zdelta
                 && ydelta < lookdelta)
@@ -111,7 +111,7 @@ namespace RenderingInterop
 
 
         public override void Render(ViewControl vc)
-        {                                                                           
+        {
             Matrix4F normWorld = GetManipulatorMatrix();
             if (normWorld == null) return;
             float RingDiameter = 2 * AxisLength;
@@ -126,14 +126,14 @@ namespace RenderingInterop
             Matrix4F rot = new Matrix4F();
             Matrix4F scale = new Matrix4F();
             scale.Scale(axScale);
-            rot.RotX(MathHelper.PiOver2);            
+            rot.RotX(MathHelper.PiOver2);
             Matrix4F xform = scale * rot * normWorld;
             Util3D.DrawRing(xform, Zcolor);
 
             rot.RotZ(-MathHelper.PiOver2);
             xform = scale * rot * normWorld;
             Util3D.DrawRing(xform, xcolor);
-            
+
             xform = scale * normWorld;
             Util3D.DrawRing(xform, ycolor);
 
@@ -159,7 +159,7 @@ namespace RenderingInterop
             foreach (DomNode domNode in rootDomNodes)
             {
                 ITransformable node = domNode.As<ITransformable>();
-                                
+
                 if (node == null || (node.TransformationType & TransformationTypes.Rotation) == 0)
                     continue;
 
@@ -168,16 +168,16 @@ namespace RenderingInterop
 
                 ILockable lockable = node.As<ILockable>();
                 if (lockable.IsLocked) continue;
-                
+
                 NodeList.Add(node);
                 IManipulatorNotify notifier = node.As<IManipulatorNotify>();
                 if (notifier != null) notifier.OnBeginDrag();
             }
 
-            m_rotations = new Matrix4F[NodeList.Count];            
+            m_rotations = new Matrix4F[NodeList.Count];
             for (int k = 0; k < NodeList.Count; k++)
             {
-                ITransformable node = NodeList[k];                
+                ITransformable node = NodeList[k];
                 Matrix4F m = new Matrix4F(node.Transform);
                 m.Translation = new Vec3F(0, 0, 0);
                 m.Normalize(m);
@@ -200,30 +200,30 @@ namespace RenderingInterop
             Matrix4F axisMtrx = HitMatrix * view;
             Ray3F hitRay = HitRayV;
             Ray3F dragRay = vc.GetRay(scrPt, proj);
-            
+
             Vec3F xAxis = axisMtrx.XAxis;
             Vec3F yAxis = axisMtrx.YAxis;
             Vec3F zAxis = axisMtrx.ZAxis;
             Vec3F origin = axisMtrx.Translation;
-            
-            Vec3F rotAxis = new Vec3F();            
+
+            Vec3F rotAxis = new Vec3F();
             float theta = 0;
 
             float snapAngle = ((ISnapSettings)DesignView).SnapAngle;
             switch (m_hitRegion)
-            {                
+            {
                 case HitRegion.XAxis:
                     {
                         Plane3F xplane = new Plane3F(xAxis, origin);
                         theta = CalcAngle(origin, xplane, hitRay, dragRay, snapAngle);
-                        rotAxis = HitMatrix.XAxis;                        
+                        rotAxis = HitMatrix.XAxis;
                     }
                     break;
                 case HitRegion.YAxis:
                     {
                         Plane3F yplane = new Plane3F(yAxis, origin);
                         theta = CalcAngle(origin, yplane, hitRay, dragRay, snapAngle);
-                        rotAxis = HitMatrix.YAxis;                        
+                        rotAxis = HitMatrix.YAxis;
                     }
                     break;
                 case HitRegion.ZAxis:
@@ -234,11 +234,11 @@ namespace RenderingInterop
                     }
                     break;
                 case HitRegion.LookAxis:
-                    {                        
+                    {
                         // for billboard objects the look vector is object's negative position in viewspace.
                         Vec3F lookAxis = Vec3F.Normalize(-origin);
                         Plane3F plane = new Plane3F(lookAxis, origin);
-                        theta = CalcAngle(origin, plane, hitRay, dragRay, snapAngle);                        
+                        theta = CalcAngle(origin, plane, hitRay, dragRay, snapAngle);
                         rotAxis = m_lookAxisHitMtrx.ZAxis;
                     }
                     break;
@@ -247,16 +247,16 @@ namespace RenderingInterop
             }
 
             AngleAxisF axf = new AngleAxisF(-theta, rotAxis);
-            Matrix4F deltaMtrx = new Matrix4F(axf);                                   
+            Matrix4F deltaMtrx = new Matrix4F(axf);
             Matrix4F rotMtrx = new Matrix4F();
-           
+
             for (int i = 0; i < NodeList.Count; i++)
-            {                                
-                ITransformable node = NodeList[i];                              
-                rotMtrx.Mul(m_rotations[i], deltaMtrx);                
+            {
+                ITransformable node = NodeList[i];
+                rotMtrx.Mul(m_rotations[i], deltaMtrx);
                 float ax, ay, az;
-                rotMtrx.GetEulerAngles(out ax, out ay, out az);                                
-                node.Rotation = new Vec3F(ax, ay, az);      
+                rotMtrx.GetEulerAngles(out ax, out ay, out az);
+                node.Rotation = new Vec3F(ax, ay, az);
             }
         }
 
@@ -285,14 +285,14 @@ namespace RenderingInterop
                         Outputs.WriteLine(OutputMessageType.Error, ex.Message);
                 }
             }
-            m_hitRegion = HitRegion.None;                        
-            NodeList.Clear();            
+            m_hitRegion = HitRegion.None;
+            NodeList.Clear();
             m_rotations = null;
         }
-        
+
         private static float CalcAngle(Vec3F origin, Plane3F plane, Ray3F ray0, Ray3F ray1, float snapAngle)
         {
-            float theta = 0;            
+            float theta = 0;
             Vec3F p0;
             Vec3F p1;
 
@@ -333,18 +333,18 @@ namespace RenderingInterop
                     int n = (int)((angle - snapAngle * 0.5f) / snapAngle);
                     angle = n * snapAngle;
                 }
-            }            
+            }
            // const float epsilone = (float)1e-7;
-           // if (twoPi - angle <= epsilone) angle = 0.0f;          
+           // if (twoPi - angle <= epsilone) angle = 0.0f;
             return angle;
         }
 
-        
+
         protected override Matrix4F GetManipulatorMatrix()
         {
             ITransformable node = GetManipulatorNode(TransformationTypes.Rotation);
             if (node == null ) return null;
-            
+
             Path<DomNode> path = new Path<DomNode>(node.Cast<DomNode>().GetPath());
             Matrix4F localToWorld = TransformUtils.CalcPathTransform(path, path.Count - 1);
 
@@ -356,20 +356,20 @@ namespace RenderingInterop
             P.Translation = node.Pivot;
             toworld.Mul(P, toworld);
 
-            // Normalize            
+            // Normalize
             toworld.Normalize(toworld);
 
             return toworld;
         }
 
 
-        // scale up the ring around view vector so to 
-        // separated from main axis rings.        
+        // scale up the ring around view vector so to
+        // separated from main axis rings.
         private const float LookRingScale = 1.25f;
-        
+
         private Matrix4F m_lookAxisHitMtrx = new Matrix4F();
-        private HitRegion m_hitRegion = HitRegion.None;        
-        private Matrix4F[] m_rotations;        
+        private HitRegion m_hitRegion = HitRegion.None;
+        private Matrix4F[] m_rotations;
         private enum HitRegion
         {
             None,

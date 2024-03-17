@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -71,11 +71,11 @@ namespace Sce.Atf.Applications
             m_treeControl.SelectionMode = SelectionMode.MultiExtended;
             m_treeControl.ImageList = ResourceUtil.GetImageList16();
             m_treeControl.StateImageList = ResourceUtil.GetImageList16();
-            
+
             m_treeControl.DragOver += treeControl_DragOver;
             m_treeControl.DragDrop += treeControl_DragDrop;
             m_treeControl.MouseUp += treeControl_MouseUp;
-                 
+
             m_treeControlAdapter = new TreeControlAdapter(m_treeControl);
 
             m_listView = new ListView();
@@ -83,25 +83,25 @@ namespace Sce.Atf.Applications
             m_listView.Dock = DockStyle.Fill;
             m_listView.AllowDrop = true;
             m_listView.LabelEdit = false;
-            
+
             m_listView.MouseUp += thumbnailControl_MouseUp;
             m_listView.MouseMove += thumbnailControl_MouseMove;
             m_listView.MouseLeave += thumbnailControl_MouseLeave;
             m_listView.DragOver += thumbnailControl_DragOver;
-            
+
             m_listViewAdapter = new ListViewAdapter(m_listView);
 
             m_thumbnailControl = new ThumbnailControl();
             m_thumbnailControl.Dock = DockStyle.Fill;
             m_thumbnailControl.AllowDrop = true;
             m_thumbnailControl.BackColor = SystemColors.Window;
-            
+
             m_thumbnailControl.SelectionChanged += thumbnailControl_SelectionChanged;
             m_thumbnailControl.MouseMove += thumbnailControl_MouseMove;
             m_thumbnailControl.MouseUp += thumbnailControl_MouseUp;
             m_thumbnailControl.MouseLeave += thumbnailControl_MouseLeave;
             m_thumbnailControl.DragOver += thumbnailControl_DragOver;
-            
+
             m_splitContainer = new SplitContainer();
             m_splitContainer.Name = "Resources".Localize();
             m_splitContainer.Orientation = Orientation.Vertical;
@@ -198,7 +198,7 @@ namespace Sce.Atf.Applications
 
                 Point screenPoint = m_treeControl.PointToScreen(clientPoint);
                 m_commandService.RunContextMenu(commands, screenPoint);
-            }             
+            }
         }
 
         private void treeControl_DragOver(object sender, DragEventArgs e)
@@ -290,7 +290,7 @@ namespace Sce.Atf.Applications
         private void thumbnailControl_MouseMove(object sender, MouseEventArgs e)
         {
             if (!m_dragging && e.Button == MouseButtons.Left)
-            {                
+            {
                 Size dragSize = SystemInformation.DragSize;
                 if (Math.Abs(m_hitPoint.X - e.X) >= dragSize.Width ||
                     Math.Abs(m_hitPoint.Y - e.Y) >= dragSize.Height)
@@ -750,7 +750,7 @@ namespace Sce.Atf.Applications
         private ISelectionContext m_treeSelectionContext;
         private TreeControlAdapter m_treeControlAdapter;
         private TreeControl m_treeControl;
-        
+
         private ListViewContext m_listContext;
         private ListView m_listView;
         private ListViewAdapter m_listViewAdapter;
@@ -1030,7 +1030,7 @@ namespace Sce.Atf.Applications
 
                     info.Properties = new object[] {
                         length,
-                        typeName, 
+                        typeName,
                         lastWriteTime
                     };
                 }

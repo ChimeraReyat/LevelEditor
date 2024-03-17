@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 
@@ -52,7 +52,7 @@ namespace Sce.Atf
         {
             m_dirty = true;
         }
-        
+
         private bool m_dirty = true;
         private T m_value;
         private readonly Func<T> m_computeFunc;

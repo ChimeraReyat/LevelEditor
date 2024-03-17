@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ namespace Sce.Atf.Applications
     public abstract class SearchToolStrip : ToolStrip, ISearchUI
     {
         #region ISearchUI members
-        
+
         /// <summary>
         /// Binds this search Control to a data set (that is wrapped in a class implementing IQueryableContext)</summary>
         /// <param name="queryableContext">The queryable context object, or null.</param>
@@ -20,7 +20,7 @@ namespace Sce.Atf.Applications
             QueryableContext = queryableContext;
             Enabled = (queryableContext != null);
         }
-        
+
         /// <summary>
         /// Gets actual client-defined GUI Control</summary>
         public Control Control { get { return this; } }

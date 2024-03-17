@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -33,7 +33,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         {
             get { return null; }
         }
-      
+
         /// <summary>
         /// Performs initialization when the adapter is connected to the circuit's DomNode</summary>
         protected override void OnNodeSet()
@@ -43,7 +43,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             m_wires = new DomNodeListAdapter<Wire>(DomNode, WireChildInfo);
             if (AnnotationChildInfo != null)
                 m_annotations = new DomNodeListAdapter<Annotation>(DomNode, AnnotationChildInfo);
- 
+
             foreach (var connection in Wires)
                 connection.SetPinTarget();
 
@@ -104,7 +104,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// Finds the element and pin that matched the pin target for this circuit container</summary>
         /// <param name="pinTarget">Contains pin's element and pin index</param>
         /// <param name="inputSide">True for input pin, false for output pin</param>
-        /// <returns>Return a pair of element and pin. As an element instance method, if there is a match, the element is self, 
+        /// <returns>Return a pair of element and pin. As an element instance method, if there is a match, the element is self,
         /// and pin is one of its pins defined in Type. If there is no match, both are null.</returns>
         public Pair<Element, ICircuitPin> MatchPinTarget(PinTarget pinTarget,  bool inputSide)
         {
@@ -117,17 +117,17 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 if (result.First != null)
                     break;
             }
-           
+
 
             return result;
         }
 
         /// <summary>
-        /// Finds the element and pin that fully matched the pin target for this circuit container, 
+        /// Finds the element and pin that fully matched the pin target for this circuit container,
         /// including the template instance node</summary>
         /// <param name="pinTarget">Contains pin's element and pin index</param>
         /// <param name="inputSide">True for input pin, false for output pin</param>
-        /// <returns>Return a pair of element and pin. As an element instance method, if there is a match, the element is self, 
+        /// <returns>Return a pair of element and pin. As an element instance method, if there is a match, the element is self,
         /// and pin is one of its pins defined in Type. If there is no match, both are null.</returns>
         public Pair<Element, ICircuitPin> FullyMatchPinTarget(PinTarget pinTarget, bool inputSide)
         {
@@ -164,12 +164,12 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// Gets all connections between visible nodes in the circuit</summary>
         IEnumerable<Wire> IGraph<Element, Wire, ICircuitPin>.Edges
         {
-            // Nodes are always drawn on top of edges, no in-line editing help here  
+            // Nodes are always drawn on top of edges, no in-line editing help here
             get
             {
                 //if (Dirty)
                 //    return EmptyEnumerable<Connection>.Instance;
-                return m_wires.Where(x => x.InputElement.Visible && x.OutputElement.Visible);               
+                return m_wires.Where(x => x.InputElement.Visible && x.OutputElement.Visible);
             }
         }
 
@@ -199,7 +199,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         }
 
 
-        // Need to explicitly add Inputs and Outputs of sub-graph pins when nodes are inserted or deleted   
+        // Need to explicitly add Inputs and Outputs of sub-graph pins when nodes are inserted or deleted
         private void DomNode_ChildInserted(object sender, ChildEventArgs e)
         {
             Dirty = true;

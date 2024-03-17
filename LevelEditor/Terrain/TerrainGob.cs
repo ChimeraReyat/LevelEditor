@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -23,20 +23,20 @@ using PropertyDescriptor = System.ComponentModel.PropertyDescriptor;
 namespace LevelEditor.Terrain
 {
     public unsafe class TerrainGob : DomNodeAdapter
-        ,IPropertyEditingContext 
+        ,IPropertyEditingContext
         ,IEditableResourceOwner
         ,ITerrainSurface
     {
         public static TerrainGob Create(string name, string hmPath, float cellSize)
-        {            
+        {
             if (string.IsNullOrWhiteSpace(name))
                 throw new ArgumentNullException(name);
 
             if (!File.Exists(hmPath))
                 throw new ArgumentException(hmPath + " does not exist");
-            
+
             Uri ur = new Uri(hmPath);
-            DomNode terrainNode = new DomNode(Schema.terrainGobType.Type);            
+            DomNode terrainNode = new DomNode(Schema.terrainGobType.Type);
             terrainNode.SetAttribute(Schema.terrainGobType.cellSizeAttribute, cellSize);
             terrainNode.SetAttribute(Schema.terrainGobType.heightMapAttribute, ur);
             terrainNode.InitializeExtensions();
@@ -45,16 +45,16 @@ namespace LevelEditor.Terrain
             return terrain;
         }
         protected override void OnNodeSet()
-        {            
+        {
             base.OnNodeSet();
             var xformable = this.Cast<ITransformable>();
-            xformable.TransformationType = TransformationTypes.Translation;  
-          
+            xformable.TransformationType = TransformationTypes.Translation;
+
             INativeObject nobj = this.As<INativeObject>();
             if (nobj == null)
                 throw new InvalidOperationException(this.GetType().FullName + " is not native object");
         }
-              
+
         public IList<LayerMap> LayerMaps
         {
             get { return GetChildList<LayerMap>(Schema.terrainGobType.layerMapChild); }
@@ -117,7 +117,7 @@ namespace LevelEditor.Terrain
 
             return retval.picked;
         }
-      
+
         public void DrawBrush(TerrainBrush brush, Vec2F drawscale, Vec3F posW)
         {
             INativeObject nobj = this.As<INativeObject>();
@@ -128,7 +128,7 @@ namespace LevelEditor.Terrain
             arg.drawscale = drawscale;
             IntPtr argPtr = new IntPtr(&arg);
             IntPtr retval;
-            nobj.InvokeFunction("DrawBrush", argPtr, out retval);                            
+            nobj.InvokeFunction("DrawBrush", argPtr, out retval);
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -138,7 +138,7 @@ namespace LevelEditor.Terrain
             public float radius;
             public float falloff;
             public Vec2F drawscale;
-            
+
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -171,12 +171,12 @@ namespace LevelEditor.Terrain
             if (adapter == null && type == typeof(ITransactionContext))
             {
                 IGameDocumentRegistry docreg = Globals.MEFContainer.GetExportedValue<IGameDocumentRegistry>();
-                adapter = docreg.MasterDocument.As<ITransactionContext>();                
+                adapter = docreg.MasterDocument.As<ITransactionContext>();
             }
             return adapter;
         }
 
-        
+
         #region IPropertyEditingContext Members
 
         IEnumerable<object> IPropertyEditingContext.Items
@@ -188,7 +188,7 @@ namespace LevelEditor.Terrain
         IEnumerable<PropertyDescriptor> IPropertyEditingContext.PropertyDescriptors
         {
             get
-            {                                            
+            {
                 if(m_propertyDescriptor == null)
                 {
                     FloatArrayConverter converter = new FloatArrayConverter();
@@ -196,14 +196,14 @@ namespace LevelEditor.Terrain
 
                     string category = "General";
                     m_propertyDescriptor = new PropertyDescriptor[]
-                    {                                               
-                       new UnboundPropertyDescriptor(this.GetType(),"HeightMapUri","HeightMap",category,"Height map"),                       
+                    {
+                       new UnboundPropertyDescriptor(this.GetType(),"HeightMapUri","HeightMap",category,"Height map"),
                        new UnboundPropertyDescriptor(this.GetType(),"HeightMapHeight","HeightMap Height",category,"HeightMap Height"),
                        new UnboundPropertyDescriptor(this.GetType(),"HeightMapWidth","HeightMap Width",category,"HeightMapWidth"),
-                       new UnboundPropertyDescriptor(this.GetType(),"CellSize","CellSize",category,"Distance between two vertices"),                                           
+                       new UnboundPropertyDescriptor(this.GetType(),"CellSize","CellSize",category,"Distance between two vertices"),
                     };
                 }
-                 
+
                 foreach (var prop in m_propertyDescriptor)
                     yield return prop;
             }
@@ -234,7 +234,7 @@ namespace LevelEditor.Terrain
                 ImageData hmImg = GetSurface();
                 hmImg.Save(HeightMapUri);
                 Dirty = false;
-            }            
+            }
         }
 
         #endregion
@@ -271,7 +271,7 @@ namespace LevelEditor.Terrain
             IntPtr argPtr = new IntPtr(&box);
             IntPtr retVal = IntPtr.Zero;
             nobj.InvokeFunction("ApplyDirtyRegion", argPtr, out retVal);
-            Dirty = true;            
+            Dirty = true;
         }
 
         #endregion

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -61,7 +61,7 @@ namespace Sce.Atf.Dom
         }
 
         #region IQueryPredicate members
-        
+
         /// <summary>
         /// Tries to match string in DomNode name</summary>
         /// <param name="item">DomNode object</param>
@@ -76,8 +76,8 @@ namespace Sce.Atf.Dom
             matchList = new List<IQueryMatch>();
             PropertyDescriptor namePd;
             string nodeName = GetDomNodeName(domNode, out namePd);
-            if (StringToMatch != null && 
-                StringToMatch.Length > 0 && 
+            if (StringToMatch != null &&
+                StringToMatch.Length > 0 &&
                 nodeName.IndexOf(StringToMatch, StringComparison.InvariantCultureIgnoreCase) != -1)
             {
                 matchList.Add(new DomNodePropertyMatch(namePd, domNode));

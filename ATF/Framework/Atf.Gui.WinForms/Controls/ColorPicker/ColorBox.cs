@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 /******************************************************************/
 /*****                                                        *****/
@@ -45,7 +45,7 @@ namespace Sce.Atf.Controls.ColorEditing
         private AdobeColors.HSL   m_hsl;
         private Color             m_rgb;
 
-        /// <summary> 
+        /// <summary>
         /// Required designer variable</summary>
         private readonly System.ComponentModel.Container components = null;
 
@@ -70,7 +70,7 @@ namespace Sce.Atf.Controls.ColorEditing
         }
 
 
-        /// <summary> 
+        /// <summary>
         /// Cleans up any resources being used</summary>
         /// <param name="disposing">True to release both managed and unmanaged resources;
         /// false to release only unmanaged resources</param>
@@ -90,16 +90,16 @@ namespace Sce.Atf.Controls.ColorEditing
         #endregion
 
         #region Component Designer generated code
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor</summary>
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ColorBox));
             this.SuspendLayout();
-            // 
+            //
             // ColorBox
-            // 
+            //
             this.Name = "ColorBox";
             resources.ApplyResources(this, "$this");
             this.Load += new System.EventHandler(this.ctrl2DColorBox_Load);
@@ -286,7 +286,7 @@ namespace Sce.Atf.Controls.ColorEditing
         private void ClearMarker()
         {
             Graphics g = CreateGraphics();
-            
+
             //    Determine the area that needs to be redrawn
             int start_x, start_y, end_x, end_y;
             int red = 0; int green = 0; int blue = 0;
@@ -315,7 +315,7 @@ namespace Sce.Atf.Controls.ColorEditing
                     //    L=97           Hue
                     //    ...
                     //    L=0
-                case eDrawStyle.Hue :    
+                case eDrawStyle.Hue :
 
                     hsl_start.H = m_hsl.H;    hsl_end.H = m_hsl.H;    //    Hue is constant
                     hsl_start.S = (double)start_x/(Width - 4);        //    Because we're drawing horizontal lines, s will not change
@@ -325,11 +325,11 @@ namespace Sce.Atf.Controls.ColorEditing
                     {
                         hsl_start.L = 1.0 - (double)i/(Height - 4);   //    Brightness (L) WILL change for each horizontal
                         hsl_end.L = hsl_start.L;                      //    line drawn
-                
-                        LinearGradientBrush br = new LinearGradientBrush(new Rectangle(start_x + 1,i + 2, end_x - start_x + 1, 1), AdobeColors.HSL_to_RGB(hsl_start), AdobeColors.HSL_to_RGB(hsl_end), 0, false); 
-                        g.FillRectangle(br,new Rectangle(start_x + 2,i + 2, end_x - start_x + 1 , 1)); 
+
+                        LinearGradientBrush br = new LinearGradientBrush(new Rectangle(start_x + 1,i + 2, end_x - start_x + 1, 1), AdobeColors.HSL_to_RGB(hsl_start), AdobeColors.HSL_to_RGB(hsl_end), 0, false);
+                        g.FillRectangle(br,new Rectangle(start_x + 2,i + 2, end_x - start_x + 1 , 1));
                     }
-                    
+
                     break;
                     //          H=0,H=1,H=2,H=3.....H=360
                     //    L=100
@@ -341,16 +341,16 @@ namespace Sce.Atf.Controls.ColorEditing
                 case eDrawStyle.Saturation :
 
                     hsl_start.S = m_hsl.S;    hsl_end.S = m_hsl.S;       //    Saturation is constant
-                    hsl_start.L = 1.0 - (double)start_y/(Height - 4);    //    Because we're drawing vertical lines, L will 
+                    hsl_start.L = 1.0 - (double)start_y/(Height - 4);    //    Because we're drawing vertical lines, L will
                     hsl_end.L = 1.0 - (double)end_y/(Height - 4);        //    not change from line to line
 
                     for ( int i = start_x; i <= end_x; i++ )             //    For each vertical line:
                     {
                         hsl_start.H = (double)i/(Width - 4);             //    Hue (H) WILL change for each vertical
                         hsl_end.H = hsl_start.H;                         //    line drawn
-                
-                        LinearGradientBrush br = new LinearGradientBrush(new Rectangle(i + 2,start_y + 1, 1, end_y - start_y + 2), AdobeColors.HSL_to_RGB(hsl_start), AdobeColors.HSL_to_RGB(hsl_end), 90, false); 
-                        g.FillRectangle(br,new Rectangle(i + 2, start_y + 2, 1, end_y - start_y + 1)); 
+
+                        LinearGradientBrush br = new LinearGradientBrush(new Rectangle(i + 2,start_y + 1, 1, end_y - start_y + 2), AdobeColors.HSL_to_RGB(hsl_start), AdobeColors.HSL_to_RGB(hsl_end), 90, false);
+                        g.FillRectangle(br,new Rectangle(i + 2, start_y + 2, 1, end_y - start_y + 1));
                     }
                     break;
                     //          H=0,H=1,H=2,H=3.....H=360
@@ -361,18 +361,18 @@ namespace Sce.Atf.Controls.ColorEditing
                     //    ...
                     //    S=0
                 case eDrawStyle.Brightness :
-                    
+
                     hsl_start.L = m_hsl.L;    hsl_end.L = m_hsl.L;       //    Luminance is constant
-                    hsl_start.S = 1.0 - (double)start_y/(Height - 4);    //    Because we're drawing vertical lines, S will 
+                    hsl_start.S = 1.0 - (double)start_y/(Height - 4);    //    Because we're drawing vertical lines, S will
                     hsl_end.S = 1.0 - (double)end_y/(Height - 4);        //    not change from line to line
 
                     for ( int i = start_x; i <= end_x; i++ )             //    For each vertical line:
                     {
                         hsl_start.H = (double)i/(Width - 4);             //    Hue (H) WILL change for each vertical
                         hsl_end.H = hsl_start.H;                         //    line drawn
-                
-                        LinearGradientBrush br = new LinearGradientBrush(new Rectangle(i + 2,start_y + 1, 1, end_y - start_y + 2), AdobeColors.HSL_to_RGB(hsl_start), AdobeColors.HSL_to_RGB(hsl_end), 90, false); 
-                        g.FillRectangle(br,new Rectangle(i + 2, start_y + 2, 1, end_y - start_y + 1)); 
+
+                        LinearGradientBrush br = new LinearGradientBrush(new Rectangle(i + 2,start_y + 1, 1, end_y - start_y + 2), AdobeColors.HSL_to_RGB(hsl_start), AdobeColors.HSL_to_RGB(hsl_end), 90, false);
+                        g.FillRectangle(br,new Rectangle(i + 2, start_y + 2, 1, end_y - start_y + 1));
                     }
 
                     break;
@@ -384,7 +384,7 @@ namespace Sce.Atf.Controls.ColorEditing
                     //    ...
                     //    G=0
                 case eDrawStyle.Red :
-                    
+
                     red = m_rgb.R;                                             //    Red is constant
                     int start_b = Round(255 * (double)start_x/(Width - 4));    //    Because we're drawing horizontal lines, B
                     int end_b = Round(255 * (double)end_x/(Width - 4));        //    will not change from line to line
@@ -393,8 +393,8 @@ namespace Sce.Atf.Controls.ColorEditing
                     {
                         green = Round(255 - (255 * (double)i/(Height - 4)));   //    green WILL change for each horizontal line drawn
 
-                        LinearGradientBrush br = new LinearGradientBrush(new Rectangle(start_x + 1,i + 2, end_x - start_x + 1, 1), Color.FromArgb(red, green, start_b), Color.FromArgb(red, green, end_b), 0, false); 
-                        g.FillRectangle(br,new Rectangle(start_x + 2,i + 2, end_x - start_x + 1 , 1));  
+                        LinearGradientBrush br = new LinearGradientBrush(new Rectangle(start_x + 1,i + 2, end_x - start_x + 1, 1), Color.FromArgb(red, green, start_b), Color.FromArgb(red, green, end_b), 0, false);
+                        g.FillRectangle(br,new Rectangle(start_x + 2,i + 2, end_x - start_x + 1 , 1));
                     }
 
                     break;
@@ -406,7 +406,7 @@ namespace Sce.Atf.Controls.ColorEditing
                     //    ...
                     //    R=0
                 case eDrawStyle.Green :
-                    
+
                     green = m_rgb.G;;                                           //    Green is constant
                     int start_b2 = Round(255 * (double)start_x/(Width - 4));    //    Because we're drawing horizontal lines, B
                     int end_b2 = Round(255 * (double)end_x/(Width - 4));        //    will not change from line to line
@@ -415,8 +415,8 @@ namespace Sce.Atf.Controls.ColorEditing
                     {
                         red = Round(255 - (255 * (double)i/(Height - 4)));      //    red WILL change for each horizontal line drawn
 
-                        LinearGradientBrush br = new LinearGradientBrush(new Rectangle(start_x + 1,i + 2, end_x - start_x + 1, 1), Color.FromArgb(red, green, start_b2), Color.FromArgb(red, green, end_b2), 0, false); 
-                        g.FillRectangle(br,new Rectangle(start_x + 2,i + 2, end_x - start_x + 1 , 1)); 
+                        LinearGradientBrush br = new LinearGradientBrush(new Rectangle(start_x + 1,i + 2, end_x - start_x + 1, 1), Color.FromArgb(red, green, start_b2), Color.FromArgb(red, green, end_b2), 0, false);
+                        g.FillRectangle(br,new Rectangle(start_x + 2,i + 2, end_x - start_x + 1 , 1));
                     }
 
                     break;
@@ -428,7 +428,7 @@ namespace Sce.Atf.Controls.ColorEditing
                     //    ...
                     //    G=0
                 case eDrawStyle.Blue :
-                    
+
                     blue = m_rgb.B;;                                           //    Blue is constant
                     int start_r = Round(255 * (double)start_x/(Width - 4));    //    Because we're drawing horizontal lines, R
                     int end_r = Round(255 * (double)end_x/(Width - 4));        //    will not change from line to line
@@ -437,8 +437,8 @@ namespace Sce.Atf.Controls.ColorEditing
                     {
                         green = Round(255 - (255 * (double)i/(Height - 4)));   //    green WILL change for each horizontal line drawn
 
-                        LinearGradientBrush br = new LinearGradientBrush(new Rectangle(start_x + 1,i + 2, end_x - start_x + 1, 1), Color.FromArgb(start_r, green, blue), Color.FromArgb(end_r, green, blue), 0, false); 
-                        g.FillRectangle(br,new Rectangle(start_x + 2,i + 2, end_x - start_x + 1 , 1)); 
+                        LinearGradientBrush br = new LinearGradientBrush(new Rectangle(start_x + 1,i + 2, end_x - start_x + 1, 1), Color.FromArgb(start_r, green, blue), Color.FromArgb(end_r, green, blue), 0, false);
+                        g.FillRectangle(br,new Rectangle(start_x + 2,i + 2, end_x - start_x + 1 , 1));
                     }
 
                     break;
@@ -498,9 +498,9 @@ namespace Sce.Atf.Controls.ColorEditing
             Graphics g = CreateGraphics();
 
             Pen pencil;
-            
+
             //    To make the control look like Adobe Photoshop's the border around the control will be a gray line
-            //    on the top and left side, a white line on the bottom and right side, and a black rectangle (line) 
+            //    on the top and left side, a white line on the bottom and right side, and a black rectangle (line)
             //    inside the gray/white rectangle
 
             pencil = new Pen(Color.FromArgb(172,168,153));    //    The same gray color used by Photoshop
@@ -564,9 +564,9 @@ namespace Sce.Atf.Controls.ColorEditing
             {
                 hsl_start.L = 1.0 - (double)i/(Height - 4);    //    Calculate luminance at this line (Hue and Saturation are constant)
                 hsl_end.L = hsl_start.L;
-                
-                LinearGradientBrush br = new LinearGradientBrush(new Rectangle(2,2, Width - 4, 1), AdobeColors.HSL_to_RGB(hsl_start), AdobeColors.HSL_to_RGB(hsl_end), 0, false); 
-                g.FillRectangle(br,new Rectangle(2,i + 2, Width - 4, 1)); 
+
+                LinearGradientBrush br = new LinearGradientBrush(new Rectangle(2,2, Width - 4, 1), AdobeColors.HSL_to_RGB(hsl_start), AdobeColors.HSL_to_RGB(hsl_end), 0, false);
+                g.FillRectangle(br,new Rectangle(2,i + 2, Width - 4, 1));
             }
 
             g.Dispose();
@@ -590,9 +590,9 @@ namespace Sce.Atf.Controls.ColorEditing
             {
                 hsl_start.H = (double)i/(Width - 4);    //    Calculate Hue at this line (Saturation and Luminance are constant)
                 hsl_end.H = hsl_start.H;
-                
-                LinearGradientBrush br = new LinearGradientBrush(new Rectangle(2,2, 1, Height - 4), AdobeColors.HSL_to_RGB(hsl_start), AdobeColors.HSL_to_RGB(hsl_end), 90, false); 
-                g.FillRectangle(br,new Rectangle(i + 2, 2, 1, Height - 4)); 
+
+                LinearGradientBrush br = new LinearGradientBrush(new Rectangle(2,2, 1, Height - 4), AdobeColors.HSL_to_RGB(hsl_start), AdobeColors.HSL_to_RGB(hsl_end), 90, false);
+                g.FillRectangle(br,new Rectangle(i + 2, 2, 1, Height - 4));
             }
 
             g.Dispose();
@@ -616,9 +616,9 @@ namespace Sce.Atf.Controls.ColorEditing
             {
                 hsl_start.H = (double)i/(Width - 4);    //    Calculate Hue at this line (Saturation and Luminance are constant)
                 hsl_end.H = hsl_start.H;
-                
-                LinearGradientBrush br = new LinearGradientBrush(new Rectangle(2,2, 1, Height - 4), AdobeColors.HSL_to_RGB(hsl_start), AdobeColors.HSL_to_RGB(hsl_end), 90, false); 
-                g.FillRectangle(br,new Rectangle(i + 2, 2, 1, Height - 4)); 
+
+                LinearGradientBrush br = new LinearGradientBrush(new Rectangle(2,2, 1, Height - 4), AdobeColors.HSL_to_RGB(hsl_start), AdobeColors.HSL_to_RGB(hsl_end), 90, false);
+                g.FillRectangle(br,new Rectangle(i + 2, 2, 1, Height - 4));
             }
 
             g.Dispose();
@@ -638,8 +638,8 @@ namespace Sce.Atf.Controls.ColorEditing
                 //    Calculate Green at this line (Red and Blue are constant)
                 int green = Round(255 - (255 * (double)i/(Height - 4)));
 
-                LinearGradientBrush br = new LinearGradientBrush(new Rectangle(2,2, Width - 4, 1), Color.FromArgb(red, green, 0), Color.FromArgb(red, green, 255), 0, false); 
-                g.FillRectangle(br,new Rectangle(2,i + 2, Width - 4, 1)); 
+                LinearGradientBrush br = new LinearGradientBrush(new Rectangle(2,2, Width - 4, 1), Color.FromArgb(red, green, 0), Color.FromArgb(red, green, 255), 0, false);
+                g.FillRectangle(br,new Rectangle(2,i + 2, Width - 4, 1));
             }
 
             g.Dispose();
@@ -659,8 +659,8 @@ namespace Sce.Atf.Controls.ColorEditing
                 //    Calculate Red at this line (Green and Blue are constant)
                 int red = Round(255 - (255 * (double)i/(Height - 4)));
 
-                LinearGradientBrush br = new LinearGradientBrush(new Rectangle(2,2, Width - 4, 1), Color.FromArgb(red, green, 0), Color.FromArgb(red, green, 255), 0, false); 
-                g.FillRectangle(br,new Rectangle(2,i + 2, Width - 4, 1)); 
+                LinearGradientBrush br = new LinearGradientBrush(new Rectangle(2,2, Width - 4, 1), Color.FromArgb(red, green, 0), Color.FromArgb(red, green, 255), 0, false);
+                g.FillRectangle(br,new Rectangle(2,i + 2, Width - 4, 1));
             }
 
             g.Dispose();
@@ -680,8 +680,8 @@ namespace Sce.Atf.Controls.ColorEditing
                 //    Calculate Green at this line (Red and Blue are constant)
                 int green = Round(255 - (255 * (double)i/(Height - 4)));
 
-                LinearGradientBrush br = new LinearGradientBrush(new Rectangle(2,2, Width - 4, 1), Color.FromArgb(0, green, blue), Color.FromArgb(255, green, blue), 0, false); 
-                g.FillRectangle(br,new Rectangle(2,i + 2, Width - 4, 1)); 
+                LinearGradientBrush br = new LinearGradientBrush(new Rectangle(2,2, Width - 4, 1), Color.FromArgb(0, green, blue), Color.FromArgb(255, green, blue), 0, false);
+                g.FillRectangle(br,new Rectangle(2,i + 2, Width - 4, 1));
             }
 
             g.Dispose();
@@ -714,7 +714,7 @@ namespace Sce.Atf.Controls.ColorEditing
                 case eDrawStyle.Blue :
                     Draw_Style_Blue();
                     break;
-            } 
+            }
 
             DrawMarker(m_iMarker_X, m_iMarker_Y, true);
         }
@@ -811,14 +811,14 @@ namespace Sce.Atf.Controls.ColorEditing
         private int Round(double val)
         {
             int ret_val = (int)val;
-            
+
             int temp = (int)(val * 100);
 
             if ( (temp % 100) >= 50 )
                 ret_val += 1;
 
             return ret_val;
-            
+
         }
 
 

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -599,20 +599,20 @@ namespace Sce.Atf
         public static int GetPreferredWidth<T>(ToolStrip owner)
             where T : ToolStripItem
         {
-            // Declare a variable to store the total available width as 
-            // it is calculated, starting with the display width of the 
+            // Declare a variable to store the total available width as
+            // it is calculated, starting with the display width of the
             // owning ToolStrip.
             Int32 width = owner.DisplayRectangle.Width;
 
-            // Subtract the width of the overflow button if it is displayed. 
+            // Subtract the width of the overflow button if it is displayed.
             if (owner.OverflowButton.Visible)
             {
                 width = width - owner.OverflowButton.Width -
                         owner.OverflowButton.Margin.Horizontal;
             }
 
-            // Declare a variable to maintain a count of ToolStripAutoFitTextBox 
-            // items currently displayed in the owning ToolStrip. 
+            // Declare a variable to maintain a count of ToolStripAutoFitTextBox
+            // items currently displayed in the owning ToolStrip.
             Int32 springBoxCount = 0;
 
             foreach (ToolStripItem ownerItem in owner.Items)
@@ -791,7 +791,7 @@ namespace Sce.Atf
         public const int ExpanderSize = 8;
 
 
-        
+
 
         ///// <summary>
         ///// Draws a tree-control style expander , which looks like a triangle</summary>
@@ -801,7 +801,7 @@ namespace Sce.Atf
         ///// <param name="g">Graphics GDI+ drawing surface</param>
         //public static void DrawExpander(Graphics g, Pen pen, bool expanded, int x, int y, int expanderSize)
         //{
-           
+
 
         //}
         /// <summary>
@@ -840,23 +840,23 @@ namespace Sce.Atf
         /// <param name="brush">Brush used for filling background if not null.</param>
         /// <param name="pen">Pen for drawing outline if not null.</param>
         public static void DrawExpander(Graphics g,
-            int x, 
-            int y, 
-            int size, 
+            int x,
+            int y,
+            int size,
             bool expanded,
             Brush brush,
             Pen   pen)
         {
             s_expanderPoints[0] = new Point(x, y + size);
             if (expanded)
-            {                
+            {
                 s_expanderPoints[1] = new Point(x + size, y + size);
-                s_expanderPoints[2] = new Point(x + size, y);                
+                s_expanderPoints[2] = new Point(x + size, y);
             }
             else
             {
                 s_expanderPoints[1] = new Point(x + size, y + size / 2);
-                s_expanderPoints[2] = new Point(x, y);            
+                s_expanderPoints[2] = new Point(x, y);
             }
 
             if (brush != null)
@@ -988,7 +988,7 @@ namespace Sce.Atf
         /// Makes a new instance of Rectangle that is specified by two points</summary>
         /// <param name="p1">Start point</param>
         /// <param name="p2">End point</param>
-        /// <returns>New instance of Rectangle that is specified by two points</returns> 
+        /// <returns>New instance of Rectangle that is specified by two points</returns>
         public static Rectangle MakeRectangle(Point p1, Point p2)
         {
             int x = p1.X;
@@ -1038,7 +1038,7 @@ namespace Sce.Atf
         /// <returns>New instance of Rectangle that bounds this region</returns>
         public static RectangleF GetRegionBounds(Region region)
         {
-            RectangleF bound = new RectangleF();           
+            RectangleF bound = new RectangleF();
             foreach (var rect in region.GetRegionScans(new Matrix()))
             {
                 if (bound.IsEmpty)

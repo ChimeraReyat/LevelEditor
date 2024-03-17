@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,8 +16,8 @@ namespace Sce.Atf.Controls
     /// <summary>
     /// Base class for custom OpenFilteredFileDialog and SaveFilteredFileDialog</summary>
     /// <remarks>
-    /// All properties should be equivalent to the properties with the same names in System.Windows.Forms.FileDialog. 
-    /// Unlike System.Windows.Forms.FileDialog or Sce.Atf.CustomFileDialog, this is a Windows Forms implementation without going out to the Win32 methods. 
+    /// All properties should be equivalent to the properties with the same names in System.Windows.Forms.FileDialog.
+    /// Unlike System.Windows.Forms.FileDialog or Sce.Atf.CustomFileDialog, this is a Windows Forms implementation without going out to the Win32 methods.
     /// It has a CustomFileFilter callback, which can be used to exclude files in the dialog's ListView.</remarks>
     public partial class FilteredFileDialogBase : Form
     {
@@ -29,7 +29,7 @@ namespace Sce.Atf.Controls
 
             // Initialize ListView
             listView1.View = View.Details;
-            listView1.VirtualMode = true; // virtual mode is necessary for processing large number of files in a reasonable time  
+            listView1.VirtualMode = true; // virtual mode is necessary for processing large number of files in a reasonable time
 
             // Suspending automatic refreshes as items are added/removed.
             listView1.BeginUpdate();
@@ -83,12 +83,12 @@ namespace Sce.Atf.Controls
 
             m_backgroundWorker = new BackgroundWorker();
             m_backgroundWorker.WorkerSupportsCancellation = true;
-            m_backgroundWorker.DoWork += backgroundWorker_DoWork; // cache time-consuming ListView file information items asynchronously 
+            m_backgroundWorker.DoWork += backgroundWorker_DoWork; // cache time-consuming ListView file information items asynchronously
         }
 
 
         /// <summary>
-        /// Handler you can use to provide custom logic for excluding files in the dialog's ListView. 
+        /// Handler you can use to provide custom logic for excluding files in the dialog's ListView.
         /// If the handler is set, those files whose callback returns false are excluded.</summary>
         public Predicate<string> CustomFileFilter;
 
@@ -118,7 +118,7 @@ namespace Sce.Atf.Controls
                 }
             }
         }
-       
+
         /// <summary>
         /// Gets or sets whether the current directory is restored to its original value if the user changed
         /// the directory while searching for files</summary>
@@ -390,7 +390,7 @@ namespace Sce.Atf.Controls
 
             if (string.IsNullOrEmpty(m_initialDirectory) || !Directory.Exists(m_initialDirectory))
                 m_initialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-       
+
             GoToDirectory(Directory.CreateDirectory(m_initialDirectory));
         }
 
@@ -441,7 +441,7 @@ namespace Sce.Atf.Controls
                 }
                 else if (lookInComboBox.SelectedIndex > 1)
                 {
-                    // assemble the path  
+                    // assemble the path
                     var sb = new StringBuilder(lookInComboBox.Items[1] + @"\");
                     for (int i = 2; i <= lookInComboBox.SelectedIndex; ++i)
                         sb.Append(lookInComboBox.Items[i] + @"\");
@@ -673,7 +673,7 @@ namespace Sce.Atf.Controls
             if (m_backgroundWorker.IsBusy)
             {
                 m_backgroundWorker.CancelAsync();
-                m_resetEvent.WaitOne(); // will block until m_resetEvent.Set() call made              
+                m_resetEvent.WaitOne(); // will block until m_resetEvent.Set() call made
             }
 
 
@@ -703,7 +703,7 @@ namespace Sce.Atf.Controls
                 {
                     bool matched = !filtering;
                     if (filtering)
-                    {                        
+                    {
                         if (IsFileTypeMatch(file.Name))
                         {
                             if (CustomFileFilter != null )
@@ -777,7 +777,7 @@ namespace Sce.Atf.Controls
                 item.ImageIndex = 2;
                 item.Tag = drive;
                 var subItems = new ListViewItem.ListViewSubItem[] {
-                                new ListViewItem.ListViewSubItem(item, "Drive"), 
+                                new ListViewItem.ListViewSubItem(item, "Drive"),
                                 new ListViewItem.ListViewSubItem(item,  drive.Name)};
                 item.SubItems.AddRange(subItems);
                 m_cache[index++] = item;

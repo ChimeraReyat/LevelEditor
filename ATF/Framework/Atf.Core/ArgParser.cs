@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections;
@@ -20,8 +20,8 @@ namespace Sce.Atf.Core
     /// <summary>
     /// Parser for command-line arguments</summary>
     /// <remarks>
-    /// Most options are specified like "-name value" or "/name value", except for 
-    /// boolean options, which are specified like "-name" or "/name". 
+    /// Most options are specified like "-name value" or "/name value", except for
+    /// boolean options, which are specified like "-name" or "/name".
     /// Any command-line arguments that aren't part of an option are "extras".
     /// </remarks>
     ///
@@ -65,7 +65,7 @@ namespace Sce.Atf.Core
 
         /// <summary>Constructor</summary>
         /// <param name="args">The command-line arguments to parse.  This is assumed
-        /// not to contain the executable as its first argument; that is, it is 
+        /// not to contain the executable as its first argument; that is, it is
         /// assumed that the array is the argument to a Main() function, rather than
         /// from Environment.GetCommandLineArgs().</param>
         public ArgParser(string[] args)

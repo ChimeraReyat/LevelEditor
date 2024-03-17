@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.ComponentModel;
 
@@ -18,27 +18,27 @@ namespace LevelEditor
     public static class GameAdapters
     {
         /// <summary>
-        /// Register DomNodeAdapters </summary>        
+        /// Register DomNodeAdapters </summary>
         public static void Initialize(SchemaLoader schemaLoader)
         {
-            // resource meta data             
+            // resource meta data
             Schema.resourceMetadataType.Type.Define(new ExtensionInfo<ResourceMetadataDocument>());
             Schema.textureMetadataType.Type.Define(new ExtensionInfo<ResourceMetadataDocument>());
-               
+
             // game
-            Schema.gameType.Type.Define(new ExtensionInfo<Game>());                        
+            Schema.gameType.Type.Define(new ExtensionInfo<Game>());
             Schema.gameType.Type.Define(new ExtensionInfo<GameDocument>());
             Schema.gameType.Type.Define(new ExtensionInfo<IdToDomNode>());
-            Schema.gameType.Type.Define(new ExtensionInfo<GameContext>());            
-            Schema.gameType.Type.Define(new ExtensionInfo<LayeringContext>());            
+            Schema.gameType.Type.Define(new ExtensionInfo<GameContext>());
+            Schema.gameType.Type.Define(new ExtensionInfo<LayeringContext>());
             Schema.gameType.Type.Define(new ExtensionInfo<BookmarkingContext>());
             Schema.gameType.Type.Define(new ExtensionInfo<CustomLockingValidator>());
             Schema.gameType.Type.Define(new ExtensionInfo<UniqueIdValidator>());
 
-            // grid            
+            // grid
             Schema.gridType.Type.Define(new ExtensionInfo<Grid>());
 
-            // gob            
+            // gob
             Schema.gameObjectType.Type.Define(new ExtensionInfo<GameObject>());
             Schema.gameObjectType.Type.Define(new ExtensionInfo<GameObjectProperties>());
             Schema.gameObjectType.Type.Define(new ExtensionInfo<TransformUpdater>());
@@ -51,40 +51,40 @@ namespace LevelEditor
 
             // prefab
             Schema.objectOverrideType.Type.Define(new ExtensionInfo<ObjectOverride>());
-            Schema.attributeOverrideType.Type.Define(new ExtensionInfo<AttributeOverride>());                
+            Schema.attributeOverrideType.Type.Define(new ExtensionInfo<AttributeOverride>());
             Schema.prefabInstanceType.Type.Define(new ExtensionInfo<PrefabInstance>());
             Schema.prefabType.Type.Define(new ExtensionInfo<Prefab>());
-            
+
             // locator
             Schema.locatorType.Type.Define(new ExtensionInfo<Locator>());
 
             // curves
-            Schema.curveType.Type.Define(new ExtensionInfo<Curve>());            
+            Schema.curveType.Type.Define(new ExtensionInfo<Curve>());
             Schema.controlPointType.Type.Define(new ExtensionInfo<ControlPoint>());
             Schema.catmullRomType.Type.Define(new ExtensionInfo<CatmullRom>());
             Schema.bezierType.Type.Define(new ExtensionInfo<BezierCurves>());
 
-            // lights            
-            Schema.PointLight.Type.Define(new ExtensionInfo<PointLight>());            
+            // lights
+            Schema.PointLight.Type.Define(new ExtensionInfo<PointLight>());
             Schema.DirLight.Type.Define(new ExtensionInfo<DirLight>());
             Schema.BoxLight.Type.Define(new ExtensionInfo<BoxLight>());
 
             // Billboard
             Schema.billboardTestType.Type.Define(new ExtensionInfo<Billboard>());
-                                   
+
             // terrain
             Schema.terrainGobType.Type.Define(new ExtensionInfo<TerrainGob>());
             Schema.layerMapType.Type.Define(new ExtensionInfo<LayerMap>());
             Schema.decorationMapType.Type.Define(new ExtensionInfo<DecorationMap>());
-            
+
 
             // references
-            Schema.gameReferenceType.Type.Define(new ExtensionInfo<GameReference>());            
+            Schema.gameReferenceType.Type.Define(new ExtensionInfo<GameReference>());
             Schema.resourceReferenceType.Type.Define(new ExtensionInfo<ResourceReference>());
             Schema.gameObjectReferenceType.Type.Define(new ExtensionInfo<GameObjectReference>());
-            
 
-            Schema.layerType.Type.Define(new ExtensionInfo<Layer>());                                    
+
+            Schema.layerType.Type.Define(new ExtensionInfo<Layer>());
             Schema.bookmarkType.Type.Define(new ExtensionInfo<Bookmark>());
 
 
@@ -114,7 +114,7 @@ namespace LevelEditor
                             category,
                             "Number of sub-divisions".Localize(),
                             false),
-                        
+
                         new ChildAttributePropertyDescriptor(
                             "snap".Localize(),
                             Schema.gridType.snapAttribute,

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 
 using System;
@@ -16,8 +16,8 @@ namespace LevelEditor.DomNodeAdapters
     /// <summary>
     /// Reference to sub game.
     /// </summary>
-    public class GameReference : DomNodeAdapter, 
-        IReference<IGame>,         
+    public class GameReference : DomNodeAdapter,
+        IReference<IGame>,
         IReference<IGameDocument>,
         IListable
     {
@@ -114,7 +114,7 @@ namespace LevelEditor.DomNodeAdapters
         }
 
         /// <summary>
-        /// Resolves the Uri to DomNode</summary>        
+        /// Resolves the Uri to DomNode</summary>
         public void Resolve()
         {
             if (m_target == null)
@@ -141,11 +141,11 @@ namespace LevelEditor.DomNodeAdapters
                     m_target = gameDoc.As<IGame>();
                     ((Game)m_target).SetParent(this);
                 }
-            }            
+            }
         }
 
         /// <summary>
-        /// Sets target to null and removes the resolved 
+        /// Sets target to null and removes the resolved
         /// GameDocument from  GameDocumentRegistry</summary>
         public void Unresolve()
         {
@@ -157,16 +157,16 @@ namespace LevelEditor.DomNodeAdapters
                 m_target = null;
 
                 m_error = "Not resolved";
-            }            
+            }
         }
 
         /// <summary>
-        /// Gets a value indicating if this reference has been resolved</summary>        
+        /// Gets a value indicating if this reference has been resolved</summary>
         public bool Resolved
         {
             get { return m_target != null; }
         }
-                
+
         private string m_error = string.Empty;
         private IGame m_target = null;
 

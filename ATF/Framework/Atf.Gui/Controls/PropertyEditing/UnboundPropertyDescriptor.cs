@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel;
@@ -62,7 +62,7 @@ namespace Sce.Atf.Controls.PropertyEditing
             object editor,
             TypeConverter converter)
 
-            : base(displayName, 
+            : base(displayName,
                    new Attribute[] { new CategoryAttribute(category),
                                      new DescriptionAttribute(description), })
         {
@@ -81,8 +81,8 @@ namespace Sce.Atf.Controls.PropertyEditing
             // (PropertyInfo.CanWrite will return true if there is a set
             // accessor, even if that accessor is made inaccessible using
             // asymmetric accessor accessibility.)
-            MethodInfo setInfo = m_type.GetMethod("set_" + name, 
-                BindingFlags.Public |                
+            MethodInfo setInfo = m_type.GetMethod("set_" + name,
+                BindingFlags.Public |
                 BindingFlags.Instance |
                 BindingFlags.Static);
 

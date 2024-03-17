@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -35,7 +35,7 @@ namespace Sce.Atf.Controls.Adaptable
             set { m_enforceConstraints = value; }
             get { return m_enforceConstraints; }
         }
-  
+
 
         /// <summary>
         /// Gets or sets the minimum values for x and y translation</summary>
@@ -143,13 +143,13 @@ namespace Sce.Atf.Controls.Adaptable
 
                 PointF scale = EnforceConstraints ? this.ConstrainScale(new PointF(xScale, yScale)) : new PointF(xScale, yScale);
                 if (m[0] != scale.X || m[3] != scale.Y)
-                {                                        
+                {
                     transformChanged = true;
                 }
 
                 PointF translation = EnforceConstraints ? this.ConstrainTranslation(new PointF(xTranslation, yTranslation)) : new PointF(xTranslation, yTranslation);
                 if (m[4] != translation.X || m[5] != translation.Y)
-                {                    
+                {
                     transformChanged = true;
                 }
 
@@ -168,7 +168,7 @@ namespace Sce.Atf.Controls.Adaptable
                 m_settingTransform = false;
             }
         }
-        
+
         /// <summary>
         /// Event that is raised after the transform changes</summary>
         public event EventHandler TransformChanged;

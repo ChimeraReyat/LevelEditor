@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -76,7 +76,7 @@ namespace Sce.Atf.VectorMath
         }
 
         /// <summary>
-        /// Extends box to contain given array, interpreted as 3D points. 
+        /// Extends box to contain given array, interpreted as 3D points.
         /// If this box is currently uninitialized, the box is initialized to the first point.</summary>
         /// <param name="v">Floats representing 3D points</param>
         /// <returns>Extended box</returns>
@@ -249,9 +249,9 @@ namespace Sce.Atf.VectorMath
             // Compute the ray delta
             Vec3F rayDelta = ray.Direction * 100000f;
 
-            // First we check to see if the origin of the ray is 
-            // inside the AABB.  If it is, the ray intersects the AABB so 
-            // we'll return true.  We start by assuming the ray origin is 
+            // First we check to see if the origin of the ray is
+            // inside the AABB.  If it is, the ray intersects the AABB so
+            // we'll return true.  We start by assuming the ray origin is
             // inside the AABB
             bool inside = true;
 
@@ -265,7 +265,7 @@ namespace Sce.Atf.VectorMath
             {
                 xt = Min.X - ray.Origin.X;
 
-                if (xt > rayDelta.X) // If the ray is moving away from the AABB, there is no intersection 
+                if (xt > rayDelta.X) // If the ray is moving away from the AABB, there is no intersection
                     return false;
 
                 xt /= rayDelta.X;
@@ -275,7 +275,7 @@ namespace Sce.Atf.VectorMath
             {
                 xt = Max.X - ray.Origin.X;
 
-                if (xt < rayDelta.X) // If the ray is moving away from the AABB, there is no intersection 
+                if (xt < rayDelta.X) // If the ray is moving away from the AABB, there is no intersection
                     return false;
 
                 xt /= rayDelta.X;
@@ -285,7 +285,7 @@ namespace Sce.Atf.VectorMath
             {
                 // Later on we use the "xt", "yt", and "zt" variables to determine which plane (either
                 // xy, xz, or yz) we may collide with.  Since the x component of the ray
-                // origin is in between, the AABB's left and right side (which reside in the yz plane), 
+                // origin is in between, the AABB's left and right side (which reside in the yz plane),
                 // we know we don't have to test those sides so we set this to a negative value.
                 xt = -1.0f;
             }
@@ -295,7 +295,7 @@ namespace Sce.Atf.VectorMath
             {
                 yt = Min.Y - ray.Origin.Y;
 
-                if (yt > rayDelta.Y) // If the ray is moving away from the AABB, there is no intersection 
+                if (yt > rayDelta.Y) // If the ray is moving away from the AABB, there is no intersection
                     return false;
 
                 yt /= rayDelta.Y;
@@ -305,7 +305,7 @@ namespace Sce.Atf.VectorMath
             {
                 yt = Max.Y - ray.Origin.Y;
 
-                if (yt < rayDelta.Y) // If the ray is moving away from the AABB, there is no intersection 
+                if (yt < rayDelta.Y) // If the ray is moving away from the AABB, there is no intersection
                     return false;
 
                 yt /= rayDelta.Y;
@@ -315,7 +315,7 @@ namespace Sce.Atf.VectorMath
             {
                 // Later on we use the "xt", "yt", and "zt" variables to determine which plane (either
                 // xy, xz, or yz) we may collide with.  Since the y component of the ray
-                // origin is in between, the AABB's top and bottom side (which reside in the xz plane), 
+                // origin is in between, the AABB's top and bottom side (which reside in the xz plane),
                 // we know we don't have to test those sides so we set this to a negative value.
                 yt = -1.0f;
             }
@@ -324,7 +324,7 @@ namespace Sce.Atf.VectorMath
             {
                 zt = Min.Z - ray.Origin.Z;
 
-                if (zt > rayDelta.Z) // If the ray is moving away from the AABB, there is no intersection 
+                if (zt > rayDelta.Z) // If the ray is moving away from the AABB, there is no intersection
                     return false;
 
                 zt /= rayDelta.Z;
@@ -334,7 +334,7 @@ namespace Sce.Atf.VectorMath
             {
                 zt = Max.Z - ray.Origin.Z;
 
-                if (zt < rayDelta.Z) // If the ray is moving away from the AABB, there is no intersection 
+                if (zt < rayDelta.Z) // If the ray is moving away from the AABB, there is no intersection
                     return false;
 
                 zt /= rayDelta.Z;
@@ -344,7 +344,7 @@ namespace Sce.Atf.VectorMath
             {
                 // Later on we use the "xt", "yt", and "zt" variables to determine which plane (either
                 // xy, xz, or yz) we may collide with.  Since the z component of the ray
-                // origin is in between, the AABB's front and back side (which reside in the xy plane), 
+                // origin is in between, the AABB's front and back side (which reside in the xy plane),
                 // we know we don't have to test those sides so we set this to a negative value.
                 zt = -1.0f;
             }

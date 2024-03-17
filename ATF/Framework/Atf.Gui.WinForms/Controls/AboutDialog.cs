@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -150,7 +150,7 @@ namespace Sce.Atf.Controls
 
         /// <summary>
         /// Cleans up any resources being used</summary>
-        /// <param name="disposing">True to release both managed and unmanaged resources; 
+        /// <param name="disposing">True to release both managed and unmanaged resources;
         /// false to release only unmanaged resources</param>
         protected override void Dispose(bool disposing)
         {
@@ -182,47 +182,47 @@ namespace Sce.Atf.Controls
             this.sysInfoButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
-            // 
+            //
             // linkLabel
-            // 
+            //
             resources.ApplyResources(this.linkLabel, "linkLabel");
             this.linkLabel.Name = "linkLabel";
             this.linkLabel.TabStop = true;
-            // 
+            //
             // pictureBox
-            // 
+            //
             resources.ApplyResources(this.pictureBox, "pictureBox");
             this.pictureBox.BackColor = System.Drawing.SystemColors.Window;
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.TabStop = false;
-            // 
+            //
             // clientPanel
-            // 
+            //
             resources.ApplyResources(this.clientPanel, "clientPanel");
             this.clientPanel.Name = "clientPanel";
-            // 
+            //
             // creditsTextBox
-            // 
+            //
             resources.ApplyResources(this.creditsTextBox, "creditsTextBox");
             this.creditsTextBox.Name = "creditsTextBox";
             this.creditsTextBox.ReadOnly = true;
-            // 
+            //
             // okButton
-            // 
+            //
             resources.ApplyResources(this.okButton, "okButton");
             this.okButton.Name = "okButton";
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.okButton_Click);
-            // 
+            //
             // sysInfoButton
-            // 
+            //
             resources.ApplyResources(this.sysInfoButton, "sysInfoButton");
             this.sysInfoButton.Name = "sysInfoButton";
             this.sysInfoButton.UseVisualStyleBackColor = true;
             this.sysInfoButton.Click += new System.EventHandler(this.sysInfoButton_Click);
-            // 
+            //
             // AboutDialog
-            // 
+            //
             this.AcceptButton = this.okButton;
             resources.ApplyResources(this, "$this");
             this.BackColor = System.Drawing.SystemColors.Control;
@@ -265,12 +265,12 @@ namespace Sce.Atf.Controls
         {
             s_sysInfoDialog = null;
         }
-        
+
         private void AboutDialog_Load(object sender, EventArgs e)
         {
 
         }
-        
+
         private LinkLabel linkLabel;
         private PictureBox pictureBox;
         private Panel clientPanel;

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections;
@@ -176,7 +176,7 @@ namespace Sce.Atf.Controls.PropertyEditing
         private void RefreshList()
         {
             object value = m_context.GetValue();
-            if (value == null) 
+            if (value == null)
                 return;
             ICollection collection = (ICollection)value;
             Items.Clear();
@@ -189,7 +189,7 @@ namespace Sce.Atf.Controls.PropertyEditing
             object value = m_context.GetValue();
             if (value == null)
                 return null;
-            ICollection collection = (ICollection)value; 
+            ICollection collection = (ICollection)value;
             int index = GetItemIndex(y);
             foreach (object item in collection)
             {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -224,8 +224,8 @@ namespace Sce.Atf.Controls.PropertyEditing
         /// <param name="x">Type 1 of object with property to be compared</param>
         /// <param name="y">Type 2 of object with property to be compared</param>
         /// <returns>A signed integer that indicates the relative values of comparisons in collection.
-        /// Less than zero: Type 1 is less than Type 2. 
-        /// Zero: Type 1 equals Type 2. 
+        /// Less than zero: Type 1 is less than Type 2.
+        /// Zero: Type 1 equals Type 2.
         /// Greater than zero: Type 1 is greater than Type 2.</returns>
         int IComparer<T>.Compare(T x, T y)
         {
@@ -278,8 +278,8 @@ namespace Sce.Atf.Controls.PropertyEditing
         /// <param name="x">Type 1 of object with property to be compared</param>
         /// <param name="y">Type 2 of object with property to be compared</param>
         /// <returns>Signed integer that indicates the relative values of properties of objects.
-        /// Less than zero: Type 1 object property is less than Type 2 object property. 
-        /// Zero: Type 1 object property equals Type 2 object property. 
+        /// Less than zero: Type 1 object property is less than Type 2 object property.
+        /// Zero: Type 1 object property equals Type 2 object property.
         /// Greater than zero: Type 1 object property is greater than Type 2 object property.</returns>
         public int Compare(T x, T y)
         {

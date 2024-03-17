@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 
 namespace Sce.Atf.Controls.CurveEditing
@@ -10,18 +10,18 @@ namespace Sce.Atf.Controls.CurveEditing
         #region ctor
         /// <summary>
         /// Default constructor</summary>
-        /// <param name="curve">Curve for which evaluator created</param>       
+        /// <param name="curve">Curve for which evaluator created</param>
         public LinearCurveEvaluator(ICurve curve)
         {
             if (curve == null)
                 throw new ArgumentNullException("curve");
-            m_curve = curve;            
+            m_curve = curve;
             Reset();
         }
         #endregion
 
         #region public methods
-        /// <summary>        
+        /// <summary>
         /// Resets the curve. Call this whenever curve changes.</summary>
         public void Reset()
         {
@@ -33,7 +33,7 @@ namespace Sce.Atf.Controls.CurveEditing
         /// Evaluates point on curve</summary>
         /// <param name="x">X-coordinate for which y-coordinate is calculated</param>
         /// <returns>Y-coordinate on curve corresponding to given x-coordinate</returns>
-        /// <remarks>Calculates y-coordinate from x-coordinate using appropriate interpolation for a curve</remarks>        
+        /// <remarks>Calculates y-coordinate from x-coordinate using appropriate interpolation for a curve</remarks>
         public float Evaluate(float x)
         {
             if (m_points.Count == 0)
@@ -57,7 +57,7 @@ namespace Sce.Atf.Controls.CurveEditing
                     IControlPoint secondPt = m_points[1];
                     float slope = (secondPt.Y - firstPt.Y) / (secondPt.X - firstPt.X);
                     return (firstPt.Y - slope * (firstPt.X - x));
-                }                
+                }
                 float firstX = firstPt.X;
                 float lastX = lastPt.X;
                 float rangeX = lastX - firstX;
@@ -71,13 +71,13 @@ namespace Sce.Atf.Controls.CurveEditing
                 {
                     x = lastX-nx;
                     offset = -((numcycle+1) * (lastPt.Y - firstPt.Y));
-                    
+
                 }
                 else if (loop == CurveLoopTypes.Oscillate)
                 {
                     x = (((int)numcycle & 1) == 0) ? firstX + nx : lastX - nx;
                 }
-               
+
             }
             else if (x > lastPt.X) // post-infinity.
             {
@@ -115,7 +115,7 @@ namespace Sce.Atf.Controls.CurveEditing
 
             // correct any potential floating point error.
             x = MathUtil.Clamp(x, firstPt.X, lastPt.X);
-  
+
             bool exactMatch;
             int index = FindIndex(x, out exactMatch);
             if (exactMatch)
@@ -131,21 +131,21 @@ namespace Sce.Atf.Controls.CurveEditing
                 b = p1.Y - m * p1.X;
                 m_lastP1 = p1;
             }
-            // y = mx + b  
+            // y = mx + b
             // offset is computed from post and pre infinities.
             return (m * x + b + offset);
-                                   
+
         }
         #endregion
 
         #region private helper methods
         /// <summary>
-        /// Finds control points at x coordinate or prior to it</summary>         
+        /// Finds control points at x coordinate or prior to it</summary>
         private int FindIndex(float x, out bool exactMatch)
         {
             exactMatch = false;
             int low = 0;
-            int high = m_points.Count - 1;            
+            int high = m_points.Count - 1;
             do
             {
                 int mid = (low + high) >> 1;
@@ -161,24 +161,24 @@ namespace Sce.Atf.Controls.CurveEditing
                 {
                     exactMatch = true;
                     return mid;
-                }                
-            } while (low <= high);            
+                }
+            } while (low <= high);
             return high;
         }
 
-       
-             
+
+
         #endregion
 
         #region private fields
 
-        // m and b in Slope–intercept form 
+        // m and b in Slope–intercept form
         // y = mx + b
-        private float m; // slope 
+        private float m; // slope
         private float b; // y-intercept
-        private readonly ICurve m_curve;        
+        private readonly ICurve m_curve;
         private ReadOnlyCollection<IControlPoint> m_points;
-        private IControlPoint m_lastP1;       
+        private IControlPoint m_lastP1;
         #endregion
     }
 }

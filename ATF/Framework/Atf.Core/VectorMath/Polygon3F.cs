@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -89,7 +89,7 @@ namespace Sce.Atf.VectorMath
                     if (!prev.Value.IsReflex)
                         UpdateEar(prev, ears, normal);
 
-                    // Do the same for next 
+                    // Do the same for next
                     if (next.Value.IsReflex)
                         next.Value.IsReflex = IsReflex(next, normal);
 

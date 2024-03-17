@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
@@ -170,7 +170,7 @@ namespace Sce.Atf.Controls.Timelines
             float worldX = originalStart + originalLength * fraction;
 
             worldX = m_owner.ConstrainFrameOffset(worldX);
-            
+
             if (worldX > originalStart &&
                 worldX < originalStart + originalLength)
             {
@@ -211,7 +211,7 @@ namespace Sce.Atf.Controls.Timelines
         }
 
         private readonly TimelineControl m_owner;
-        
+
         private bool m_active; //is the splitting mode active?
         private bool m_splitCursor; //if we've set the cursor, we need to know to restore it
         private ToolTip m_toolTip = new ToolTip();

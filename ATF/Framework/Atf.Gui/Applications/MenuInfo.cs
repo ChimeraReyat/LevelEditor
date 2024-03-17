@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 
@@ -22,9 +22,9 @@ namespace Sce.Atf.Applications
 
         /// <summary>
         /// Gets or sets the ICommandService to which this menu info is registered</summary>
-        public ICommandService CommandService 
-        { 
-            get { return m_commandService; } 
+        public ICommandService CommandService
+        {
+            get { return m_commandService; }
             set
             {
                 if (m_commandService != null)

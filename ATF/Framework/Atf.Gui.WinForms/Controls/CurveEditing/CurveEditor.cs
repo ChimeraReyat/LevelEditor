@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -30,12 +30,12 @@ namespace Sce.Atf.Controls.CurveEditing
             IControlHostService controlHostService,
             IContextRegistry contextRegistry)
         {
-            // The commandService parameter is currently unused 
+            // The commandService parameter is currently unused
             // but kept for backwards compatibility & potential future use
 
             m_controlHostService = controlHostService;
             m_contextRegistry = contextRegistry;
-            
+
             m_curveEditorControl = new CurveEditingControl();
             m_controlInfo = new ControlInfo(
                 "Curve Editor", //Is the ID in the layout. We'll localize DisplayName instead.
@@ -59,7 +59,7 @@ namespace Sce.Atf.Controls.CurveEditing
             CurveEditingControl curveEditingControl,
             ControlInfo controlInfo)
         {
-            // The commandService parameter is currently unused 
+            // The commandService parameter is currently unused
             // but kept for backwards compatibility & potential future use
 
             m_controlHostService = controlHostService;
@@ -73,10 +73,10 @@ namespace Sce.Atf.Controls.CurveEditing
         void IInitializable.Initialize()
         {
             m_contextRegistry.ActiveContextChanged += contextRegistry_ActiveContextChanged;
-            m_controlHostService.RegisterControl(m_curveEditorControl, m_controlInfo, this);            
+            m_controlHostService.RegisterControl(m_curveEditorControl, m_controlInfo, this);
 
             // register settings for input modes.
-            m_curveEditorControl.RegisterSettings(m_settingsService);            
+            m_curveEditorControl.RegisterSettings(m_settingsService);
         }
 
         #endregion
@@ -121,7 +121,7 @@ namespace Sce.Atf.Controls.CurveEditing
         public bool MultiSelectionOverlay { get; set; }
 
         private void contextRegistry_ActiveContextChanged(object sender, EventArgs e)
-        {            
+        {
             m_curveEditorControl.Context = m_contextRegistry.ActiveContext;
 
             if (m_selectionContext != null)
@@ -170,7 +170,7 @@ namespace Sce.Atf.Controls.CurveEditing
                 foreach (KeyValuePair<ICurve, Color> pair in m_originalCurveColors)
                     pair.Key.CurveColor = pair.Value;
                 m_originalCurveColors.Clear();
-                
+
                 // Merge curves from all selected objects
                 List<ICurve> curveList = new List<ICurve>();
                 foreach (object obj in m_selectionContext.Selection)
@@ -178,7 +178,7 @@ namespace Sce.Atf.Controls.CurveEditing
 
                 // Auto-assign curve colors (equally spaced in the color spectrum)
                 if (m_selectionContext.SelectionCount > 1)
-                {   
+                {
                     for (int i = 0; i < curveList.Count; i++)
                     {
                         ICurve curve = curveList[i];
@@ -207,11 +207,11 @@ namespace Sce.Atf.Controls.CurveEditing
         {
             Path<object> path = selectedObject as Path<object>;
             object selected = path != null ? path.Last : selectedObject;
-            
+
             ICurveSet curveSet = selected.As<ICurveSet>();
             if (curveSet != null && curveSet.Curves != null)
                 return curveSet.Curves;
-            
+
             ICurve curve = selected.As<ICurve>();
             if (curve != null)
                 return new List<ICurve> {curve};
@@ -226,7 +226,7 @@ namespace Sce.Atf.Controls.CurveEditing
         /// <param name="e">Event args</param>
         void ObservableContextItemChanged(object sender, ItemChangedEventArgs<object> e)
         {
-            m_curveItemChanged = e.Item.Is<ICurve>() || e.Item.Is<IControlPoint>();            
+            m_curveItemChanged = e.Item.Is<ICurve>() || e.Item.Is<IControlPoint>();
         }
 
         // Required MEF Imports

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -22,8 +22,8 @@ using LevelEditorCore;
 namespace RenderingInterop
 {
     /// <summary>
-    /// Exposes a minimum set of game-engine functionalities 
-    /// for LevelEditor purpose.</summary>    
+    /// Exposes a minimum set of game-engine functionalities
+    /// for LevelEditor purpose.</summary>
     [Export(typeof(IGameEngineProxy))]
     [Export(typeof(IInitializable))]
     [PartCreationPolicy(CreationPolicy.Shared)]
@@ -47,14 +47,14 @@ namespace RenderingInterop
         /// <param name="game">Game world to set</param>
         public void SetGameWorld(IGame game)
         {
-            NativeObjectAdapter nobject = game.Cast<NativeObjectAdapter>();            
+            NativeObjectAdapter nobject = game.Cast<NativeObjectAdapter>();
             NativeSetGameLevel(nobject.InstanceId);
         }
 
         /// <summary>
         /// Updates game world</summary>
         /// <param name="ft">Frame time</param>
-        /// <param name="updateType">Update type</param>        
+        /// <param name="updateType">Update type</param>
         public void Update(FrameTime ft, UpdateType updateType)
         {
             NativeUpdate(&ft, updateType);
@@ -70,13 +70,13 @@ namespace RenderingInterop
 
         void IInitializable.Initialize()
         {
-           
-            
+
+
         }
 
         #endregion
 
-        private EngineInfo m_engineInfo;        
+        private EngineInfo m_engineInfo;
         private void PopulateEngineInfo(string engineInfoStr)
         {
             if (m_engineInfo != null) return;
@@ -88,8 +88,8 @@ namespace RenderingInterop
 
         private static GameEngine s_inist;
         /// <summary>
-        /// init game engine 
-        /// call it one time during startup on the UI thread.</summary>        
+        /// init game engine
+        /// call it one time during startup on the UI thread.</summary>
         public static void Init()
         {
             // the full dll name can be loaded in a config when needed.
@@ -132,20 +132,20 @@ namespace RenderingInterop
                 Type type = typeof(GameEngine);
 
                 foreach (MethodInfo minfo in type.GetMethods(BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic))
-                {                    
+                {
                     foreach( object obj in minfo.GetCustomAttributes(false))
-                    {                        
+                    {
                         DllImportAttribute dllimport = obj as DllImportAttribute;
                         if (dllimport != null)
                         {
-                            string entryname = dllimport.EntryPoint;                                                        
+                            string entryname = dllimport.EntryPoint;
                             // verify entry point name.
                             IntPtr fntPtr = NativeMethods.GetProcAddress(s_libHandle, entryname);
                             if (fntPtr == IntPtr.Zero)
-                                throw new ArgumentException(string.Format("Can't find native function: {0}(...) in {1}", dllimport.EntryPoint, dllName));                            
+                                throw new ArgumentException(string.Format("Can't find native function: {0}(...) in {1}", dllimport.EntryPoint, dllName));
                             break;
                         }
-                    }                        
+                    }
                 }
                  */
 
@@ -155,18 +155,18 @@ namespace RenderingInterop
                 IntPtr data;
                 s_invalidateCallback = new InvalidateViewsDlg(InvalidateViews);
                 s_logInstance = new LogCallbackType(LogCallback);
-                NativeInitialize(s_logInstance, s_invalidateCallback, out data);                
+                NativeInitialize(s_logInstance, s_invalidateCallback, out data);
                 if (data != IntPtr.Zero)
                 {
                     string engineInfo = Marshal.PtrToStringUni(data);
                     s_inist.PopulateEngineInfo(engineInfo);
                 }
-                
+
                 // get SynchronizationContext for current thread.
-                // Note: 
+                // Note:
                 s_syncContext = SynchronizationContext.Current;
                 //Application.AddMessageFilter(new MessageFilter());
-                
+
                 Util3D.Init();
             }
             catch (Exception e)
@@ -187,7 +187,7 @@ namespace RenderingInterop
         }
 
         /// <summary>
-        /// Gets CriticalError or empty string.        
+        /// Gets CriticalError or empty string.
         /// </summary>
         public static string CriticalError { get; private set; }
 
@@ -218,7 +218,7 @@ namespace RenderingInterop
                 {
                     DestroyObject(s_idToDomNode.Values.First());
                 }
-             
+
                 NativeShutdown();
                 NativeMethods.FreeLibrary(s_libHandle);
                 s_libHandle = IntPtr.Zero;
@@ -253,13 +253,13 @@ namespace RenderingInterop
             Console.Write(text);
             if (messageType == (int)OutputMessageType.Warning
                 || messageType == (int)OutputMessageType.Error)
-                Outputs.Write((OutputMessageType)messageType, text);                            
+                Outputs.Write((OutputMessageType)messageType, text);
         }
 
         #endregion
 
         #region update and rendering
-        
+
         public static void SetRenderState(RenderState renderState)
         {
             GameEngine.NativeSetRenderState(renderState.InstanceId);
@@ -532,7 +532,7 @@ namespace RenderingInterop
             {
                 hit = new HitRecord();
             }
-           
+
             return count > 0;
 
         }
@@ -549,14 +549,14 @@ namespace RenderingInterop
                 &rayW,
                 skipSelected,
                 &nativeHits,
-                out count);                
+                out count);
             }
-            
+
             var objects = new List<HitRecord>();
 
             for (int k = 0; k < count; k++)
-            {                
-                objects.Add(*nativeHits);                
+            {
+                objects.Add(*nativeHits);
                 nativeHits++;
             }
             return objects.ToArray();
@@ -567,7 +567,7 @@ namespace RenderingInterop
         public static HitRecord[] FrustumPick(ulong renderSurface, Matrix4F viewxform,
                                                Matrix4F projxfrom,
                                                RectangleF rect)
-        {            
+        {
             s_rect[0] = rect.X;
             s_rect[1] = rect.Y;
             s_rect[2] = rect.Width;
@@ -588,11 +588,11 @@ namespace RenderingInterop
             }
 
             var objects = new List<HitRecord>();
-            
+
             for (int k = 0; k < count; k++)
             {
                 HitRecord nativehit = *nativeHits;
-                objects.Add(nativehit);                
+                objects.Add(nativehit);
                 nativeHits++;
             }
             return objects.ToArray();
@@ -611,7 +611,7 @@ namespace RenderingInterop
 
         #endregion
 
-        #region basic rendering 
+        #region basic rendering
         // create vertex buffer with given vertex format from user data.
         public static ulong CreateVertexBuffer(VertexPN[] buffer)
         {
@@ -643,13 +643,13 @@ namespace RenderingInterop
 
         // Create index buffer from user data.
         public static ulong CreateIndexBuffer(uint[] buffer)
-        {            
+        {
             fixed (uint* ptr = buffer)
             {
                 return NativeCreateIndexBuffer(ptr, (uint)buffer.Length);
-            }            
+            }
         }
-    
+
         // deletes index/vertex buffer.
         public static void DeleteBuffer(ulong bufferId)
         {
@@ -658,7 +658,7 @@ namespace RenderingInterop
         }
 
         /// <summary>
-        /// Sets render flags used for basic drawing.</summary>        
+        /// Sets render flags used for basic drawing.</summary>
         public static void SetRendererFlag(BasicRendererFlags renderFlags)
         {
             NativeSetRendererFlag(renderFlags);
@@ -671,7 +671,7 @@ namespace RenderingInterop
                                             uint vertexCount,
                                             Color color,
                                             Matrix4F xform)
-                                            
+
         {
             Vec4F vc;
             vc.X = color.R / 255.0f;
@@ -693,7 +693,7 @@ namespace RenderingInterop
                                                 uint startVertex,
                                                 Color color,
                                                 Matrix4F xform)
-                                                
+
         {
             Vec4F vc;
             vc.X = color.R / 255.0f;
@@ -736,10 +736,10 @@ namespace RenderingInterop
 
         [DllImportAttribute("LvEdRenderingEngine", EntryPoint = "LvEd_Shutdown", CallingConvention = CallingConvention.StdCall)]
         private static extern void NativeShutdown();
-        
+
         [DllImportAttribute("LvEdRenderingEngine", EntryPoint = "LvEd_Clear")]
         private static extern void NativeClear();
-        
+
         [DllImportAttribute("LvEdRenderingEngine", EntryPoint = "LvEd_GetObjectTypeId", CallingConvention = CallingConvention.StdCall)]
         private static extern uint NativeGetObjectTypeId(string className);
 
@@ -755,11 +755,11 @@ namespace RenderingInterop
         [DllImportAttribute("LvEdRenderingEngine", EntryPoint = "LvEd_DestroyObject", CallingConvention = CallingConvention.StdCall)]
         private static extern void NativeDestroyObject(uint typeId, ulong instanceId);
 
-        
+
         [DllImportAttribute("LvEdRenderingEngine", EntryPoint = "LvEd_InvokeMemberFn", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         private static extern void NativeInvokeMemberFn(ulong instanceId, string fn, IntPtr arg, out IntPtr retVal);
-        
-        
+
+
         [DllImportAttribute("LvEdRenderingEngine", EntryPoint = "LvEd_SetObjectProperty", CallingConvention = CallingConvention.StdCall)]
         private static extern void NativeSetObjectProperty(uint typeId, uint propId, ulong instanceId, IntPtr data, int size);
 
@@ -786,15 +786,15 @@ namespace RenderingInterop
         [DllImportAttribute("LvEdRenderingEngine", EntryPoint = "LvEd_FrustumPick", CallingConvention = CallingConvention.StdCall)]
         private static extern bool NativeFrustumPick(
             [In]ulong renderSurface,
-            [In]float* viewxform, 
-            [In]float* projxfrom, 
+            [In]float* viewxform,
+            [In]float* projxfrom,
             [In]float[] rect,
-            [Out]HitRecord** instanceIds, 
+            [Out]HitRecord** instanceIds,
             [Out]out int count);
 
         [DllImportAttribute("LvEdRenderingEngine", EntryPoint = "LvEd_SetSelection", CallingConvention = CallingConvention.StdCall)]
         private static extern void NativeSetSelection(ulong[] instanceIds, int count);
-        
+
         [DllImportAttribute("LvEdRenderingEngine", EntryPoint = "LvEd_SetRenderState", CallingConvention = CallingConvention.StdCall)]
         private static extern void NativeSetRenderState(ulong instanceId);
 
@@ -812,19 +812,19 @@ namespace RenderingInterop
 
         [DllImportAttribute("LvEdRenderingEngine", EntryPoint = "LvEd_Begin", CallingConvention = CallingConvention.StdCall)]
         private static extern void NativeBegin(ulong renderSurface, float* viewxform, float* projxfrom);
-        
+
         [DllImportAttribute("LvEdRenderingEngine", EntryPoint = "LvEd_End")]
         private static extern void NativeEnd();
 
         [DllImportAttribute("LvEdRenderingEngine", EntryPoint = "LvEd_RenderGame")]
         private static extern void NativeRenderGame();
-       
+
         [DllImportAttribute("LvEdRenderingEngine", EntryPoint = "LvEd_SaveRenderSurfaceToFile", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Unicode)]
         private static extern bool NativeSaveRenderSurfaceToFile(ulong renderSurface, string fileName);
 
         [DllImportAttribute("LvEdRenderingEngine", EntryPoint = "LvEd_CreateVertexBuffer", CallingConvention = CallingConvention.StdCall)]
         private static extern ulong NativeCreateVertexBuffer(VertexFormat vf, void* buffer, uint vertexCount);
-        
+
         [DllImportAttribute("LvEdRenderingEngine", EntryPoint = "LvEd_CreateIndexBuffer", CallingConvention = CallingConvention.StdCall)]
         private static extern ulong NativeCreateIndexBuffer(uint* buffer, uint indexCount);
 
@@ -835,7 +835,7 @@ namespace RenderingInterop
 
         [DllImportAttribute("LvEdRenderingEngine", EntryPoint = "LvEd_SetRendererFlag", CallingConvention = CallingConvention.StdCall)]
         private static extern void NativeSetRendererFlag(BasicRendererFlags renderFlag);
-        
+
 
         [DllImportAttribute("LvEdRenderingEngine", EntryPoint = "LvEd_DrawPrimitive", CallingConvention = CallingConvention.StdCall)]
         private static extern void NativeDrawPrimitive(PrimitiveType pt,
@@ -844,7 +844,7 @@ namespace RenderingInterop
                                                         uint vertexCount,
                                                         float* color,
                                                         float* xform);
-                                                    
+
 
         [DllImportAttribute("LvEdRenderingEngine", EntryPoint = "LvEd_DrawIndexedPrimitive", CallingConvention = CallingConvention.StdCall)]
         private static extern void NativeDrawIndexedPrimitive(PrimitiveType pt,
@@ -855,7 +855,7 @@ namespace RenderingInterop
                                                         uint startVertex,
                                                         float* color,
                                                         float* xform);
-                                                        
+
         [DllImport("LvEdRenderingEngine", EntryPoint = "LvEd_CreateFont", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Unicode)]
         private static extern ulong NativeCreateFont(string fontName, float pixelHeight, FontStyle fontStyles);
 
@@ -864,9 +864,9 @@ namespace RenderingInterop
 
         [DllImport("LvEdRenderingEngine", EntryPoint = "LvEd_DrawText2D", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Unicode)]
         private static extern void NativeDrawText2D(ulong fontId, string text, int x, int y, int color);
-        
+
         private static string s_notInitialized = "Not initialized, please call Initialize()";
-        
+
         private static void ThrowExceptionForLastError()
         {
             int hr = Marshal.GetHRForLastWin32Error();

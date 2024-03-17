@@ -1,4 +1,4 @@
-﻿//Copyright © 2015 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2015 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -6,15 +6,15 @@ using System.Text;
 using System.Xml;
 
 namespace LevelEditorCore
-{    
+{
     /// <summary>
     ///  Supported resourece (Asset) types.</summary>
     public static class ResourceTypes
-    {        
+    {
         public const string Model    = "Model"; // static or skinned 3d model.
         public const string Texture  = "Texture";
     }
-    
+
     /// <summary>
     /// Contains information related to supported resources (Assets)</summary>
     public class ResourcesInfos
@@ -41,7 +41,7 @@ namespace LevelEditorCore
                     string exts = resElm.GetAttribute("Ext");
                     var res = new ResourceInfo(type, dscr, exts);
                     foreach (string ext in res.FileExts)
-                        m_allExtensions.Add(ext);                    
+                        m_allExtensions.Add(ext);
                     m_resInfoMap.Add(res.Type, res);
                     resDecrList.Add(res);
                 }
@@ -80,7 +80,7 @@ namespace LevelEditorCore
         }
 
 
-        private HashSet<string> m_allExtensions = 
+        private HashSet<string> m_allExtensions =
             new HashSet<string>();
 
         private readonly Dictionary<string, ResourceInfo>
@@ -119,20 +119,20 @@ namespace LevelEditorCore
             // compose filter pattern from file exts and
             // description.
             if (extArray.Length > 1)
-            {                
+            {
                 var filterStr = new StringBuilder();
                 var patternStr = new StringBuilder();
                 filterStr.AppendFormat("{0} (", Description);
                 for (int i = 0; i < extArray.Length - 1; i++)
                 {
                     filterStr.AppendFormat("*{0}, ", extArray[i]);
-                    patternStr.AppendFormat("*{0};", extArray[i]);                    
+                    patternStr.AppendFormat("*{0};", extArray[i]);
                 }
                 patternStr.AppendFormat("*{0}", extArray[extArray.Length - 1]);
                 filterStr.AppendFormat("*{0})|{1}", extArray[extArray.Length - 1], patternStr);
                 Filter = filterStr.ToString();
             }
-            else 
+            else
             {
                 Filter = string.Format("{0} (*{1})|*{1}", Description, extArray[0]);
             }
@@ -140,7 +140,7 @@ namespace LevelEditorCore
 
 
         /// <summary>
-        /// Gets filter pattern can be 
+        /// Gets filter pattern can be
         /// used for file dialog boxes.</summary>
         public string Filter
         {
@@ -152,7 +152,7 @@ namespace LevelEditorCore
         /// Gets resource type.
         /// Example model, texture, material, etc.</summary>
         public readonly string Type;
-             
+
         /// <summary>
         /// Resource description</summary>
         public readonly string Description;
@@ -181,6 +181,6 @@ namespace LevelEditorCore
         // file extensions for this resource type
         private HashSet<string> m_extensions =
             new HashSet<string>();
-        
+
     }
 }

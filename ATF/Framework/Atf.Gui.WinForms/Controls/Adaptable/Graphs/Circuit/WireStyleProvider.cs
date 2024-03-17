@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -76,7 +76,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 for (int i=0; i< dataPoints.Count-1;++i)
                 {
                     var bezier = SetupBezierCurve(dataPoints[i].Pos, dataPoints[i+ 1].Pos);
-                    var edgeData = new EdgeStyleData  
+                    var edgeData = new EdgeStyleData
                                         {
                                             ShapeType = EdgeStyleData.EdgeShape.Bezier,
                                             EdgeData = bezier,
@@ -116,9 +116,9 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             var A = new Vec2F(dataPoints[start - 1].First);
             var B = new Vec2F(dataPoints[end + 1].First);
             var D = B - A;
- 
+
             for (int i= start; i<=end ;++i)
-            {   
+            {
                 float t =(dataPoints[i].First.X - A.X)/D.X;
                 var P = A + t*D;
                 dataPoints[i] = new Pair<PointF, Group>(new PointF( P.X,  P.Y), dataPoints[i].Second);
@@ -140,8 +140,8 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             if (circuitRender != null)
             {
                 var relativePath = new List<ICircuitGroupType<TElement, TWire, TPin>>();
-                
-                // --- edge starts from the output pin 
+
+                // --- edge starts from the output pin
                 var group = connection.OutputElement.As<ICircuitGroupType<TElement, TWire, TPin>>();
                 foreach (var groupPin in connection.OutputPinSinkChain)
                 {
@@ -161,14 +161,14 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                     var startGroup = relativePath.Last();
                     if (startGroup.Expanded) // the edge starts from an expanded group pin, need to draw the virtual link
                     {
-                        // the first data starts from sub-node/pin    
+                        // the first data starts from sub-node/pin
                         var firstGroupPin = dataPoints[0].GroupPin;
                         Point p0 = circuitRender.GetPinPositionCenterY(firstGroupPin.InternalElement.Cast<TElement>(), firstGroupPin.InternalPinIndex, false, g);
                         p0.Offset(worldOffset);
                         p0.Offset(circuitRender.WorldOffset(relativePath.AsIEnumerable<TElement>()));
                         dataPoints.Insert(0, new GroupPinData { Pos = p0 });
                     }
-                  
+
                 }
                 else // edge starts from a non-expanded node
                 {
@@ -180,7 +180,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 int numInputPoints= dataPoints.Count;
                 dataPoints[dataPoints.Count - 1].IsReal = true;
 
-                // --- edge ends at the input pin 
+                // --- edge ends at the input pin
                 relativePath.Clear();
                 group = connection.InputElement.As<ICircuitGroupType<TElement, TWire, TPin>>();
                 foreach (var groupPin in connection.InputPinSinkChain)
@@ -201,13 +201,13 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                     var lastGroup = dataPoints[dataPoints.Count - 1].Group;
                     if (lastGroup.Expanded) // the edge ends at an expanded group pin, need to draw the virtual link to subnode
                     {
-                        // the last data ends at sub-node/pin              
+                        // the last data ends at sub-node/pin
                         Point pn = circuitRender.GetPinPositionCenterY(lastGroupPin.InternalElement.Cast<TElement>(), lastGroupPin.InternalPinIndex, true, g);
                         pn.Offset(worldOffset);
                         pn.Offset(circuitRender.WorldOffset(relativePath.AsIEnumerable<TElement>()));
                         dataPoints.Add(new GroupPinData { Pos = pn});
                     }
-                  
+
                 }
                 else // edge ends at a non-expanded node
                 {

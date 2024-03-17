@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel;
@@ -105,7 +105,7 @@ namespace Sce.Atf.Controls.PropertyEditing
             if (flagString != null)
             {
                 string internalNames = string.Empty;
-                // Support the case when users type a value like "6" to mean 4 | 2.  
+                // Support the case when users type a value like "6" to mean 4 | 2.
                 int intvalue = 0;
                 if (Int32.TryParse(flagString, out intvalue))
                 {
@@ -272,7 +272,7 @@ namespace Sce.Atf.Controls.PropertyEditing
         private string[] m_names = EmptyArray<string>.Instance;
         private int[] m_values = EmptyArray<int>.Instance;
         private string[] m_displayNames = EmptyArray<string>.Instance;
-        
+
         private static readonly string NoFlags = "(none)".Localize("No flags");
     }
 }

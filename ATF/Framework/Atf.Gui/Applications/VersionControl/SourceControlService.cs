@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -61,7 +61,7 @@ namespace Sce.Atf.Applications
         }
 
         /// <summary>
-        /// Gets or sets whether the source control service should throw exceptions 
+        /// Gets or sets whether the source control service should throw exceptions
         /// caused by run time errors from the server</summary>
         /// <remarks>The default value is false (turnoff exceptions)</remarks>
         public bool ThrowExceptions { get; set; }
@@ -129,7 +129,7 @@ namespace Sce.Atf.Applications
         /// <summary>Gets the latest version of an item</summary>
         /// <param name="uri">URI representing the path to item</param>
         public abstract void GetLatestVersion(Uri uri);
- 
+
         /// <summary>
         /// Reverts an item</summary>
         /// <param name="uri">URI representing the path to item</param>

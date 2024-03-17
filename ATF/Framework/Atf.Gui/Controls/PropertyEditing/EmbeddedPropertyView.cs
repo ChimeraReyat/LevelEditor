@@ -20,9 +20,9 @@
 //    /// <summary>
 //    /// Base class for complex property editing controls, providing formats, fonts,
 //    /// data binding, persistent settings, and category/property information.
-//    /// Normally the PropertyView class should be used, but this is useful when 
+//    /// Normally the PropertyView class should be used, but this is useful when
 //    /// displaying properties of multiple elements, for example a collection.
-//    /// For an example of a class that implements this, 
+//    /// For an example of a class that implements this,
 //    /// please see Scea.Dom.Editors.Internal.EmbeddedGridCollectionView.
 //    /// </summary>
 //    public abstract class EmbeddedPropertyView : Control
@@ -252,7 +252,7 @@
 
 //                    row.Properties[i] = property;
 //                }
-//            }            
+//            }
 //        }
 
 //        private void DestroyRows()
@@ -276,12 +276,12 @@
 //                        }
 //                    }
 //                    row.SetNumProperties(0);
-//                }  
+//                }
 //            }
 //            Rows = null;
 //        }
-//        #endregion        
-        
+//        #endregion
+
 //        #region Protected Classes
 //        /// <summary>
 //        /// Class to hold information associated with each property
@@ -330,7 +330,7 @@
 //            {
 //                Properties = new Property[size];
 //            }
-            
+
 //            /// <summary>
 //            /// Gets the previous visible property in the current sort order
 //            /// </summary>

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections.Generic;
 using System.IO;
@@ -25,7 +25,7 @@ namespace Sce.Atf.Applications
         /// Event that is raised when a file is changed</summary>
         event FileSystemEventHandler FileChanged;
     }
-    
+
     /// <summary>
     /// Service that watches for changes to files within a directory</summary>
     public static class DirectoryWatcherServices

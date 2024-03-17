@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
@@ -11,7 +11,7 @@ using Sce.Atf.Controls.PropertyEditing;
 namespace Sce.Atf.Controls
 {
     /// <summary>
-    /// This class behaves the same as the System.Windows.Forms.OpenFileDialog class, 
+    /// This class behaves the same as the System.Windows.Forms.OpenFileDialog class,
     /// but allows a custom file filter to be added to exclude files in the dialog's ListView.
     /// Use for importing assets, for example.</summary>
     public class OpenFilteredFileDialog : FilteredFileDialogBase
@@ -120,7 +120,7 @@ namespace Sce.Atf.Controls
 
         /// <summary>
         /// Gets or sets last size of dialog</summary>
-        Size LastSize 
+        Size LastSize
         {
             get { return s_lastSize; }
             set { s_lastSize = value; }

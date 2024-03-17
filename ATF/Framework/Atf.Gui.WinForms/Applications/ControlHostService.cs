@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -101,7 +101,7 @@ namespace Sce.Atf.Applications
             get { return !m_dockPanel.AllowEndUserDocking; }
             set
             {
-                m_dockPanel.AllowEndUserDocking = !value;                
+                m_dockPanel.AllowEndUserDocking = !value;
                 if (m_toolStripContainer != null)
                 {
                     var toolStrips = m_toolStripContainer.TopToolStripPanel.Controls.AsIEnumerable<ToolStrip>()
@@ -112,7 +112,7 @@ namespace Sce.Atf.Applications
                     {
                         toolStrip.GripStyle = value ? ToolStripGripStyle.Hidden : ToolStripGripStyle.Visible;
                         toolStrip.AllowItemReorder = !value;
-                    }                  
+                    }
                 }
             }
         }
@@ -143,7 +143,7 @@ namespace Sce.Atf.Applications
 
                 m_mainForm.Controls.Add(m_dockPanel);
             }
- 
+
         }
 
         #endregion
@@ -170,7 +170,7 @@ namespace Sce.Atf.Applications
                 m_settingsService.RegisterSettings(this,
                    new BoundPropertyDescriptor(this, () => UILocked, "UILocked", null, null));
             }
-           
+
             if (m_commandService != null)
             {
                 if ((RegisteredCommands & CommandRegister.UILock) == CommandRegister.UILock)
@@ -278,7 +278,7 @@ namespace Sce.Atf.Applications
             {
                 dockContent = new DockContent(this);
                 // set persistence id one time only.
-                // do not update dockContent.Name            
+                // do not update dockContent.Name
                 // dockContent.Text is used for titlebar.
                 dockContent.Name = GetPersistenceId(info);
             }
@@ -286,7 +286,7 @@ namespace Sce.Atf.Applications
             if (!string.IsNullOrEmpty(info.HelpUrl))
                 dockContent.AddHelp(info.HelpUrl);
 
-   
+
             UpdateDockContent(dockContent, info);
 
             m_dockContent.Add(info, dockContent);
@@ -312,7 +312,7 @@ namespace Sce.Atf.Applications
                     // description( and the tooltip) for a document control by convention is the full path of the document
                     RegisterMenuCommand(info, "@" + info.Description);
                 }
-                else 
+                else
                     RegisterMenuCommand(info, "@" + dockContent.Text); // tells m_commandService not to interpret slashes as submenus
             }
 
@@ -583,7 +583,7 @@ namespace Sce.Atf.Applications
                         if (CommandInfo.UILock.ImageName != lockImgName)
                         {
                             CommandInfo.UILock.ImageName = lockImgName;
-                            cmdService.RefreshImage(CommandInfo.UILock);                            
+                            cmdService.RefreshImage(CommandInfo.UILock);
                             CommandInfo.UILock.GetButton().ToolTipText = state.Text;
                         }
                     }
@@ -662,7 +662,7 @@ namespace Sce.Atf.Applications
             foreach (ControlInfo info in controls)
             {
                 if (!m_controls.Contains(info))
-                    continue; // related controls may be removed programmatically in-between 
+                    continue; // related controls may be removed programmatically in-between
                 if (IsCenterGroup(info.Group) &&
                     !info.Client.Close(info.Control))
                 {
@@ -673,7 +673,7 @@ namespace Sce.Atf.Applications
             foreach (ControlInfo info in controls)
             {
                 if (!m_controls.Contains(info))
-                    continue; 
+                    continue;
                 if (!IsCenterGroup(info.Group) &&
                     !info.Client.Close(info.Control))
                 {
@@ -964,7 +964,7 @@ namespace Sce.Atf.Applications
             return dockContent;
         }
 
-    
+
         private void UpdateDockContent(DockContent dockContent, ControlInfo info)
         {
             if (!string.IsNullOrEmpty(dockContent.Text))
@@ -1081,10 +1081,10 @@ namespace Sce.Atf.Applications
             if (info.IsDocument.HasValue && info.IsDocument.Value)
                 return info.Name;
 
-            // first, try Name            
+            // first, try Name
             string name = info.Name;
 
-            // don't use name as a part of id if it is too long 
+            // don't use name as a part of id if it is too long
             bool usedefault
                 = string.IsNullOrEmpty(name)
                 || name.Length > 64
@@ -1504,7 +1504,7 @@ namespace Sce.Atf.Applications
                     if (adaptableControl.HasKeyboardFocus)
                         return false;
                 }
-                   
+
                 if (
                     (!(focusedControl is TextBoxBase) && !(focusedControl is ComboBox)) ||
                     !KeysUtil.IsTextBoxInput(focusedControl, keyData)
@@ -1555,7 +1555,7 @@ namespace Sce.Atf.Applications
         private readonly List<DockContent> m_unregisteredContents = new List<DockContent>() ;
 
         private readonly ActiveCollection<ControlInfo> m_controls;
- 
+
         private readonly UniqueNamer m_uniqueNamer = new UniqueNamer('(');
         private readonly UniqueNamer m_idNamer = new UniqueNamer();
 

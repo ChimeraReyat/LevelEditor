@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Diagnostics;
@@ -147,9 +147,9 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 if (DragFromNode == DragToNode || DragToNode == null) // self-wiring or no to-route
                     return DragFromNode;
 
-                if (DragFromNodeHitPath == null) // fromNode top level 
+                if (DragFromNodeHitPath == null) // fromNode top level
                     return DragFromNode;
-                if (DragToNodeHitPath == null) // counterpart top level 
+                if (DragToNodeHitPath == null) // counterpart top level
                     return DragFromNodeHitPath[0].As<TNode>();
 
 
@@ -170,9 +170,9 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 if (DragFromNode == DragToNode || DragFromNode == null)
                     return DragToNode;
 
-                if (DragToNodeHitPath == null) // toNode top level 
+                if (DragToNodeHitPath == null) // toNode top level
                     return DragToNode;
-                if (DragFromNodeHitPath == null) // counterpart top level 
+                if (DragFromNodeHitPath == null) // counterpart top level
                     return DragToNodeHitPath[0].As<TNode>();
                 var lca = HitPathsGetLowestCommonAncestor();
                 if (lca == null)
@@ -184,11 +184,11 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 
             internal TEdgeRoute ActualFromRoute(TNode actualFromNode)
             {
-                if (DragFromNodeHitPath == null || DragFromRoute == null) // fromNode top level 
+                if (DragFromNodeHitPath == null || DragFromRoute == null) // fromNode top level
                     return DragFromRoute;
                 if (actualFromNode == DragFromNode)
                     return DragFromRoute;
-                // we hit a sub-pin, and actualFromNode must be an ancestor of the hit sub-node 
+                // we hit a sub-pin, and actualFromNode must be an ancestor of the hit sub-node
                 // find the corresponding pin in actualFromNode, follow up the hitpath
                 if (m_edgeEditAdapter.EdgeRouteTraverser != null)
                     return m_edgeEditAdapter.EdgeRouteTraverser(DragFromNodeHitPath, actualFromNode, DragFromRoute);
@@ -197,11 +197,11 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 
             internal TEdgeRoute ActualToRoute(TNode actualToNode)
             {
-                if (DragToNodeHitPath == null || DragToRoute == null) // fromNode top level 
+                if (DragToNodeHitPath == null || DragToRoute == null) // fromNode top level
                     return DragToRoute;
                 if (actualToNode == DragToNode)
                     return DragToRoute;
-                // we hit a sub-pin, and actualToNode must be an ancestor of the hit sub-node 
+                // we hit a sub-pin, and actualToNode must be an ancestor of the hit sub-node
                 // find the corresponding pin in actualToNode, follow up the hitpath
                 if (m_edgeEditAdapter.EdgeRouteTraverser != null)
                     return m_edgeEditAdapter.EdgeRouteTraverser(DragToNodeHitPath, actualToNode, DragToRoute);
@@ -284,7 +284,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         }
 
         /// <summary>
-        /// Get currently dragging edge or null 
+        /// Get currently dragging edge or null
         /// if currently no edige is being dragged.</summary>
         /// <returns></returns>
         public DragEdge GetDraggingEdge()
@@ -334,7 +334,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             m_renderer.DrawPartialEdge(dragFromNode, dragFromRoute, dragToNode, dragToRoute, label,
                 start, end, gfx);
         }
-             
+
         /// <summary>
         /// Performs custom actions on adaptable control MouseMove events; base method should
         /// be called first</summary>
@@ -518,8 +518,8 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 
                         //m_existingEdge = m_mousePick.Edge; // Don't pick wires under nodes
 
-                        // reversed if dragging edge from its destination node's ToRoute(input pin) 
-                        // towards source node's FromRoute(output pin)                  
+                        // reversed if dragging edge from its destination node's ToRoute(input pin)
+                        // towards source node's FromRoute(output pin)
                         m_draggingContext.FromSourceToDestination = false;
 
                         // if no edge is picked but there are fan-in/out restrictions, try to drag an existing edge
@@ -763,7 +763,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                     break;
                 }
             }
-       
+
 
             parenGraph = parent.As<IGraph<TNode, TEdge, TEdgeRoute>>();
             if (parenGraph == null)

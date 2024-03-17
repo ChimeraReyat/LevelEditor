@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -82,8 +82,8 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         }
 
         /// <summary>
-        /// Get the display name of the circuit element, which is drawn below and outside the circuit element. 
-        /// Returns null or the empty string to not draw anything in this place</summary>    
+        /// Get the display name of the circuit element, which is drawn below and outside the circuit element.
+        /// Returns null or the empty string to not draw anything in this place</summary>
         /// <param name="element">Circuit element</param>
         /// <returns>Display name of the circuit element</returns>
         protected virtual string GetElementDisplayName(TElement element)
@@ -103,7 +103,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         public bool TitleBackgroundFilled { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether edges of elements have a rounded 
+        /// Gets or sets a value indicating whether edges of elements have a rounded
         /// rather than a square or sharp appearance</summary>
         public bool RoundedBorder { set; get; }
 
@@ -214,7 +214,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         {
             DiagramDrawingStyle cusomStyle = GetCustomStyle(element);
             if (cusomStyle != DiagramDrawingStyle.None)
-                style = cusomStyle; // custom style overrides a regular style 
+                style = cusomStyle; // custom style overrides a regular style
 
             switch (style)
             {
@@ -248,7 +248,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         {
             TPin inputPin = edge.ToRoute;
             TPin outputPin = edge.FromRoute;
-            if (RectangleSelectsWires && style == DiagramDrawingStyle.LastSelected) // last selected is not well defined in multi-edge selection   
+            if (RectangleSelectsWires && style == DiagramDrawingStyle.LastSelected) // last selected is not well defined in multi-edge selection
                 style = DiagramDrawingStyle.Selected;
 
             D2dBrush pen = (style == DiagramDrawingStyle.Normal) ? GetPen(inputPin) : m_theme.GetOutLineBrush(style);
@@ -323,7 +323,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 
 
         /// <summary>
-        /// Gets pin position in element local space 
+        /// Gets pin position in element local space
         /// where the y is at center of the pin</summary>
         /// <param name="element">Element</param>
         /// <param name="pinIndex">Pin index</param>
@@ -539,7 +539,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             {
                 // pick edges
                 foreach (TWire edge in edges)
-                {                  
+                {
                     if (PickEdge(edge, p, g))
                     {
                         pickedWire = edge;
@@ -553,8 +553,8 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                     var group = pickedWire.FromNode.As<ICircuitGroupType<TElement, TWire, TPin>>();
                     if (group == null || !group.Expanded)
                         group = pickedWire.ToNode.As<ICircuitGroupType<TElement, TWire, TPin>>();
-                    if(group != null && group.Expanded)                        
-                        return new GraphHitRecord<TElement, TWire, TPin>(null, pickedWire, null, null);                    
+                    if(group != null && group.Expanded)
+                        return new GraphHitRecord<TElement, TWire, TPin>(null, pickedWire, null, null);
                 }
             }
 
@@ -636,7 +636,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 if (titleBar.Contains(p))
                     return new GraphHitRecord<TElement, TWire, TPin>(pickedElement, new DiagramTitleBar(pickedElement));
 
-                //pickedWire == null && 
+                //pickedWire == null &&
                 if (pickedOutput == null && pickedInput == null) // check border lastly
                 {
                     var border = new RectangleF(bounds.Left - m_theme.PickTolerance, bounds.Y, 2 * m_theme.PickTolerance, bounds.Height);
@@ -667,8 +667,8 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             }
 
 
-            
-            
+
+
 
             if (pickedSubInput != null)
             {
@@ -682,7 +682,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 pickedOutputPos = GetPinPositionCenterY(subPick.First.First().Cast<TElement>(), pickedSubOutput.Index, false, g);
                 pickedOutputPos.Offset(ParentWorldOffset(subPick.First));
             }
-          
+
             var result = new GraphHitRecord<TElement, TWire, TPin>(pickedElement, pickedWire, pickedOutput, pickedInput);
             if (pickedElement != null && pickedOutput == null && pickedInput == null)
                 result.Part = borderPart.Border == DiagramBorder.BorderType.None ? null : borderPart;
@@ -968,7 +968,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 gradientBrush.StartPoint = bounds.Location;
                 gradientBrush.EndPoint = new PointF(bounds.Left, bounds.Bottom);
             }
-  
+
             if (useRoundedRect)
             {
                 g.FillRoundedRectangle(m_elementBody, fillBrush);
@@ -1135,11 +1135,11 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         }
 
         /// <summary>
-        /// Truncates very long pin names into the form "prefix...suffix" where prefix and suffix are the 
+        /// Truncates very long pin names into the form "prefix...suffix" where prefix and suffix are the
         /// beginning and ending substrings of the original name.
         /// </summary>
         /// <param name="pinText">Original pin name</param>
-        /// <returns>Original pin name if it is less than MaxCollapsedGroupPinNameLength, otherwise the 
+        /// <returns>Original pin name if it is less than MaxCollapsedGroupPinNameLength, otherwise the
         /// truncated version</returns>
         private string TruncatePinText(string pinText)
         {
@@ -1184,7 +1184,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 }
             }
 
-            // ensure to draw the drag target first,  prevent it from hiding the drag sources 
+            // ensure to draw the drag target first,  prevent it from hiding the drag sources
             TElement[] subNodes = group.SubNodes.ToArray();
             for (int i = 0; i < subNodes.Length; ++i)
             {
@@ -1398,7 +1398,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         {
             IList<ICircuitPin> visibleInputs = GetVisibleInputPins(element);
             IList<ICircuitPin> visibleOutputs = GetVisibleOutputPins(element);
-            
+
             IList<ICircuitPin> visiblePins, allPins;
             if (inputSide)
             {
@@ -1413,7 +1413,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 
             int pickTolerance = m_theme.PickTolerance;
 
-            if (RouteConnecting == null || // or for expanded group pins, 
+            if (RouteConnecting == null || // or for expanded group pins,
                 (element.Is<ICircuitGroupType<TElement, TWire, TPin>>() && element.Cast<ICircuitGroupType<TElement, TWire, TPin>>().Expanded))
             {
                 // normal picking rectangles; the user may want to select the circuit element instead, for example
@@ -1495,7 +1495,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 goDown = false;
                 foreach (var child in group.SubNodes.AsIEnumerable<ICircuitGroupType<TElement, TWire, TPin>>())
                 {
-                    // only push in the first child that hits the point                  
+                    // only push in the first child that hits the point
                     var childElement = child.Cast<TElement>();
                     RectangleF bounds = GetBounds(childElement, g);
                     bounds.Offset(WorldOffset(stack));
@@ -1553,7 +1553,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 {
                     foreach (var child in group.SubNodes)
                     {
-                        // only push in the first child that hits the point                  
+                        // only push in the first child that hits the point
                         RectangleF bounds = GetBounds(child, g);
                         bounds.Offset(WorldOffset(stack));
                         bounds.Inflate(m_theme.PickTolerance, m_theme.PickTolerance);
@@ -1598,17 +1598,17 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 PointF offset = WorldOffset(subgroup_stack);
                 foreach (var child in group.SubNodes)
                 {
-                    // only push in the first child that hits the point                  
+                    // only push in the first child that hits the point
                     RectangleF bounds = GetBounds(child, g);
                     bounds.Offset(offset);
                     bounds.Inflate(m_theme.PickTolerance, m_theme.PickTolerance);
                     if (bounds.Contains(p.X, p.Y))
                     {
                         stack.Push(child.Cast<TElement>());
-                        hitSubNode = true; // sub-node is hit 
+                        hitSubNode = true; // sub-node is hit
                         if (child.Is<ICircuitGroupType<TElement, TWire, TPin>>())
                         {
-                            subgroup_stack.Push(child.Cast<TElement>()); // update group hierarchy path 
+                            subgroup_stack.Push(child.Cast<TElement>()); // update group hierarchy path
                             // go down when the child is expanded
                             goDown = child.Cast<ICircuitGroupType<TElement, TWire, TPin>>().Expanded;
                             break;
@@ -1636,7 +1636,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             else if (stack.Peek() != pickedElement.Cast<TElement>())// stack top is the picked subitem
             {
                 var subItem = stack.Peek();
-                result.First = stack; // get hit path 
+                result.First = stack; // get hit path
 
                 // try pick subItem
                 RectangleF bounds = GetElementBounds(subItem, g);
@@ -1711,7 +1711,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                     if (visible != null && !visible.Visible)
                         continue;
 
-                    // push children that hits the rect                  
+                    // push children that hits the rect
                     RectangleF bounds = GetBounds(child, g);
                     bounds.Offset(WorldOffset(subgroupStack));
                     bounds.Inflate(m_theme.PickTolerance, m_theme.PickTolerance);
@@ -1766,7 +1766,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 {
                     if (title.Length > cachedInfo.TitleLength) // need to expand element width
                     {
-                        // font usually not fixed width, + 1 to compensate   
+                        // font usually not fixed width, + 1 to compensate
                         float extra = (title.Length - cachedInfo.TitleLength + 1) * cachedInfo.TitleWidth / cachedInfo.TitleLength;
                         float newTitleWdith = cachedInfo.TitleWidth + extra + TitleBarPadding;
                         if (newTitleWdith > cachedInfo.ContentWidth)
@@ -1988,7 +1988,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             Rectangle grpBounds;
             if (group.AutoSize)
             {
-                // measure size of the expanded group element 
+                // measure size of the expanded group element
                 grpBounds = new Rectangle(); // always start with origin for sub-contents area
                 foreach (var subNode in group.SubNodes)
                 {
@@ -2080,7 +2080,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             {
                 bool includeHMargin = group.Info.MinimumSize.IsEmpty;
                 bool includeVMargin = includeHMargin;
-                if (!group.Info.MinimumSize.IsEmpty) // MinimumSize is set, 
+                if (!group.Info.MinimumSize.IsEmpty) // MinimumSize is set,
                 {
                     if (group.Info.MinimumSize.Width >= grpBounds.Size.Width)
                         includeHMargin = false;
@@ -2150,7 +2150,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                     }
                 }
             }
-            
+
             return visiblePins;
         }
 
@@ -2519,7 +2519,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         }
 
         /// <summary>
-        /// Gets or sets vertical (Y) offset to be added to draw group pins on the border of the group 
+        /// Gets or sets vertical (Y) offset to be added to draw group pins on the border of the group
         /// when the group is expanded inline</summary>
         public int GroupPinExpandedOffset
         {
@@ -2542,7 +2542,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         }
 
         // The upper-left corner of the sub-nodes and floating pinYs defines the origin offset of sub-contents
-        // relative to the containing group. This offset is used when expanding groups, 
+        // relative to the containing group. This offset is used when expanding groups,
         // so that the contained sub-nodes are drawn within the expanded space
         private Point SubGraphOffset(TElement element)
         {

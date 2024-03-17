@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Drawing;
 
@@ -21,9 +21,9 @@ namespace Sce.Atf.DirectWrite
         /// An output flag that indicates whether the hit-test location is inside the text string. When False, the position nearest the text's edge is returned.
         /// </summary>
         public bool IsInside;
-        
+
         /// <summary>
-        /// An output flag that indicates whether the hit-test location is at the leading or the trailing side of the character. 
+        /// An output flag that indicates whether the hit-test location is at the leading or the trailing side of the character.
         /// When the output IsInside value is set to FALSE, this value is set according to the output TextPosition value to represent the edge closest to the hit-test location.
         /// </summary>
         public bool IsTrailingHit;

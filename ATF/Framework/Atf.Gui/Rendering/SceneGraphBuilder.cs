@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -55,7 +55,7 @@ namespace Sce.Atf.Rendering.Dom
             bool cancelLoad = false;
             return BuildInternal(source, parent, true, ref cancelLoad);
         }
-        
+
         /// <summary>
         /// Builds scene graph recursively from the given source object</summary>
         /// <param name="source">The root source object (e.g., a DomNode)</param>
@@ -100,7 +100,7 @@ namespace Sce.Atf.Rendering.Dom
 
                     ISceneGraphHierarchy modelNode = source.As<ISceneGraphHierarchy>();
                     IEnumerable<object> children = (modelNode != null) ? modelNode.GetChildren() : m_treeView.GetChildren(source);
-                    
+
                     foreach (object child in children )
                         BuildInternal(child, node, false, ref cancelLoad);
                 }
@@ -140,7 +140,7 @@ namespace Sce.Atf.Rendering.Dom
 
             SceneNode node = new SceneNode(source);
 
-            // Next build RenderObjects 
+            // Next build RenderObjects
             foreach (IBuildSceneNode buildNode in source.AsAll<IBuildSceneNode>())
             {
                 if (buildNode.CreateByGraphBuilder)
@@ -161,8 +161,8 @@ namespace Sce.Atf.Rendering.Dom
                 }
             }
 
-            if (node.RenderObjects.Count > 0 
-                || node.Source.Is<IBoundable>() 
+            if (node.RenderObjects.Count > 0
+                || node.Source.Is<IBoundable>()
                 || forceBuild)
             {
                 if (parent != null)

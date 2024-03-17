@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -61,7 +61,7 @@ namespace Sce.Atf
 
         /// <summary>
         /// Copies the elements of the collection to an array, starting at a particular array index</summary>
-        /// <param name="array">The one-dimensional array that is the destination of the elements copied from collection. 
+        /// <param name="array">The one-dimensional array that is the destination of the elements copied from collection.
         /// The array must have zero-based indexing.</param>
         /// <param name="arrayIndex">The zero-based index in the array at which copying begins</param>
         public void CopyTo(U[] array, int arrayIndex)

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel;
@@ -304,7 +304,7 @@ namespace Sce.Atf.Controls
                 }
             }
 
-            // Draw an arrow in the correct location 
+            // Draw an arrow in the correct location
             PaintArrow(g, m_dropDownRectangle);
 
             // Figure out how to draw the text

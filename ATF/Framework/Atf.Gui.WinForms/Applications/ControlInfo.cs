@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -185,7 +185,7 @@ namespace Sce.Atf.Applications
         }
 
         /// <summary>
-        /// Gets or sets a value determining if a menu command is registered to show/hide 
+        /// Gets or sets a value determining if a menu command is registered to show/hide
         /// this control</summary>
         /// <remarks>The default value is true.</remarks>
         public bool ShowInMenu

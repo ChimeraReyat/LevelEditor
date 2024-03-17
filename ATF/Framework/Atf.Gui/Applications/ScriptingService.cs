@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.IO;
@@ -108,12 +108,12 @@ namespace Sce.Atf.Applications
                     : SourceCodeKind.SingleStatement;
                 ScriptSource source =
                     m_engine.CreateScriptSourceFromString(statement, sourceKind);
-                
-                // JAL - 7/18/2012 - 
-                // 
+
+                // JAL - 7/18/2012 -
+                //
                 //  If you are running from the debugger and see the following:
                 //
-                //         An exception of type 'IronPython.Runtime.Exceptions.ImportException' occurred in IronPython.Modules.dll 
+                //         An exception of type 'IronPython.Runtime.Exceptions.ImportException' occurred in IronPython.Modules.dll
                 //         and wasn't handled before a managed/native boundary
                 //
                 //         Additional information: not a Zip file
@@ -131,7 +131,7 @@ namespace Sce.Atf.Applications
                 //           - will update this comment when resolved.
                 //
                 //  UPDATE:  Ron disabled the zipimport feature as a more reliable workaround (see BasicPythonService.cs)
-                //   
+                //
                 source.Execute(m_scope);
                 result = m_stream.Text;
             }

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Windows.Forms;
 
@@ -16,5 +16,5 @@ namespace Sce.Atf.Applications
         /// <returns>Dialog result</returns>
         DialogResult ShowParentedDialog(Form form);
     }
-    
+
 }

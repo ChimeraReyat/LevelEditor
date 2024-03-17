@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ namespace Sce.Atf.Controls.PropertyEditing
 {
     /// <summary>
     /// Helper to support INotifyPropertyChanged using expression trees and lambda expression.</summary>
-    internal static class PropertyChangedExtensions 
+    internal static class PropertyChangedExtensions
     {
         public static bool NotifyIfChanged<T>(this PropertyChangedEventHandler handler, ref T field, T value,
                                               Expression<Func<T>> memberExpression)

@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 
@@ -16,7 +16,7 @@ namespace Sce.Atf.Rendering
         public delegate void RenderStateSetHandler(RenderState newRenderState, RenderState oldRenderState);
 
         /// <summary>
-        /// Resets the RenderStateGuardian's last known good state.  
+        /// Resets the RenderStateGuardian's last known good state.
         /// This forces the RenderStateGuardian delegate targets to do a full and heavy state set
         /// at next Commit() call.</summary>
         public void Reset()
@@ -52,7 +52,7 @@ namespace Sce.Atf.Rendering
             int index = Sce.Atf.MathUtil.LogBase2(renderStateBit);
             return m_renderStateSetters[index];
         }
-        
+
         /// <summary>
         /// Registers a platform-specific delegate RenderStateSetHandler to the specified render state bit.
         /// This handler is called during SetRenderState calls.</summary>

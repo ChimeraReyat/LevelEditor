@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections.Generic;
 using System.Text;
@@ -9,7 +9,7 @@ namespace Sce.Atf.Input
     /// Defines utility methods for Keys enum</summary>
     public static class KeysUtil
     {
-        /// <summary>Converts numeric pad keys to digit keys</summary>   
+        /// <summary>Converts numeric pad keys to digit keys</summary>
         /// <param name="keys">Number pad keys</param>
         /// <returns>Digit key codes</returns>
         public static Keys NumPadToNum(Keys keys)
@@ -31,7 +31,7 @@ namespace Sce.Atf.Input
         /// <summary>
         /// Converts a Keys value to a string</summary>
         /// <param name="k">Keys value</param>
-        /// <param name="digitOnly">If true, for numeric pad or digit keys, only return 
+        /// <param name="digitOnly">If true, for numeric pad or digit keys, only return
         /// the number. For example, numpad0 becomes 0, and D0 becomes 0.</param>
         /// <returns>String representation of the Keys value</returns>
         public static string KeysToString(Keys k, bool digitOnly)
@@ -77,10 +77,10 @@ namespace Sce.Atf.Input
                 str += "+";
 
             var keyCode = k & Keys.KeyCode;
-            if (keyCode == Keys.Oemplus)          
-                str += "+";           
+            if (keyCode == Keys.Oemplus)
+                str += "+";
             else if (keyCode == Keys.OemMinus)
-                str += "-";    
+                str += "-";
             else
                 str += keyCode;
 
@@ -98,7 +98,7 @@ namespace Sce.Atf.Input
         /// <summary>
         /// Converts an enumeration of Keys to a string</summary>
         /// <param name="k">Collection of Keys</param>
-        /// <param name="digitOnly">If true, for numeric pad or digit keys, only return 
+        /// <param name="digitOnly">If true, for numeric pad or digit keys, only return
         /// the number. For example, numpad0 becomes 0, and D0 becomes 0.</param>
         /// <returns>String representation of the Keys enumeration, with each
         /// Keys string separated by a comma and space (", ")</returns>

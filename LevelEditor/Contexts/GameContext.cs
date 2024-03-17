@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -17,13 +17,13 @@ using LevelEditorCore.VectorMath;
 using LevelEditor.DomNodeAdapters;
 
 namespace LevelEditor
-{   
+{
     /// <summary>
-    /// Mangages views, selection and editing operations on a loaded game document</summary>    
-    public class GameContext : 
+    /// Mangages views, selection and editing operations on a loaded game document</summary>
+    public class GameContext :
         EditingContext,
         IGameContext,
-        ITreeView, 
+        ITreeView,
         IItemView,
         IInstancingContext,
         IHierarchicalInsertionContext,
@@ -32,8 +32,8 @@ namespace LevelEditor
         INamingContext,
         IVisibilityContext,
         IViewingContext,
-        ILockingContext                 
-    {            
+        ILockingContext
+    {
         #region ITreeView Members
 
         public object Root
@@ -42,7 +42,7 @@ namespace LevelEditor
         }
 
         public IEnumerable<object> GetChildren(object parent)
-        {            
+        {
             DomNode domNode = parent.As<DomNode>();
             if (domNode != null)
             {
@@ -53,28 +53,28 @@ namespace LevelEditor
                 }
 
                 foreach (ChildInfo childInfo in domNode.Type.Children)
-                {                    
-                   
+                {
+
                     // todo use schema annotatoin to mark types that need to have ref slot.
                     bool isReference = Schema.gameObjectReferenceType.Type.IsAssignableFrom(childInfo.Type) ||
                                         Schema.resourceReferenceType.Type.IsAssignableFrom(childInfo.Type);
 
                     bool hasChild = false;
                     foreach (DomNode child in domNode.GetChildren(childInfo))
-                    {                        
+                    {
                         hasChild = true;
                         if (child.Is<IListable>())
                             yield return child;
-                    }                    
+                    }
                     if ( (hasChild == false || childInfo.IsList) && isReference)
                     {
                         yield return new Slot(domNode, childInfo);
                     }
-                }                
-            }            
+                }
+            }
         }
 
-            
+
         #endregion
 
         #region IItemView Members
@@ -95,7 +95,7 @@ namespace LevelEditor
                 info.ImageIndex = info.GetImageList().Images.IndexOfKey(Sce.Atf.Resources.ResourceImage);
                 return;
             }
-                
+
             // If the object has a name use it as the label (overriding whatever may have been set previously)
             INameable nameable = Adapters.As<INameable>(item);
             if (nameable != null)
@@ -113,7 +113,7 @@ namespace LevelEditor
             {
                 if (domNode.Is<IGame>() || domNode.Is<GameReference>()
                     || domNode.Is<IResource>())
-                    return false;                
+                    return false;
             }
             return Selection.Count > 0;
         }
@@ -122,7 +122,7 @@ namespace LevelEditor
         {
             return Copy(Selection);
         }
-        
+
         public object Copy(Selection<object> selection)
         {
             IEnumerable<DomNode> rootDomNodes = DomNode.GetRoots(Selection.AsIEnumerable<DomNode>());
@@ -130,7 +130,7 @@ namespace LevelEditor
             return new DataObject(copies);
         }
 
-      
+
 
         /// <summary>
         /// Returns true iff the specified DataObject can be inserted into
@@ -151,8 +151,8 @@ namespace LevelEditor
         {
             IDataObject dataObject = insertingObject as IDataObject;
             if (dataObject != null)
-            {                
-                Insert(InsertParent, dataObject);                                    
+            {
+                Insert(InsertParent, dataObject);
             }
         }
 
@@ -160,7 +160,7 @@ namespace LevelEditor
         {
             get
             {
-                return m_activeItem ?? RootGameObjectFolder;                
+                return m_activeItem ?? RootGameObjectFolder;
             }
         }
 
@@ -169,14 +169,14 @@ namespace LevelEditor
             IEnumerable<DomNode> rootDomNodes = DomNode.GetRoots(Selection.AsIEnumerable<DomNode>());
             foreach (DomNode domNode in rootDomNodes)
             {
-                if (domNode.Is<IGame>() 
+                if (domNode.Is<IGame>()
                     || domNode.Is<GameReference>()
                     || domNode.Parent == null
                     || (domNode.Parent.Is<IGame>() && domNode.Is<IGameObjectFolder>())
                     || IsLocked(domNode))
                     return false;
             }
-            return Selection.Count > 0;            
+            return Selection.Count > 0;
         }
 
         public void Delete()
@@ -192,13 +192,13 @@ namespace LevelEditor
                    || (domNode.Parent.Is<IGame>() && domNode.Is<IGameObjectFolder>()))
                     continue;
                 domNode.RemoveFromParent();
-            }                
+            }
             UpdateGameObjectReferences();
         }
 
 
         public void UpdateGameObjectReferences()
-        {          
+        {
             // Iterate through the entire scene graph and check each GameObjectReference
             // If the Target is null or its root is not the Game node, remove the Reference to it
             IList<DomNode> removeList = new List<DomNode>();
@@ -209,7 +209,7 @@ namespace LevelEditor
                 GameContext subContext = subDoc.Cast<GameContext>();
                 subContext.CollectInvalidGameObjectReference(removeList);
             }
-            
+
             foreach (DomNode domNode in removeList)
                 domNode.RemoveFromParent();
         }
@@ -226,9 +226,9 @@ namespace LevelEditor
                     if (targetNode == null || !targetNode.GetRoot().Is<IGame>())
                         removeList.Add(gameObjectReference.DomNode);
                 }
-            }            
+            }
         }
-        
+
         #endregion
 
         #region IHierarchicalInsertionContext Members
@@ -239,7 +239,7 @@ namespace LevelEditor
             if (hierarchical == null) return false;
             ILockable lockable = parent.As<ILockable>();
             if (lockable != null && lockable.IsLocked) return false;
-            
+
             DomNode parentNode = parent.As<DomNode>();
 
             IEnumerable<object> items = Util.ConvertData(child, false);
@@ -284,7 +284,7 @@ namespace LevelEditor
             if (!CanInsert(parent, child)) return;
 
             IHierarchical hierarchical = parent.As<IHierarchical>();
-                                   
+
             // Extract node list from IDataObject
             IEnumerable<object> items = Util.ConvertData(child, true);
 
@@ -296,22 +296,22 @@ namespace LevelEditor
             }
 
             List<DomNode> copyList = new List<DomNode>();
-            List<object> objectlist = new List<object>();            
+            List<object> objectlist = new List<object>();
             foreach (object item in items)
             {
                 if (item.Is<IGameObject>() || item.Is<IGameObjectFolder>())
                 {
                     DomNode childNode = item.As<DomNode>();
                     DomNode childRoot = childNode.GetRoot();
-                    
+
                     if ((parentRoot != null && childRoot.Is<IGame>() && parentRoot != childRoot))
                     {
                         childNode.RemoveFromParent();
                         copyList.Add(childNode);
-                        continue;                        
-                    }                    
+                        continue;
+                    }
                 }
-                objectlist.Add(item); 
+                objectlist.Add(item);
             }
 
             if (copyList.Count > 0)
@@ -329,10 +329,10 @@ namespace LevelEditor
             {
                 DomNode node = obj.As<DomNode>();
                 if(node != null)
-                    node.InitializeExtensions();                
+                    node.InitializeExtensions();
             }
 
-            List<DomNode> insertedNodes = new List<DomNode>();            
+            List<DomNode> insertedNodes = new List<DomNode>();
             foreach (object obj in objectlist)
             {
                 object insertedObj = null;
@@ -341,10 +341,10 @@ namespace LevelEditor
                 {
                     insertedObj = obj;
                 }
-                else                
+                else
                 {
                     IResource res = obj as IResource;
-                    IGameObject gob = m_resourceConverterService.Convert(res);                    
+                    IGameObject gob = m_resourceConverterService.Convert(res);
                     inserted = hierarchical.AddChild(gob);
                     if (inserted) insertedObj = gob;
 
@@ -372,9 +372,9 @@ namespace LevelEditor
                     m_savedSelection = new List<object>(MasterContext.Selection);
 
                 MasterContext.SetRange(newSelection);
-            }            
+            }
         }
-            
+
         #endregion
 
         #region IObservableContext Members
@@ -390,12 +390,12 @@ namespace LevelEditor
         #endregion
 
         #region IEnumerableContext Members
-        
+
         public IEnumerable<object> Items
         {
-            get 
-            {            
-                
+            get
+            {
+
                 DomNode folderNode = MasterContext.RootGameObjectFolder.Cast<DomNode>();
                 IEnumerable<DomNode> descendants = folderNode.Subtree.Skip(1);
                 foreach (DomNode childNode in descendants)
@@ -412,8 +412,8 @@ namespace LevelEditor
                     {
                         if (childNode.Is<IReference<IResource>>()) continue;
                         yield return Util.AdaptDomPath(childNode);
-                    }                    
-                }                
+                    }
+                }
             }
         }
 
@@ -459,7 +459,7 @@ namespace LevelEditor
             var node = item.As<DomNode>();
             if (node == null)
                 return false;
-            
+
             lockable = Adapters.As<ILockable>(node.Parent);
             return lockable == null ? true : !lockable.IsLocked;
         }
@@ -497,13 +497,13 @@ namespace LevelEditor
                 foreach (GameContext subContext in m_gameDocumentRegistry.SubDocuments.AsIEnumerable<GameContext>())
                 {
                     subContext.Begin(transactionName);
-                }                
-            }            
+                }
+            }
         }
 
         public override void Cancel()
         {
-            
+
             if (s_subContextBegan)
             {
                 s_subContextBegan = false;
@@ -520,7 +520,7 @@ namespace LevelEditor
             }
             if(!InTransaction)
             {
-                base.Undo();                
+                base.Undo();
             }
             base.Cancel();
             if (m_savedSelection != null)
@@ -531,17 +531,17 @@ namespace LevelEditor
         }
 
         public override void End()
-        {            
+        {
 
             if (UndoingOrRedoing)
-            {                
+            {
                 base.End();
                 m_savedSelection = null;
                 return;
             }
 
             if (s_subContextBegan)
-            {               
+            {
                 s_subContextBegan = false;
                 MasterContext.End();
                 return;
@@ -557,10 +557,10 @@ namespace LevelEditor
 
             if(TransactionOperations.Count == 0)
             {
-                TransactionOperations.Add(new Nop());                
+                TransactionOperations.Add(new Nop());
             }
             base.End();
-            m_savedSelection = null;           
+            m_savedSelection = null;
         }
 
         #endregion
@@ -653,7 +653,7 @@ namespace LevelEditor
             {
                 base.Undo();
             }
-           
+
         }
 
         public override void Redo()
@@ -671,9 +671,9 @@ namespace LevelEditor
             {
                 base.Redo();
             }
-            
+
         }
-       
+
         #endregion
 
         #region IVisibilityContext Members
@@ -693,7 +693,7 @@ namespace LevelEditor
         }
 
         public void SetVisible(object item, bool value)
-        {            
+        {
             IVisible visible = item.As<IVisible>();
             if (visible != null)
                 visible.Visible = value;
@@ -743,7 +743,7 @@ namespace LevelEditor
                     boundable = slot.Owner.As<IBoundable>();
                 }
 
-                IVisible vn = boundable.As<IVisible>();                
+                IVisible vn = boundable.As<IVisible>();
                 if (boundable != null && (vn == null || vn.Visible))
                     bound.Extend(boundable.BoundingBox);
             }
@@ -777,21 +777,21 @@ namespace LevelEditor
 
         #endregion
 
-       
+
 
         protected override void OnNodeSet()
         {
             base.OnNodeSet();
-            
+
             DomNode.AttributeChanged += DomNode_AttributeChanged;
             DomNode.ChildInserted += DomNode_ChildInserted;
             DomNode.ChildRemoved += DomNode_ChildRemoved;
             Reloaded.Raise(this, EventArgs.Empty);
             m_gameDocumentRegistry = Globals.MEFContainer.GetExportedValue<GameDocumentRegistry>();
-            m_resourceConverterService = Globals.MEFContainer.GetExportedValue<ResourceConverterService>();            
+            m_resourceConverterService = Globals.MEFContainer.GetExportedValue<ResourceConverterService>();
 
         }
-        
+
         private void DomNode_AttributeChanged(object sender, AttributeEventArgs e)
         {
             if (!IsHandledType(e.DomNode))
@@ -811,7 +811,7 @@ namespace LevelEditor
             ItemInserted.Raise(this, new ItemInsertedEventArgs<object>(-1, e.Child, e.Parent));
             if (!IsMasterContext)
             {
-                MasterContext.DomNode_ChildInserted(sender,e);                
+                MasterContext.DomNode_ChildInserted(sender,e);
             }
         }
 
@@ -822,14 +822,14 @@ namespace LevelEditor
             ItemRemoved.Raise(this, new ItemRemovedEventArgs<object>(-1, e.Child, e.Parent));
             if (!IsMasterContext)
             {
-                MasterContext.DomNode_ChildRemoved(sender,e);                
+                MasterContext.DomNode_ChildRemoved(sender,e);
             }
         }
-        
+
         private static bool IsHandledType(DomNode domNode)
         {
-            if (Adapters.Is<ILayer>(domNode)            
-            || Adapters.Is<Bookmark>(domNode))                
+            if (Adapters.Is<ILayer>(domNode)
+            || Adapters.Is<Bookmark>(domNode))
                 return false;
 
             return true;
@@ -837,7 +837,7 @@ namespace LevelEditor
 
 
         #region IGameContext members
-        
+
         public bool IsMasterContext
         {
             get { return this.Cast<IGameDocument>() == m_gameDocumentRegistry.MasterDocument; }
@@ -852,13 +852,13 @@ namespace LevelEditor
         private object m_activeItem;
         /// <summary>
         /// Sets the active item; used by UI components.
-        /// The active is used as insersion point where paste and drag and drop operations 
+        /// The active is used as insersion point where paste and drag and drop operations
         /// insert new objects into the UI data.</summary>
         /// <param name="item">Active item</param>
         public void SetActiveItem(object item)
         {
             m_activeItem = null;
-            DomNode node = Adapters.As<DomNode>(item);            
+            DomNode node = Adapters.As<DomNode>(item);
             while (node != null)
             {
                 if (node.Is<GameObjectFolder>() || node.Is<GameObjectGroup>())
@@ -883,7 +883,7 @@ namespace LevelEditor
         // save selection in case of transaction canceled.
         private List<object> m_savedSelection;
 
-        
+
         private class Nop : Operation
         {
             /// <summary>

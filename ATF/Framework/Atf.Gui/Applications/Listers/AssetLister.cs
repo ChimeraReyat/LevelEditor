@@ -236,7 +236,7 @@ namespace Sce.Atf.Applications
                 RefreshRightPane();
             }
         }
-     
+
         #region Event Handlers
 
         /// <summary>
@@ -397,7 +397,7 @@ namespace Sce.Atf.Applications
                     Math.Abs(m_hitPoint.Y - e.Y) >= dragSize.Height)
                 {   /*ATF3
                     m_dragging = true;
-                   
+
                     Path<DomObject> assetPath = null;
                     bool dragSelection = false;
 
@@ -446,7 +446,7 @@ namespace Sce.Atf.Applications
                             m_thumbnailControl.DoDragDrop(assetPaths.ToArray(), DragDropEffects.All | DragDropEffects.Link);
                         else
                             m_listControl.DoDragDrop(assetPaths.ToArray(), DragDropEffects.All | DragDropEffects.Link);
-                     
+
                     }
                 */
                 }
@@ -470,7 +470,7 @@ namespace Sce.Atf.Applications
                 {
                     asset = SelectedAsset(m_listView, clientPoint);
                     screenPoint = m_listView.PointToScreen(clientPoint);
-                }                   
+                }
 
                 if (asset != null)
                 {
@@ -483,7 +483,7 @@ namespace Sce.Atf.Applications
                         commands.Add(Command.DetailsView);
                         commands.Add(Command.ThumbnailView);
                         commands.Add(Command.AddExistingAsset);
-                      
+
                         m_commandService.RunContextMenu(commands, screenPoint);
                     }
                 }
@@ -815,7 +815,7 @@ namespace Sce.Atf.Applications
             }
         }
 
-      
+
 
         private void UnloadAllAssets(IAssetFolder folder)
         {
@@ -830,7 +830,7 @@ namespace Sce.Atf.Applications
         {
             if (m_currentAssetFolder != assetFolder)
             {
-                m_currentAssetFolder = assetFolder; 
+                m_currentAssetFolder = assetFolder;
 
                 m_requestedThumbs.Clear();
                 RefreshRightPane();
@@ -842,7 +842,7 @@ namespace Sce.Atf.Applications
             get { return m_currentAssetFolder; }
         }
 
-       
+
         private void RefreshRightPane()
         {
             if (m_currentAssetFolder != null)
@@ -878,7 +878,7 @@ namespace Sce.Atf.Applications
 
                 if (m_listView.Visible)
                     m_listViewAdaptor.Load();
- 
+
             }
         }
 
@@ -1084,7 +1084,7 @@ namespace Sce.Atf.Applications
 
         private class AssetFolderTreeView : ITreeView, IItemView
         {
-            public AssetFolderTreeView(AssetLister assetLister)       
+            public AssetFolderTreeView(AssetLister assetLister)
             {
                 m_assetLister = assetLister;
             }
@@ -1138,7 +1138,7 @@ namespace Sce.Atf.Applications
 
         private class AssetItemListView : IListView, IItemView
         {
-            public AssetItemListView(AssetLister assetLister)       
+            public AssetItemListView(AssetLister assetLister)
             {
                 m_assetLister = assetLister;
             }

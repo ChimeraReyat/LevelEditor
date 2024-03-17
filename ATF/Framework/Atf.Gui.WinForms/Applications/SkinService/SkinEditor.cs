@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -27,7 +27,7 @@ namespace Sce.Atf.Applications
         }
 
         /// <summary>
-        /// Load skin</summary>        
+        /// Load skin</summary>
         public void OpenSkin(string fileName)
         {
             if (!File.Exists(fileName)) return;
@@ -257,14 +257,14 @@ namespace Sce.Atf.Applications
             m_menu.Items.Add(fileMenu);
 
 
-            // file            
+            // file
             fileMenu.Name = "fileToolStripMenuItem";
             fileMenu.Size = new System.Drawing.Size(37, 20);
             fileMenu.Text = "File".Localize();
             fileMenu.DropDownOpening += fileMenu_DropDownOpening;
             fileMenu.DropDownItems.AddRange(new ToolStripItem[]
             {
-                newMenu,             
+                newMenu,
                 openMenu,
                 m_openFolderMenu,
                 m_saveMenu,
@@ -316,13 +316,13 @@ namespace Sce.Atf.Applications
             m_treeControl.SelectionMode = SelectionMode.One;
             m_treeControlAdapter = new TreeControlAdapter(m_treeControl);
 
-            // propertyGrid1            
+            // propertyGrid1
             m_PropertyGrid.Dock = DockStyle.Fill;
             m_PropertyGrid.Name = "propertyGrid1";
             m_PropertyGrid.TabIndex = 3;
             m_PropertyGrid.PropertySorting = PropertySorting.None;
 
-            // splitter           
+            // splitter
             splitter.Dock = DockStyle.Fill;
             splitter.Name = "splitContainer1";
             splitter.Panel1.Controls.Add(m_treeControl);
@@ -476,7 +476,7 @@ namespace Sce.Atf.Applications
         {
 
             /// <summary>
-            /// Creates an array of property descriptors that are associated with 
+            /// Creates an array of property descriptors that are associated with
             /// the adapted DomNode's DomNodeType.</summary>
             /// <returns>Array of property descriptors</returns>
             protected override System.ComponentModel.PropertyDescriptor[] GetPropertyDescriptors()
@@ -793,7 +793,7 @@ namespace Sce.Atf.Applications
             {
                 if (m_font != null && m_font.Equals(value))
                     return;
-                                
+
                 if (m_font != null) m_font.Dispose();
                 m_font = (Font)value;
 
@@ -839,7 +839,7 @@ namespace Sce.Atf.Applications
             }
 
             /// <summary>
-            /// Convert from color to string</summary>            
+            /// Convert from color to string</summary>
             public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
             {
                 if (value is Color)

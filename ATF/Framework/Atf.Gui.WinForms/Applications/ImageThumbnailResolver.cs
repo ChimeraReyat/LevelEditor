@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel.Composition;
@@ -24,7 +24,7 @@ namespace Sce.Atf.Applications
         }
 
         #endregion
-        
+
         /// <summary>
         /// Resolves Resource to a thumbnail image</summary>
         /// <param name="resourceUri">Resource URI to resolve</param>

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -64,7 +64,7 @@ namespace Sce.Atf.Controls
             SuspendLayout();
 
             // custom tab handling.
-            TabStop = false;            
+            TabStop = false;
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < columns; j++)
@@ -72,12 +72,12 @@ namespace Sce.Atf.Controls
                     var textBox = new NumericTextBox(m_numericType);
                     textBox.TabStop = false;
                     textBox.BorderStyle = BorderStyle.FixedSingle;
-                    textBox.Name = "M" + i + j;                                      
+                    textBox.Name = "M" + i + j;
                     textBox.ScaleFactor = m_scaleFactor;
                     textBox.ValueEdited += textBox_ValueEdited;
                     Controls.Add(textBox);
                 }
-            }            
+            }
             ResumeLayout();
         }
 
@@ -196,12 +196,12 @@ namespace Sce.Atf.Controls
         {
             UpdateHeight();
             SuspendLayout();
-            
+
             int cellWidth = ClientSize.Width / m_columns;
             int rowHeight = Controls[0].Height;
             int y = 0;
             for (int i = 0; i < m_rows; i++)
-            {                
+            {
                 int x = 0;
                 for (int j = 0; j < m_columns; j++)
                 {
@@ -230,7 +230,7 @@ namespace Sce.Atf.Controls
             // Call the base first so that FontHeight is updated before we call UpdateRowHeight().
             base.OnFontChanged(e);
 
-            UpdateHeight();            
+            UpdateHeight();
             PerformLayout();
             Invalidate();
         }

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using SharpDX.Direct2D1;
@@ -22,17 +22,17 @@ namespace Sce.Atf.Direct2D
 
         /// <summary>
         /// Gets the HWND associated with this D2dGraphics</summary>
-        public IntPtr Hwnd 
+        public IntPtr Hwnd
         {
-            get 
+            get
             {
                 var rt = (WindowRenderTarget)D2dRenderTarget;
                 return rt.Hwnd;
             }
         }
-       
+
         /// <summary>
-        /// Indicates whether the HWND associated with this D2dGraphics is occluded</summary>        
+        /// Indicates whether the HWND associated with this D2dGraphics is occluded</summary>
         /// <returns>D2dWindowState value that indicates whether the HWND associated with
         /// this D2dGraphics is occluded</returns>
         /// <remarks>Note that if the window was occluded the last time EndDraw was called, the
@@ -57,18 +57,18 @@ namespace Sce.Atf.Direct2D
             hwnProps.Hwnd = Hwnd;
             hwnProps.PixelSize = curRT.PixelSize;
             hwnProps.PresentOptions = PresentOptions.Immediately;
-            RenderTarget rt = new WindowRenderTarget(D2dFactory.NativeFactory, D2dFactory.RenderTargetProperties, hwnProps);            
+            RenderTarget rt = new WindowRenderTarget(D2dFactory.NativeFactory, D2dFactory.RenderTargetProperties, hwnProps);
             SetRenderTarget(rt);
-            Transform = xform;           
+            Transform = xform;
         }
 
         internal D2dHwndGraphics(WindowRenderTarget renderTarget)
             : base(renderTarget)
         {
-            
+
         }
     }
- 
+
     /// <summary>
     /// Describes whether a window is occluded.</summary>
     /// <remarks>
@@ -77,9 +77,9 @@ namespace Sce.Atf.Direct2D
     /// regardless of the current window state. If you want to use CheckWindowState
     /// to determine the current window state, you should call CheckWindowState after
     /// every EndDraw call and ignore its return value. This ensures that your
-    /// next call to CheckWindowState state returns the actual window state.</remarks>    
+    /// next call to CheckWindowState state returns the actual window state.</remarks>
     public enum D2dWindowState
-    {        
+    {
         /// <summary>
         /// The window is not occluded.</summary>
         None = 0,

@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -14,7 +14,7 @@ namespace Sce.Atf
     /// Defines utility methods for WfKeys (Windows key codes and modifiers)</summary>
     public static class KeysUtil
     {
-        /// <summary>Converts numeric pad AtfKeys to digit AtfKeys</summary>   
+        /// <summary>Converts numeric pad AtfKeys to digit AtfKeys</summary>
         /// <param name="keys">AtfKeys number pad keys</param>
         /// <returns>AtfKeys digit equivalent</returns>
         public static AtfKeys NumPadToNum(AtfKeys keys)
@@ -22,7 +22,7 @@ namespace Sce.Atf
             return Input.KeysUtil.NumPadToNum(keys);
         }
 
-        /// <summary>Converts numeric pad WfKeys to digit WfKeys</summary>   
+        /// <summary>Converts numeric pad WfKeys to digit WfKeys</summary>
         /// <param name="keys">WfKeys number pad keys</param>
         /// <returns>WfKeys digit equivalent</returns>
         public static WfKeys NumPadToNum(WfKeys keys)
@@ -33,7 +33,7 @@ namespace Sce.Atf
         /// <summary>
         /// Converts a AtfKeys value to a string</summary>
         /// <param name="k">AtfKeys value</param>
-        /// <param name="digitOnly">If true, for numeric pad or digit keys, only return 
+        /// <param name="digitOnly">If true, for numeric pad or digit keys, only return
         /// the number. For example, numpad0 becomes 0, and D0 becomes 0.</param>
         /// <returns>String representation of the AtfKeys value</returns>
         public static string KeysToString(AtfKeys k, bool digitOnly)
@@ -44,7 +44,7 @@ namespace Sce.Atf
         /// <summary>
         /// Converts a WfKeys value to a string</summary>
         /// <param name="k">WfKeys value</param>
-        /// <param name="digitOnly">If true, for numeric pad or digit keys, only return 
+        /// <param name="digitOnly">If true, for numeric pad or digit keys, only return
         /// the number. For example, numpad0 becomes 0, and D0 becomes 0.</param>
         /// <returns>String representation of the WfKeys value</returns>
         public static string KeysToString(WfKeys k, bool digitOnly)
@@ -55,7 +55,7 @@ namespace Sce.Atf
         /// <summary>
         /// Converts an enumeration of AtfKeys to a string</summary>
         /// <param name="k">Collection of AtfKeys</param>
-        /// <param name="digitOnly">If true, for numeric pad or digit keys, only return 
+        /// <param name="digitOnly">If true, for numeric pad or digit keys, only return
         /// the number. For example, numpad0 becomes 0, and D0 becomes 0.</param>
         /// <returns>String representation of the AtfKeys enumeration, with each
         /// AtfKeys string separated by a comma and space (", ")</returns>
@@ -67,7 +67,7 @@ namespace Sce.Atf
         /// <summary>
         /// Converts an enumeration of WfKeys to a string</summary>
         /// <param name="k">Collection of WfKeys</param>
-        /// <param name="digitOnly">If true, for numeric pad or digit keys, only return 
+        /// <param name="digitOnly">If true, for numeric pad or digit keys, only return
         /// the number. For example, numpad0 becomes 0, and D0 becomes 0.</param>
         /// <returns>String representation of the WfKeys enumeration, with each
         /// WfKeys string separated by a comma and space (", ")</returns>
@@ -142,7 +142,7 @@ namespace Sce.Atf
         /// Determines whether or not the given WfKeys should be considered a TextBox input and be handled
         /// by that control. For example, if this method returns true, ProcessCmdKey should return false
         /// and not call base.ProcessCmdKey.</summary>
-        /// <param name="control">TextBox control. This control (typically a TextBox or ComboBox) is checked to determine if it is multiline, 
+        /// <param name="control">TextBox control. This control (typically a TextBox or ComboBox) is checked to determine if it is multiline,
         /// which is one of the determinants of the return value.</param>
         /// <param name="k">WfKeys value</param>
         /// <returns>Whether or not the given key press should be considered a TextBox input</returns>

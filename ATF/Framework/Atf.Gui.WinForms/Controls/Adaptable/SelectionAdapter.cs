@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Linq;
@@ -63,7 +63,7 @@ namespace Sce.Atf.Controls.Adaptable
                     m_selectionPathMap[item] = path;
                 else
                     m_selectionPathMap.Add(item, path);
-            }        
+            }
         }
 
         /// <summary>
@@ -72,13 +72,13 @@ namespace Sce.Atf.Controls.Adaptable
         /// <param name="control">Adaptable control</param>
         protected override void Bind(AdaptableControl control)
         {
-            // get picking adapters in reverse order on the control            
+            // get picking adapters in reverse order on the control
             m_pickingAdapters = control.AsAll<IPickingAdapter>().ToArray();
             Array.Reverse(m_pickingAdapters);
 
             m_pickingAdapters2 = control.AsAll<IPickingAdapter2>().ToArray();
             Array.Reverse(m_pickingAdapters2);
-            
+
             m_dragSelector = control.As<IDragSelector>();
             if (m_dragSelector != null)
                 m_dragSelector.Selected += dragSelector_Selected;
@@ -182,10 +182,10 @@ namespace Sce.Atf.Controls.Adaptable
         {
             if (m_selectionContext != null)
             {
-                // Items may be selected programmatically after the drag & drop, 
-                // raise SelectedItemHit to enable label editor start editing with F2 without mouse click over the selected item first 
+                // Items may be selected programmatically after the drag & drop,
+                // raise SelectedItemHit to enable label editor start editing with F2 without mouse click over the selected item first
 
-                // items may be placed using mouse position as upper-left corner; 
+                // items may be placed using mouse position as upper-left corner;
                 // offset slightly of the mouse position to get better chance to pick the newly dropped item.
                 const int offset = 20;
                 var point = AdaptedControl.PointToClient(new Point(e.X + offset, e.Y + offset));
@@ -204,7 +204,7 @@ namespace Sce.Atf.Controls.Adaptable
                 pickedItems.AddRange(pickingAdapter.Pick(region));
             }
             region.Dispose();
-            
+
             foreach (IPickingAdapter2 pickingAdapter in m_pickingAdapters2)
             {
                 pickedItems.AddRange(pickingAdapter.Pick(e.Bounds));
@@ -300,7 +300,7 @@ namespace Sce.Atf.Controls.Adaptable
             // An item may be moved after a drag, need to update its DefaultPart bound by raising SelectedItemHit
             if (m_hitRecord != null && m_hitRecord.DefaultPart != null)
             {
-              
+
                 Point clientPoint = AdaptedControl.PointToClient(Cursor.Position);
                 var hitRecord = Pick(clientPoint);
                 if (hitRecord.Item == m_hitRecord.Item)

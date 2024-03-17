@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel.Composition;
@@ -113,7 +113,7 @@ namespace Sce.Atf.Applications
             // Remove the path portion, if any, just as in ATF 3.5 and earlier. http://tracker.ship.scea.com/jira/browse/WWSATF-1406
             pathName = Path.GetFileName(pathName);
             dialog.FileName = pathName;
-            
+
             dialog.ForcedInitialDirectory = GetInitialDirectory();
 
             DialogResult result = dialog.ShowDialog(GetDialogOwner());

@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System.Collections.Generic;
 using Sce.Atf.Adaptation;
@@ -16,10 +16,10 @@ namespace LevelEditor.DomNodeAdapters
         protected override void OnNodeSet()
         {
             base.OnNodeSet();
-            
+
             // Register child events
             DomNode.ChildInserted += DomNode_ChildInserted;
-            DomNode.ChildRemoved += DomNode_ChildRemoved;                      
+            DomNode.ChildRemoved += DomNode_ChildRemoved;
             CheckScaleFlags();
         }
 
@@ -29,7 +29,7 @@ namespace LevelEditor.DomNodeAdapters
             {
                 CheckScaleFlags();
             }
-           
+
         }
 
         private void DomNode_ChildRemoved(object sender, ChildEventArgs e)
@@ -37,7 +37,7 @@ namespace LevelEditor.DomNodeAdapters
             if (e.Parent == DomNode)
             {
                 CheckScaleFlags();
-            }           
+            }
         }
 
         private void CheckScaleFlags()
@@ -57,7 +57,7 @@ namespace LevelEditor.DomNodeAdapters
                 if ((childNode.TransformationType & TransformationTypes.Scale) == 0)
                         newFlags &= ~(TransformationTypes.Scale);
                 if ((childNode.TransformationType & TransformationTypes.UniformScale) != 0)
-                        newFlags |= TransformationTypes.UniformScale;                                
+                        newFlags |= TransformationTypes.UniformScale;
             }
 
             thisNode.TransformationType = newFlags;
@@ -83,7 +83,7 @@ namespace LevelEditor.DomNodeAdapters
             if (gameObject == null)
                 return false;
             GameObjects.Add(gameObject);
-            return true;            
+            return true;
         }
 
         #endregion
@@ -104,6 +104,6 @@ namespace LevelEditor.DomNodeAdapters
         }
 
         #endregion
-       
+
     }
 }

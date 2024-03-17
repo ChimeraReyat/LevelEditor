@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -38,7 +38,7 @@ namespace Sce.Atf.Controls.Adaptable
                 d2dControl.DrawingD2d += d2dControl_DrawingD2d;
             else
                 control.Paint += control_Paint;
-               
+
             base.Bind(control);
         }
 
@@ -103,7 +103,7 @@ namespace Sce.Atf.Controls.Adaptable
 
         private void d2dControl_DrawingD2d(object sender, EventArgs e)
         {
-            
+
             // if we're dragging, or could drag and no one else is dragging...
             if (Dragging() ||
                 (DragPossible() && !AdaptedControl.Capture))
@@ -183,7 +183,7 @@ namespace Sce.Atf.Controls.Adaptable
                     AdaptedControl.Focused &&
                     AdaptedControl.Cursor == Cursors.Default)
                 {
-                    
+
                     Direction direction = GetHitDirection(new Point(e.X, e.Y));
                     SetCursor(direction);
                 }
@@ -195,12 +195,12 @@ namespace Sce.Atf.Controls.Adaptable
         /// <param name="e">Mouse event args</param>
         /// <remarks>If dragging, raises the DrawingD2d event.</remarks>
         protected override void OnDragging(MouseEventArgs e)
-        {          
+        {
             if (Dragging())
             {
                 UpdateBounds();
                 AdaptedControl.Invalidate();
-            } 
+            }
         }
 
         private void UpdateBounds()

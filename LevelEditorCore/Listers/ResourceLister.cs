@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -57,7 +57,7 @@ namespace LevelEditorCore
                 m_watcher.Path = null;
                 m_watcher.EnableRaisingEvents = false;
             }
-                            
+
             if (m_treeContext != null)
             {
                 m_treeContext.SelectionChanged -= TreeSelectionChanged;
@@ -80,13 +80,13 @@ namespace LevelEditorCore
         private void Watcher_Renamed(object sender, RenamedEventArgs e)
         {
             var attr = File.GetAttributes(e.FullPath);
-            bool isDirectory = (attr & FileAttributes.Directory) == FileAttributes.Directory;            
+            bool isDirectory = (attr & FileAttributes.Directory) == FileAttributes.Directory;
             IFileSystemResourceFolder folder = m_treeContext.GetLastSelected<IFileSystemResourceFolder>();
             string selectedFolder = folder == null ? string.Empty : GetNormalizedName(folder.FullPath);
-                       
+
             if (isDirectory)
-            {//                 
-                m_treeControlAdapter.Refresh(m_treeContext.RootFolder);                
+            {//
+                m_treeControlAdapter.Refresh(m_treeContext.RootFolder);
             }
             else // it is a file
             {
@@ -96,7 +96,7 @@ namespace LevelEditorCore
                 {
                     TreeSelectionChanged(m_treeContext, EventArgs.Empty);
                 }
-            }            
+            }
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace LevelEditorCore
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Watcher_FileChanged(object sender, FileSystemEventArgs e)
-        {                       
+        {
             IFileSystemResourceFolder folder = m_treeContext.GetLastSelected<IFileSystemResourceFolder>();
             string selectedFolder = folder == null ? string.Empty : GetNormalizedName(folder.FullPath);
             string parentDirName = Path.GetDirectoryName(e.FullPath);
@@ -112,7 +112,7 @@ namespace LevelEditorCore
             string itemName = GetNormalizedName(e.FullPath);
             if ((e.ChangeType & WatcherChangeTypes.Created) == WatcherChangeTypes.Created)
             {
-                
+
                 var attr = File.GetAttributes(e.FullPath);
                 bool isDirectory = (attr & FileAttributes.Directory) == FileAttributes.Directory;
                 if (isDirectory)
@@ -122,7 +122,7 @@ namespace LevelEditorCore
                 else if (parentDirName == selectedFolder)
                 {
                     TreeSelectionChanged(m_treeContext, EventArgs.Empty);
-                }                             
+                }
             }
             else if ((e.ChangeType & WatcherChangeTypes.Deleted) == WatcherChangeTypes.Deleted)
             {
@@ -141,7 +141,7 @@ namespace LevelEditorCore
         private string GetNormalizedName(string path)
         {
             string result = string.IsNullOrWhiteSpace(path)
-                ? string.Empty : path.ToLower().Replace('\\', '_').Replace('/', '_').TrimEnd('_');            
+                ? string.Empty : path.ToLower().Replace('\\', '_').Replace('/', '_').TrimEnd('_');
             return result;
         }
         /// <summary>
@@ -174,7 +174,7 @@ namespace LevelEditorCore
             m_treeControl = new TreeControl();
             m_treeControl.SelectionMode = SelectionMode.One;
             m_treeControl.Dock = DockStyle.Fill;
-            m_treeControl.AllowDrop = true;            
+            m_treeControl.AllowDrop = true;
             m_treeControl.ImageList = ResourceUtil.GetImageList16();
             m_treeControl.StateImageList = ResourceUtil.GetImageList16();
             m_treeControl.MouseUp += treeControl_MouseUp;
@@ -213,7 +213,7 @@ namespace LevelEditorCore
             m_splitContainer.Panel1.Controls.Add(m_treeControl);
             m_splitContainer.Panel2.Controls.Add(m_thumbnailControl);
             m_splitContainer.Panel2.Controls.Add(m_listView);
-            m_splitContainer.SplitterDistance = 10;            
+            m_splitContainer.SplitterDistance = 10;
             m_listView.Hide();
 
             // on initialization, register our tree control with the hosting service
@@ -388,7 +388,7 @@ namespace LevelEditorCore
             {
                 listvew.MouseUpEventDisabled = false;
             }
-            
+
             m_dragging = false;
 
             m_hitPoint = e.Location;
@@ -521,7 +521,7 @@ namespace LevelEditorCore
             }
             m_thumbnailControl.Invalidate();
         }
-      
+
         private void RefreshThumbnails()
         {
             foreach (var item in m_thumbnailControl.Items)
@@ -636,7 +636,7 @@ namespace LevelEditorCore
             set
             {
                 // delay setting it until form shown.
-                m_splitterDistance = value;                
+                m_splitterDistance = value;
             }
         }
 
@@ -841,7 +841,7 @@ namespace LevelEditorCore
                 if (Reloaded != null)
                 {
                     Reloaded(this, e);
-                    this.Clear();                  
+                    this.Clear();
                 }
             }
 
@@ -945,7 +945,7 @@ namespace LevelEditorCore
 
                     info.Properties = new object[] {
                         length,
-                        typeName, 
+                        typeName,
                         lastWriteTime
                     };
                 }
@@ -1089,7 +1089,7 @@ namespace LevelEditorCore
                 base.OnMouseUp(e);
             }
         }
-    
+
         #endregion
     }
 }

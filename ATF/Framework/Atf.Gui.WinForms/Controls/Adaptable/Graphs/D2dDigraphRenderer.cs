@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -34,7 +34,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             m_theme.Redraw += theme_Redraw;
         }
 
-                  
+
         /// <summary>
         /// Draws a graph node</summary>
         /// <param name="node">Node to draw</param>
@@ -109,7 +109,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                     start = temp;
                 }
                 Vec2F endTangent = new Vec2F(end.X - start.X, end.Y - start.Y);
-                Vec2F arrowPosition = new Vec2F(end);                
+                Vec2F arrowPosition = new Vec2F(end);
                 DrawArrow(arrowPosition, endTangent, m_theme.OutlineBrush, g);
 
                 if (!string.IsNullOrEmpty(label))
@@ -261,12 +261,12 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 
         private void DrawGhost(TNode node, D2dGraphics g)
         {
-            g.FillEllipse((D2dEllipse)node.Bounds, m_theme.GhostBrush);                            
+            g.FillEllipse((D2dEllipse)node.Bounds, m_theme.GhostBrush);
         }
 
         private void DrawOutline(TNode node, D2dBrush brush, D2dGraphics g)
         {
-            g.DrawEllipse((D2dEllipse)node.Bounds, brush, m_theme.StrokeWidth);            
+            g.DrawEllipse((D2dEllipse)node.Bounds, brush, m_theme.StrokeWidth);
         }
 
         private bool Pick(TNode node, PointF p)
@@ -486,7 +486,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             float height = m_theme.TextFormat.FontHeight;
             float width = 32;
             if (!string.IsNullOrEmpty(edge.Label))
-            {                
+            {
                 SizeF size = g.MeasureText(edge.Label, m_theme.TextFormat);
                 width = size.Width;
                 height = size.Height;

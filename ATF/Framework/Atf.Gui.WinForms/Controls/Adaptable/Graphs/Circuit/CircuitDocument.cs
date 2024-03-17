@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -22,7 +22,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             var documentClientInfo = DomNode.Type.GetTag<DocumentClientInfo>();
             if (documentClientInfo != null)
                 SetEditorFileType(documentClientInfo.FileType);
-            
+
             #pragma warning disable 618 //mastered sub-circuits are obsolete
             if (SubCircuitChildInfo != null)
                 m_subCircuits = new DomNodeListAdapter<SubCircuit>(DomNode, SubCircuitChildInfo);
@@ -42,7 +42,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// <summary>
         /// Gets the optional AttributeInfo for the document version
         /// pins should be displayed.</summary>
-        protected virtual AttributeInfo VersionAttribute 
+        protected virtual AttributeInfo VersionAttribute
         {
             get { return null; }
         }

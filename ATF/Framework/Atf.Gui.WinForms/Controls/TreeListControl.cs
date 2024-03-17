@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Diagnostics;
@@ -10,7 +10,7 @@ using Sce.Atf.Applications;
 namespace Sce.Atf.Controls
 {
     /// <summary>
-    /// A Tree Control to display and edit hierarchical data in a tree view with details in columns. 
+    /// A Tree Control to display and edit hierarchical data in a tree view with details in columns.
     /// The TreeListItemRenderer decides how to draw the columns.</summary>
     public class TreeListControl : TreeControl
     {
@@ -94,15 +94,15 @@ namespace Sce.Atf.Controls
                     var column = Columns[i];
                     Rectangle textRect = new Rectangle(leftOffset + 3, Margin.Top, column.ActualWidth, ContentVerticalOffset);
                     if (i== Columns.Count-1)
-                        textRect.Width = ActualClientSize.Width - leftOffset; // extends last column 
+                        textRect.Width = ActualClientSize.Width - leftOffset; // extends last column
                     e.Graphics.DrawString(column.Label, Font, TreeListItemRenderer.TextBrush, textRect);
 
-                    // draw vertical separator 
+                    // draw vertical separator
                     e.Graphics.DrawLine(m_seperatorPen, leftOffset, Margin.Top, leftOffset, ContentVerticalOffset);
                     leftOffset += column.ActualWidth;
 
                 }
-                // draw horizontal separator 
+                // draw horizontal separator
                 e.Graphics.DrawLine(m_seperatorPen, 0, ContentVerticalOffset + 2, ActualClientSize.Width,
                     ContentVerticalOffset + 2);
             }
@@ -223,7 +223,7 @@ namespace Sce.Atf.Controls
 
             if (e.Button == MouseButtons.Left)
             {
-                if (m_editData != null && 
+                if (m_editData != null &&
                     (m_editData.EditingMode == DataEditor.EditMode.BySlider ||
                     m_editData.EditingMode == DataEditor.EditMode.ByClick))
                 {
@@ -308,7 +308,7 @@ namespace Sce.Atf.Controls
 
                     }
                 }
-               
+
             }
             base.OnMouseDown(e);
         }
@@ -354,7 +354,7 @@ namespace Sce.Atf.Controls
         {
             if (y < ContentVerticalOffset)
             {
-                if (Columns.Count > 0) // hit a column separator 
+                if (Columns.Count > 0) // hit a column separator
                 {
                     int left = TreeWidth;
 
@@ -489,7 +489,7 @@ namespace Sce.Atf.Controls
                 {
                     OnNodeDataEdited(new NodeEditEventArgs(m_dataEditNode, m_editData));
                 }
-                 
+
                 m_dataEditNode = null;
                 m_editData = null;
                 TreeListItemRenderer.TrackingEditor = null;

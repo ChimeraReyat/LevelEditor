@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -154,7 +154,7 @@ namespace Sce.Atf.Applications
 
         private readonly Dictionary<string, FileSystemWatcher> m_watchers =
             new Dictionary<string, FileSystemWatcher>(StringComparer.InvariantCultureIgnoreCase);
-        
+
         // Queue of file change event information, as pairs of 'sender' and 'e', so as to not lose
         //  file change events for when multiple watched files change while the user is responding
         //  to a dialog box on the main UI thread.

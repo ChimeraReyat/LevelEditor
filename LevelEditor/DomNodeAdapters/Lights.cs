@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 
 using System.Drawing;
@@ -15,7 +15,7 @@ namespace LevelEditor.DomNodeAdapters
         protected override void OnNodeSet()
         {
             base.OnNodeSet();
-            DomNodeUtil.SetVector(DomNode, Schema.gameObjectType.scaleAttribute, new Vec3F(0.4f, 0.4f, 0.4f)); 
+            DomNodeUtil.SetVector(DomNode, Schema.gameObjectType.scaleAttribute, new Vec3F(0.4f, 0.4f, 0.4f));
             UpdateTransform();
             TransformationType = TransformationTypes.Translation;
         }
@@ -74,13 +74,13 @@ namespace LevelEditor.DomNodeAdapters
         public Vec3F Direction
         {
             get { return DomNodeUtil.GetVector(DomNode, Schema.DirLight.directionAttribute); }
-            set 
+            set
             {
                 Vec3F dir = value;
                 dir.Normalize();
                 DomNodeUtil.SetVector(DomNode, Schema.DirLight.directionAttribute, dir);
             }
-        }      
+        }
     }
 
     public class PointLight : GameObject
@@ -88,9 +88,9 @@ namespace LevelEditor.DomNodeAdapters
         protected override void OnNodeSet()
         {
             base.OnNodeSet();
-            DomNodeUtil.SetVector(DomNode, Schema.gameObjectType.scaleAttribute, new Vec3F(0.4f, 0.4f, 0.4f)); 
+            DomNodeUtil.SetVector(DomNode, Schema.gameObjectType.scaleAttribute, new Vec3F(0.4f, 0.4f, 0.4f));
             UpdateTransform();
-            TransformationType = TransformationTypes.Translation;            
+            TransformationType = TransformationTypes.Translation;
         }
     }
 
@@ -98,7 +98,7 @@ namespace LevelEditor.DomNodeAdapters
     {
         protected override void OnNodeSet()
         {
-            base.OnNodeSet();                        
+            base.OnNodeSet();
             TransformationType = TransformationTypes.Translation | TransformationTypes.Scale;
         }
     }

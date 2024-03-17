@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel;
@@ -32,7 +32,7 @@ namespace Sce.Atf
             if (handler != null)
                 handler(sender, e);
         }
-        
+
         /// <summary>
         /// Raises a cancellable event</summary>
         /// <param name="handler">Handler or null</param>

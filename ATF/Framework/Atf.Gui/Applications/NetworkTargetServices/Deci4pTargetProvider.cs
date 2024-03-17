@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 //#define USE_TEST_DATA
 
@@ -27,7 +27,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
         /// <summary>
         /// Gets whether VITA SDK is installed</summary>
         static public bool SdkInstalled
-        { 
+        {
             get
             {
                return Type.GetTypeFromProgID("psp2tmapi.PSP2TMAPI") != null;
@@ -53,7 +53,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
             m_worker.RunWorkerAsync(this);
 
             m_timer = new Timer(TimerTick, "Deci4pTicker", 1000, 1000);
-        
+
         }
 
         #endregion
@@ -67,7 +67,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
             //var bgw = sender as BackgroundWorker;
             var result = new List<TargetInfo>();
             result.AddRange(FindTargets());
-            e.Result = result;                                  
+            e.Result = result;
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
         /// <param name="e">Event args</param>
         void BgwRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-  
+
             if (!e.Cancelled && e.Error == null && e.Result is List<TargetInfo>)
             {
                 var targets = e.Result as List<TargetInfo>;
@@ -106,10 +106,10 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                     {
                         consumer.TargetsChanged(this, targets);
                     }
-            
-                }            
+
+                }
             }
-  
+
          }
 
 
@@ -155,7 +155,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
         /// <param name="targetConsumer">The target consumer to retrieve the data for</param>
         /// <returns>Enumeration of the targets to consume on the target consumer</returns>
         public IEnumerable<TargetInfo> GetTargets(ITargetConsumer targetConsumer)
-        {         
+        {
                 foreach (var target in m_targets)
                     yield return target;
         }
@@ -192,12 +192,12 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                         m_timer.Dispose();
                         m_timer = null;
                     }
-                }            
-              
+                }
+
             }
             catch (Exception ex)
             {
-                Outputs.WriteLine(OutputMessageType.Error, ex.Message);               
+                Outputs.WriteLine(OutputMessageType.Error, ex.Message);
             }
         }
 
@@ -205,7 +205,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
 
         private IEnumerable<TargetInfo> FindTargets()
         {
-            
+
             if (!m_initialized)
             {
                 Type psp2TmType = Type.GetTypeFromProgID("psp2tmapi.PSP2TMAPI");
@@ -215,15 +215,15 @@ namespace Sce.Atf.Applications.NetworkTargetServices
                     object tmInstance = Activator.CreateInstance(psp2TmType);
                     m_tmApi = (IPsp2TmApi)tmInstance;
 
-                    const uint buildVersion = 18; //TODO: either user changeable(such as settings) or use reflection to extract? 
+                    const uint buildVersion = 18; //TODO: either user changeable(such as settings) or use reflection to extract?
                     m_tmApi.CheckCompatibility(buildVersion);
-                }                     
+                }
                 m_initialized = true;
                 if (m_tmApi == null)
                     Dispose();
             }
 #if USE_TEST_DATA
-            return CreateTestData(); 
+            return CreateTestData();
 #else
             if (Enabled)
             {
@@ -304,7 +304,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
 
         /// <summary>
         /// Gets or sets target consumers</summary>
-        [ImportMany(typeof(ITargetConsumer))]      
+        [ImportMany(typeof(ITargetConsumer))]
         protected IEnumerable<ITargetConsumer> TargetConsumers { get; set; }
 
 
@@ -436,7 +436,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
         [Guid("FF0B24DF-D981-400A-B842-E7E5565F5BBB")]
         [InterfaceType(ComInterfaceType.InterfaceIsIDispatch)]
         public interface ITarget
-        {        
+        {
             /// <summary>
             /// Gets target hardware ID</summary>
             [DispId(31)]
@@ -445,7 +445,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
             /// Gets or sets target name</summary>
             [DispId(40)]
             string Name { get; set; }
-            
+
         }
 
         /// <summary>
@@ -490,7 +490,7 @@ namespace Sce.Atf.Applications.NetworkTargetServices
             /// <returns>Target with given name</returns>
             [DispId(2)]
             ITarget GetByName(string bstrName);
-         
+
             /// <summary>
             /// Obtains targets from hardware ID</summary>
             /// <param name="bstrName">Hardware ID</param>

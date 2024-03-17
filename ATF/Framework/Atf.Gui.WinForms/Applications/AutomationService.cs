@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -29,7 +29,7 @@ namespace Sce.Atf.Applications
         /// <remarks>Description copied from http://msdn.microsoft.com/en-us/library/windows/desktop/ms633499%28v=vs.85%29.aspx. </remarks>
         [DllImport("User32.dll", EntryPoint = "FindWindow", CharSet = CharSet.Unicode)]
         public static extern Int32 FindWindow(String lpClassName, String lpWindowName);
-        
+
         /// <summary>
         /// Sends the specified message to a window or windows</summary>
         /// <param name="hWnd">Handle to the window whose window procedure will receive the message</param>
@@ -42,7 +42,7 @@ namespace Sce.Atf.Applications
         public static extern IntPtr SendMessage(IntPtr hWnd, UInt32 msg, IntPtr wParam, IntPtr lParam);
 
         /// <summary>
-        /// Places (posts) a message in the message queue associated with the thread that created the specified window 
+        /// Places (posts) a message in the message queue associated with the thread that created the specified window
         /// and returns without waiting for the thread to process the message</summary>
         /// <param name="hWnd">Handle to the window whose window procedure is to receive the message</param>
         /// <param name="msg">Message to be posted</param>
@@ -113,7 +113,7 @@ namespace Sce.Atf.Applications
                 catch { }
             }
         }
-        
+
         #endregion
 
         /// <summary>
@@ -179,7 +179,7 @@ namespace Sce.Atf.Applications
             }
             s_dispatcher = null;
         }
-        
+
         /// <summary>
         /// Gets the result of running the script:
         ///  0: No script was executed.
@@ -209,7 +209,7 @@ namespace Sce.Atf.Applications
         {
             s_mainFormLoaded = true;
         }
-        
+
         /// <summary>
         /// Checks if any error occurs. This can be an unhandled exception or
         /// an error dialog (checked by name and by type of known error dialogs).</summary>
@@ -238,7 +238,7 @@ namespace Sce.Atf.Applications
 
             return false;
         }
-        
+
         private delegate string FnExecute(string statement);
 
         /// <summary>
@@ -282,9 +282,9 @@ namespace Sce.Atf.Applications
         }
 
         /// <summary>
-        /// Searches through all open forms and dialogs for one with the 
+        /// Searches through all open forms and dialogs for one with the
         /// specified text. If a form is found, the default "AcceptButton"
-        /// is clicked. If a dialog is found, a keyboard "return" message is 
+        /// is clicked. If a dialog is found, a keyboard "return" message is
         /// sent to the dialog to select the default action.</summary>
         /// <param name="formText">Text to search for</param>
         /// <returns>True iff text found</returns>
@@ -371,14 +371,14 @@ namespace Sce.Atf.Applications
         [NonSerialized]
         [Import(AllowDefault = true)]
         protected SettingsService m_settingsService;
-        
+
         [NonSerialized]
         [Import(AllowDefault = true)]
         private IMainWindow m_mainWindow;
 
         [Import(AllowDefault = true)]
         private LiveConnectService m_liveConnectService;
-        
+
         /// <summary>
         /// Whether valid command line arguments were passed in to run an automated script</summary>
         protected bool m_enableAutomation;

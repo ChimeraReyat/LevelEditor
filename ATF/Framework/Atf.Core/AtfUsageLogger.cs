@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -58,7 +58,7 @@ namespace Sce.Atf
             try
             {
                 var recapUri = new Uri("http://sd-cdump-dev002.share.scea.com:8080");
-                
+
                 var logger = new ServerLogger();
                 logger.ServerName = recapUri;
                 logger.ApplicationName = "ATF_" + logger.ApplicationName;
@@ -109,7 +109,7 @@ namespace Sce.Atf
         }
 
         /// <summary>
-        /// Get OS full name</summary>        
+        /// Get OS full name</summary>
         private static string GetOSFullName()
         {
             string fullName = null;
@@ -145,7 +145,7 @@ namespace Sce.Atf
 
             return fullName;
         }
-       
+
 
         // Parses a full assembly name into its parts. For example:
         // "Microsoft.VisualStudio.HostingProcess.Utilities.Sync, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
@@ -194,7 +194,7 @@ namespace Sce.Atf
                     result.Append(',');
                 result.Append(version);
             }
-            
+
             if (result.Length > 0)
                 return result.ToString();
             return "n/a";

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -318,7 +318,7 @@ namespace Sce.Atf.Applications
                 }
             }
         }
-        
+
         /// <summary>
         /// Gets text in first QueryTextInput's text box</summary>
         public string TextInput1

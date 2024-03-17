@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -11,7 +11,7 @@ namespace Sce.Atf
 {
     /// <summary>
     /// A class to extend Drag Drop functionality, allowing the attachment of an image and description.
-    /// 
+    ///
     /// For example:
     ///     private void label1_MouseDown(object sender, MouseEventArgs e)
     ///     {

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -33,13 +33,13 @@ namespace Sce.Atf.Direct2D
         {
             s_expanderPoints[0] = new PointF(x, y + size);
             if (expanded)
-            {                
+            {
                 s_expanderPoints[1] = new PointF(x + size, y + size);
                 s_expanderPoints[2] = new PointF(x + size, y);
                 g.FillPolygon(s_expanderPoints, brush);
             }
             else
-            {                
+            {
                 s_expanderPoints[1] = new PointF(x + size, y + size / 2);
                 s_expanderPoints[2] = new PointF(x, y);
                 g.DrawPolygon(s_expanderPoints, brush, 1.0f);
@@ -123,7 +123,7 @@ namespace Sce.Atf.Direct2D
         /// <returns>Transformed rectangle</returns>
         public static RectangleF Transform(Matrix3x2F matrix, RectangleF r)
         {
-            return Matrix3x2F.Transform(matrix, r);          
+            return Matrix3x2F.Transform(matrix, r);
         }
 
         /// <summary>
@@ -132,9 +132,9 @@ namespace Sce.Atf.Direct2D
         /// <param name="p">Point</param>
         /// <returns>Inverse transformed point</returns>
         public static Point InverseTransform(Matrix3x2F matrix, Point p)
-        {            
+        {
             Matrix3x2F inverse = Matrix3x2F.Invert(matrix);
-            return Point.Truncate(Matrix3x2F.TransformPoint(inverse, p));                       
+            return Point.Truncate(Matrix3x2F.TransformPoint(inverse, p));
         }
 
         /// <summary>
@@ -143,11 +143,11 @@ namespace Sce.Atf.Direct2D
         /// <param name="v">Vector</param>
         /// <returns>Transformed vector</returns>
         public static PointF TransformVector(Matrix3x2F matrix, PointF v)
-        {            
+        {
             return Matrix3x2F.TransformVector(matrix, v);
         }
 
-      
+
 
         /// <summary>
         /// Draws a horizontal chart scale</summary>
@@ -505,7 +505,7 @@ namespace Sce.Atf.Direct2D
                 new PointF(0.07094253f, 0.0f),          // 0
                 new PointF(1.0f , 0.0f),                // 1
                 new PointF(1.0f , 0.648277938f),        // 2
-                new PointF(0.658584f, 0.436954677f),    // 3 
+                new PointF(0.658584f, 0.436954677f),    // 3
                 new PointF(0.658584f, 0.436954677f),    // 4
                 new PointF(0.5315179f, 0.541161954f),   // 5
                 new PointF(0.404450327f, 0.648277938f), // 6

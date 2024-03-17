@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -131,7 +131,7 @@ namespace Sce.Atf.Rendering.Dom
         {
             return GetEnumeratorInternal();
         }
-        
+
         private IEnumerator<TraverseNode> GetEnumeratorInternal()
         {
             foreach (RenderBucket bucket in m_buckets)
@@ -202,7 +202,7 @@ namespace Sce.Atf.Rendering.Dom
             {
                 get { return m_nodes; }
             }
-            
+
             // be sure to set this to 'true' if Nodes has been sorted
             public bool Sorted
             {

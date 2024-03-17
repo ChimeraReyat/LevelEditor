@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Globalization;
@@ -101,7 +101,7 @@ namespace Sce.Atf.Controls
                 m_lastEdit = value;
 
                 string formattedText = ((IFormattable)value).ToString(null, CultureInfo.CurrentCulture);
-                Text = formattedText;                
+                Text = formattedText;
                 // set values to be consistent in case there's no edit
                 TryValidateText(formattedText);
             }
@@ -128,7 +128,7 @@ namespace Sce.Atf.Controls
             {
                 Flush();
                // Let parent handle Enter key.
-               // Some editor might want to focus 
+               // Some editor might want to focus
                // on next child On Enter.
                // return true;
             }
@@ -149,7 +149,7 @@ namespace Sce.Atf.Controls
         {
             // ignore arrow keys and tab so they're available for containers, like our PropertyGridView
             if (keyData == Keys.Up ||
-                keyData == Keys.Down || 
+                keyData == Keys.Down ||
                 (keyData & Keys.Tab) == Keys.Tab)
             {
                 return false;
@@ -214,7 +214,7 @@ namespace Sce.Atf.Controls
             }
 
         }
-       
+
         /// <summary>
         /// Performs custom actions on MouseDown events.
         /// Overrides the default behavior on a double-click so that all the text is selected, not
@@ -375,7 +375,7 @@ namespace Sce.Atf.Controls
         }
 
         /// <summary>
-        /// Direction of move, 
+        /// Direction of move,
         /// 1 = right
         ///-1 = left</summary>
         public readonly int Direction;
@@ -448,7 +448,7 @@ namespace Sce.Atf.Controls
         /// Paint event handler</summary>
         /// <param name="e">Paint event args</param>
         protected override void OnPaint(PaintEventArgs e)
-        {            
+        {
             int midy = this.Height / 2;
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             using (Pen pen = new Pen(Color.LightBlue))
@@ -456,9 +456,9 @@ namespace Sce.Atf.Controls
                 pen.Width = 4;
                 pen.EndCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor;
                 pen.StartCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor;
-                e.Graphics.DrawLine(pen, 0, midy, Width, midy);                
-            }          
-        }        
+                e.Graphics.DrawLine(pen, 0, midy, Width, midy);
+            }
+        }
     }
 
     #endregion

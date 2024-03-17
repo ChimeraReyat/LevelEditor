@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections;
@@ -14,10 +14,10 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 {
     /// <summary>
     /// Context for the LayerLister</summary>
-    /// <remarks>This context has its own independent selection, 
+    /// <remarks>This context has its own independent selection,
     /// but uses the main GameContext's HistoryContext for undo/redo operations.
-    /// IInstancingContext and IHierarchicalInsertionContext implementations control drag/drop and 
-    /// copy/paste operations within the LayerLister (internal), pastes/drops to the 
+    /// IInstancingContext and IHierarchicalInsertionContext implementations control drag/drop and
+    /// copy/paste operations within the LayerLister (internal), pastes/drops to the
     /// LayerLister and drag/copies from the LayerLister (external).
     /// The IObservableContext implementation notifies the LayerLister's TreeControl
     /// when a change occurs that requires an update of one or more tree nodes.
@@ -53,7 +53,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// Raises the SelectionContext NodeSet event and performs custom processing.</summary>
         protected override void OnNodeSet()
         {
- 
+
             base.OnNodeSet();
 
             DomNode.AttributeChanged += DomNode_AttributeChanged;
@@ -123,7 +123,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// <summary>
         /// Deletes the selection from the layer</summary>
         public void Delete()
-        {            
+        {
             IEnumerable<DomNode> selectedDomNodes = GetSelection<DomNode>();
             foreach(DomNode domNode in DomNode.GetRoots(selectedDomNodes))
             {

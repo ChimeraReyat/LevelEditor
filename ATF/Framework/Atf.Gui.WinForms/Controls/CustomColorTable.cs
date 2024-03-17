@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -11,14 +11,14 @@ namespace Sce.Atf.Controls
 {
     /// <summary>
     /// This class can be used to create a new ToolStripProfessionalRenderer
-    /// (.NET class that handles painting functionality for ToolStrip objects, 
+    /// (.NET class that handles painting functionality for ToolStrip objects,
     /// applying a custom palette and a streamlined style).
     /// Normally, you can only change color settings by creating a custom class
     /// that derives from ToolStripProfessionalRenderer and another that derives
     /// from ProfessionalColorTable. To prevent that hassle, you can use this
     /// class and set the properties you like, then feed it to the overloaded
     /// ToolStripProfessionalRenderer(ProfessionalColorTable) constructor.</summary>
-    /// <remarks>Some of the methods here are the same as in ProfessionalColorTable, where the descriptions are copied from. For more information on ProfessionalColorTable, 
+    /// <remarks>Some of the methods here are the same as in ProfessionalColorTable, where the descriptions are copied from. For more information on ProfessionalColorTable,
     /// see http://msdn.microsoft.com/en-us/library/system.windows.forms.professionalcolortable%28v=vs.110%29.aspx. </remarks>
     public class CustomColorTable : ProfessionalColorTable
     {
@@ -52,10 +52,10 @@ namespace Sce.Atf.Controls
             }
 
             SettableToolStripBorder = Color.Transparent;
-           
+
             SettableImageMarginGradientBegin = Color.Transparent;
             SettableImageMarginGradientMiddle = Color.Transparent;
-            SettableImageMarginGradientEnd = Color.Transparent;                                           
+            SettableImageMarginGradientEnd = Color.Transparent;
         }
         // Buttons
         /// <summary>Gets or sets the solid color used when the button is selected</summary>
@@ -92,22 +92,22 @@ namespace Sce.Atf.Controls
         public Color SettableButtonPressedGradientMiddle { get; set; }
         /// <summary>Gets or sets the end color of the gradient used when the button is pressed</summary>
         public Color SettableButtonPressedGradientEnd { get; set; }
-                                                             
-        // Checks                                           
+
+        // Checks
         /// <summary>Gets or sets the solid color to use when the button is checked and gradients are being used</summary>
         public Color SettableCheckBackground { get; set; }
         /// <summary>Gets or sets the solid color to use when the button is checked and selected and gradients are being used</summary>
         public Color SettableCheckSelectedBackground { get; set; }
         /// <summary>Gets or sets the solid color to use when the button is checked and selected and gradients are being used</summary>
         public Color SettableCheckPressedBackground { get; set; }
-                                                            
-        // Grips                                              
+
+        // Grips
         /// <summary>Gets or sets the color to use for shadow effects on the grip (move handle)</summary>
         public Color SettableGripDark { get; set; }
         /// <summary>Gets or sets the color to use for highlight effects on the grip (move handle)</summary>
         public Color SettableGripLight { get; set; }
-                                                            
-        // Image Margins                                             
+
+        // Image Margins
         /// <summary>Gets or sets the starting color of the gradient used in the image margin of a ToolStripDropDownMenu</summary>
         public Color SettableImageMarginGradientBegin { get; set; }
         /// <summary>Gets or sets the middle color of the gradient used in the image margin of a ToolStripDropDownMenu</summary>
@@ -120,8 +120,8 @@ namespace Sce.Atf.Controls
         public Color SettableImageMarginRevealedGradientMiddle { get; set; }
         /// <summary>Gets or sets the end color of the gradient used in the image margin of a ToolStripDropDownMenu when an item is revealed</summary>
         public Color SettableImageMarginRevealedGradientEnd { get; set; }
-                                                            
-        // Menus                                              
+
+        // Menus
         /// <summary>Gets or sets the starting color of the gradient used in the MenuStrip</summary>
         public Color SettableMenuStripGradientBegin { get; set; }
         /// <summary>Gets or sets the end color of the gradient used in the MenuStrip</summary>
@@ -142,26 +142,26 @@ namespace Sce.Atf.Controls
         public Color SettableMenuItemPressedGradientMiddle { get; set; }
         /// <summary>Gets or sets the end color of the gradient used when a top-level ToolStripMenuItem is pressed</summary>
         public Color SettableMenuItemPressedGradientEnd { get; set; }
-                                                            
-        // Rafting Containers                                         
+
+        // Rafting Containers
         /// <summary>Gets or sets the starting color of the gradient used in the ToolStripContainer</summary>
         public Color SettableRaftingContainerGradientBegin { get; set; }
         /// <summary>Gets or sets the end color of the gradient used in the ToolStripContainer</summary>
         public Color SettableRaftingContainerGradientEnd { get; set; }
-                                                             
-        // Separators                                             
+
+        // Separators
         /// <summary>Gets or sets the color to use to for shadow effects on the ToolStripSeparator</summary>
         public Color SettableSeparatorDark { get; set; }
         /// <summary>Gets or sets the color to use to for highlight effects on the ToolStripSeparator</summary>
         public Color SettableSeparatorLight { get; set; }
-                                                             
-        // Status Strips                                            
+
+        // Status Strips
         /// <summary>Gets or sets the starting color of the gradient used on the StatusStrip</summary>
         public Color SettableStatusStripGradientBegin { get; set; }
         /// <summary>Gets or sets the end color of the gradient used on the StatusStrip</summary>
         public Color SettableStatusStripGradientEnd { get; set; }
-                                                            
-        // Tool Strips                                       
+
+        // Tool Strips
         /// <summary>Gets or sets the border color to use on the bottom edge of the ToolStrip</summary>
         public Color SettableToolStripBorder { get; set; }
         /// <summary>Gets or sets the solid background color of the ToolStripDropDown</summary>
@@ -180,8 +180,8 @@ namespace Sce.Atf.Controls
         public Color SettableToolStripPanelGradientBegin { get; set; }
         /// <summary>Gets or sets the end color of the gradient used in the ToolStripPanel</summary>
         public Color SettableToolStripPanelGradientEnd { get; set; }
-                                                             
-        // Overflows                                            
+
+        // Overflows
         /// <summary>Gets or sets the starting color of the gradient used in the ToolStripOverflowButton</summary>
         public Color SettableOverflowButtonGradientBegin { get; set; }
         /// <summary>Gets or sets the middle color of the gradient used in the ToolStripOverflowButton</summary>

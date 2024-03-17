@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using Sce.Atf.Adaptation;
 namespace Sce.Atf.Collections
 {
     /// <summary>
-    /// Collection to adapt an observable collection of references to an 
+    /// Collection to adapt an observable collection of references to an
     /// observable collection of their reference targets
     /// TODO: does not currently deal with Reference Targets changing</summary>
     /// <typeparam name="TRefTarget">Type of reference target</typeparam>

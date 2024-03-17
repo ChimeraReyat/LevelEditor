@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using AtfMessage = Sce.Atf.Input.Message;
 using WfMessage = System.Windows.Forms.Message;
@@ -113,6 +113,6 @@ namespace Sce.Atf
         public IntPtr LParam { get; private set; }
         /// <summary>
         /// Gets result of handling message</summary>
-        public IntPtr Result { get; private set; } 
+        public IntPtr Result { get; private set; }
     }
 }

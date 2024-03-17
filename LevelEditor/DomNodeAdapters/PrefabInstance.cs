@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -34,7 +34,7 @@ namespace LevelEditor.DomNodeAdapters
             DomNode.ChildRemoving += new EventHandler<ChildEventArgs>(DomNodeStructureChanged);
             DomNode.ChildInserting += new EventHandler<ChildEventArgs>(DomNodeStructureChanged);
             DomNode.AttributeChanged += new EventHandler<AttributeEventArgs>(DomNode_AttributeChanged);
-       
+
             m_overrideList = GetChildList<ObjectOverride>(Schema.prefabInstanceType.objectOverrideChild);
             foreach (var objectOverride in m_overrideList)
             {
@@ -54,13 +54,13 @@ namespace LevelEditor.DomNodeAdapters
 
             if (!e.AttributeInfo.Equivalent(e.DomNode.Type.IdAttribute))
             {
-                IGameObject gob = e.DomNode.Cast<IGameObject>();                
+                IGameObject gob = e.DomNode.Cast<IGameObject>();
                 string originalName = m_intsToOriginal[e.DomNode];
                 ObjectOverride objectOverride;
                 m_overridesMap.TryGetValue(originalName, out objectOverride);
                 if (objectOverride == null)
                 {
-                    objectOverride = ObjectOverride.Create(originalName);                    
+                    objectOverride = ObjectOverride.Create(originalName);
                     m_overrideList.Add(objectOverride);
                     m_overridesMap.Add(originalName, objectOverride);
                 }
@@ -68,7 +68,7 @@ namespace LevelEditor.DomNodeAdapters
                 AttributeOverride attrOverride = objectOverride.GetOrCreateByName(e.AttributeInfo.Name);
                 attrOverride.AttribValue = e.AttributeInfo.Type.Convert(e.NewValue);
 
-            }                      
+            }
         }
 
         private void DomNodeStructureChanged(object sender, ChildEventArgs e)
@@ -90,7 +90,7 @@ namespace LevelEditor.DomNodeAdapters
                     m_prefab = Globals.ResourceService.Load(resUri) as IPrefab;
                 if (m_prefab == null) return;
 
-                // update name and uri                
+                // update name and uri
                 if(resUri == null)
                     SetAttribute(Schema.prefabInstanceType.prefabRefAttribute, m_prefab.Uri);
 
@@ -100,21 +100,21 @@ namespace LevelEditor.DomNodeAdapters
 
                 DomNode[] gobs = DomNode.Copy(m_prefab.GameObjects.AsIEnumerable<DomNode>());
                 HashSet<string> gobIds = new HashSet<string>();
-                
-                gobgroup.GameObjects.Clear();                
+
+                gobgroup.GameObjects.Clear();
                 foreach (var gobNode in gobs)
                 {
                     gobNode.InitializeExtensions();
                     IGameObject gob = gobNode.As<IGameObject>();
                     m_intsToOriginal.Add(gobNode, gob.Name);
                     gobIds.Add(gob.Name);
-                    ObjectOverride objectOverride;                    
+                    ObjectOverride objectOverride;
                     m_overridesMap.TryGetValue(gob.Name, out objectOverride);
                     updateNode(gobNode, objectOverride);
                     string name = gob.Name;
                     if (namer != null)
                         gob.Name = namer.Name(gob.Name);
-                    
+
                     gobgroup.GameObjects.Add(gob);
                 }
 
@@ -154,13 +154,13 @@ namespace LevelEditor.DomNodeAdapters
         // maps the id of the instance to object override
         private Dictionary<string, ObjectOverride>
             m_overridesMap = new Dictionary<string, ObjectOverride>();
-            
+
         // maps instances node to the Id of the original node
         private Dictionary<DomNode, string> m_intsToOriginal
             = new Dictionary<DomNode, string>();
         private IPrefab m_prefab;
     }
-    
+
     public class AttributeOverride : DomNodeAdapter
     {
         public static AttributeOverride Create(string name, string value)
@@ -177,7 +177,7 @@ namespace LevelEditor.DomNodeAdapters
         public string Name
         {
             get { return GetAttribute<string>(Schema.attributeOverrideType.nameAttribute); }
-            private set 
+            private set
             {
                 if (string.IsNullOrWhiteSpace(value))
                     throw new InvalidTransactionException("name cannot be null");
@@ -204,7 +204,7 @@ namespace LevelEditor.DomNodeAdapters
         protected override void OnNodeSet()
         {
             base.OnNodeSet();
-            m_overrides = GetChildList<AttributeOverride>(Schema.objectOverrideType.attributeOverrideChild); 
+            m_overrides = GetChildList<AttributeOverride>(Schema.objectOverrideType.attributeOverrideChild);
         }
         public string ObjectName
         {
@@ -219,7 +219,7 @@ namespace LevelEditor.DomNodeAdapters
 
         /// <summary>
         /// Gets AttributeOverride by name
-        /// if not found then it will create new instacne</summary>        
+        /// if not found then it will create new instacne</summary>
         public AttributeOverride GetOrCreateByName(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
@@ -243,6 +243,6 @@ namespace LevelEditor.DomNodeAdapters
             get { return m_overrides; }
         }
 
-        private IList<AttributeOverride> m_overrides;        
+        private IList<AttributeOverride> m_overrides;
     }
 }

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -821,7 +821,7 @@ namespace Sce.Atf.Controls
         private bool m_autoScroll;
         private Point m_autoScrollPositionStart;
         private readonly Timer m_autoScrollTimer;
-        
+
         private Point m_firstPoint;
         private Point m_currentPoint;
         private Point m_last;

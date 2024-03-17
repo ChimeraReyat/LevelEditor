@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -20,7 +20,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
     /// with a history, selection, and editing capabilities. There may be multiple
     /// contexts within a single circuit document, because each sub-circuit has its own
     /// editing context.</summary>
-    /// <remarks>The class has a default implementation of IInstancingContext if no other 
+    /// <remarks>The class has a default implementation of IInstancingContext if no other
     /// IInstancingContext adaptors are associated with the DomNode. </remarks>
     public abstract class CircuitEditingContext : EditingContext,
         IEnumerableContext,
@@ -344,7 +344,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             {
                 center = dragDropAdapter.MousePosition;
                 var hitRecord = Pick(dragDropAdapter.MousePosition);
-                if (hitRecord != null) 
+                if (hitRecord != null)
                 {
                     if (hitRecord.SubItem.Is<Group>())
                         hitGroup = hitRecord.SubItem.Cast<Group>();
@@ -385,7 +385,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             {
                 if (node.Is<IAnnotation>())
                 {
-                    // annotation editing takes priority over standard node editing 
+                    // annotation editing takes priority over standard node editing
                     var annotationAdapter = m_viewingContext.As<AdaptableControl>().As<D2dAnnotationAdapter>();
                     if (annotationAdapter != null && annotationAdapter.CanDeleteTextSelection(node.Cast<IAnnotation>()))
                     {
@@ -449,7 +449,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         }
 
         /// <summary>
-        /// Explicitly notify the graph object has been changed. This is useful when some changes, 
+        /// Explicitly notify the graph object has been changed. This is useful when some changes,
         /// such as group pin connectivity, are computed at runtime, outside DOM attribute mechanism.</summary>
         /// <param name="element">Changed graph object</param>
         public void NotifyObjectChanged(object element)
@@ -463,10 +463,10 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             {
                 NotifyObjectChanged(e.DomNode); //required for Layers. http://tracker.ship.scea.com/jira/browse/WWSATF-1389
 
-                // Editing the subgraph may cause changes in the parent graph, such as reordering group pins in a group needs 
-                // to change the pin indexes of the external edges in the parent graph. 
-                // Each circuit or group has its own local editing context, and the default TransactionContext implementation 
-                // only responds to these Dom changes from the adapted DomNode and below. 
+                // Editing the subgraph may cause changes in the parent graph, such as reordering group pins in a group needs
+                // to change the pin indexes of the external edges in the parent graph.
+                // Each circuit or group has its own local editing context, and the default TransactionContext implementation
+                // only responds to these Dom changes from the adapted DomNode and below.
                 // We need to catch changes up in the hierarchy too for proper undo/redo.
                 var circuitValidator = DomNode.GetRoot().As<CircuitValidator>();
                 if (circuitValidator != null)
@@ -500,7 +500,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 if (e.Child.Is<Wire>())
                 {
                     var connection = e.Child.Cast<Wire>();
-                    if (connection.InputElement.Is<Group>())  // set dirty to force update group pin connectivity                                     
+                    if (connection.InputElement.Is<Group>())  // set dirty to force update group pin connectivity
                         connection.InputElement.Cast<Group>().Dirty = true;
 
                     if (connection.OutputElement.Is<Group>())
@@ -596,9 +596,9 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         {
 
             var group = sender.Cast<Group>();
-            // Some group properties, such as its display bound, are computed at runtime but not stored as Dom Attributes.  
-            // Since group elements could be nested and child changes could affect the appearance of the parent group,  
-            // need to bubble up the ItemChanged event by traversing up the editing context chain 
+            // Some group properties, such as its display bound, are computed at runtime but not stored as Dom Attributes.
+            // Since group elements could be nested and child changes could affect the appearance of the parent group,
+            // need to bubble up the ItemChanged event by traversing up the editing context chain
             foreach (var node in group.DomNode.Lineage)
             {
                 var editingContext = node.As<CircuitEditingContext>();
@@ -805,7 +805,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 if (module.DomNode.GetRoot() != DomNode.GetRoot())
                     return false;
 
-                // don't allow parenting cycles( the module to be moved is not a parent of the new owner) 
+                // don't allow parenting cycles( the module to be moved is not a parent of the new owner)
                 foreach (DomNode ancestor in newContainer.Cast<DomNode>().Lineage)
                     if (module.DomNode.Equals(ancestor))
                         return false;
@@ -839,11 +839,11 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             if (newParent == null)
                 newParent = this;
 
-            
+
             var movingItems = movingObjects.ToArray();
 
 
-            var movingAnnotations = movingItems.AsIEnumerable<Annotation>().ToArray();            
+            var movingAnnotations = movingItems.AsIEnumerable<Annotation>().ToArray();
             var moduleSet = new HashSet<Element>();
             var movingNodes = movingItems.AsIEnumerable<Element>().ToArray();
             var newContainer = newParent.Cast<ICircuitContainer>();
@@ -877,7 +877,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 newContainer.Wires.Add(connection);
             }
 
-            // location transformation of moved modules         
+            // location transformation of moved modules
             var offset = GetRelativeOffset(oldContainer, newContainer);
             foreach (var module in movingNodes)
             {
@@ -976,10 +976,10 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// directly dragging and dropping a palette item onto a group.</remarks>
         protected virtual GraphHitRecord<Element, Wire, ICircuitPin> Pick(Point point)
         {
-            // The default behavior is to return null. So when dragging and dropping a palette item onto a group in the canvas,   
-            // the palette item does not automatically get added to the group. Instead, it gets dropped onto the main canvas 
+            // The default behavior is to return null. So when dragging and dropping a palette item onto a group in the canvas,
+            // the palette item does not automatically get added to the group. Instead, it gets dropped onto the main canvas
             // and then becomes hidden from view (because it is behind the group).	This then requires moving the group to
-            // the side and performing a drag and drop from the canvas onto the group. 
+            // the side and performing a drag and drop from the canvas onto the group.
 
             // Override this method so ATF can detect the case for drag & drop over a group
             return null;
@@ -1094,7 +1094,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 }
                 catch /*(Exception ex)*/
                 {
-                    // the app cannot recover when using output service                   
+                    // the app cannot recover when using output service
                     //Outputs.WriteLine(OutputMessageType.Warning, ex.Message);
                 }
             }
@@ -1129,7 +1129,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         {
             var templatingContext = m_templatingContext.As<TemplatingContext>();
             if (templatingContext == null)
-                return true; // skip validating references 
+                return true; // skip validating references
             foreach (var item in items)
             {
                 var reference = item.As<IReference<DomNode>>();

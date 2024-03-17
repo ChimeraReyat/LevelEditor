@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -46,7 +46,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             /// Only expose connected group pins</summary>
             HideUnconnectedPins
         }
-           
+
         /// <summary>
         /// Gets or sets group creation options</summary>
         public GroupCreationOptions CreationOptions { get; set; }
@@ -114,7 +114,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 {
                     if (modules.Contains(grpPin.InternalElement))
                     {
-                        // adjust the internal pin index first 
+                        // adjust the internal pin index first
                         foreach (var newGrpPin in newGroup.InputGroupPins)
                         {
                             if (newGrpPin.InternalElement.DomNode == grpPin.InternalElement.DomNode &&
@@ -136,7 +136,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 {
                     if (modules.Contains(grpPin.InternalElement))
                     {
-                        // adjust the internal pin index first 
+                        // adjust the internal pin index first
                         foreach (var newGrpPin in newGroup.OutputGroupPins)
                         {
                             if (newGrpPin.InternalElement.DomNode == grpPin.InternalElement.DomNode &&
@@ -166,7 +166,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 {
                     groupInputPin.SetPinTarget(true);
 
-                    // reroute original edge 
+                    // reroute original edge
                     connection.SetInput(newGroup, groupInputPin);
                     connection.InputPinTarget = groupInputPin.PinTarget;
                 }
@@ -176,7 +176,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 {
                     groupOutputPin.SetPinTarget(false);
 
-                    // reroute original edge 
+                    // reroute original edge
                     connection.SetOutput(newGroup, groupOutputPin);
                     connection.OutputPinTarget = groupOutputPin.PinTarget;
                 }
@@ -250,7 +250,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             }
 
             // remove group
-            circuitContainer.Elements.Remove(group);           
+            circuitContainer.Elements.Remove(group);
         }
 
         /// <summary>
@@ -405,13 +405,13 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                     {
                        var lastSelected = selectionContext.GetLastSelected<Element>();
                         enabled = (lastSelected != null) && // at least one Module selected
-                                  selectionContext.Selection.All( // selected elements should have a common parent(i.e. belong to the same container) 
+                                  selectionContext.Selection.All( // selected elements should have a common parent(i.e. belong to the same container)
                                       x => x.Is<Element>() && x.Cast<DomNode>().Parent == lastSelected.DomNode.Parent);
                         if (enabled)
-                            enabled = selectionContext.Selection.All(x => !CircuitUtil.IsTemplateTargetMissing(x)); 
+                            enabled = selectionContext.Selection.All(x => !CircuitUtil.IsTemplateTargetMissing(x));
                         if (enabled && (!context.SupportsNestedGroup))
-                        {    
-                            // if nested group is not supported, then neither any selected item can be a group, 
+                        {
+                            // if nested group is not supported, then neither any selected item can be a group,
                             // nor any of their ancestry
                             enabled=  selectionContext.Selection.All(x => !x.Is<Group>());
                             if (enabled)
@@ -420,12 +420,12 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                     }
                     else if (StandardCommand.EditUngroup.Equals(commandTag))
                     {
-                       
+
                         enabled = selectionContext.Selection.Any() &&
                             selectionContext.Selection.All(x => x.Is<Group>() &&  // selected are all are group instances
-                               !(x.Is<IReference<DomNode>>())  // disallow template instances as they suppose acting atomically 
-                            );                      
-                    }                  
+                               !(x.Is<IReference<DomNode>>())  // disallow template instances as they suppose acting atomically
+                            );
+                    }
                 }
                 else if (commandTag is CommandTag)
                 {
@@ -458,7 +458,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                     {
                         enabled = true;
                     }
-   
+
                 }
             }
 
@@ -475,7 +475,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             var viewingContext = m_contextRegistry.GetActiveContext<ViewingContext>();
             var transactionContext = m_contextRegistry.GetActiveContext<ITransactionContext>();
             if (transactionContext == null)
-                transactionContext = circuitEditingContext; //fallback 
+                transactionContext = circuitEditingContext; //fallback
             if (commandTag is StandardCommand)
             {
                 if (StandardCommand.EditGroup.Equals(commandTag))
@@ -512,7 +512,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 //    foreach (var connection in context.CircuitContainer.Wires)
                 //        connection.Cast<WireStyleProvider>().EdgeStyle = EdgeStyle.Default;
                 //}
-            }         
+            }
         }
 
         /// <summary>
@@ -523,7 +523,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         {
             if (commandTag is CommandTag)
             {
-               
+
                 if (commandTag.Equals(CommandTag.ResetGroupPinNames))
                 {
                     if (m_targetRef != null && m_targetRef.Target != null)
@@ -631,7 +631,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 //yield return CommandTag.HideUnconnectedPins;
                 yield return CommandTag.EdgeStyleDefault;
                 yield return CommandTag.EdgeStyleDirectCurve;
-             }    
+             }
         }
 
         #endregion
@@ -729,7 +729,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 var viewingContext = context.Cast<CircuitEditingContext>().DomNode.Cast<ViewingContext>();
                 if (viewingContext.Control != null)
                 {
-                    
+
                     var contextMenu = viewingContext.Control.As<ContextMenuAdapter>();
                     if (CommandService.ContextMenuIsTriggering && contextMenu != null)
                     {
@@ -741,7 +741,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                                 m_targetRef = new WeakReference(hitRecord.SubItem); // favor inner container
                                 return true;
                             }
-                          
+
                         }
                     }
                 }
@@ -770,12 +770,12 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             foreach (var grpPin in group.InputGroupPins)
             {
                 grpPin.IsDefaultName = true;
-                grpPin.Name = grpPin.DefaultName(true);            
+                grpPin.Name = grpPin.DefaultName(true);
             }
             foreach (var grpPin in group.OutputGroupPins)
             {
                 grpPin.IsDefaultName = true;
-                grpPin.Name = grpPin.DefaultName(false);        
+                grpPin.Name = grpPin.DefaultName(false);
             }
         }
 
@@ -808,14 +808,14 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                             }
 
                         }
-                       
+
                     }
                 }
             }
             return false;
         }
 
- 
+
         private Group.PinOrderStyle m_defaultPinOrderStyle;
         private WeakReference m_targetRef;
         //private bool m_allUnconnectedHidden;

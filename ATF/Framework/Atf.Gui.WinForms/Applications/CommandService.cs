@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -203,7 +203,7 @@ namespace Sce.Atf.Applications
 
                 foreach (KeyValuePair<object, CommandInfo> kvp in m_commandsById)
                 {
-                    // skip over command without client 
+                    // skip over command without client
                     if (GetClient(kvp.Value.CommandTag) == null )
                         continue;
 
@@ -466,7 +466,7 @@ namespace Sce.Atf.Applications
                 m_commands.Sort(new CommandComparer());
                 m_commandsSorted = true;
             }
-            
+
             ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
             menuItem.DropDownItems.Clear();
             MenuInfo menuInfo = GetMenuInfo(menuItem.Tag);
@@ -538,7 +538,7 @@ namespace Sce.Atf.Applications
         private void menuItem_MouseMove(object sender, MouseEventArgs e)
         {
             m_menuMouseLocation = e.Location;
-            
+
             var menuItem = sender as ToolStripMenuItem;
             if (menuItem != null)
             {
@@ -700,7 +700,7 @@ namespace Sce.Atf.Applications
             }
             button.DropDown = contextMenu;
         }
-        
+
         private void contextMenu_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             ToolStripMenuItem menuItem = e.ClickedItem as ToolStripMenuItem;
@@ -865,7 +865,7 @@ namespace Sce.Atf.Applications
             menuItem.Name = info.MenuText + "_menu";
             menuItem.Tag = info.MenuTag;
             m_menuToolStripItems.Add(info, menuItem);
-            
+
             // Associate the registered MenuInfo with this CommandService.  Only can be registered once.
             info.CommandService = this;
         }
@@ -907,7 +907,7 @@ namespace Sce.Atf.Applications
                                             };
                                     }
                                     m_webHelpTimer.Start();
-                                    
+
                                     return true;
                                 }
                             }
@@ -1136,7 +1136,7 @@ namespace Sce.Atf.Applications
 
             return m_commandControls[info];
         }
-        
+
         private readonly Dictionary<MenuInfo, ToolStrip> m_menuToolStrips =
             new Dictionary<MenuInfo, ToolStrip>();
 

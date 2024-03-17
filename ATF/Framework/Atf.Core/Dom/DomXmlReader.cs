@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -127,7 +127,7 @@ namespace Sce.Atf.Dom
         /// <param name="attributeInfo">attributeInfo to set</param>
         /// <param name="valueString">The string representation of the attribute value</param>
         protected virtual void ReadAttribute(DomNode node, AttributeInfo attributeInfo, string valueString)
-        {            
+        {
             if (IsReferenceAttribute(attributeInfo))
             {
                 // save reference so it can be resolved after all nodes have been read
@@ -137,9 +137,9 @@ namespace Sce.Atf.Dom
             {
                 object value = attributeInfo.Type.Convert(valueString);
                 node.SetAttribute(attributeInfo, value);
-            }            
+            }
         }
-       
+
         /// <summary>
         /// Reads the node specified by the child metadata</summary>
         /// <param name="nodeInfo">Child metadata for node</param>
@@ -248,7 +248,7 @@ namespace Sce.Atf.Dom
                                     {
                                         if (reader.NodeType == XmlNodeType.Text)
                                         {
-                                            ReadAttribute(node, attributeInfo, reader.Value);                                            
+                                            ReadAttribute(node, attributeInfo, reader.Value);
                                             // skip child elements, as this is an attribute value
                                             reader.Skip();
                                             break;
@@ -277,7 +277,7 @@ namespace Sce.Atf.Dom
                         AttributeInfo attributeInfo = type.GetAttributeInfo(string.Empty);
                         if (attributeInfo != null)
                         {
-                            ReadAttribute(node, attributeInfo, reader.Value);                                                      
+                            ReadAttribute(node, attributeInfo, reader.Value);
                         }
                     }
                     else if (reader.NodeType == XmlNodeType.EndElement)
@@ -345,7 +345,7 @@ namespace Sce.Atf.Dom
                 string id = nodeReference.Value.TrimStart('#');
                 id = Uri.UnescapeDataString(id); // remove escape characters
                 id = id.TrimStart(s_trimChars);
-                
+
                 DomNode refNode;
                 if (m_nodeDictionary.TryGetValue(id, out refNode))
                 {
@@ -359,7 +359,7 @@ namespace Sce.Atf.Dom
                 }
             }
 
-            m_nodeReferences = unresolved;            
+            m_nodeReferences = unresolved;
         }
 
         /// <summary>

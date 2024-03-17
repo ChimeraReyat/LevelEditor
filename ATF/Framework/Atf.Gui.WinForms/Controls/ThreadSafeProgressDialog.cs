@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -266,7 +266,7 @@ namespace Sce.Atf.Controls
 
         #region Private Classes
 
-        private class BackgroundThread 
+        private class BackgroundThread
         {
             private readonly ThreadSafeProgressDialog m_parent;
             private readonly Thread m_thread;
@@ -283,17 +283,17 @@ namespace Sce.Atf.Controls
                 m_thread.SetApartmentState(ApartmentState.STA);
                 m_thread.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
                 m_thread.Start();
-            } 
+            }
 
             public void Stop()
             {
                 lock (this)
                 {
-                    if (m_dialog != null && m_dialog.IsHandleCreated) 
+                    if (m_dialog != null && m_dialog.IsHandleCreated)
                         m_dialog.BeginInvoke(new MethodInvoker(m_dialog.Close));
                     m_alreadyStopped = true;
                 }
-            } 
+            }
 
             public void UpdateLabel()
             {
@@ -347,8 +347,8 @@ namespace Sce.Atf.Controls
                     {
                         if (m_dialog != null)
                         {
-                            // If the dialog was visible when it went away, we need to make the parent visible.  
-                            // We cannot rely on Windows to do it for us, since the parent is owned by a different 
+                            // If the dialog was visible when it went away, we need to make the parent visible.
+                            // We cannot rely on Windows to do it for us, since the parent is owned by a different
                             // thread, which means that we cannot tell windows about the parent/child relationship.
                             var visibleAtClose = m_dialog.Visible;
 

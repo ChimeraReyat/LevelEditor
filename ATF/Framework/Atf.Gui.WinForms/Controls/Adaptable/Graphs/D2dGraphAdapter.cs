@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -20,19 +20,19 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
     /// <typeparam name="TEdge">Edge type, must implement IGraphEdge</typeparam>
     /// <typeparam name="TEdgeRoute">Edge route type, must implement IEdgeRoute</typeparam>
     /// <remark>ControlAdapter accesses AdaptableControl, which is a Form's control, hence any class derived from ControlAdapter
-    /// belongs to Atf.Gui.WinForms project</remark>    
-    public class D2dGraphAdapter<TNode, TEdge, TEdgeRoute> : ControlAdapter, IPickingAdapter2, IDisposable        
+    /// belongs to Atf.Gui.WinForms project</remark>
+    public class D2dGraphAdapter<TNode, TEdge, TEdgeRoute> : ControlAdapter, IPickingAdapter2, IDisposable
         where TNode : class, IGraphNode
         where TEdge : class, IGraphEdge<TNode, TEdgeRoute>
         where TEdgeRoute : class, IEdgeRoute
     {
         /// <summary>
-        /// Constructor</summary>        
+        /// Constructor</summary>
         /// <param name="renderer">Graph renderer to draw and hit-test graph</param>
         /// <param name="transformAdapter">Transform adapter</param>
         public D2dGraphAdapter(D2dGraphRenderer<TNode, TEdge, TEdgeRoute> renderer,
             ITransformAdapter transformAdapter)
-        {            
+        {
             m_renderer = renderer;
             m_renderer.Redraw += renderer_Redraw;
             EdgeRenderPolicy = DrawEdgePolicy.AllFirst;
@@ -46,7 +46,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             /// Draw an edge after its start and end nodes are drawn</summary>
             Associated,
             /// <summary>
-            /// Draw all edges first, followed by nodes</summary>            
+            /// Draw all edges first, followed by nodes</summary>
             AllFirst
         }
 
@@ -68,7 +68,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         /// Sets dispose flag</summary>
         /// <param name="disposing">Value to set dispose flag to</param>
         protected virtual void Dispose(bool disposing)
-        {         
+        {
         }
         #endregion
 
@@ -78,7 +78,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         {
             get { return m_renderer; }
         }
-                                
+
         /// <summary>
         /// Gets the current rendering style for an item</summary>
         /// <param name="item">Rendered item</param>
@@ -104,7 +104,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                     result = DiagramDrawingStyle.CopyInstance;
                 else
                     result = DiagramDrawingStyle.Hot;
-            }           
+            }
             else if (m_selectionContext != null && m_selectionContext.SelectionContains(item))
             {
                 if (m_selectionContext.LastSelected.Equals(item))
@@ -208,7 +208,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             m_renderer.GetStyle = GetStyle;
             Matrix3x2F invXform = Matrix3x2F.Invert(m_d2dGraphics.Transform);
             RectangleF rect = D2dUtil.Transform(invXform,pickRect);
-            return m_renderer.Pick(m_graph, rect, m_d2dGraphics);           
+            return m_renderer.Pick(m_graph, rect, m_d2dGraphics);
         }
 
         /// <summary>
@@ -219,7 +219,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         {
             RectangleF bounds = m_renderer.GetBounds(items.AsIEnumerable<TNode>(), m_d2dGraphics);
             if (bounds.IsEmpty) return Rectangle.Empty;
-            bounds = D2dUtil.Transform(m_d2dGraphics.Transform, bounds); 
+            bounds = D2dUtil.Transform(m_d2dGraphics.Transform, bounds);
             return Rectangle.Truncate(bounds);
         }
 
@@ -329,11 +329,11 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
             m_d2dControl.MouseDown += d2dControl_MouseDown;
             m_d2dControl.MouseMove += d2dControl_MouseMove;
             m_d2dControl.MouseLeave += d2dControl_MouseLeave;
-            m_selectionPathProvider = control.As<ISelectionPathProvider>();  
+            m_selectionPathProvider = control.As<ISelectionPathProvider>();
         }
 
         private DraggingControlAdapter[] m_draggingAdapters;
-        
+
         /// <summary>
         /// Unbinds the adapter from the adaptable control</summary>
         /// <param name="control">Adaptable control</param>
@@ -375,7 +375,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 invMtrx.Invert();
                 RectangleF boundsGr = Matrix3x2F.Transform(invMtrx, this.AdaptedControl.ClientRectangle);
 
-                // Either draw (most) edges first or prepare multimaps for draw-as-we-go edges.                
+                // Either draw (most) edges first or prepare multimaps for draw-as-we-go edges.
                 if (EdgeRenderPolicy == DrawEdgePolicy.AllFirst)
                 {
                     foreach (var edge in m_graph.Edges)
@@ -398,7 +398,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 }
                 else
                 {
-                    // build node to edge maps                    
+                    // build node to edge maps
                     foreach (TEdge edge in m_graph.Edges)
                     {
                         m_nodeEdges.Add(edge.FromNode, edge);
@@ -409,7 +409,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 
                 // Draw normal nodes first
                 TNode containerOfSelectedNode = null;
-                
+
                 foreach (var node in m_graph.Nodes)
                 {
                     RectangleF nodeBounds = m_renderer.GetBounds(node, m_d2dGraphics);
@@ -499,7 +499,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                         DrawAssociatedEdges(node, boundsGr);
                 }
 
-                             
+
                 // Draw dragging nodes last to ensure they are visible (necessary for container-crossing move operation)
                 foreach (var node in m_draggingNodes)
                 {
@@ -513,7 +513,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                 {
                     DiagramDrawingStyle style = GetStyle(edge);
                     m_renderer.Draw(edge, style, m_d2dGraphics);
-                }                        
+                }
             }
             finally
             {
@@ -528,7 +528,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 
         private void DrawAssociatedEdges(TNode node, RectangleF clipBounds)
         {
-            
+
             var edges = m_nodeEdges.Find(node);
             foreach (var edge in edges)
             {
@@ -594,14 +594,14 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
                     ResetCustomStyle(m_hoverSubObject);
                     m_hoverSubObject = hoverHitRecord.SubItem;
                     m_renderer.SetCustomStyle(m_hoverSubObject, DiagramDrawingStyle.DragSource);
- 
+
                     redraw = true;
                 }
-               
+
                 if (redraw)
                     Invalidate();
             }
-            
+
         }
 
         private void control_ContextChanged(object sender, EventArgs e)
@@ -657,7 +657,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
 
         private void selection_Changed(object sender, EventArgs e)
         {
-            
+
             Invalidate();
         }
 
@@ -701,7 +701,7 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         private void Invalidate()
         {
             if(!IsDragging())// no need to invalidate when dragging.
-                AdaptedControl.Invalidate();            
+                AdaptedControl.Invalidate();
         }
 
         /// <summary>
@@ -735,13 +735,13 @@ namespace Sce.Atf.Controls.Adaptable.Graphs
         private object m_hoverObject;
         private object m_hoverSubObject;
         private ISelectionPathProvider m_selectionPathProvider;
-      
+
         private TEdge m_hiddenEdge; // hide edge when dragging its replacement.
         private IGraph<TNode, TEdge, TEdgeRoute> m_graph = s_emptyGraph;
         private IObservableContext m_observableContext;
         private ISelectionContext m_selectionContext;
         private IVisibilityContext m_visibilityContext;
-        
+
         /// <summary>
         /// EmptyGraph object</summary>
         protected static readonly EmptyGraph s_emptyGraph = new EmptyGraph();

@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Drawing;
@@ -6,7 +6,7 @@ using System.Drawing;
 namespace Sce.Atf.VectorMath
 {
     /// <summary>
-    /// Defines 2D transformation matrix</summary>    
+    /// Defines 2D transformation matrix</summary>
     public struct Matrix3x2F : IEquatable<Matrix3x2F>
     {
         /// <summary>
@@ -52,7 +52,7 @@ namespace Sce.Atf.VectorMath
         public bool IsIdentity
         {
             get
-            {                
+            {
                 return (this.M11 == 1f)
                     && (this.M12 == 0f)
                     && (this.M21 == 0f)
@@ -118,7 +118,7 @@ namespace Sce.Atf.VectorMath
 
         /// <summary>
         /// Creates a matrix that can be used to rotate a set of points clockwise
-        /// around the origin (zero x and y coordinates) by the amount specified 
+        /// around the origin (zero x and y coordinates) by the amount specified
         /// in the angle parameter</summary>
         /// <param name="angle">Angle of rotation, in degrees</param>
         /// <param name="result">Rotation matrix</param>
@@ -139,8 +139,8 @@ namespace Sce.Atf.VectorMath
 
         /// <summary>
         /// Creates a matrix that can be used to rotate a set of points clockwise
-        /// around the origin (zero x and y coordinates) by the amount specified 
-        /// in the angle parameter</summary>        
+        /// around the origin (zero x and y coordinates) by the amount specified
+        /// in the angle parameter</summary>
         /// <param name="angle">Angle of rotation, in degrees</param>
         /// <returns>Rotation matrix</returns>
         public static Matrix3x2F CreateRotation(float angle)
@@ -191,7 +191,7 @@ namespace Sce.Atf.VectorMath
             //r.DY = 0f;
             return r;
         }
-      
+
         /// <summary>
         /// Creates a translation matrix</summary>
         /// <param name="x">Distance to translate along the x-axis</param>
@@ -227,7 +227,7 @@ namespace Sce.Atf.VectorMath
         }
 
         /// <summary>
-        /// Transforms rectangle</summary>     
+        /// Transforms rectangle</summary>
         /// <param name="mat">Matrix representing transform</param>
         /// <param name="r">Rectangle to transform</param>
         /// <returns>Transformed rectangle</returns>
@@ -240,7 +240,7 @@ namespace Sce.Atf.VectorMath
             result.Height = r.Width * mat.M12 + r.Height * mat.M22;
             return result;
         }
-            
+
         /// <summary>
         /// Transforms the given point</summary>
         /// <param name="mat">Transformation matrix</param>
@@ -249,7 +249,7 @@ namespace Sce.Atf.VectorMath
         public static void TransformPoint(ref Matrix3x2F mat, ref PointF point, ref PointF result)
         {
             result.X = point.X * mat.M11 + point.Y * mat.M21 + mat.DX;
-            result.Y = point.X * mat.M12 + point.Y * mat.M22 + mat.DY;                        
+            result.Y = point.X * mat.M12 + point.Y * mat.M22 + mat.DY;
         }
 
 
@@ -287,7 +287,7 @@ namespace Sce.Atf.VectorMath
         {
             return ((this.M22 * this.M11) - (this.M21 * this.M12));
         }
-    
+
         /// <summary>
         /// Inverts matrix</summary>
         public void Invert()
@@ -300,7 +300,7 @@ namespace Sce.Atf.VectorMath
             float dy = M12 * DX - M11 * DY;
 
             float invdet = 1.0f / Determinant();
-            
+
             M11 = m11 * invdet;
             M12 = m12 * invdet;
             M21 = m21 * invdet;
@@ -308,7 +308,7 @@ namespace Sce.Atf.VectorMath
             DX = dx * invdet;
             DY = dy * invdet;
         }
-       
+
 
         /// <summary>
         /// Calculates the inverse of specified matrix</summary>
@@ -317,12 +317,12 @@ namespace Sce.Atf.VectorMath
         public static Matrix3x2F Invert(Matrix3x2F m)
         {
             float m11 =  m.M22;
-            float m12 = -m.M12;            
+            float m12 = -m.M12;
             float m21 = -m.M21;
             float m22 = m.M11;
             float dx = m.M21 * m.DY  - m.M22 * m.DX;
             float dy = m.M12 * m.DX - m.M11 * m.DY;
-            
+
             float invdet = 1.0f / m.Determinant();
             Matrix3x2F result = new Matrix3x2F();
             result.M11 = m11 * invdet;
@@ -331,7 +331,7 @@ namespace Sce.Atf.VectorMath
             result.M22 = m22 * invdet;
             result.DX = dx * invdet;
             result.DY = dy * invdet;
-            return result;                       
+            return result;
         }
 
 
@@ -381,7 +381,7 @@ namespace Sce.Atf.VectorMath
         }
 
         /// <summary>
-        /// Compute hash code</summary>        
+        /// Compute hash code</summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {

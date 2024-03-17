@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -33,7 +33,7 @@ namespace Sce.Atf.Dom
             if (InTransaction)
                 throw new InvalidOperationException("already in transaction");
 
-            m_transactionCancelled = false; 
+            m_transactionCancelled = false;
 
             // Client code expects the transaction name to be available for listeners to the Beginning event.
             m_transactionName = transactionName;

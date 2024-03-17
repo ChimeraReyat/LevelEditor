@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel;
@@ -24,7 +24,7 @@ namespace Sce.Atf.Controls.PropertyEditing
         /// <param name="description">Dialog description</param>
         public FolderBrowserDialogUITypeEditor(string description)
         {
-            // create instance of editing control, 
+            // create instance of editing control,
             // resuse this instance for subsequence calls
             m_dialog = new FolderBrowserDialog();
             m_dialog.Description = description;
@@ -55,7 +55,7 @@ namespace Sce.Atf.Controls.PropertyEditing
             if (editorService != null)
             {
                 if (value != null)
-                    m_dialog.SelectedPath = value.ToString();                
+                    m_dialog.SelectedPath = value.ToString();
                 if(m_dialog.ShowDialog() == DialogResult.OK)
                     value = m_dialog.SelectedPath;
             }

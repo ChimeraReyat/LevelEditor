@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.ComponentModel;
@@ -28,7 +28,7 @@ namespace Sce.Atf.Controls.PropertyEditing
                 if (parameters[1].Length > 0)
                     m_max = Single.Parse(parameters[1]);
             }
-            catch 
+            catch
             {
                 throw new ArgumentException("Can't parse bounds");
             }
@@ -51,7 +51,7 @@ namespace Sce.Atf.Controls.PropertyEditing
             if ((m_min.HasValue && m_min.Value != min) || (m_max.HasValue && m_max.Value != max))
             {
                 m_min = min;
-                m_max = max;               
+                m_max = max;
             }
         }
 

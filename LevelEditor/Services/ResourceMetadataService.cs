@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 using System.Collections.Generic;
@@ -20,7 +20,7 @@ namespace LevelEditor
     /// Component to provide  resource meta-data.
     /// </summary>
     [Export(typeof(IResourceMetadataService))]
-    [Export(typeof(IInitializable))]    
+    [Export(typeof(IInitializable))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class ResourceMetadataService : IResourceMetadataService, IInitializable
     {
@@ -32,7 +32,7 @@ namespace LevelEditor
 
             // parse resource metadata annotation.
 
-            HashSet<string> metafileExts = new HashSet<string>();            
+            HashSet<string> metafileExts = new HashSet<string>();
             char[] sep = { ';' };
             foreach (ChildInfo chInfo in m_schemaLoader.GetRootElements())
             {
@@ -40,7 +40,7 @@ namespace LevelEditor
                 IEnumerable<XmlNode> annotations = domtype.GetTag<IEnumerable<XmlNode>>();
                 if (annotations == null)
                     continue;
-                
+
                 foreach (XmlElement annot in annotations)
                 {
                     if (annot.LocalName != "ResourceMetadata")
@@ -54,12 +54,12 @@ namespace LevelEditor
                         ResourceMetadataInfo metadataInfo
                             = new ResourceMetadataInfo(chInfo, metaExt);
                         m_extMap.Add(ext, metadataInfo);
-                    }                    
-                }                
+                    }
+                }
             }
             m_metadataFileExts = new string[metafileExts.Count];
             metafileExts.CopyTo(m_metadataFileExts);
-            
+
         }
 
         #endregion
@@ -72,7 +72,7 @@ namespace LevelEditor
         }
 
         IEnumerable<object> IResourceMetadataService.GetMetadata(IEnumerable<Uri> resourceUris)
-        {           
+        {
             List<DomNode> rootNodes = new List<DomNode>();
             foreach (Uri resourceUri in resourceUris)
             {
@@ -98,7 +98,7 @@ namespace LevelEditor
                 }
                 else
                 {
-                    rootNode = resInfo.CreateNode();                   
+                    rootNode = resInfo.CreateNode();
                     rootNode.SetAttribute(Schema.resourceMetadataType.uriAttribute, resourceUri);
                 }
 
@@ -106,12 +106,12 @@ namespace LevelEditor
                 ResourceMetadataDocument document = rootNode.Cast<ResourceMetadataDocument>();
                 document.Uri = metadataUri;
                 rootNodes.Add(rootNode);
-            }            
-            return rootNodes;   
+            }
+            return rootNodes;
         }
-        
+
         #endregion
-       
+
         private string[] m_metadataFileExts;
 
         [Import(AllowDefault = false)]
@@ -131,7 +131,7 @@ namespace LevelEditor
                     throw new ArgumentNullException("fileExt");
                 if (!fileExt.StartsWith(".", StringComparison.InvariantCultureIgnoreCase))
                     throw new FormatException("File extension must start with '.' example .png");
-                   
+
                 NodeType = chInfo.Type;
                 Elemnet = chInfo;
                 MetadataFileExt = fileExt;
@@ -141,10 +141,10 @@ namespace LevelEditor
             {
                 return new DomNode(NodeType, Elemnet);
             }
-        
+
             public readonly DomNodeType NodeType;
             public readonly ChildInfo Elemnet;
-            public readonly string MetadataFileExt;            
+            public readonly string MetadataFileExt;
         }
 
     }

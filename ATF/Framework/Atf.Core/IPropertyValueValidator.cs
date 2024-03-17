@@ -1,4 +1,4 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 namespace Sce.Atf
 {
@@ -11,7 +11,7 @@ namespace Sce.Atf
         /// <param name="propertyName">User-readable property name</param>
         /// <param name="formattedValue">Proposed new value for this property</param>
         /// <param name="errorMessage">User-readable error message or empty string if there was no error</param>
-        /// <returns>True iff 'formattedValue' is valid</returns>       
+        /// <returns>True iff 'formattedValue' is valid</returns>
         bool Validate(string propertyName, object formattedValue, out string errorMessage);
     }
 }

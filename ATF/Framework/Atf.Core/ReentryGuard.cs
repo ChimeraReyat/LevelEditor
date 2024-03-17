@@ -1,4 +1,4 @@
-//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+//Copyright Â© 2014 Sony Computer Entertainment America LLC. See License.txt.
 
 using System;
 
@@ -8,7 +8,7 @@ namespace Sce.Atf
     /// A utility for more safely and conveniently protecting against reentering code that
     /// is not designed to be reentrant. Allows the use of the 'using' statement to simplify
     /// code somewhat, as compared to using try-finally blocks.
-    /// 
+    ///
     /// Also allows for the situation where reentry is permissible, but different code paths must
     /// be taken. Use the EnterAndExitMultiple method for this situation.</summary>
     /// <example>
